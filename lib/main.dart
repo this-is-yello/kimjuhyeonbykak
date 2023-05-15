@@ -1,232 +1,132 @@
 import 'package:flutter/material.dart';
+import 'package:opscroll_web/opscroll_web.dart';
+import 'package:flutter_carousel_slider/carousel_slider.dart';
 
-void main() => runApp(const MyApp());
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
 
-// This widget is the root
-// of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'ListWheelScrollView Example',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      title: '김주현바이각',
       debugShowCheckedModeBanner: false,
-      home: const Wheel(),
+      home: MainPage(),
     );
   }
 }
 
-class Wheel extends StatefulWidget {
-  const Wheel({Key? key}) : super(key: key);
+class MainPage extends StatefulWidget {
+  MainPage({super.key});
 
   @override
-// ignore: library_private_types_in_public_api
-  _WheelState createState() => _WheelState();
+  State<MainPage> createState() => _MainPageState();
 }
 
-class _WheelState extends State<Wheel> {
+class _MainPageState extends State<MainPage> {
+  final PageController _pageController = PageController();
+
+  List<String> mainBackground = [
+    'assets/images/tailorShop_bg.png',
+    'assets/images/tailorAcademy_bg.png',
+    'assets/images/jemulpoClub_bg.png',
+    'assets/images/rentalCenter_bg.png',
+  ];
+  List<String> mainTitles = [
+    'k!mjuhyeon by 覺',
+    'by 覺 Tailor Academy',
+    'New JemulpoClub',
+    'by 覺 RentalCenter',
+  ];
+  List<String> mainSubTitles = [
+    '전통과 정통을 바느질하다.',
+    '어제보다 나은 작업물을 만드는 것이 이 시대의 장인정신입니다.',
+    '개화기 제물포구락부의 역사를 계승하고자 합니다.',
+    '그 날을 위한 자신감, 바이각',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Geeksforgeeks"),
-        backgroundColor: Colors.green,
-      ),
-      body: ListWheelScrollView(
-        itemExtent: 100,
-
-        // diameterRatio: 1.6,
-        // offAxisFraction: -0.4,
-        // squeeze: 0.8,
-
-        // DEPRECATED : clipToSize does not exist anymore.
-        // USe clipBehaviour instead.
-
-        // clipToSize: true,
-
-        clipBehavior: Clip.antiAlias,
-        children: const <Widget>[
-          ElevatedButton(
-            onPressed: null,
-            child: Text(
-              'Item 1',
-              textAlign: TextAlign.start,
-              style: TextStyle(
-                  fontSize: 25,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold),
+      body: OpscrollWeb(
+        pageController: _pageController,
+        onePageChildren: [
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            child: CarouselSlider.builder(
+              slideBuilder: (index) {
+                return Container(
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: AssetImage(
+                        mainBackground[index],
+                      ),
+                    ),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        mainTitles[index],
+                        style: TextStyle(
+                          fontSize: 56,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Text(
+                        mainSubTitles[index],
+                        style: TextStyle(
+                          fontSize: 24,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              },
+              slideTransform: DefaultTransform(),
+              slideIndicator: CircularSlideIndicator(
+                currentIndicatorColor: Colors.white,
+                padding: EdgeInsets.only(bottom: 80),
+              ),
+              unlimitedMode: true,
+              itemCount: mainBackground.length,
             ),
           ),
-          ElevatedButton(
-            onPressed: null,
-            child: Text(
-              'Item 2',
-              textAlign: TextAlign.start,
-              style: TextStyle(
-                  fontSize: 25,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold),
-            ),
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            color: Colors.red,
           ),
-          ElevatedButton(
-            onPressed: null,
-            child: Text(
-              'Item 3',
-              textAlign: TextAlign.start,
-              style: TextStyle(
-                  fontSize: 25,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold),
-            ),
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            color: Colors.green,
           ),
-          ElevatedButton(
-            onPressed: null,
-            child: Text(
-              'Item 4',
-              textAlign: TextAlign.start,
-              style: TextStyle(
-                  fontSize: 25,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold),
-            ),
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            color: Colors.blue,
           ),
-          ElevatedButton(
-            onPressed: null,
-            child: Text(
-              'Item 5',
-              textAlign: TextAlign.start,
-              style: TextStyle(
-                  fontSize: 25,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold),
-            ),
-          ),
-          ElevatedButton(
-            onPressed: null,
-            child: Text(
-              'Item 6',
-              textAlign: TextAlign.start,
-              style: TextStyle(
-                  fontSize: 25,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold),
-            ),
-          ),
-          ElevatedButton(
-            onPressed: null,
-            child: Text(
-              'Item 7',
-              textAlign: TextAlign.start,
-              style: TextStyle(
-                  fontSize: 25,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold),
-            ),
-          ),
-          ElevatedButton(
-            onPressed: null,
-            child: Text(
-              'Item 8',
-              textAlign: TextAlign.start,
-              style: TextStyle(
-                  fontSize: 25,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold),
-            ),
-          ),
-          // RaisedButton(
-          // onPressed: null,
-          // child: Text(
-          //	 "Item 1",
-          //	 textAlign: TextAlign.start,
-          //	 style: TextStyle(
-          //		 color: Colors.black,
-          //		 fontWeight: FontWeight.bold,
-          //		 fontSize: 25),
-          // ),
-          // ),
-          // RaisedButton(
-          // onPressed: null,
-          // child: Text(
-          //	 "Item 2",
-          //	 textAlign: TextAlign.center,
-          //	 style: TextStyle(
-          //		 color: Colors.black,
-          //		 fontWeight: FontWeight.bold,
-          //		 fontSize: 25),
-          // ),
-          // ),
-          // RaisedButton(
-          // onPressed: null,
-          // child: Text(
-          //	 "Item 3",
-          //	 textAlign: TextAlign.center,
-          //	 style: TextStyle(
-          //		 color: Colors.black,
-          //		 fontWeight: FontWeight.bold,
-          //		 fontSize: 25),
-          // ),
-          // ),
-          // RaisedButton(
-          // onPressed: null,
-          // child: Text(
-          //	 "Item 4",
-          //	 textAlign: TextAlign.center,
-          //	 style: TextStyle(
-          //		 color: Colors.black,
-          //		 fontWeight: FontWeight.bold,
-          //		 fontSize: 25),
-          // ),
-          // ),
-          // RaisedButton(
-          // onPressed: null,
-          // child: Text(
-          //	 "Item 5",
-          //	 textAlign: TextAlign.center,
-          //	 style: TextStyle(
-          //		 color: Colors.black,
-          //		 fontWeight: FontWeight.bold,
-          //		 fontSize: 25),
-          // ),
-          // ),
-          // RaisedButton(
-          // onPressed: null,
-          // child: Text(
-          //	 "Item 6",
-          //	 textAlign: TextAlign.center,
-          //	 style: TextStyle(
-          //		 color: Colors.black,
-          //		 fontWeight: FontWeight.bold,
-          //		 fontSize: 25),
-          // ),
-          // ),
-          // RaisedButton(
-          // onPressed: null,
-          // child: Text(
-          //	 "Item 7",
-          //	 textAlign: TextAlign.center,
-          //	 style: TextStyle(
-          //		 color: Colors.black,
-          //		 fontWeight: FontWeight.bold,
-          //		 fontSize: 25),
-          // ),
-          // ),
-          // RaisedButton(
-          // onPressed: null,
-          // child: Text(
-          //	 "Item 8",
-          //	 textAlign: TextAlign.center,
-          //	 style: TextStyle(
-          //		 color: Colors.black,
-          //		 fontWeight: FontWeight.bold,
-          //		 fontSize: 25),
-          // ),
+          // Container(
+          //   // width: MediaQuery.of(context).size.width,
+          //   // height: MediaQuery.of(context).size.height,
+          //   child: Image.asset(
+          //     'assets/images/rentalCenter_bg.png',
+          //     fit: BoxFit.cover,
+          //   ),
           // ),
         ],
+        scrollCurve: Curves.easeIn,
+        scrollSpeed: const Duration(milliseconds: 1000),
+        isFloatingButtonActive: false,
+        // isTouchScrollingActive: false,
+        scrollingAnimationOptions: ScrollingAnimationOptions.Default,
       ),
     );
   }
