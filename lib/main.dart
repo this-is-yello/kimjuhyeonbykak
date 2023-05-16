@@ -27,6 +27,7 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   final PageController _pageController = PageController();
 
+  int _currentPage = 0;
   List<String> mainBackground = [
     'assets/images/tailorShop_bg.png',
     'assets/images/tailorAcademy_bg.png',
@@ -49,84 +50,231 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: OpscrollWeb(
-        pageController: _pageController,
-        onePageChildren: [
-          Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-            child: CarouselSlider.builder(
-              slideBuilder: (index) {
-                return Container(
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: AssetImage(
-                        mainBackground[index],
-                      ),
-                    ),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        mainTitles[index],
-                        style: TextStyle(
-                          fontSize: 56,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
+      body: Stack(
+        alignment: Alignment.topCenter,
+        children: [
+          OpscrollWeb(
+            pageController: _pageController,
+            onePageChildren: [
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
+                child: CarouselSlider.builder(
+                  slideBuilder: (index) {
+                    return Container(
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: AssetImage(
+                            mainBackground[index],
+                          ),
                         ),
                       ),
-                      Text(
-                        mainSubTitles[index],
-                        style: TextStyle(
-                          fontSize: 24,
-                          color: Colors.white,
-                        ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            mainTitles[index],
+                            style: TextStyle(
+                              fontSize: 56,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                          Text(
+                            mainSubTitles[index],
+                            style: TextStyle(
+                              fontSize: 24,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
+                    );
+                  },
+                  slideTransform: DefaultTransform(),
+                  slideIndicator: CircularSlideIndicator(
+                    currentIndicatorColor: Colors.white,
+                    padding: EdgeInsets.only(bottom: 80),
                   ),
-                );
-              },
-              slideTransform: DefaultTransform(),
-              slideIndicator: CircularSlideIndicator(
-                currentIndicatorColor: Colors.white,
-                padding: EdgeInsets.only(bottom: 80),
+                  unlimitedMode: true,
+                  itemCount: mainBackground.length,
+                ),
               ),
-              unlimitedMode: true,
-              itemCount: mainBackground.length,
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: 200,
+                color: Colors.red,
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
+                color: Colors.green,
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
+                color: Colors.blue,
+              ),
+            ],
+            scrollCurve: Curves.easeIn,
+            scrollSpeed: const Duration(milliseconds: 1000),
+            isFloatingButtonActive: false,
+            // isTouchScrollingActive: false,
+            scrollingAnimationOptions: ScrollingAnimationOptions.Default,
+          ),
+          MainAppBar(),
+        ],
+      ),
+    );
+  }
+}
+
+class MainAppBar extends StatelessWidget {
+  const MainAppBar({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 1440,
+      height: 120,
+      padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Container(
+            width: 100,
+            height: 100,
+            child: Image.asset(
+              'assets/images/logos/bykakLogo_w.png',
+              fit: BoxFit.cover,
             ),
           ),
           Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-            color: Colors.red,
+            child: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: 40,
+                    right: 40,
+                  ),
+                  child: InkWell(
+                    child: Text(
+                      '브랜드',
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                      ),
+                    ),
+                    onTap: () {},
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: 40,
+                    right: 40,
+                  ),
+                  child: InkWell(
+                    child: Text(
+                      '홍보',
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                      ),
+                    ),
+                    onTap: () {},
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: 40,
+                    right: 40,
+                  ),
+                  child: InkWell(
+                    child: Text(
+                      '제품',
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                      ),
+                    ),
+                    onTap: () {},
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: 40,
+                    right: 40,
+                  ),
+                  child: InkWell(
+                    child: Text(
+                      '커뮤니티',
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                      ),
+                    ),
+                    onTap: () {},
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: 40,
+                    right: 40,
+                  ),
+                  child: InkWell(
+                    child: Text(
+                      '비즈니스',
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                      ),
+                    ),
+                    onTap: () {},
+                  ),
+                ),
+              ],
+            ),
           ),
           Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-            color: Colors.green,
+            child: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(
+                    right: 20,
+                  ),
+                  child: InkWell(
+                    child: Text(
+                      'KOR',
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                      ),
+                    ),
+                    onTap: () {},
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: 20,
+                  ),
+                  child: InkWell(
+                    child: Text(
+                      '로그인',
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                      ),
+                    ),
+                    onTap: () {},
+                  ),
+                ),
+              ],
+            ),
           ),
-          Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-            color: Colors.blue,
-          ),
-          // Container(
-          //   // width: MediaQuery.of(context).size.width,
-          //   // height: MediaQuery.of(context).size.height,
-          //   child: Image.asset(
-          //     'assets/images/rentalCenter_bg.png',
-          //     fit: BoxFit.cover,
-          //   ),
-          // ),
         ],
-        scrollCurve: Curves.easeIn,
-        scrollSpeed: const Duration(milliseconds: 1000),
-        isFloatingButtonActive: false,
-        // isTouchScrollingActive: false,
-        scrollingAnimationOptions: ScrollingAnimationOptions.Default,
       ),
     );
   }
