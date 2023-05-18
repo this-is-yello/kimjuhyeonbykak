@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:kimjuhyeonbykak/style.dart';
 import 'package:opscroll_web/opscroll_web.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:reveal_on_scroll/reveal_on_scroll.dart';
 
 void main() => runApp(MyApp());
 
@@ -23,143 +25,149 @@ class MainAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 1440,
+      width: MediaQuery.of(context).size.width,
       height: 120,
-      padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Container(
-            width: 100,
-            height: 100,
-            child: Image.asset(
-              'assets/images/logos/bykakLogo_w.png',
-              fit: BoxFit.cover,
-            ),
+      color: blackColor.withOpacity(0.4),
+      child: Center(
+        child: SizedBox(
+          width: 1200,
+          height: 120,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                width: 100,
+                height: 100,
+                child: Image.asset(
+                  'assets/images/logos/bykakLogo_w.png',
+                  fit: BoxFit.cover,
+                ),
+              ),
+              Container(
+                child: Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        left: 40,
+                        right: 40,
+                      ),
+                      child: InkWell(
+                        child: Text(
+                          '브랜드',
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: whiteColor,
+                          ),
+                        ),
+                        onTap: () {},
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        left: 40,
+                        right: 40,
+                      ),
+                      child: InkWell(
+                        child: Text(
+                          '홍보',
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: whiteColor,
+                          ),
+                        ),
+                        onTap: () {},
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        left: 40,
+                        right: 40,
+                      ),
+                      child: InkWell(
+                        child: Text(
+                          '제품',
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: whiteColor,
+                          ),
+                        ),
+                        onTap: () {},
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        left: 40,
+                        right: 40,
+                      ),
+                      child: InkWell(
+                        child: Text(
+                          '커뮤니티',
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: whiteColor,
+                          ),
+                        ),
+                        onTap: () {},
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        left: 40,
+                        right: 40,
+                      ),
+                      child: InkWell(
+                        child: Text(
+                          '비즈니스',
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: whiteColor,
+                          ),
+                        ),
+                        onTap: () {},
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                child: Row(
+                  children: [
+                    // Padding(
+                    //   padding: const EdgeInsets.only(
+                    //     right: 20,
+                    //   ),
+                    //   child: InkWell(
+                    //     child: Text(
+                    //       'KOR',
+                    //       style: TextStyle(
+                    //         fontSize: 20,
+                    //         color: whiteColor,
+                    //       ),
+                    //     ),
+                    //     onTap: () {},
+                    //   ),
+                    // ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        left: 20,
+                      ),
+                      child: InkWell(
+                        child: Text(
+                          '로그인',
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: whiteColor,
+                          ),
+                        ),
+                        onTap: () {},
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
-          Container(
-            child: Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: 40,
-                    right: 40,
-                  ),
-                  child: InkWell(
-                    child: Text(
-                      '브랜드',
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.white,
-                      ),
-                    ),
-                    onTap: () {},
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: 40,
-                    right: 40,
-                  ),
-                  child: InkWell(
-                    child: Text(
-                      '홍보',
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.white,
-                      ),
-                    ),
-                    onTap: () {},
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: 40,
-                    right: 40,
-                  ),
-                  child: InkWell(
-                    child: Text(
-                      '제품',
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.white,
-                      ),
-                    ),
-                    onTap: () {},
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: 40,
-                    right: 40,
-                  ),
-                  child: InkWell(
-                    child: Text(
-                      '커뮤니티',
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.white,
-                      ),
-                    ),
-                    onTap: () {},
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: 40,
-                    right: 40,
-                  ),
-                  child: InkWell(
-                    child: Text(
-                      '비즈니스',
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.white,
-                      ),
-                    ),
-                    onTap: () {},
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            child: Row(
-              children: [
-                // Padding(
-                //   padding: const EdgeInsets.only(
-                //     right: 20,
-                //   ),
-                //   child: InkWell(
-                //     child: Text(
-                //       'KOR',
-                //       style: TextStyle(
-                //         fontSize: 20,
-                //         color: Colors.white,
-                //       ),
-                //     ),
-                //     onTap: () {},
-                //   ),
-                // ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: 20,
-                  ),
-                  child: InkWell(
-                    child: Text(
-                      '로그인',
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.white,
-                      ),
-                    ),
-                    onTap: () {},
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
@@ -176,27 +184,30 @@ class MainPage extends StatelessWidget {
       body: Stack(
         alignment: Alignment.topCenter,
         children: [
-          OpscrollWeb(
-            pageController: _pageController,
-            onePageChildren: [
+          ListView(
+            children: [
               CarouselScreen(),
-              BykakStory(),
+              ScrollToReveal.withAnimation(
+                label: 'BykakStory',
+                scrollController: ScrollController(),
+                reflectPosition: 400,
+                startOnScroll: true,
+                animationType: AnimationType.fadeInDown,
+                child: BykakStory(),
+              ),
               TailorShopScreen(),
-              Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
-                color: Colors.green,
-              ),
-              Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
-                color: Colors.blue,
-              ),
+              TailorAcademyScreen(),
+              NewJemulpoClubScreen(),
+              // OpscrollWeb(
+              //   pageController: _pageController,
+              //   onePageChildren: [
+              //   ],
+              //   scrollCurve: Curves.easeIn,
+              //   scrollSpeed: const Duration(milliseconds: 1000),
+              //   isFloatingButtonActive: false,
+              //   scrollingAnimationOptions: ScrollingAnimationOptions.Default,
+              // ),
             ],
-            scrollCurve: Curves.easeIn,
-            scrollSpeed: const Duration(milliseconds: 1000),
-            isFloatingButtonActive: false,
-            scrollingAnimationOptions: ScrollingAnimationOptions.Default,
           ),
           MainAppBar(),
         ],
@@ -270,7 +281,7 @@ class _CarouselScreenState extends State<CarouselScreen> {
                   style: TextStyle(
                     fontSize: 64,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                    color: whiteColor,
                   ),
                 ),
                 Padding(
@@ -282,7 +293,7 @@ class _CarouselScreenState extends State<CarouselScreen> {
                     mainSubTitles[index],
                     style: TextStyle(
                       fontSize: 24,
-                      color: Colors.white,
+                      color: whiteColor,
                     ),
                   ),
                 ),
@@ -298,7 +309,7 @@ class _CarouselScreenState extends State<CarouselScreen> {
                     ),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(500),
-                      color: Colors.white,
+                      color: whiteColor,
                     ),
                   ),
                 )
@@ -319,14 +330,13 @@ class BykakStory extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height,
-      padding: EdgeInsets.all(20),
+      padding: EdgeInsets.fromLTRB(20, 80, 20, 120),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: whiteColor,
       ),
       child: Center(
         child: SizedBox(
-          width: 1400,
+          width: 1200,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -367,7 +377,7 @@ class TailorShopScreen extends StatelessWidget {
       height: MediaQuery.of(context).size.height,
       padding: EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: whiteColor,
       ),
       child: Center(
         child: SizedBox(
@@ -406,7 +416,7 @@ class TailorShopScreen extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 20,
                       decoration: TextDecoration.underline,
-                      color: Colors.black,
+                      color: blackColor,
                     ),
                   ),
                 ),
@@ -417,29 +427,80 @@ class TailorShopScreen extends StatelessWidget {
                   Container(
                     width: 640,
                     height: 360,
-                    color: Colors.black,
+                    color: blackColor,
                   ),
                   Container(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          '총 10,000,000 벌 제작',
-                          style: TextStyle(
-                            fontSize: 32,
-                          ),
+                        Row(
+                          children: [
+                            Text(
+                              '총',
+                              style: TextStyle(
+                                fontSize: 32,
+                              ),
+                            ),
+                            Text(
+                              '10,000,000',
+                              style: TextStyle(
+                                fontSize: 48,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              ' 벌 제작',
+                              style: TextStyle(
+                                fontSize: 32,
+                              ),
+                            ),
+                          ],
                         ),
-                        Text(
-                          '총 100,000,000 번의 바느질',
-                          style: TextStyle(
-                            fontSize: 32,
-                          ),
+                        Row(
+                          children: [
+                            Text(
+                              '총',
+                              style: TextStyle(
+                                fontSize: 32,
+                              ),
+                            ),
+                            Text(
+                              '100,000,000',
+                              style: TextStyle(
+                                fontSize: 48,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              ' 번의 바느질',
+                              style: TextStyle(
+                                fontSize: 32,
+                              ),
+                            ),
+                          ],
                         ),
-                        Text(
-                          '총 1,000,000,000 시간의 제작시간',
-                          style: TextStyle(
-                            fontSize: 32,
-                          ),
+                        Row(
+                          children: [
+                            Text(
+                              '총',
+                              style: TextStyle(
+                                fontSize: 32,
+                              ),
+                            ),
+                            Text(
+                              '1,000,000,000',
+                              style: TextStyle(
+                                fontSize: 48,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              ' 시간의 제작시간',
+                              style: TextStyle(
+                                fontSize: 32,
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
@@ -449,6 +510,192 @@ class TailorShopScreen extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class TailorAcademyScreen extends StatelessWidget {
+  const TailorAcademyScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height,
+      padding: EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: whiteColor,
+      ),
+      child: Center(
+        child: SizedBox(
+          width: 1400,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'by 覺 Tailor Academy',
+                style: TextStyle(
+                  fontSize: 56,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 40,
+                  bottom: 20,
+                ),
+                child: Text(
+                  'Lorem Ipsum is simply dummy text of the printing and typesetting industry.\nLorem Ipsum has been the industrys standard dummy text ever since the 1500s',
+                  style: TextStyle(
+                    fontSize: 24,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                  bottom: 40,
+                ),
+                child: TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    '자세히보기',
+                    style: TextStyle(
+                      fontSize: 20,
+                      decoration: TextDecoration.underline,
+                      color: blackColor,
+                    ),
+                  ),
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          '맞춤정장을 배워 무엇을 할 수 있을까?',
+                          style: TextStyle(
+                            fontSize: 32,
+                          ),
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              '"나는 테일러링을 배워서 ',
+                              style: TextStyle(
+                                fontSize: 32,
+                              ),
+                            ),
+                            Container(
+                              width: 200,
+                              height: 56,
+                              decoration: BoxDecoration(
+                                // color: greyColor,
+                                border: Border(
+                                  bottom: BorderSide(
+                                    color: blackColor,
+                                    width: 2,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Text(
+                              ' 을 하고싶다"',
+                              style: TextStyle(
+                                fontSize: 32,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    width: 640,
+                    height: 360,
+                    color: blackColor,
+                  ),
+                ],
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class NewJemulpoClubScreen extends StatelessWidget {
+  const NewJemulpoClubScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height,
+      decoration: BoxDecoration(
+        color: whiteColor,
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            width: 1400,
+            margin: EdgeInsets.only(left: 20, right: 20),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'New JemulpoClub',
+                  style: TextStyle(
+                    fontSize: 56,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    top: 40,
+                    bottom: 20,
+                  ),
+                  child: Text(
+                    'Lorem Ipsum is simply dummy text of the printing and typesetting industry.\nLorem Ipsum has been the industrys standard dummy text ever since the 1500s',
+                    style: TextStyle(
+                      fontSize: 24,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    bottom: 40,
+                  ),
+                  child: TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      '자세히보기',
+                      style: TextStyle(
+                        fontSize: 20,
+                        decoration: TextDecoration.underline,
+                        color: blackColor,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            width: MediaQuery.of(context).size.width,
+            child: Image.asset(
+              'assets/images/panorama.png',
+              fit: BoxFit.fitWidth,
+            ),
+          )
+        ],
       ),
     );
   }
