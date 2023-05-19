@@ -3,6 +3,7 @@ import 'package:kimjuhyeonbykak/style.dart';
 import 'package:opscroll_web/opscroll_web.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:reveal_on_scroll/reveal_on_scroll.dart';
+import 'package:hidable/hidable.dart';
 
 void main() => runApp(MyApp());
 
@@ -27,10 +28,10 @@ class MainAppBar extends StatelessWidget {
     return Container(
       width: MediaQuery.of(context).size.width,
       height: 120,
-      color: blackColor.withOpacity(0.4),
+      // color: blackColor.withOpacity(0.4),
       child: Center(
         child: SizedBox(
-          width: 1200,
+          width: 1400,
           height: 120,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -178,23 +179,29 @@ class MainPage extends StatelessWidget {
 
   final PageController _pageController = PageController();
 
+  final ScrollController _scrollController = ScrollController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: Hidable(
+        preferredWidgetSize: Size.fromHeight(120),
+        controller: ScrollController(),
+        wOpacity: true,
+        child: AppBar(
+          toolbarHeight: 120,
+          backgroundColor: blackColor,
+          title: MainAppBar(),
+        ),
+      ),
       body: Stack(
         alignment: Alignment.topCenter,
         children: [
           ListView(
+            controller: _scrollController,
             children: [
               CarouselScreen(),
-              ScrollToReveal.withAnimation(
-                label: 'BykakStory',
-                scrollController: ScrollController(),
-                reflectPosition: 400,
-                startOnScroll: true,
-                animationType: AnimationType.fadeInDown,
-                child: BykakStory(),
-              ),
+              BykakStory(),
               TailorShopScreen(),
               TailorAcademyScreen(),
               NewJemulpoClubScreen(),
@@ -207,9 +214,10 @@ class MainPage extends StatelessWidget {
               //   isFloatingButtonActive: false,
               //   scrollingAnimationOptions: ScrollingAnimationOptions.Default,
               // ),
+              Footer(),
             ],
           ),
-          MainAppBar(),
+          // MainAppBar(),
         ],
       ),
     );
@@ -696,6 +704,128 @@ class NewJemulpoClubScreen extends StatelessWidget {
             ),
           )
         ],
+      ),
+    );
+  }
+}
+
+class Footer extends StatelessWidget {
+  const Footer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      height: 80,
+      padding: EdgeInsets.only(left: 20, right: 20),
+      decoration: BoxDecoration(
+        border: Border(
+          top: BorderSide(
+            color: blackColor,
+            width: 2,
+          ),
+        ),
+        color: whiteColor,
+      ),
+      child: Center(
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            maxWidth: 1400,
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                child: Row(
+                  children: [
+                    TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        'Instagram',
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: blackColor,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        'Blog',
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: blackColor,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        'Youtube',
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: blackColor,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Row(
+                      children: [
+                        TextButton(
+                          onPressed: () {},
+                          child: Text(
+                            '개인정보취급방침',
+                            style: TextStyle(
+                                fontSize: 16,
+                                color: blackColor,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: () {},
+                          child: Text(
+                            '이용약관',
+                            style: TextStyle(
+                                fontSize: 16,
+                                color: blackColor,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: () {},
+                          child: Text(
+                            '이메일무단수집거부',
+                            style: TextStyle(
+                                fontSize: 16,
+                                color: blackColor,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ],
+                    ),
+                    TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        '2023 DESIGNER ALL RIGHT RESERVED',
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: blackColor,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
