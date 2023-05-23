@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:kimjuhyeonbykak/style.dart';
 // import 'package:opscroll_web/opscroll_web.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
-// import 'package:mccounting_text/mccounting_text.dart';
 import 'package:intl/intl.dart';
-import 'package:animated_digit/animated_digit.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:countup/countup.dart';
 
 // import 'package:kimjuhyeonbykak/test.dart';
 
@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
       title: '김주현바이각',
       debugShowCheckedModeBanner: false,
       home: MainPage(),
+      theme: ThemeData(fontFamily: 'LINE_seed'),
     );
   }
 }
@@ -186,16 +187,6 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: Hidable(
-      //   preferredWidgetSize: Size.fromHeight(120),
-      //   controller: ScrollController(),
-      //   wOpacity: true,
-      //   child: AppBar(
-      //     toolbarHeight: 120,
-      //     backgroundColor: blackColor,
-      //     title: MainAppBar(),
-      //   ),
-      // ),
       body: Stack(
         alignment: Alignment.topCenter,
         children: [
@@ -207,15 +198,6 @@ class MainPage extends StatelessWidget {
               TailorShopScreen(),
               TailorAcademyScreen(),
               NewJemulpoClubScreen(),
-              // OpscrollWeb(
-              //   pageController: _pageController,
-              //   onePageChildren: [
-              //   ],
-              //   scrollCurve: Curves.easeIn,
-              //   scrollSpeed: const Duration(milliseconds: 1000),
-              //   isFloatingButtonActive: false,
-              //   scrollingAnimationOptions: ScrollingAnimationOptions.Default,
-              // ),
               Footer(),
             ],
           ),
@@ -268,8 +250,10 @@ class _CarouselScreenState extends State<CarouselScreen> {
         AnimationLimiter(
           child: AnimationConfiguration.staggeredList(
             position: 0,
-            duration: Duration(milliseconds: 2000),
+            delay: Duration(milliseconds: 1000),
             child: FadeInAnimation(
+              duration: Duration(milliseconds: 3000),
+              delay: Duration(milliseconds: 1000),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -278,6 +262,7 @@ class _CarouselScreenState extends State<CarouselScreen> {
                     mainTitles[a],
                     style: TextStyle(
                       fontSize: 64,
+                      fontFamily: 'Cafe_24',
                       fontWeight: FontWeight.bold,
                       color: whiteColor,
                     ),
@@ -362,35 +347,42 @@ class BykakStory extends StatelessWidget {
         ),
         child: AnimationConfiguration.staggeredList(
           position: 1,
-          duration: Duration(milliseconds: 3000),
+          delay: Duration.zero,
           child: SlideAnimation(
-            horizontalOffset: 200,
-            child: Center(
-              child: SizedBox(
-                width: 1200,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'By 覺 Story',
-                      style: TextStyle(
-                        fontSize: 64,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        top: 16,
-                      ),
-                      child: Text(
-                        '2014년 김주현바이각은 인천의 고급 수제양복을 알리기 위해,\n남성들을 위한 올바른 스타일링과 문화적 놀이터를 만들고자 설립되었습니다.',
+            duration: Duration(milliseconds: 2000),
+            delay: Duration.zero,
+            horizontalOffset: 300,
+            child: FadeInAnimation(
+              duration: Duration(milliseconds: 4000),
+              delay: Duration.zero,
+              child: Center(
+                child: SizedBox(
+                  width: 1200,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'By 覺 Story',
                         style: TextStyle(
-                          fontSize: 24,
+                          fontSize: 64,
+                          fontFamily: 'Cafe_24',
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                    ),
-                  ],
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          top: 16,
+                        ),
+                        child: Text(
+                          '2014년 김주현바이각은 인천의 고급 수제양복을 알리기 위해,\n남성들을 위한 올바른 스타일링과 문화적 놀이터를 만들고자 설립되었습니다.',
+                          style: TextStyle(
+                            fontSize: 24,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -420,148 +412,178 @@ class _TailorShopScreenState extends State<TailorShopScreen> {
       decoration: BoxDecoration(
         color: whiteColor,
       ),
-      child: Center(
-        child: SizedBox(
-          width: 1400,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'k!mjuhyeon by 覺',
-                style: TextStyle(
-                  fontSize: 56,
-                  fontWeight: FontWeight.bold,
+      child: AnimationLimiter(
+        child: AnimationConfiguration.staggeredList(
+          position: 2,
+          delay: Duration.zero,
+          child: SlideAnimation(
+            duration: Duration(milliseconds: 2000),
+            delay: Duration.zero,
+            verticalOffset: 200,
+            child: FadeInAnimation(
+              delay: Duration.zero,
+              duration: Duration(milliseconds: 4000),
+              child: Center(
+                child: SizedBox(
+                  width: 1400,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'k!mjuhyeon by 覺',
+                        style: TextStyle(
+                          fontSize: 56,
+                          fontFamily: 'Cafe_24',
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          top: 40,
+                          bottom: 20,
+                        ),
+                        child: Text(
+                          'Lorem Ipsum is simply dummy text of the printing and typesetting industry.\nLorem Ipsum has been the industrys standard dummy text ever since the 1500s',
+                          style: TextStyle(
+                            fontSize: 24,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          bottom: 40,
+                        ),
+                        child: TextButton(
+                          onPressed: () {},
+                          child: Text(
+                            '자세히보기',
+                            style: TextStyle(
+                              fontSize: 20,
+                              decoration: TextDecoration.underline,
+                              color: blackColor,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            width: 640,
+                            height: 360,
+                            color: blackColor,
+                          ),
+                          Container(
+                            width: 640,
+                            padding: EdgeInsets.only(left: 120),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    Text(
+                                      '총 ',
+                                      style: TextStyle(
+                                        fontSize: 32,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      // width: 320,
+                                      child: Countup(
+                                        begin: 0,
+                                        end: 5981,
+                                        duration: Duration(milliseconds: 3000),
+                                        separator: ',',
+                                        style: TextStyle(
+                                          fontSize: 56,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    Text(
+                                      '벌 제작',
+                                      style: TextStyle(
+                                        fontSize: 32,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                    top: 8,
+                                    bottom: 8,
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        '총 ',
+                                        style: TextStyle(
+                                          fontSize: 32,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        // width: 320,
+                                        child: Countup(
+                                          begin: 0,
+                                          end: 59804019,
+                                          duration:
+                                              Duration(milliseconds: 3000),
+                                          separator: ',',
+                                          style: TextStyle(
+                                            fontSize: 56,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      Text(
+                                        '번의 바느질',
+                                        style: TextStyle(
+                                          fontSize: 32,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      '총 ',
+                                      style: TextStyle(
+                                        fontSize: 32,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      // width: 320,
+                                      child: Countup(
+                                        begin: 0,
+                                        end: 592119,
+                                        duration: Duration(milliseconds: 3000),
+                                        separator: ',',
+                                        style: TextStyle(
+                                          fontSize: 56,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    Text(
+                                      '의 제작시간',
+                                      style: TextStyle(
+                                        fontSize: 32,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  top: 40,
-                  bottom: 20,
-                ),
-                child: Text(
-                  'Lorem Ipsum is simply dummy text of the printing and typesetting industry.\nLorem Ipsum has been the industrys standard dummy text ever since the 1500s',
-                  style: TextStyle(
-                    fontSize: 24,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  bottom: 40,
-                ),
-                child: TextButton(
-                  onPressed: () {},
-                  child: Text(
-                    '자세히보기',
-                    style: TextStyle(
-                      fontSize: 20,
-                      decoration: TextDecoration.underline,
-                      color: blackColor,
-                    ),
-                  ),
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    width: 640,
-                    height: 360,
-                    color: blackColor,
-                  ),
-                  Container(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            Text(
-                              '총 ',
-                              style: TextStyle(
-                                fontSize: 32,
-                              ),
-                            ),
-                            AnimatedDigitWidget(
-                              value: 5981,
-                              enableSeparator: true,
-                              textStyle: TextStyle(
-                                fontSize: 48,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              duration: Duration(milliseconds: 2000),
-                            ),
-                            // Text(
-                            //   '10,000,000',
-                            //   style: TextStyle(
-                            //     fontSize: 48,
-                            //     fontWeight: FontWeight.bold,
-                            //   ),
-                            // ),
-                            Text(
-                              ' 벌 제작',
-                              style: TextStyle(
-                                fontSize: 32,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Text(
-                              '총 ',
-                              style: TextStyle(
-                                fontSize: 32,
-                              ),
-                            ),
-                            AnimatedDigitWidget(
-                              value: 59804019,
-                              enableSeparator: true,
-                              textStyle: TextStyle(
-                                fontSize: 48,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              duration: Duration(milliseconds: 2000),
-                            ),
-                            Text(
-                              ' 번의 바느질',
-                              style: TextStyle(
-                                fontSize: 32,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Text(
-                              '총 ',
-                              style: TextStyle(
-                                fontSize: 32,
-                              ),
-                            ),
-                            AnimatedDigitWidget(
-                              value: 592119,
-                              enableSeparator: true,
-                              textStyle: TextStyle(
-                                fontSize: 48,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              duration: Duration(milliseconds: 2000),
-                            ),
-                            Text(
-                              ' 시간의 제작시간',
-                              style: TextStyle(
-                                fontSize: 32,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              )
-            ],
+            ),
           ),
         ),
       ),
@@ -581,101 +603,140 @@ class TailorAcademyScreen extends StatelessWidget {
       decoration: BoxDecoration(
         color: whiteColor,
       ),
-      child: Center(
-        child: SizedBox(
-          width: 1400,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'by 覺 Tailor Academy',
-                style: TextStyle(
-                  fontSize: 56,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  top: 40,
-                  bottom: 20,
-                ),
-                child: Text(
-                  'Lorem Ipsum is simply dummy text of the printing and typesetting industry.\nLorem Ipsum has been the industrys standard dummy text ever since the 1500s',
-                  style: TextStyle(
-                    fontSize: 24,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  bottom: 40,
-                ),
-                child: TextButton(
-                  onPressed: () {},
-                  child: Text(
-                    '자세히보기',
-                    style: TextStyle(
-                      fontSize: 20,
-                      decoration: TextDecoration.underline,
-                      color: blackColor,
-                    ),
-                  ),
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          '맞춤정장을 배워 무엇을 할 수 있을까?',
+      child: AnimationLimiter(
+        child: AnimationConfiguration.staggeredList(
+          position: 3,
+          delay: Duration.zero,
+          child: SlideAnimation(
+            verticalOffset: 200,
+            duration: Duration(milliseconds: 2000),
+            delay: Duration.zero,
+            child: FadeInAnimation(
+              duration: Duration(milliseconds: 4000),
+              delay: Duration.zero,
+              child: Center(
+                child: SizedBox(
+                  width: 1400,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'by 覺 Tailor Academy',
+                        style: TextStyle(
+                          fontSize: 56,
+                          fontFamily: 'Cafe_24',
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          top: 40,
+                          bottom: 20,
+                        ),
+                        child: Text(
+                          'Lorem Ipsum is simply dummy text of the printing and typesetting industry.\nLorem Ipsum has been the industrys standard dummy text ever since the 1500s',
                           style: TextStyle(
-                            fontSize: 32,
+                            fontSize: 24,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          bottom: 40,
+                        ),
+                        child: TextButton(
+                          onPressed: () {},
+                          child: Text(
+                            '자세히보기',
+                            style: TextStyle(
+                              fontSize: 20,
+                              decoration: TextDecoration.underline,
+                              color: blackColor,
+                            ),
                           ),
                         ),
-                        Row(
-                          children: [
-                            Text(
-                              '"나는 테일러링을 배워서 ',
-                              style: TextStyle(
-                                fontSize: 32,
-                              ),
-                            ),
-                            Container(
-                              width: 200,
-                              height: 56,
-                              decoration: BoxDecoration(
-                                // color: greyColor,
-                                border: Border(
-                                  bottom: BorderSide(
-                                    color: blackColor,
-                                    width: 2,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  '맞춤정장을 배워 무엇을 할 수 있을까?',
+                                  style: TextStyle(
+                                    fontSize: 32,
                                   ),
                                 ),
-                              ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      '"나는 테일러링을 배워서 ',
+                                      style: TextStyle(
+                                        fontSize: 32,
+                                      ),
+                                    ),
+                                    Container(
+                                      width: 200,
+                                      height: 56,
+                                      decoration: BoxDecoration(
+                                        // color: greyColor,
+                                        border: Border(
+                                          bottom: BorderSide(
+                                            color: blackColor,
+                                            width: 2,
+                                          ),
+                                        ),
+                                      ),
+                                      child: AnimatedTextKit(
+                                        totalRepeatCount: 50000,
+                                        animatedTexts: [
+                                          RotateAnimatedText(
+                                            '나만의 수트제작',
+                                            textStyle: TextStyle(
+                                              fontSize: 24,
+                                            ),
+                                          ),
+                                          RotateAnimatedText(
+                                            '테일러샵 창업',
+                                            textStyle: TextStyle(
+                                              fontSize: 24,
+                                            ),
+                                          ),
+                                          RotateAnimatedText(
+                                            '쇼핑몰 오픈',
+                                            textStyle: TextStyle(
+                                              fontSize: 24,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Text(
+                                      ' 을 하고싶다"',
+                                      style: TextStyle(
+                                        fontSize: 32,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
                             ),
-                            Text(
-                              ' 을 하고싶다"',
-                              style: TextStyle(
-                                fontSize: 32,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
+                          ),
+                          Container(
+                            width: 640,
+                            height: 360,
+                            color: blackColor,
+                          ),
+                        ],
+                      )
+                    ],
                   ),
-                  Container(
-                    width: 640,
-                    height: 360,
-                    color: blackColor,
-                  ),
-                ],
-              )
-            ],
+                ),
+              ),
+            ),
           ),
         ),
       ),
@@ -694,62 +755,78 @@ class NewJemulpoClubScreen extends StatelessWidget {
       decoration: BoxDecoration(
         color: whiteColor,
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            width: 1400,
-            margin: EdgeInsets.only(left: 20, right: 20),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'New JemulpoClub',
-                  style: TextStyle(
-                    fontSize: 56,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    top: 40,
-                    bottom: 20,
-                  ),
-                  child: Text(
-                    'Lorem Ipsum is simply dummy text of the printing and typesetting industry.\nLorem Ipsum has been the industrys standard dummy text ever since the 1500s',
-                    style: TextStyle(
-                      fontSize: 24,
+      child: AnimationLimiter(
+        child: AnimationConfiguration.staggeredList(
+          position: 4,
+          delay: Duration.zero,
+          child: SlideAnimation(
+            duration: Duration(milliseconds: 2000),
+            delay: Duration.zero,
+            verticalOffset: 200,
+            child: FadeInAnimation(
+              duration: Duration(milliseconds: 4000),
+              delay: Duration.zero,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: 1400,
+                    margin: EdgeInsets.only(left: 20, right: 20),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'New JemulpoClub',
+                          style: TextStyle(
+                            fontSize: 56,
+                            fontFamily: 'Cafe_24',
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            top: 40,
+                            bottom: 20,
+                          ),
+                          child: Text(
+                            'Lorem Ipsum is simply dummy text of the printing and typesetting industry.\nLorem Ipsum has been the industrys standard dummy text ever since the 1500s',
+                            style: TextStyle(
+                              fontSize: 24,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            bottom: 40,
+                          ),
+                          child: TextButton(
+                            onPressed: () {},
+                            child: Text(
+                              '자세히보기',
+                              style: TextStyle(
+                                fontSize: 20,
+                                decoration: TextDecoration.underline,
+                                color: blackColor,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                    textAlign: TextAlign.center,
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    bottom: 40,
-                  ),
-                  child: TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      '자세히보기',
-                      style: TextStyle(
-                        fontSize: 20,
-                        decoration: TextDecoration.underline,
-                        color: blackColor,
-                      ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    child: Image.asset(
+                      'assets/images/panorama.png',
+                      fit: BoxFit.fitWidth,
                     ),
-                  ),
-                ),
-              ],
+                  )
+                ],
+              ),
             ),
           ),
-          SizedBox(
-            width: MediaQuery.of(context).size.width,
-            child: Image.asset(
-              'assets/images/panorama.png',
-              fit: BoxFit.fitWidth,
-            ),
-          )
-        ],
+        ),
       ),
     );
   }
