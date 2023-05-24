@@ -543,7 +543,7 @@ class _TailorShopScreenState extends State<TailorShopScreen> {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height,
+      height: MediaQuery.of(context).size.height - 100,
       padding: EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: whiteColor,
@@ -734,7 +734,7 @@ class TailorAcademyScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height,
+      height: MediaQuery.of(context).size.height - 100,
       padding: EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: whiteColor,
@@ -898,7 +898,7 @@ class NewJemulpoClubScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height,
+      height: MediaQuery.of(context).size.height - 100,
       decoration: BoxDecoration(
         color: whiteColor,
       ),
