@@ -30,13 +30,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  opscroll_web: ^0.3.2
+  # opscroll_web: ^0.3.2
   carousel_slider: ^4.2.1
-  intl: ^0.18.1
-  reveal_on_scroll: ^0.0.3
   animated_text_kit: ^4.2.2
-  countup: ^0.1.4
   animate_do: ^3.0.2
+  countup: ^0.1.4
+  intl: ^0.18.1
+  get: ^4.6.5
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
