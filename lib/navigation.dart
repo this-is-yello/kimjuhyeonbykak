@@ -1,6 +1,8 @@
-import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:kimjuhyeonbykak/style.dart';
+// import 'package:kimjuhyeonbykak/variable.dart';
+
+import 'package:animate_do/animate_do.dart';
 
 // ---------- App_Bar -----------------------------------------------------------------------------------------------------
 class MainAppBar extends StatefulWidget {
@@ -32,6 +34,15 @@ class _MainAppBarState extends State<MainAppBar> {
     showNavDetail();
   }
 
+  List subMenu = [
+    ['스토리', '김주현바이각', '바이각 테일러아카데미', '신제물포구락부', '바이각 수트렌탈센터'],
+    ['매거진', '보도자료', '협찬', 'CI·BI'],
+    ['제품 보러가기'],
+    ['문의하기', '공지사항', '이벤트', '미디어', '후기'],
+    ['서포터즈', '협찬·협업 문의', '단체복 문의'],
+  ];
+  int i = 0;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -56,15 +67,15 @@ class _MainAppBarState extends State<MainAppBar> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     SizedBox(
-                      width: MediaQuery.of(context).size.width < 1000 ? 60 : 80,
+                      width: MediaQuery.of(context).size.width < 1240 ? 60 : 80,
                       height:
-                          MediaQuery.of(context).size.width < 1000 ? 60 : 80,
+                          MediaQuery.of(context).size.width < 1240 ? 60 : 80,
                       child: Image.asset(
                         'assets/images/logos/bykakLogo_w.png',
                         fit: BoxFit.contain,
                       ),
                     ),
-                    MediaQuery.of(context).size.width < 1000
+                    MediaQuery.of(context).size.width < 800
                         ? Container()
                         : Row(
                             children: [
@@ -73,6 +84,7 @@ class _MainAppBarState extends State<MainAppBar> {
                                 onHover: (value) {
                                   setState(() {
                                     navHover = value;
+                                    i = 0;
                                   });
                                   showNavDetail();
                                 },
@@ -101,6 +113,7 @@ class _MainAppBarState extends State<MainAppBar> {
                                 onHover: (value) {
                                   setState(() {
                                     navHover = value;
+                                    i = 1;
                                   });
                                   showNavDetail();
                                 },
@@ -129,6 +142,7 @@ class _MainAppBarState extends State<MainAppBar> {
                                 onHover: (value) {
                                   setState(() {
                                     navHover = value;
+                                    i = 2;
                                   });
                                   showNavDetail();
                                 },
@@ -157,6 +171,7 @@ class _MainAppBarState extends State<MainAppBar> {
                                 onHover: (value) {
                                   setState(() {
                                     navHover = value;
+                                    i = 3;
                                   });
                                   showNavDetail();
                                 },
@@ -185,6 +200,7 @@ class _MainAppBarState extends State<MainAppBar> {
                                 onHover: (value) {
                                   setState(() {
                                     navHover = value;
+                                    i = 4;
                                   });
                                   showNavDetail();
                                 },
@@ -243,7 +259,7 @@ class _MainAppBarState extends State<MainAppBar> {
                               onTap: () {},
                             ),
                           ),
-                          MediaQuery.of(context).size.width < 1000
+                          MediaQuery.of(context).size.width < 800
                               ? Padding(
                                   padding: const EdgeInsets.only(
                                     left: 40,
@@ -281,59 +297,55 @@ class _MainAppBarState extends State<MainAppBar> {
                   },
                   child: Container(
                     width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.width < 1000 ? 0 : 300,
+                    height: MediaQuery.of(context).size.width < 800 ? 0 : 280,
                     color: blackColor,
                     child: Center(
-                      child: SizedBox(
-                        width: 800,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(),
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  Text(
-                                    'menu-1',
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      color: whiteColor,
-                                    ),
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                          left: 20,
+                          right: 20,
+                        ),
+                        child: SizedBox(
+                          width: 800,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                width: 160,
+                                child: Center(
+                                  child: ListView.builder(
+                                    itemCount: subMenu[i].length,
+                                    itemBuilder: (context, index) {
+                                      return Padding(
+                                        padding: const EdgeInsets.only(
+                                          top: 16,
+                                          bottom: 16,
+                                        ),
+                                        child: InkWell(
+                                          onTap: () {},
+                                          child: Text(
+                                            subMenu[i][index],
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              color: whiteColor,
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    },
                                   ),
-                                  Text(
-                                    'menu-2',
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      color: whiteColor,
-                                    ),
-                                  ),
-                                  Text(
-                                    'menu-3',
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      color: whiteColor,
-                                    ),
-                                  ),
-                                  Text(
-                                    'menu-4',
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      color: whiteColor,
-                                    ),
-                                  ),
-                                ],
+                                ),
                               ),
-                            ),
-                            Text(
-                              'Lorem Ipsum is simply dummy text of the printing and typesetting industry.\nLorem Ipsum has been the industrys standard dummy text ever since the 1500s\nLorem Ipsum is simply dummy text of the printing and typesetting industry.\nLorem Ipsum has been the industrys standard dummy text ever since the 1500s',
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: whiteColor,
-                              ),
-                            )
-                          ],
+                              Text(
+                                'Lorem Ipsum is simply dummy text of the and typesetting industry.\nLorem Ipsum has been the standard dummy text ever since the 1500s\nLorem Ipsum is simply dummy text of the and typesetting industry.\nLorem Ipsum has been the standard dummy text ever since the 1500s',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: whiteColor,
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -365,7 +377,7 @@ class _FooterState extends State<Footer> {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+      padding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
       decoration: BoxDecoration(
         border: Border(
           top: BorderSide(
@@ -376,50 +388,19 @@ class _FooterState extends State<Footer> {
         color: whiteColor,
       ),
       child: Center(
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(
-            maxWidth: 1400,
-          ),
+        child: SizedBox(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Row(
-                children: [
-                  TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      'Instagram',
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: blackColor,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      'Blog',
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: blackColor,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      'Youtube',
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: blackColor,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ],
+              SizedBox(
+                width: c5BoxSize(context),
+                height: c5BoxSize(context),
+                // color: blackColor,
+                child: Image.asset(
+                  'assets/images/logos/bykakLogo_b.png',
+                  fit: BoxFit.fitWidth,
+                ),
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -429,9 +410,46 @@ class _FooterState extends State<Footer> {
                       TextButton(
                         onPressed: () {},
                         child: Text(
+                          'Instagram',
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: blackColor,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          'Blog',
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: blackColor,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          'Youtube',
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: blackColor,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      TextButton(
+                        onPressed: () {},
+                        child: Text(
                           '개인정보취급방침',
                           style: TextStyle(
-                            fontSize: 14,
+                            fontSize: 10,
                             color: blackColor,
                             fontWeight: FontWeight.bold,
                           ),
@@ -442,7 +460,7 @@ class _FooterState extends State<Footer> {
                         child: Text(
                           '이용약관',
                           style: TextStyle(
-                            fontSize: 14,
+                            fontSize: 10,
                             color: blackColor,
                             fontWeight: FontWeight.bold,
                           ),
@@ -453,7 +471,7 @@ class _FooterState extends State<Footer> {
                         child: Text(
                           '이메일무단수집거부',
                           style: TextStyle(
-                            fontSize: 14,
+                            fontSize: 10,
                             color: blackColor,
                             fontWeight: FontWeight.bold,
                           ),
@@ -466,7 +484,7 @@ class _FooterState extends State<Footer> {
                     child: Text(
                       '2023 DESIGNER ALL RIGHT RESERVED',
                       style: TextStyle(
-                        fontSize: 14,
+                        fontSize: 10,
                         color: blackColor,
                       ),
                     ),

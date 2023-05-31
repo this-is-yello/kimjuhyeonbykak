@@ -11,10 +11,10 @@ int btnCurrentPage = 0;
 int scrollCurrentPage = 0;
 
 // ---------- Contents_Width -----------------------------------------------------------------------------------------------------
-widgetSize(c) {
-  if (MediaQuery.of(c).size.width < 800) {
+widgetSize(context) {
+  if (MediaQuery.of(context).size.width < 800) {
     return 360;
-  } else if (MediaQuery.of(c).size.width < 1240) {
+  } else if (MediaQuery.of(context).size.width < 1240) {
     return 770;
   } else {
     return 1200;
@@ -22,72 +22,135 @@ widgetSize(c) {
 }
 
 // ---------- Fonts_Size -----------------------------------------------------------------------------------------------------
-h1FontSize(c) {
-  if (MediaQuery.of(c).size.width < 800) {
-    return 40;
-  } else if (MediaQuery.of(c).size.width < 1240) {
-    return 48;
-  } else {
-    return 56;
-  }
-}
-
-h2FontSize(c) {
-  if (MediaQuery.of(c).size.width < 800) {
-    return 32;
-  } else if (MediaQuery.of(c).size.width < 1240) {
-    return 40;
-  } else {
-    return 48;
-  }
-}
-
-h3FontSize(c) {
-  if (MediaQuery.of(c).size.width < 800) {
+h1FontSize(context) {
+  if (MediaQuery.of(context).size.width < 800) {
     return 24;
-  } else if (MediaQuery.of(c).size.width < 1240) {
+  } else if (MediaQuery.of(context).size.width < 1240) {
     return 32;
   } else {
     return 40;
   }
 }
 
-h4FontSize(c) {
-  if (MediaQuery.of(c).size.width < 800) {
+h2FontSize(context) {
+  if (MediaQuery.of(context).size.width < 800) {
+    return 20;
+  } else if (MediaQuery.of(context).size.width < 1240) {
+    return 28;
+  } else {
+    return 36;
+  }
+}
+
+h3FontSize(context) {
+  if (MediaQuery.of(context).size.width < 800) {
     return 16;
-  } else if (MediaQuery.of(c).size.width < 1240) {
+  } else if (MediaQuery.of(context).size.width < 1240) {
     return 24;
   } else {
     return 32;
   }
 }
 
-h5FontSize(c) {
-  if (MediaQuery.of(c).size.width < 800) {
+h4FontSize(context) {
+  if (MediaQuery.of(context).size.width < 800) {
+    return 20;
+  } else if (MediaQuery.of(context).size.width < 1240) {
+    return 24;
+  } else {
+    return 28;
+  }
+}
+
+h5FontSize(context) {
+  if (MediaQuery.of(context).size.width < 800) {
     return 16;
-  } else if (MediaQuery.of(c).size.width < 1240) {
+  } else if (MediaQuery.of(context).size.width < 1240) {
     return 20;
   } else {
     return 24;
   }
 }
 
-h6FontSize(c) {
-  if (MediaQuery.of(c).size.width < 800) {
+h6FontSize(context) {
+  if (MediaQuery.of(context).size.width < 800) {
     return 12;
-  } else if (MediaQuery.of(c).size.width < 1240) {
+  } else if (MediaQuery.of(context).size.width < 1240) {
     return 16;
   } else {
     return 20;
   }
 }
 
-h7FontSize(c) {
-  if (MediaQuery.of(c).size.width < 800) {
+h7FontSize(context) {
+  if (MediaQuery.of(context).size.width < 800) {
     return 10;
-  } else if (MediaQuery.of(c).size.width < 1240) {
+  } else if (MediaQuery.of(context).size.width < 1240) {
     return 14;
   } else {
     return 18;
   }
 }
+
+// ---------- Box_Size -----------------------------------------------------------------------------------------------------
+c1BoxSize(context) {
+  if (MediaQuery.of(context).size.width < 800) {
+    return 120;
+  } else if (MediaQuery.of(context).size.width < 1240) {
+    return 160;
+  } else {
+    return 200;
+  }
+}
+
+c2BoxSize(context) {
+  if (MediaQuery.of(context).size.width < 800) {
+    return 100;
+  } else if (MediaQuery.of(context).size.width < 1240) {
+    return 120;
+  } else {
+    return 160;
+  }
+}
+
+c3BoxSize(context) {
+  if (MediaQuery.of(context).size.width < 800) {
+    return 80;
+  } else if (MediaQuery.of(context).size.width < 1240) {
+    return 100;
+  } else {
+    return 120;
+  }
+}
+
+c4BoxSize(context) {
+  if (MediaQuery.of(context).size.width < 800) {
+    return 60;
+  } else if (MediaQuery.of(context).size.width < 1240) {
+    return 80;
+  } else {
+    return 100;
+  }
+}
+
+c5BoxSize(context) {
+  if (MediaQuery.of(context).size.width < 800) {
+    return 40;
+  } else if (MediaQuery.of(context).size.width < 1240) {
+    return 60;
+  } else {
+    return 80;
+  }
+}
+
+c6BoxSize(context) {
+  if (MediaQuery.of(context).size.width < 800) {
+    return 20;
+  } else if (MediaQuery.of(context).size.width < 1240) {
+    return 40;
+  } else {
+    return 60;
+  }
+}
+
+// ---------- Padding_Size -----------------------------------------------------------------------------------------------------

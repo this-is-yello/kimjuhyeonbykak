@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:kimjuhyeonbykak/style.dart';
+// import 'package:kimjuhyeonbykak/variable.dart';
 
 // import 'package:opscroll_web/opscroll_web.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -90,56 +91,67 @@ class _CarouselScreenState extends State<CarouselScreen> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 100),
+                    padding: const EdgeInsets.only(
+                      left: 20,
+                      top: 100,
+                      right: 20,
+                    ),
                     child: FadeIn(
                       animate: true,
                       duration: const Duration(milliseconds: 2000),
                       delay: const Duration(milliseconds: 300),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            mainTitles[index],
-                            style: TextStyle(
-                              fontSize: 56,
-                              fontFamily: 'Cafe_24',
-                              fontWeight: FontWeight.bold,
-                              color: whiteColor,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                              top: 8,
-                              bottom: 20,
-                            ),
-                            child: Text(
-                              mainSubTitles[index],
+                      child: SizedBox(
+                        width: widgetSize(context),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              mainTitles[index],
                               style: TextStyle(
-                                fontSize: 24,
+                                fontSize: h1FontSize(context),
+                                fontFamily: 'Cafe_24',
+                                fontWeight: FontWeight.bold,
                                 color: whiteColor,
                               ),
                             ),
-                          ),
-                          InkWell(
-                            onTap: () {
-                              Get.toNamed(mainViewLinks[index]);
-                            },
-                            child: Container(
-                              width: 72,
-                              height: 72,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(500),
-                                color: whiteColor,
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                top: 16,
+                                bottom: 20,
                               ),
-                              child: const Center(
-                                child: Text(
-                                  'view',
+                              child: Text(
+                                mainSubTitles[index],
+                                style: TextStyle(
+                                  fontSize: h6FontSize(context),
+                                  color: whiteColor,
                                 ),
                               ),
                             ),
-                          ),
-                        ],
+                            InkWell(
+                              onTap: () {
+                                Get.toNamed(mainViewLinks[index]);
+                              },
+                              child: Container(
+                                width: c4BoxSize(context) - 10,
+                                height: c4BoxSize(context) - 10,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(500),
+                                  color: whiteColor,
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    'view',
+                                    style: TextStyle(
+                                      fontSize: h7FontSize(context),
+                                      fontFamily: 'Cafe_24',
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -240,100 +252,215 @@ class _BykakStoryState extends State<BykakStory> {
       decoration: BoxDecoration(
         color: whiteColor,
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 20,
-              right: 20,
-            ),
-            child: SizedBox(
-              width: 1400,
+      child: Padding(
+        padding: const EdgeInsets.only(
+          left: 20,
+          right: 20,
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              width: widgetSize(context),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                    width: 500,
-                    height: 2,
-                    color: blackColor,
-                  ),
-                  SizedBox(
-                    width: 200,
-                    height: 200,
-                    // color: blackColor,
-                    child: Image.asset(
-                      'assets/images/logos/bykakScissorLogo_b.png',
-                      fit: BoxFit.fitWidth,
-                    ),
-                  ),
-                  Container(
-                    width: 500,
-                    height: 2,
-                    color: blackColor,
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Center(
-            child: Container(
-              width: 1400,
-              padding: const EdgeInsets.only(
-                top: 40,
-                bottom: 120,
-              ),
-              child: const Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'By 覺 Story',
-                    style: TextStyle(
-                      fontSize: 56,
-                      fontFamily: 'Cafe_24',
-                      fontWeight: FontWeight.bold,
+                  Flexible(
+                    fit: FlexFit.tight,
+                    child: Container(
+                      height: 2,
+                      color: blackColor,
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(
-                      top: 16,
-                    ),
-                    child: Text(
-                      '2014년 김주현바이각은 인천의 고급 수제양복을 알리기 위해,\n남성들을 위한 올바른 스타일링과 문화적 놀이터를 만들고자 설립되었습니다.',
-                      style: TextStyle(
-                        fontSize: 20,
+                    padding: const EdgeInsets.only(left: 20, right: 20),
+                    child: SizedBox(
+                      width: c1BoxSize(context),
+                      height: c1BoxSize(context),
+                      // color: blackColor,
+                      child: Image.asset(
+                        'assets/images/logos/bykakScissorLogo_b.png',
+                        fit: BoxFit.fitWidth,
                       ),
+                    ),
+                  ),
+                  Flexible(
+                    fit: FlexFit.tight,
+                    child: Container(
+                      height: 2,
+                      color: blackColor,
                     ),
                   ),
                 ],
               ),
             ),
-          ),
-          Container(
-            width: 1400,
-            height: 2,
-            margin: const EdgeInsets.only(bottom: 20),
-            color: blackColor,
-          ),
-          TextButton(
-            onPressed: () {},
-            child: Text(
-              '자세히보기',
-              style: TextStyle(
-                fontSize: 20,
-                decoration: TextDecoration.underline,
-                color: blackColor,
+            Center(
+              child: Container(
+                width: widgetSize(context),
+                padding: const EdgeInsets.only(
+                  top: 40,
+                  bottom: 100,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'By 覺 Story',
+                      style: TextStyle(
+                        fontSize: h1FontSize(context),
+                        fontFamily: 'Cafe_24',
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(
+                        top: 16,
+                      ),
+                      child: Text(
+                        '2014년 김주현바이각은 인천의 고급 수제양복을 알리기 위해,\n남성들을 위한 올바른 스타일링과 문화적 놀이터를 만들고자 설립되었습니다.',
+                        style: TextStyle(
+                          fontSize: h6FontSize(context) + 2,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+            Container(
+              width: widgetSize(context),
+              height: 2,
+              margin: const EdgeInsets.only(bottom: 20),
+              color: blackColor,
+            ),
+            TextButton(
+              onPressed: () {},
+              child: Text(
+                '자세히보기',
+                style: TextStyle(
+                  fontSize: h5FontSize(context),
+                  decoration: TextDecoration.underline,
+                  color: blackColor,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 }
 
 // ---------- TailorShop -----------------------------------------------------------------------------------------------------
+makingFilm() {
+  return Image.asset(
+    'assets/images/tailorShop_bg.png',
+    fit: BoxFit.contain,
+  );
+}
+
+countingText(context) {
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Row(
+        children: [
+          Text(
+            '총 ',
+            style: TextStyle(
+              fontSize: h3FontSize(context),
+            ),
+          ),
+          SizedBox(
+            width: c1BoxSize(context) + 30,
+            child: Countup(
+              begin: 0,
+              end: 5981,
+              duration: const Duration(milliseconds: 3000),
+              separator: ',',
+              style: TextStyle(
+                fontSize: h1FontSize(context),
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          Text(
+            '벌 제작',
+            style: TextStyle(
+              fontSize: h3FontSize(context),
+            ),
+          ),
+        ],
+      ),
+      Padding(
+        padding: const EdgeInsets.only(
+          top: 16,
+          bottom: 16,
+        ),
+        child: Row(
+          children: [
+            Text(
+              '총 ',
+              style: TextStyle(
+                fontSize: h3FontSize(context),
+              ),
+            ),
+            SizedBox(
+              width: c1BoxSize(context) + 30,
+              child: Countup(
+                begin: 0,
+                end: 59804019,
+                duration: const Duration(milliseconds: 5000),
+                separator: ',',
+                style: TextStyle(
+                  fontSize: h1FontSize(context),
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            Text(
+              '번의 바느질',
+              style: TextStyle(
+                fontSize: h3FontSize(context),
+              ),
+            ),
+          ],
+        ),
+      ),
+      Row(
+        children: [
+          Text(
+            '총 ',
+            style: TextStyle(
+              fontSize: h3FontSize(context),
+            ),
+          ),
+          SizedBox(
+            width: c1BoxSize(context) + 30,
+            child: Countup(
+              begin: 0,
+              end: 592119,
+              duration: const Duration(milliseconds: 4000),
+              separator: ',',
+              style: TextStyle(
+                fontSize: h1FontSize(context),
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          Text(
+            '의 제작시간',
+            style: TextStyle(
+              fontSize: h3FontSize(context),
+            ),
+          ),
+        ],
+      ),
+    ],
+  );
+}
+
 class TailorShopScreen extends StatefulWidget {
   const TailorShopScreen({super.key});
 
@@ -362,19 +489,19 @@ class _TailorShopScreenState extends State<TailorShopScreen> {
         duration: const Duration(milliseconds: 2000),
         child: Center(
           child: SizedBox(
-            width: 1400,
+            width: widgetSize(context),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
+                Text(
                   'k!mjuhyeon by 覺',
                   style: TextStyle(
-                    fontSize: 48,
+                    fontSize: h1FontSize(context),
                     fontFamily: 'Cafe_24',
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const Padding(
+                Padding(
                   padding: EdgeInsets.only(
                     top: 40,
                     bottom: 20,
@@ -382,7 +509,7 @@ class _TailorShopScreenState extends State<TailorShopScreen> {
                   child: Text(
                     'Lorem Ipsum is simply dummy text of the printing and typesetting industry.\nLorem Ipsum has been the industrys standard dummy text ever since the 1500s',
                     style: TextStyle(
-                      fontSize: 20,
+                      fontSize: h6FontSize(context),
                     ),
                     textAlign: TextAlign.center,
                   ),
@@ -398,126 +525,40 @@ class _TailorShopScreenState extends State<TailorShopScreen> {
                     child: Text(
                       '자세히보기',
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: h5FontSize(context),
                         decoration: TextDecoration.underline,
                         color: blackColor,
                       ),
                     ),
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      width: 640,
-                      height: 360,
-                      color: blackColor,
-                    ),
-                    Container(
-                      width: 640,
-                      padding: const EdgeInsets.only(left: 120),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                MediaQuery.of(context).size.width < 800
+                    ? Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Row(
-                            children: [
-                              const Text(
-                                '총 ',
-                                style: TextStyle(
-                                  fontSize: 32,
-                                ),
-                              ),
-                              SizedBox(
-                                width: 320,
-                                child: Countup(
-                                  begin: 0,
-                                  end: 5981,
-                                  duration: const Duration(milliseconds: 3000),
-                                  separator: ',',
-                                  style: const TextStyle(
-                                    fontSize: 56,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                              const Text(
-                                '벌 제작',
-                                style: TextStyle(
-                                  fontSize: 32,
-                                ),
-                              ),
-                            ],
+                          SizedBox(
+                            width: double.infinity,
+                            child: makingFilm(),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(
-                              top: 8,
-                              bottom: 8,
-                            ),
-                            child: Row(
-                              children: [
-                                const Text(
-                                  '총 ',
-                                  style: TextStyle(
-                                    fontSize: 32,
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 320,
-                                  child: Countup(
-                                    begin: 0,
-                                    end: 59804019,
-                                    duration:
-                                        const Duration(milliseconds: 5000),
-                                    separator: ',',
-                                    style: const TextStyle(
-                                      fontSize: 56,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                const Text(
-                                  '번의 바느질',
-                                  style: TextStyle(
-                                    fontSize: 32,
-                                  ),
-                                ),
-                              ],
-                            ),
+                            padding: EdgeInsets.only(top: 20),
+                            child: countingText(context),
                           ),
-                          Row(
-                            children: [
-                              const Text(
-                                '총 ',
-                                style: TextStyle(
-                                  fontSize: 32,
-                                ),
-                              ),
-                              SizedBox(
-                                width: 320,
-                                child: Countup(
-                                  begin: 0,
-                                  end: 592119,
-                                  duration: const Duration(milliseconds: 4000),
-                                  separator: ',',
-                                  style: const TextStyle(
-                                    fontSize: 56,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                              const Text(
-                                '의 제작시간',
-                                style: TextStyle(
-                                  fontSize: 32,
-                                ),
-                              ),
-                            ],
+                        ],
+                      )
+                    : Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Flexible(
+                            fit: FlexFit.tight,
+                            child: makingFilm(),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 40),
+                            child: countingText(context),
                           ),
                         ],
                       ),
-                    )
-                  ],
-                )
               ],
             ),
           ),
@@ -528,6 +569,82 @@ class _TailorShopScreenState extends State<TailorShopScreen> {
 }
 
 // ---------- TailorAcademy -----------------------------------------------------------------------------------------------------
+doWhat(context) {
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.center,
+    children: [
+      Text(
+        '맞춤정장을 배워 무엇을 할 수 있을까?',
+        style: TextStyle(
+          fontSize: h5FontSize(context),
+        ),
+      ),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            '"테일러링을 배워서 ',
+            style: TextStyle(
+              fontSize: h5FontSize(context),
+            ),
+          ),
+          Container(
+            width: c3BoxSize(context),
+            height: MediaQuery.of(context).size.width < 800 ? 32 : 40,
+            decoration: BoxDecoration(
+              border: Border(
+                bottom: BorderSide(
+                  color: blackColor,
+                  width: 2,
+                ),
+              ),
+            ),
+            child: AnimatedTextKit(
+              totalRepeatCount: 50000,
+              animatedTexts: [
+                RotateAnimatedText(
+                  '나만의 수트제작',
+                  textStyle: TextStyle(
+                    fontSize: h7FontSize(context),
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                RotateAnimatedText(
+                  '테일러샵 창업',
+                  textStyle: TextStyle(
+                    fontSize: h7FontSize(context),
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                RotateAnimatedText(
+                  '쇼핑몰 오픈',
+                  textStyle: TextStyle(
+                    fontSize: h7FontSize(context),
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Text(
+            ' 을 하고싶다"',
+            style: TextStyle(
+              fontSize: h5FontSize(context),
+            ),
+          ),
+        ],
+      ),
+    ],
+  );
+}
+
+academyVideo() {
+  return Image.asset(
+    'assets/images/tailorAcademy_bg.png',
+    fit: BoxFit.contain,
+  );
+}
+
 class TailorAcademyScreen extends StatefulWidget {
   const TailorAcademyScreen({super.key});
 
@@ -555,20 +672,21 @@ class _TailorAcademyScreenState extends State<TailorAcademyScreen> {
         animate: true,
         duration: const Duration(milliseconds: 2000),
         child: Center(
-          child: SizedBox(
-            width: 1400,
+          child: Container(
+            width: widgetSize(context),
+            margin: const EdgeInsets.only(left: 20, right: 20),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
+                Text(
                   'by 覺 Tailor Academy',
                   style: TextStyle(
-                    fontSize: 48,
+                    fontSize: h1FontSize(context),
                     fontFamily: 'Cafe_24',
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const Padding(
+                Padding(
                   padding: EdgeInsets.only(
                     top: 40,
                     bottom: 20,
@@ -576,7 +694,7 @@ class _TailorAcademyScreenState extends State<TailorAcademyScreen> {
                   child: Text(
                     'Lorem Ipsum is simply dummy text of the printing and typesetting industry.\nLorem Ipsum has been the industrys standard dummy text ever since the 1500s',
                     style: TextStyle(
-                      fontSize: 20,
+                      fontSize: h6FontSize(context),
                     ),
                     textAlign: TextAlign.center,
                   ),
@@ -592,91 +710,40 @@ class _TailorAcademyScreenState extends State<TailorAcademyScreen> {
                     child: Text(
                       '자세히보기',
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: h5FontSize(context),
                         decoration: TextDecoration.underline,
                         color: blackColor,
                       ),
                     ),
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SizedBox(
-                      child: Column(
+                MediaQuery.of(context).size.width < 800
+                    ? Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          const Text(
-                            '맞춤정장을 배워 무엇을 할 수 있을까?',
-                            style: TextStyle(
-                              fontSize: 32,
-                            ),
+                          Padding(
+                            padding: EdgeInsets.only(bottom: 20),
+                            child: doWhat(context),
                           ),
-                          Row(
-                            children: [
-                              const Text(
-                                '"나는 테일러링을 배워서 ',
-                                style: TextStyle(
-                                  fontSize: 32,
-                                ),
-                              ),
-                              Container(
-                                width: 200,
-                                height: 56,
-                                decoration: BoxDecoration(
-                                  // color: greyColor,
-                                  border: Border(
-                                    bottom: BorderSide(
-                                      color: blackColor,
-                                      width: 2,
-                                    ),
-                                  ),
-                                ),
-                                child: AnimatedTextKit(
-                                  totalRepeatCount: 50000,
-                                  animatedTexts: [
-                                    RotateAnimatedText(
-                                      '나만의 수트제작',
-                                      textStyle: const TextStyle(
-                                        fontSize: 28,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    RotateAnimatedText(
-                                      '테일러샵 창업',
-                                      textStyle: const TextStyle(
-                                        fontSize: 28,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    RotateAnimatedText(
-                                      '쇼핑몰 오픈',
-                                      textStyle: const TextStyle(
-                                        fontSize: 28,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              const Text(
-                                ' 을 하고싶다"',
-                                style: TextStyle(
-                                  fontSize: 32,
-                                ),
-                              ),
-                            ],
+                          SizedBox(
+                            width: double.infinity,
+                            child: academyVideo(),
+                          ),
+                        ],
+                      )
+                    : Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(right: 40),
+                            child: doWhat(context),
+                          ),
+                          Flexible(
+                            fit: FlexFit.tight,
+                            child: academyVideo(),
                           ),
                         ],
                       ),
-                    ),
-                    Container(
-                      width: 640,
-                      height: 360,
-                      color: blackColor,
-                    ),
-                  ],
-                )
               ],
             ),
           ),
@@ -724,20 +791,20 @@ class _NewJemulpoClubScreenState extends State<NewJemulpoClubScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              width: 1400,
+              width: widgetSize(context),
               margin: const EdgeInsets.only(left: 20, right: 20),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
+                  Text(
                     'New JemulpoClub',
                     style: TextStyle(
-                      fontSize: 48,
+                      fontSize: h1FontSize(context),
                       fontFamily: 'Cafe_24',
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.only(
                       top: 40,
                       bottom: 20,
@@ -745,7 +812,7 @@ class _NewJemulpoClubScreenState extends State<NewJemulpoClubScreen> {
                     child: Text(
                       'Lorem Ipsum is simply dummy text of the printing and typesetting industry.\nLorem Ipsum has been the industrys standard dummy text ever since the 1500s',
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: h6FontSize(context),
                       ),
                       textAlign: TextAlign.center,
                     ),
@@ -761,7 +828,7 @@ class _NewJemulpoClubScreenState extends State<NewJemulpoClubScreen> {
                       child: Text(
                         '자세히보기',
                         style: TextStyle(
-                          fontSize: 20,
+                          fontSize: h5FontSize(context),
                           decoration: TextDecoration.underline,
                           color: blackColor,
                         ),
@@ -794,7 +861,7 @@ class _NewJemulpoClubScreenState extends State<NewJemulpoClubScreen> {
                   ],
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

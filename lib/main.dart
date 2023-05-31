@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kimjuhyeonbykak/style.dart';
+// import 'package:kimjuhyeonbykak/variable.dart';
 import 'package:kimjuhyeonbykak/navigation.dart';
 import 'package:kimjuhyeonbykak/screens/first_screen.dart';
 import 'package:kimjuhyeonbykak/screens/tailorshop_page.dart';
@@ -76,6 +77,11 @@ class _MainPageState extends State<MainPage> {
           currentArrow = Icons.keyboard_arrow_down_rounded;
         });
       }
+
+      if (_scrollController.position.pixels ==
+          _scrollController.position.minScrollExtent) {
+        btnCurrentPage = 0;
+      }
     });
   }
 
@@ -122,15 +128,15 @@ class _MainPageState extends State<MainPage> {
               Padding(
                 padding: const EdgeInsets.all(20),
                 child: Container(
-                  width: 68,
-                  height: 68,
+                  width: c5BoxSize(context) - 4,
+                  height: c5BoxSize(context) - 4,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(500),
                     color: blackColor.withOpacity(0.9),
                   ),
                   child: IconButton(
                     alignment: Alignment.center,
-                    iconSize: 50,
+                    iconSize: c6BoxSize(context),
                     onPressed: () {
                       btnPageMove();
                       _scrollController.animateTo(
