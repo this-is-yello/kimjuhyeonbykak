@@ -3,6 +3,7 @@ import 'package:kimjuhyeonbykak/style.dart';
 // import 'package:kimjuhyeonbykak/variable.dart';
 
 import 'package:animate_do/animate_do.dart';
+import 'package:get/get.dart';
 
 // ---------- App_Bar -----------------------------------------------------------------------------------------------------
 class MainAppBar extends StatefulWidget {
@@ -66,159 +67,195 @@ class _MainAppBarState extends State<MainAppBar> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width < 1240 ? 60 : 80,
-                      height:
-                          MediaQuery.of(context).size.width < 1240 ? 60 : 80,
-                      child: Image.asset(
-                        'assets/images/logos/bykakLogo_w.png',
-                        fit: BoxFit.contain,
+                    InkWell(
+                      onTap: () {
+                        Get.toNamed('/');
+                      },
+                      child: SizedBox(
+                        width:
+                            MediaQuery.of(context).size.width < 1240 ? 60 : 80,
+                        height:
+                            MediaQuery.of(context).size.width < 1240 ? 60 : 80,
+                        child: Image.asset(
+                          'assets/images/logos/bykakLogo_w.png',
+                          fit: BoxFit.contain,
+                        ),
                       ),
                     ),
                     MediaQuery.of(context).size.width < 800
                         ? Container()
                         : Row(
                             children: [
-                              InkWell(
-                                onTap: () {},
-                                onHover: (value) {
-                                  setState(() {
-                                    navHover = value;
-                                    i = 0;
-                                  });
-                                  showNavDetail();
-                                },
-                                child: Container(
-                                  padding: const EdgeInsets.only(
-                                    left: 40,
-                                    right: 40,
-                                  ),
-                                  height:
-                                      MediaQuery.of(context).size.width < 1240
-                                          ? 80
-                                          : 100,
-                                  child: Center(
-                                    child: Text(
-                                      '브랜드',
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        color: whiteColor,
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  left: 20,
+                                  right: 20,
+                                ),
+                                child: InkWell(
+                                  onTap: () {},
+                                  onHover: (value) {
+                                    setState(() {
+                                      navHover = value;
+                                      i = 0;
+                                    });
+                                    showNavDetail();
+                                  },
+                                  child: Container(
+                                    padding: const EdgeInsets.only(
+                                      left: 20,
+                                      right: 20,
+                                    ),
+                                    height:
+                                        MediaQuery.of(context).size.width < 1240
+                                            ? 80
+                                            : 100,
+                                    child: Center(
+                                      child: Text(
+                                        '브랜드',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          color: whiteColor,
+                                        ),
                                       ),
                                     ),
                                   ),
                                 ),
                               ),
-                              InkWell(
-                                onTap: () {},
-                                onHover: (value) {
-                                  setState(() {
-                                    navHover = value;
-                                    i = 1;
-                                  });
-                                  showNavDetail();
-                                },
-                                child: Container(
-                                  padding: const EdgeInsets.only(
-                                    left: 40,
-                                    right: 40,
-                                  ),
-                                  height:
-                                      MediaQuery.of(context).size.width < 1240
-                                          ? 80
-                                          : 100,
-                                  child: Center(
-                                    child: Text(
-                                      '홍보',
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        color: whiteColor,
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  left: 20,
+                                  right: 20,
+                                ),
+                                child: InkWell(
+                                  onTap: () {},
+                                  onHover: (value) {
+                                    setState(() {
+                                      navHover = value;
+                                      i = 1;
+                                    });
+                                    showNavDetail();
+                                  },
+                                  child: Container(
+                                    padding: const EdgeInsets.only(
+                                      left: 20,
+                                      right: 20,
+                                    ),
+                                    height:
+                                        MediaQuery.of(context).size.width < 1240
+                                            ? 80
+                                            : 100,
+                                    child: Center(
+                                      child: Text(
+                                        '홍보',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          color: whiteColor,
+                                        ),
                                       ),
                                     ),
                                   ),
                                 ),
                               ),
-                              InkWell(
-                                onTap: () {},
-                                onHover: (value) {
-                                  setState(() {
-                                    navHover = value;
-                                    i = 2;
-                                  });
-                                  showNavDetail();
-                                },
-                                child: Container(
-                                  padding: const EdgeInsets.only(
-                                    left: 40,
-                                    right: 40,
-                                  ),
-                                  height:
-                                      MediaQuery.of(context).size.width < 1240
-                                          ? 80
-                                          : 100,
-                                  child: Center(
-                                    child: Text(
-                                      '제품',
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        color: whiteColor,
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  left: 20,
+                                  right: 20,
+                                ),
+                                child: InkWell(
+                                  onTap: () {},
+                                  onHover: (value) {
+                                    setState(() {
+                                      navHover = value;
+                                      i = 2;
+                                    });
+                                    showNavDetail();
+                                  },
+                                  child: Container(
+                                    padding: const EdgeInsets.only(
+                                      left: 20,
+                                      right: 20,
+                                    ),
+                                    height:
+                                        MediaQuery.of(context).size.width < 1240
+                                            ? 80
+                                            : 100,
+                                    child: Center(
+                                      child: Text(
+                                        '제품',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          color: whiteColor,
+                                        ),
                                       ),
                                     ),
                                   ),
                                 ),
                               ),
-                              InkWell(
-                                onTap: () {},
-                                onHover: (value) {
-                                  setState(() {
-                                    navHover = value;
-                                    i = 3;
-                                  });
-                                  showNavDetail();
-                                },
-                                child: Container(
-                                  padding: const EdgeInsets.only(
-                                    left: 40,
-                                    right: 40,
-                                  ),
-                                  height:
-                                      MediaQuery.of(context).size.width < 1240
-                                          ? 80
-                                          : 100,
-                                  child: Center(
-                                    child: Text(
-                                      '커뮤니티',
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        color: whiteColor,
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  left: 20,
+                                  right: 20,
+                                ),
+                                child: InkWell(
+                                  onTap: () {},
+                                  onHover: (value) {
+                                    setState(() {
+                                      navHover = value;
+                                      i = 3;
+                                    });
+                                    showNavDetail();
+                                  },
+                                  child: Container(
+                                    padding: const EdgeInsets.only(
+                                      left: 20,
+                                      right: 20,
+                                    ),
+                                    height:
+                                        MediaQuery.of(context).size.width < 1240
+                                            ? 80
+                                            : 100,
+                                    child: Center(
+                                      child: Text(
+                                        '커뮤니티',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          color: whiteColor,
+                                        ),
                                       ),
                                     ),
                                   ),
                                 ),
                               ),
-                              InkWell(
-                                onTap: () {},
-                                onHover: (value) {
-                                  setState(() {
-                                    navHover = value;
-                                    i = 4;
-                                  });
-                                  showNavDetail();
-                                },
-                                child: Container(
-                                  padding: const EdgeInsets.only(
-                                    left: 40,
-                                    right: 40,
-                                  ),
-                                  height:
-                                      MediaQuery.of(context).size.width < 1240
-                                          ? 80
-                                          : 100,
-                                  child: Center(
-                                    child: Text(
-                                      '비즈니스',
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        color: whiteColor,
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  left: 20,
+                                  right: 20,
+                                ),
+                                child: InkWell(
+                                  onTap: () {},
+                                  onHover: (value) {
+                                    setState(() {
+                                      navHover = value;
+                                      i = 4;
+                                    });
+                                    showNavDetail();
+                                  },
+                                  child: Container(
+                                    padding: const EdgeInsets.only(
+                                      left: 20,
+                                      right: 20,
+                                    ),
+                                    height:
+                                        MediaQuery.of(context).size.width < 1240
+                                            ? 80
+                                            : 100,
+                                    child: Center(
+                                      child: Text(
+                                        '비즈니스',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          color: whiteColor,
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -262,7 +299,7 @@ class _MainAppBarState extends State<MainAppBar> {
                           MediaQuery.of(context).size.width < 800
                               ? Padding(
                                   padding: const EdgeInsets.only(
-                                    left: 40,
+                                    left: 20,
                                   ),
                                   child: InkWell(
                                     child: Icon(

@@ -99,7 +99,7 @@ class _CarouselScreenState extends State<CarouselScreen> {
                     child: FadeIn(
                       animate: true,
                       duration: const Duration(milliseconds: 2000),
-                      delay: const Duration(milliseconds: 300),
+                      // delay: const Duration(milliseconds: 300),
                       child: SizedBox(
                         width: widgetSize(context),
                         child: Column(
@@ -589,7 +589,7 @@ doWhat(context) {
             ),
           ),
           Container(
-            width: c3BoxSize(context),
+            width: c4BoxSize(context) + 8,
             height: MediaQuery.of(context).size.width < 800 ? 32 : 40,
             decoration: BoxDecoration(
               border: Border(
@@ -603,23 +603,23 @@ doWhat(context) {
               totalRepeatCount: 50000,
               animatedTexts: [
                 RotateAnimatedText(
-                  '나만의 수트제작',
+                  '나의 수트제작',
                   textStyle: TextStyle(
-                    fontSize: h7FontSize(context),
+                    fontSize: h7FontSize(context) + 1,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 RotateAnimatedText(
                   '테일러샵 창업',
                   textStyle: TextStyle(
-                    fontSize: h7FontSize(context),
+                    fontSize: h7FontSize(context) + 1,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 RotateAnimatedText(
                   '쇼핑몰 오픈',
                   textStyle: TextStyle(
-                    fontSize: h7FontSize(context),
+                    fontSize: h7FontSize(context) + 1,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

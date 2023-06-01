@@ -23,11 +23,36 @@ class MyApp extends StatelessWidget {
       title: '김주현바이각',
       initialRoute: '/',
       getPages: [
-        GetPage(name: '/', page: () => const MainPage()),
-        GetPage(name: '/tailorShop', page: () => const TailorShopPage()),
-        GetPage(name: '/tailorAcademy', page: () => const TailorAcademyPage()),
-        GetPage(name: '/newJemulpoClub', page: () => const JemulpoClubPage()),
-        GetPage(name: '/rentalCenter', page: () => const RentalCenterPage()),
+        GetPage(
+          name: '/',
+          page: () => const MainPage(),
+          transition: Transition.fadeIn,
+          transitionDuration: Duration(milliseconds: 700),
+        ),
+        GetPage(
+          name: '/tailorShop',
+          page: () => const TailorShopPage(),
+          transition: Transition.fadeIn,
+          transitionDuration: Duration(milliseconds: 700),
+        ),
+        GetPage(
+          name: '/tailorAcademy',
+          page: () => const TailorAcademyPage(),
+          transition: Transition.fadeIn,
+          transitionDuration: Duration(milliseconds: 700),
+        ),
+        GetPage(
+          name: '/newJemulpoClub',
+          page: () => const JemulpoClubPage(),
+          transition: Transition.fadeIn,
+          transitionDuration: Duration(milliseconds: 700),
+        ),
+        GetPage(
+          name: '/rentalCenter',
+          page: () => const RentalCenterPage(),
+          transition: Transition.fadeIn,
+          transitionDuration: Duration(milliseconds: 700),
+        ),
       ],
       theme: ThemeData(
         fontFamily: 'LINE_seed',
@@ -132,7 +157,7 @@ class _MainPageState extends State<MainPage> {
                   height: c5BoxSize(context) - 4,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(500),
-                    color: blackColor.withOpacity(0.9),
+                    color: blackColor.withOpacity(0.5),
                   ),
                   child: IconButton(
                     alignment: Alignment.center,

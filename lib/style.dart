@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 // ---------- Color -----------------------------------------------------------------------------------------------------
+var bykakColor = const Color(0xFF205B48);
 var blackColor = const Color(0xFF1E1E1E);
 var greyColor = const Color(0xFF9E9E9E);
 var lightGreyColor = const Color(0xFFEEEEEE);
