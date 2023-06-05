@@ -11,6 +11,20 @@ var whiteColor = const Color(0xFFFFFFFF);
 int btnCurrentPage = 0;
 int scrollCurrentPage = 0;
 
+List subMenuLinks = [
+  [
+    '/story',
+    '/tailorShop',
+    '/tailorAcademy',
+    '/newJemulpoClub',
+    '/rentalCenter'
+  ],
+  ['/magazine', '/news', '/sponsorship', '/ciBi'],
+  ['/product'],
+  ['/inquiry', '/notice', '/event', '/media', '/review'],
+  ['/supporters', '/sponsorInquiry', '/uniformInquiry'],
+];
+
 // ---------- Contents_Width -----------------------------------------------------------------------------------------------------
 widgetSize(context) {
   if (MediaQuery.of(context).size.width < 800) {
@@ -45,9 +59,9 @@ h2FontSize(context) {
 
 h3FontSize(context) {
   if (MediaQuery.of(context).size.width < 800) {
-    return 16;
+    return 20;
   } else if (MediaQuery.of(context).size.width < 1240) {
-    return 24;
+    return 28;
   } else {
     return 32;
   }
@@ -55,9 +69,9 @@ h3FontSize(context) {
 
 h4FontSize(context) {
   if (MediaQuery.of(context).size.width < 800) {
-    return 20;
+    return 16;
   } else if (MediaQuery.of(context).size.width < 1240) {
-    return 24;
+    return 20;
   } else {
     return 28;
   }
@@ -65,9 +79,9 @@ h4FontSize(context) {
 
 h5FontSize(context) {
   if (MediaQuery.of(context).size.width < 800) {
-    return 16;
+    return 14;
   } else if (MediaQuery.of(context).size.width < 1240) {
-    return 20;
+    return 16;
   } else {
     return 24;
   }

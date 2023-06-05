@@ -3,12 +3,13 @@ import 'package:kimjuhyeonbykak/style.dart';
 // import 'package:kimjuhyeonbykak/variable.dart';
 import 'package:kimjuhyeonbykak/navigation.dart';
 import 'package:kimjuhyeonbykak/screens/first_screen.dart';
-import 'package:kimjuhyeonbykak/screens/tailorshop_page.dart';
-import 'package:kimjuhyeonbykak/screens/tailoracademy_page.dart';
-import 'package:kimjuhyeonbykak/screens/jemulpoclub_page.dart';
-import 'package:kimjuhyeonbykak/screens/rentalcenter_page.dart';
+import 'package:kimjuhyeonbykak/screens/brand/tailorshop_page.dart';
+import 'package:kimjuhyeonbykak/screens/brand/tailoracademy_page.dart';
+import 'package:kimjuhyeonbykak/screens/brand/jemulpoclub_page.dart';
+import 'package:kimjuhyeonbykak/screens/brand/rentalcenter_page.dart';
+import 'package:kimjuhyeonbykak/screens/publicity.dart';
 
-// import 'package:opscroll_web/opscroll_web.dart';
+import 'package:opscroll_web/opscroll_web.dart';
 import 'package:get/get.dart';
 
 void main() => runApp(const MyApp());
@@ -53,6 +54,12 @@ class MyApp extends StatelessWidget {
           transition: Transition.fadeIn,
           transitionDuration: Duration(milliseconds: 700),
         ),
+        GetPage(
+          name: '/magazine',
+          page: () => const PublicityPage(),
+          transition: Transition.fadeIn,
+          transitionDuration: Duration(milliseconds: 700),
+        ),
       ],
       theme: ThemeData(
         fontFamily: 'LINE_seed',
@@ -74,27 +81,12 @@ class _MainPageState extends State<MainPage> {
 
   IconData currentArrow = Icons.keyboard_arrow_down_rounded;
 
-  btnPageMove() {
-    if (btnCurrentPage > 4 || scrollCurrentPage > 4) {
-      setState(() {
-        btnCurrentPage = 0;
-        scrollCurrentPage = 0;
-      });
-    } else {
-      setState(() {
-        btnCurrentPage++;
-        // scrollCurrentPage++;
-      });
-    }
-  }
-
   arrowChange() {
     _scrollController.addListener(() {
       if (_scrollController.position.pixels ==
           _scrollController.position.maxScrollExtent) {
         setState(() {
           currentArrow = Icons.keyboard_arrow_up_rounded;
-          scrollCurrentPage = 5;
         });
         print('arrow_change!');
       } else {
@@ -102,12 +94,28 @@ class _MainPageState extends State<MainPage> {
           currentArrow = Icons.keyboard_arrow_down_rounded;
         });
       }
-
-      if (_scrollController.position.pixels ==
-          _scrollController.position.minScrollExtent) {
-        btnCurrentPage = 0;
-      }
     });
+  }
+
+  movePage() {
+    if (_scrollController.position.pixels ==
+        _scrollController.position.maxScrollExtent) {
+      setState(() {
+        _scrollController.animateTo(
+          MediaQuery.of(context).size.height * btnCurrentPage,
+          duration: const Duration(milliseconds: 1800),
+          curve: Curves.fastOutSlowIn,
+        );
+        btnCurrentPage = 0;
+      });
+    } else {
+      _scrollController.animateTo(
+        MediaQuery.of(context).size.height * btnCurrentPage,
+        duration: const Duration(milliseconds: 1800),
+        curve: Curves.fastOutSlowIn,
+      );
+      btnCurrentPage++;
+    }
   }
 
   @override
@@ -123,16 +131,23 @@ class _MainPageState extends State<MainPage> {
       body: Stack(
         alignment: Alignment.topCenter,
         children: [
-          // OpscrollWeb(
-          //   pageController: _pageController,
-          //   dropColor: blackColor,
-          //   scrollingAnimationOptions: ScrollingAnimationOptions.Fading,
-          //   onePageChildren: [
+          // PageView(
+          //   scrollDirection: Axis.vertical,
+          //   children: [
           //     CarouselScreen(),
           //     BykakStory(),
           //     TailorShopScreen(),
           //     TailorAcademyScreen(),
-          //     NewJemulpoClubScreen(),
+          //     ListView(
+          //       children: [
+          //         NewJemulpoClubScreen(),
+          //         Padding(
+          //           padding: EdgeInsets.only(top: 120, bottom: 120),
+          //           child: MainComment(),
+          //         ),
+          //         Footer(),
+          //       ],
+          //     ),
           //   ],
           // ),
           ListView(
@@ -143,6 +158,10 @@ class _MainPageState extends State<MainPage> {
               TailorShopScreen(),
               TailorAcademyScreen(),
               NewJemulpoClubScreen(),
+              Padding(
+                padding: EdgeInsets.only(top: 120, bottom: 120),
+                child: MainComment(),
+              ),
               Footer(),
             ],
           ),
@@ -163,12 +182,14 @@ class _MainPageState extends State<MainPage> {
                     alignment: Alignment.center,
                     iconSize: c6BoxSize(context),
                     onPressed: () {
-                      btnPageMove();
-                      _scrollController.animateTo(
-                        MediaQuery.of(context).size.height * btnCurrentPage,
-                        duration: const Duration(milliseconds: 1800),
-                        curve: Curves.fastOutSlowIn,
-                      );
+                      // btnPageMove();
+                      movePage();
+                      print(btnCurrentPage);
+                      // _scrollController.animateTo(
+                      //   MediaQuery.of(context).size.height * btnCurrentPage,
+                      //   duration: const Duration(milliseconds: 1800),
+                      //   curve: Curves.fastOutSlowIn,
+                      // );
                     },
                     icon: Icon(
                       currentArrow,

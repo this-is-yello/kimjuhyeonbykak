@@ -30,8 +30,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  # opscroll_web: ^0.3.2
+  opscroll_web: ^0.3.2
+
   carousel_slider: ^4.2.1
+  widget_and_text_animator: ^1.0.9
   animated_text_kit: ^4.2.2
   animate_do: ^3.0.2
   countup: ^0.1.4

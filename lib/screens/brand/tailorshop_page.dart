@@ -1,8 +1,8 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:kimjuhyeonbykak/style.dart';
 import 'package:kimjuhyeonbykak/navigation.dart';
+
 import 'package:countup/countup.dart';
 
 class TailorShopPage extends StatelessWidget {
@@ -21,27 +21,39 @@ class TailorShopPage extends StatelessWidget {
               children: [
                 TailorShopMain(),
                 Padding(
-                  padding: EdgeInsets.only(top: 120),
+                  padding: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.width < 800 ? 120 : 160,
+                  ),
                   child: Shops(),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 120),
+                  padding: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.width < 800 ? 120 : 160,
+                  ),
                   child: Label(),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 120),
+                  padding: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.width < 800 ? 120 : 160,
+                  ),
                   child: CountUpText(),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 120),
+                  padding: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.width < 800 ? 120 : 160,
+                  ),
                   child: MakingProcess(),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 120),
+                  padding: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.width < 800 ? 120 : 160,
+                  ),
                   child: Service(),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 120),
+                  padding: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.width < 800 ? 120 : 160,
+                  ),
                   child: Footer(),
                 ),
               ],
@@ -298,7 +310,7 @@ class _LabelState extends State<Label> {
           ),
           Padding(
             padding: EdgeInsets.only(
-              top: MediaQuery.of(context).size.width < 800 ? 40 : 100,
+              top: 40,
             ),
             child: Container(
               width: widgetSize(context),
@@ -684,7 +696,7 @@ class _MakingProcessState extends State<MakingProcess> {
             ),
             Padding(
               padding: EdgeInsets.only(
-                top: MediaQuery.of(context).size.width < 800 ? 40 : 100,
+                top: 40,
               ),
               child: SizedBox(
                 width: widgetSize(context),
@@ -963,7 +975,7 @@ class Service extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.only(
-                top: MediaQuery.of(context).size.width < 800 ? 40 : 100,
+                top: 40,
               ),
               child: SizedBox(
                 width: widgetSize(context),

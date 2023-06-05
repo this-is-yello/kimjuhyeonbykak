@@ -360,7 +360,9 @@ class _MainAppBarState extends State<MainAppBar> {
                                           bottom: 16,
                                         ),
                                         child: InkWell(
-                                          onTap: () {},
+                                          onTap: () {
+                                            Get.toNamed(subMenuLinks[i][index]);
+                                          },
                                           child: Text(
                                             subMenu[i][index],
                                             style: TextStyle(
@@ -407,7 +409,8 @@ class _FooterState extends State<Footer> {
   @override
   void initState() {
     super.initState();
-    btnCurrentPage = 4;
+    btnCurrentPage = 0;
+    print(btnCurrentPage);
   }
 
   @override
@@ -430,13 +433,18 @@ class _FooterState extends State<Footer> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(
-                width: c5BoxSize(context),
-                height: c5BoxSize(context),
-                // color: blackColor,
-                child: Image.asset(
-                  'assets/images/logos/bykakLogo_b.png',
-                  fit: BoxFit.fitWidth,
+              InkWell(
+                onTap: () {
+                  Get.toNamed('/');
+                },
+                child: SizedBox(
+                  width: c5BoxSize(context),
+                  height: c5BoxSize(context),
+                  // color: blackColor,
+                  child: Image.asset(
+                    'assets/images/logos/bykakLogo_b.png',
+                    fit: BoxFit.fitWidth,
+                  ),
                 ),
               ),
               Column(

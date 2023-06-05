@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:kimjuhyeonbykak/style.dart';
-// import 'package:kimjuhyeonbykak/variable.dart';
 
 // import 'package:opscroll_web/opscroll_web.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:widget_and_text_animator/widget_and_text_animator.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:countup/countup.dart';
@@ -55,6 +55,13 @@ class _CarouselScreenState extends State<CarouselScreen> {
     );
   }
 
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   btnCurrentPage = 0;
+  //   print(btnCurrentPage);
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -70,24 +77,33 @@ class _CarouselScreenState extends State<CarouselScreen> {
               aspectRatio: MediaQuery.of(context).size.width /
                   MediaQuery.of(context).size.height,
               viewportFraction: 1,
-              initialPage: 0,
               animateToClosest: false,
+              autoPlay: true,
+              autoPlayCurve: Curves.fastOutSlowIn,
+              autoPlayAnimationDuration: Duration(milliseconds: 1200),
+              autoPlayInterval: Duration(milliseconds: 8000),
               onPageChanged: (index, reason) {
                 setState(() {
                   picNum = index;
                 });
               },
+              initialPage: picNum,
             ),
             itemBuilder: (context, index, realIndex) {
               return Stack(
                 alignment: Alignment.center,
                 children: [
                   SizedBox(
-                    child: Image.asset(
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height,
-                      mainBackgrounds[index],
-                      fit: BoxFit.cover,
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height,
+                    child: WidgetAnimator(
+                      atRestEffect: WidgetRestingEffects.size(
+                        duration: Duration(milliseconds: 24000),
+                      ),
+                      child: Image.asset(
+                        mainBackgrounds[index],
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                   Padding(
@@ -241,7 +257,8 @@ class _BykakStoryState extends State<BykakStory> {
   @override
   void initState() {
     super.initState();
-    btnCurrentPage = 0;
+    btnCurrentPage = 1;
+    print(btnCurrentPage);
   }
 
   @override
@@ -472,7 +489,8 @@ class _TailorShopScreenState extends State<TailorShopScreen> {
   @override
   void initState() {
     super.initState();
-    btnCurrentPage = 1;
+    btnCurrentPage = 2;
+    print(btnCurrentPage);
   }
 
   @override
@@ -656,7 +674,8 @@ class _TailorAcademyScreenState extends State<TailorAcademyScreen> {
   @override
   void initState() {
     super.initState();
-    btnCurrentPage = 2;
+    btnCurrentPage = 3;
+    print(btnCurrentPage);
   }
 
   @override
@@ -773,7 +792,8 @@ class _NewJemulpoClubScreenState extends State<NewJemulpoClubScreen> {
   @override
   void initState() {
     super.initState();
-    btnCurrentPage = 3;
+    btnCurrentPage = 4;
+    print(btnCurrentPage);
   }
 
   @override
@@ -863,6 +883,44 @@ class _NewJemulpoClubScreenState extends State<NewJemulpoClubScreen> {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class MainComment extends StatefulWidget {
+  const MainComment({super.key});
+
+  @override
+  State<MainComment> createState() => _MainCommentState();
+}
+
+class _MainCommentState extends State<MainComment> {
+  @override
+  void initState() {
+    super.initState();
+    btnCurrentPage = 5;
+    print(btnCurrentPage);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(left: 20, right: 20),
+      child: SizedBox(
+        width: MediaQuery.of(context).size.width,
+        child: SizedBox(
+          width: widgetSize(context),
+          child: Text(
+            textAlign: TextAlign.center,
+            '바이각을 시작으로 옷에 대해\n보고, 배우고, 깨닫길 바라며..',
+            style: TextStyle(
+              fontFamily: 'Cafe_24',
+              fontSize: h3FontSize(context),
+              color: blackColor,
+            ),
+          ),
         ),
       ),
     );

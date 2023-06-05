@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:kimjuhyeonbykak/style.dart';
 import 'package:kimjuhyeonbykak/navigation.dart';
@@ -22,20 +21,40 @@ class TailorAcademyPage extends StatelessWidget {
               children: [
                 TailorAcademyMain(),
                 Padding(
-                  padding: EdgeInsets.only(top: 120),
+                  padding: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.width < 800 ? 120 : 160,
+                  ),
                   child: WhatIsAcademy(),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 120),
+                  padding: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.width < 800 ? 120 : 160,
+                  ),
                   child: Curriculum(),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 120),
+                  padding: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.width < 800 ? 120 : 160,
+                  ),
                   child: WhoTeaching(),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 120),
+                  padding: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.width < 800 ? 120 : 160,
+                  ),
                   child: WhyLearning(),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.width < 800 ? 120 : 160,
+                  ),
+                  child: AcademyLocation(),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.width < 800 ? 120 : 160,
+                  ),
+                  child: Footer(),
                 ),
               ],
             ),
@@ -223,7 +242,7 @@ class Curriculum extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.only(
-                top: MediaQuery.of(context).size.width < 800 ? 40 : 100,
+                top: 40,
               ),
               child: SizedBox(
                 width: widgetSize(context),
@@ -294,7 +313,7 @@ class WhoTeaching extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.only(
-                top: MediaQuery.of(context).size.width < 800 ? 40 : 100,
+                top: 40,
               ),
               child: SizedBox(
                 width: widgetSize(context),
@@ -330,7 +349,7 @@ class WhoTeaching extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(top: 20, bottom: 8),
+                          padding: const EdgeInsets.only(top: 20),
                           child: Text(
                             '양복기능대회 은메달리스트 김회문 선생님',
                             style: TextStyle(
@@ -365,6 +384,208 @@ class WhyLearning extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Padding(
+      padding: EdgeInsets.only(
+        left: 20,
+        right: 20,
+      ),
+      child: SizedBox(
+        width: widgetSize(context),
+        child: Column(
+          children: [
+            Text(
+              'Reason',
+              style: TextStyle(
+                fontSize: h1FontSize(context),
+                fontFamily: 'Cafe_24',
+                fontWeight: FontWeight.bold,
+                color: blackColor,
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(
+                top: 40,
+              ),
+              child: SizedBox(
+                width: widgetSize(context),
+                child: Image.asset(
+                  MediaQuery.of(context).size.width < 800
+                      ? 'assets/images/why_column.png'
+                      : 'assets/images/why_row.png',
+                  fit: BoxFit.fitWidth,
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(
+                top: 60,
+              ),
+              child: SizedBox(
+                  width: widgetSize(context),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        '맞춤정장을 배워 무엇을 할 수 있을까?',
+                        style: TextStyle(
+                          fontSize: h4FontSize(context),
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            '"테일러링을 배워서 ',
+                            style: TextStyle(
+                              fontSize: h4FontSize(context),
+                            ),
+                          ),
+                          Container(
+                            width: c2BoxSize(context),
+                            height: MediaQuery.of(context).size.width < 800
+                                ? 32
+                                : 40,
+                            decoration: BoxDecoration(
+                              border: Border(
+                                bottom: BorderSide(
+                                  color: blackColor,
+                                  width: 2,
+                                ),
+                              ),
+                            ),
+                            child: AnimatedTextKit(
+                              totalRepeatCount: 50000,
+                              animatedTexts: [
+                                RotateAnimatedText(
+                                  '나만의 수트제작',
+                                  textStyle: TextStyle(
+                                    fontSize: h5FontSize(context),
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                RotateAnimatedText(
+                                  '테일러샵 창업',
+                                  textStyle: TextStyle(
+                                    fontSize: h5FontSize(context),
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                RotateAnimatedText(
+                                  '쇼핑몰 오픈',
+                                  textStyle: TextStyle(
+                                    fontSize: h5FontSize(context),
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Text(
+                            ' 을 하고싶다"',
+                            style: TextStyle(
+                              fontSize: h4FontSize(context),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  )),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// ---------- Academy_Location -----------------------------------------------------------------------------------------------------
+class AcademyLocation extends StatelessWidget {
+  const AcademyLocation({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(
+        left: 20,
+        right: 20,
+      ),
+      child: SizedBox(
+        width: widgetSize(context),
+        child: Column(
+          children: [
+            Text(
+              'Location',
+              style: TextStyle(
+                fontSize: h1FontSize(context),
+                fontFamily: 'Cafe_24',
+                fontWeight: FontWeight.bold,
+                color: blackColor,
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(
+                top: 40,
+              ),
+              child: Column(
+                children: [
+                  Container(
+                    width: widgetSize(context),
+                    height: c1BoxSize(context) + 200,
+                    color: blackColor,
+                  ),
+                  SizedBox(
+                    width: widgetSize(context),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 20),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                '바이각 테일러아카데미',
+                                style: TextStyle(
+                                  fontSize: h2FontSize(context) - 2,
+                                  color: blackColor,
+                                ),
+                              ),
+                              Text(
+                                '인천광역시 미추홀구 석정로200 3층',
+                                style: TextStyle(
+                                  fontSize: h6FontSize(context),
+                                  color: blackColor,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.map_outlined,
+                              size: 32,
+                              color: blackColor,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 20),
+                              child: Icon(
+                                Icons.copy,
+                                size: 32,
+                                color: blackColor,
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
