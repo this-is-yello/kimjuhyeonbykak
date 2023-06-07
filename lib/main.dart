@@ -9,7 +9,7 @@ import 'package:kimjuhyeonbykak/screens/brand/jemulpoclub_page.dart';
 import 'package:kimjuhyeonbykak/screens/brand/rentalcenter_page.dart';
 import 'package:kimjuhyeonbykak/screens/publicity.dart';
 
-import 'package:opscroll_web/opscroll_web.dart';
+// import 'package:opscroll_web/opscroll_web.dart';
 import 'package:get/get.dart';
 
 void main() => runApp(const MyApp());
@@ -55,7 +55,7 @@ class MyApp extends StatelessWidget {
           transitionDuration: Duration(milliseconds: 700),
         ),
         GetPage(
-          name: '/magazine',
+          name: '/publicity',
           page: () => const PublicityPage(),
           transition: Transition.fadeIn,
           transitionDuration: Duration(milliseconds: 700),
