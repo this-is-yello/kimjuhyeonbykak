@@ -3,11 +3,13 @@ import 'package:kimjuhyeonbykak/style.dart';
 // import 'package:kimjuhyeonbykak/variable.dart';
 import 'package:kimjuhyeonbykak/navigation.dart';
 import 'package:kimjuhyeonbykak/screens/first_screen.dart';
+import 'package:kimjuhyeonbykak/screens/publicity.dart';
+import 'package:kimjuhyeonbykak/screens/product.dart';
+import 'package:kimjuhyeonbykak/screens/community_page.dart';
 import 'package:kimjuhyeonbykak/screens/brand/tailorshop_page.dart';
 import 'package:kimjuhyeonbykak/screens/brand/tailoracademy_page.dart';
 import 'package:kimjuhyeonbykak/screens/brand/jemulpoclub_page.dart';
 import 'package:kimjuhyeonbykak/screens/brand/rentalcenter_page.dart';
-import 'package:kimjuhyeonbykak/screens/publicity.dart';
 
 // import 'package:opscroll_web/opscroll_web.dart';
 import 'package:get/get.dart';
@@ -57,6 +59,18 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: '/publicity',
           page: () => const PublicityPage(),
+          transition: Transition.fadeIn,
+          transitionDuration: Duration(milliseconds: 700),
+        ),
+        GetPage(
+          name: '/product',
+          page: () => const ProductPage(),
+          transition: Transition.fadeIn,
+          transitionDuration: Duration(milliseconds: 700),
+        ),
+        GetPage(
+          name: '/community',
+          page: () => const CommunityPage(),
           transition: Transition.fadeIn,
           transitionDuration: Duration(milliseconds: 700),
         ),

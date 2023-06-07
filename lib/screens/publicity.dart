@@ -1,6 +1,5 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:kimjuhyeonbykak/style.dart';
 
 import 'package:kimjuhyeonbykak/navigation.dart';
@@ -49,121 +48,18 @@ class _PublicityPageState extends State<PublicityPage> {
                   children: [
                     PublicityTabBar(),
                     PublicityTabBarView(),
+                    Padding(
+                      padding: EdgeInsets.only(
+                        top:
+                            MediaQuery.of(context).size.width < 800 ? 120 : 160,
+                      ),
+                      child: Footer(),
+                    ),
                   ],
                 ),
               ),
             ],
           ),
-          // CustomScrollView(
-          //   slivers: [
-          //     SliverAppBar(
-          //       elevation: 0,
-          //       pinned: true,
-          //       floating: true,
-          //       automaticallyImplyLeading: false,
-          //       expandedHeight: 200,
-          //       toolbarHeight: 200,
-          //       backgroundColor: whiteColor,
-          //       flexibleSpace: FlexibleSpaceBar(
-          //         titlePadding: EdgeInsets.all(0),
-          //         background: Image.asset(
-          //           width: MediaQuery.of(context).size.width,
-          //           'assets/images/tailorAcademy_bg.png',
-          //           fit: BoxFit.cover,
-          //         ),
-          //         title: Column(
-          //           mainAxisAlignment: MainAxisAlignment.end,
-          //           crossAxisAlignment: CrossAxisAlignment.start,
-          //           children: [
-          //             Padding(
-          //               padding: const EdgeInsets.only(left: 20, right: 20),
-          //               child: SizedBox(
-          //                 width: widgetSize(context),
-          //                 child: Center(
-          //                   child: Column(
-          //                     crossAxisAlignment: CrossAxisAlignment.start,
-          //                     children: [
-          //                       Text(
-          //                         '홍보',
-          //                         style: TextStyle(
-          //                           fontSize: h1FontSize(context),
-          //                           // fontFamily: 'Cafe_24',
-          //                           fontWeight: FontWeight.bold,
-          //                           color: whiteColor,
-          //                         ),
-          //                       ),
-          //                       Padding(
-          //                         padding: const EdgeInsets.only(
-          //                           top: 8,
-          //                           bottom: 20,
-          //                         ),
-          //                         child: Text(
-          //                           '어제보다 나은 작업물을 만드는 것이 이 시대의 장인정신입니다.',
-          //                           style: TextStyle(
-          //                             fontSize: h6FontSize(context),
-          //                             color: whiteColor,
-          //                           ),
-          //                         ),
-          //                       ),
-          //                     ],
-          //                   ),
-          //                 ),
-          //               ),
-          //             ),
-          //             SizedBox(
-          //               width: widgetSize(context),
-          //               child: TabBar(
-          //                 labelColor: whiteColor,
-          //                 indicatorColor: whiteColor.withOpacity(0),
-          //                 labelStyle: TextStyle(
-          //                   fontWeight: FontWeight.bold,
-          //                 ),
-          //                 unselectedLabelStyle: TextStyle(
-          //                   fontWeight: FontWeight.normal,
-          //                 ),
-          //                 // onTap: (value) {
-          //                 //   setState(() {
-          //                 //     tabNum = value;
-          //                 //   });
-          //                 // },
-          //                 tabs: [
-          //                   Tab(
-          //                     text: '매거진',
-          //                   ),
-          //                   Tab(
-          //                     text: '보도자료',
-          //                   ),
-          //                   Tab(
-          //                     text: '협찬',
-          //                   ),
-          //                   Tab(
-          //                     text: 'CI·BI',
-          //                   ),
-          //                 ],
-          //               ),
-          //             ),
-          //           ],
-          //         ),
-          //       ),
-          //     ),
-          //     SliverToBoxAdapter(
-          //       child: SizedBox(
-          //         width: MediaQuery.of(context).size.width,
-          //         height: MediaQuery.of(context).size.height -
-          //             (c1BoxSize(context) + 160),
-          //         child: const TabBarView(
-          //           // controller: _tabController,
-          //           children: [
-          //             MagazinePage(),
-          //             NewsPage(),
-          //             SponsorShipPage(),
-          //             CiBiPage(),
-          //           ],
-          //         ),
-          //       ),
-          //     )
-          //   ],
-          // ),
           MainAppBar(),
         ],
       ),
@@ -171,7 +67,7 @@ class _PublicityPageState extends State<PublicityPage> {
   }
 }
 
-// ---------- PublicityTitle -----------------------------------------------------------------------------------------------------
+// ---------- Publicity_Title -----------------------------------------------------------------------------------------------------
 class PublicityTitle extends StatelessWidget {
   const PublicityTitle({super.key});
 
@@ -254,8 +150,9 @@ class PublicityTabBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       width: MediaQuery.of(context).size.width,
+      color: whiteColor,
       child: TabBar(
         labelColor: blackColor,
         indicatorColor: blackColor,
@@ -284,27 +181,228 @@ class PublicityTabBar extends StatelessWidget {
   }
 }
 
-// ---------- TabBarView -----------------------------------------------------------------------------------------------------
+// ---------- TabBar_View -----------------------------------------------------------------------------------------------------
 class PublicityTabBarView extends StatelessWidget {
   const PublicityTabBarView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(
+        left: 20,
+        top: 40,
+        right: 20,
+      ),
+      child: SizedBox(
+        width: widgetSize(context),
+        height: MediaQuery.of(context).size.height - (c1BoxSize(context) + 160),
+        child: Center(
+          child: TabBarView(
+            children: [
+              MagazineScreen(),
+              NewsScreen(),
+              SponsorShipScreen(),
+              CiBiScreen(),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// ---------- Magazine -----------------------------------------------------------------------------------------------------
+class MagazineScreen extends StatelessWidget {
+  const MagazineScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return GridView.builder(
+      itemCount: 8,
+      shrinkWrap: true,
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: MediaQuery.of(context).size.width < 800 ? 1 : 2,
+        childAspectRatio: 3 / 2.3,
+        mainAxisSpacing: 40,
+        crossAxisSpacing: 10,
+      ),
+      itemBuilder: (context, index) {
+        return InkWell(
+          onTap: () {},
+          child: Column(
+            children: [
+              Expanded(
+                flex: 1,
+                child: Container(
+                  color: blackColor,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 8),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '주제',
+                      style: TextStyle(
+                        fontSize: h7FontSize(context),
+                        color: blackColor,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        top: 4,
+                        bottom: 8,
+                      ),
+                      child: Text(
+                        '제목입니다.영어로 title입니다.',
+                        style: TextStyle(
+                          fontSize: h3FontSize(context),
+                          color: blackColor,
+                        ),
+                      ),
+                    ),
+                    Text(
+                      'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ',
+                      style: TextStyle(
+                        fontSize: h7FontSize(context),
+                        color: blackColor,
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
+        );
+      },
+    );
+  }
+}
+
+// ---------- News -----------------------------------------------------------------------------------------------------
+class NewsScreen extends StatelessWidget {
+  const NewsScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
     return SizedBox(
       width: widgetSize(context),
-      height: double.maxFinite,
-      child: Center(
-        child: TabBarView(
+      child: ListView.builder(
+        itemCount: 20,
+        shrinkWrap: true,
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: const EdgeInsets.only(bottom: 16),
+            child: InkWell(
+              onTap: () {},
+              child: Container(
+                width: widgetSize(context),
+                decoration: BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(
+                      color: blackColor,
+                      width: 2,
+                    ),
+                  ),
+                ),
+                padding: EdgeInsets.only(bottom: 4),
+                child: Row(
+                  children: [
+                    Container(
+                      width: c1BoxSize(context),
+                      height: c1BoxSize(context) - 40,
+                      color: blackColor,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8, top: 8),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            '주제',
+                            style: TextStyle(
+                              fontSize: h7FontSize(context),
+                              color: blackColor,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              top: 8,
+                              bottom: 8,
+                            ),
+                            child: Text(
+                              '제목입니다.영어로 title입니다.',
+                              maxLines: 1,
+                              style: TextStyle(
+                                fontSize: h5FontSize(context),
+                                fontWeight: FontWeight.bold,
+                                color: blackColor,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            '23.06.06',
+                            style: TextStyle(
+                              fontSize: h7FontSize(context),
+                              color: blackColor,
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
+
+// ---------- Sponsorship -----------------------------------------------------------------------------------------------------
+class SponsorShipScreen extends StatelessWidget {
+  const SponsorShipScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: widgetSize(context),
+      child: ScrollConfiguration(
+        behavior: ScrollConfiguration.of(context).copyWith(
+          dragDevices: {
+            PointerDeviceKind.mouse,
+            PointerDeviceKind.touch,
+            PointerDeviceKind.trackpad,
+          },
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            MagazinePage(),
-            Container(
-              color: Colors.green,
-            ),
-            Container(
-              color: Colors.blue,
-            ),
-            Container(
-              color: Colors.black,
+            Center(
+              child: SizedBox(
+                width: widgetSize(context),
+                height: c1BoxSize(context) + 200,
+                child: GridView.builder(
+                  scrollDirection: Axis.horizontal,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 1,
+                    childAspectRatio: 1.2 / 1,
+                    mainAxisSpacing: 20,
+                  ),
+                  itemCount: 20,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      // width: c1BoxSize(context) + 20,
+                      // height: c1BoxSize(context) + 100,
+                      // margin: EdgeInsets.all(10),
+                      color: blackColor,
+                    );
+                  },
+                ),
+              ),
             ),
           ],
         ),
@@ -313,375 +411,147 @@ class PublicityTabBarView extends StatelessWidget {
   }
 }
 
-// ---------- Magazine -----------------------------------------------------------------------------------------------------
-class MagazinePage extends StatelessWidget {
-  const MagazinePage({super.key});
+// ---------- CI·BI -----------------------------------------------------------------------------------------------------
+class CiBiScreen extends StatelessWidget {
+  const CiBiScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: MediaQuery.of(context).size.width,
-      child: Padding(
-        padding: EdgeInsets.only(
-          left: 20,
-          top: 40,
-          right: 20,
-        ),
-        child: GridView.builder(
-          itemCount: 8,
-          shrinkWrap: true,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: MediaQuery.of(context).size.width < 800 ? 1 : 2,
-            childAspectRatio: 3 / 2.3,
-            mainAxisSpacing: 40,
-            crossAxisSpacing: 10,
-          ),
-          itemBuilder: (context, index) {
-            return InkWell(
-              onTap: () {},
-              child: Column(
-                children: [
-                  Expanded(
-                    flex: 1,
-                    child: Container(
-                      color: blackColor,
+      child: Center(
+        child: SizedBox(
+          width: widgetSize(context),
+          child: ListView(
+            children: [
+              Container(
+                width: widgetSize(context),
+                padding: EdgeInsets.only(top: 40),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        bottom: 8,
+                      ),
+                      child: Text(
+                        '1. 로고',
+                        style: TextStyle(
+                          fontSize: h3FontSize(context),
+                          color: blackColor,
+                        ),
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          '주제',
-                          style: TextStyle(
-                            fontSize: h7FontSize(context),
-                            color: blackColor,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            top: 4,
-                            bottom: 8,
-                          ),
-                          child: Text(
-                            '제목입니다.영어로 title입니다.',
-                            style: TextStyle(
-                              fontSize: h3FontSize(context),
-                              color: blackColor,
-                            ),
-                          ),
-                        ),
-                        Text(
-                          'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ',
-                          style: TextStyle(
-                            fontSize: h7FontSize(context),
-                            color: blackColor,
-                          ),
-                        ),
-                      ],
+                    Text(
+                      'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ',
+                      style: TextStyle(
+                        fontSize: h7FontSize(context),
+                        color: blackColor,
+                      ),
                     ),
-                  )
-                ],
-              ),
-            );
-          },
-        ),
-      ),
-    );
-  }
-}
-
-// ---------- News -----------------------------------------------------------------------------------------------------
-class NewsPage extends StatelessWidget {
-  const NewsPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width,
-      child: Padding(
-        padding: EdgeInsets.only(
-          left: 20,
-          top: 40,
-          right: 20,
-        ),
-        child: Center(
-          child: SizedBox(
-            width: widgetSize(context),
-            child: ListView.builder(
-              itemCount: 20,
-              shrinkWrap: true,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.only(bottom: 16),
-                  child: InkWell(
-                    onTap: () {},
-                    child: Container(
-                      width: widgetSize(context),
-                      decoration: BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
+                    Padding(
+                      padding: EdgeInsets.only(top: 20),
+                      child: Container(
+                        width: widgetSize(context),
+                        height: c1BoxSize(context),
+                        decoration: BoxDecoration(
+                          color: whiteColor,
+                          border: Border.all(
                             color: blackColor,
                             width: 2,
                           ),
                         ),
                       ),
-                      padding: EdgeInsets.only(bottom: 4),
-                      child: Row(
-                        children: [
-                          Container(
-                            width: c1BoxSize(context),
-                            height: c1BoxSize(context) - 40,
-                            color: blackColor,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 8, top: 8),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  '주제',
-                                  style: TextStyle(
-                                    fontSize: h7FontSize(context),
-                                    color: blackColor,
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                    top: 8,
-                                    bottom: 8,
-                                  ),
-                                  child: Text(
-                                    '제목입니다.영어로 title입니다.',
-                                    maxLines: 1,
-                                    style: TextStyle(
-                                      fontSize: h5FontSize(context),
-                                      fontWeight: FontWeight.bold,
-                                      color: blackColor,
-                                    ),
-                                  ),
-                                ),
-                                Text(
-                                  '23.06.06',
-                                  style: TextStyle(
-                                    fontSize: h7FontSize(context),
-                                    color: blackColor,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          )
-                        ],
+                    )
+                  ],
+                ),
+              ),
+              Container(
+                width: widgetSize(context),
+                padding: EdgeInsets.only(top: 40),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        bottom: 8,
+                      ),
+                      child: Text(
+                        '2. 심볼마크',
+                        style: TextStyle(
+                          fontSize: h3FontSize(context),
+                          color: blackColor,
+                        ),
                       ),
                     ),
-                  ),
-                );
-              },
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-// ---------- Sponsorship -----------------------------------------------------------------------------------------------------
-class SponsorShipPage extends StatelessWidget {
-  const SponsorShipPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width,
-      child: Padding(
-        padding: EdgeInsets.only(
-          left: 20,
-          right: 20,
-        ),
-        child: ScrollConfiguration(
-          behavior: ScrollConfiguration.of(context).copyWith(
-            dragDevices: {
-              PointerDeviceKind.mouse,
-              PointerDeviceKind.touch,
-              PointerDeviceKind.trackpad,
-            },
-          ),
-          child: Center(
-            child: SizedBox(
-              width: widgetSize(context),
-              height: c1BoxSize(context) + 200,
-              child: GridView.builder(
-                scrollDirection: Axis.horizontal,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 1,
-                  childAspectRatio: 1.2 / 1,
-                  mainAxisSpacing: 20,
+                    Text(
+                      'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ',
+                      style: TextStyle(
+                        fontSize: h7FontSize(context),
+                        color: blackColor,
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 20),
+                      child: Container(
+                        width: widgetSize(context),
+                        height: c1BoxSize(context),
+                        decoration: BoxDecoration(
+                          color: whiteColor,
+                          border: Border.all(
+                            color: blackColor,
+                            width: 2,
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
                 ),
-                itemCount: 20,
-                itemBuilder: (context, index) {
-                  return Container(
-                    // width: c1BoxSize(context) + 20,
-                    // height: c1BoxSize(context) + 100,
-                    // margin: EdgeInsets.all(10),
-                    color: blackColor,
-                  );
-                },
               ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-// ---------- CI·BI -----------------------------------------------------------------------------------------------------
-class CiBiPage extends StatelessWidget {
-  const CiBiPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width,
-      child: Padding(
-        padding: EdgeInsets.only(
-          left: 20,
-          right: 20,
-        ),
-        child: Center(
-          child: SizedBox(
-            width: widgetSize(context),
-            child: ListView(
-              children: [
-                Container(
-                  width: widgetSize(context),
-                  padding: EdgeInsets.only(top: 40),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          bottom: 8,
-                        ),
-                        child: Text(
-                          '1. 로고',
-                          style: TextStyle(
-                            fontSize: h3FontSize(context),
-                            color: blackColor,
-                          ),
-                        ),
+              Container(
+                width: widgetSize(context),
+                padding: EdgeInsets.only(top: 40),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        bottom: 8,
                       ),
-                      Text(
-                        'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ',
+                      child: Text(
+                        '3, 전용색상',
                         style: TextStyle(
-                          fontSize: h7FontSize(context),
+                          fontSize: h3FontSize(context),
                           color: blackColor,
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(top: 20),
-                        child: Container(
-                          width: widgetSize(context),
-                          height: c1BoxSize(context),
-                          decoration: BoxDecoration(
-                            color: whiteColor,
-                            border: Border.all(
-                              color: blackColor,
-                              width: 2,
-                            ),
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                Container(
-                  width: widgetSize(context),
-                  padding: EdgeInsets.only(top: 40),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          bottom: 8,
-                        ),
-                        child: Text(
-                          '2. 심볼마크',
-                          style: TextStyle(
-                            fontSize: h3FontSize(context),
+                    ),
+                    Text(
+                      'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ',
+                      style: TextStyle(
+                        fontSize: h7FontSize(context),
+                        color: blackColor,
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 20),
+                      child: Container(
+                        width: widgetSize(context),
+                        height: c1BoxSize(context),
+                        decoration: BoxDecoration(
+                          color: whiteColor,
+                          border: Border.all(
                             color: blackColor,
+                            width: 2,
                           ),
                         ),
                       ),
-                      Text(
-                        'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ',
-                        style: TextStyle(
-                          fontSize: h7FontSize(context),
-                          color: blackColor,
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(top: 20),
-                        child: Container(
-                          width: widgetSize(context),
-                          height: c1BoxSize(context),
-                          decoration: BoxDecoration(
-                            color: whiteColor,
-                            border: Border.all(
-                              color: blackColor,
-                              width: 2,
-                            ),
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
+                    )
+                  ],
                 ),
-                Container(
-                  width: widgetSize(context),
-                  padding: EdgeInsets.only(top: 40),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          bottom: 8,
-                        ),
-                        child: Text(
-                          '3, 전용색상',
-                          style: TextStyle(
-                            fontSize: h3FontSize(context),
-                            color: blackColor,
-                          ),
-                        ),
-                      ),
-                      Text(
-                        'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ',
-                        style: TextStyle(
-                          fontSize: h7FontSize(context),
-                          color: blackColor,
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(top: 20),
-                        child: Container(
-                          width: widgetSize(context),
-                          height: c1BoxSize(context),
-                          decoration: BoxDecoration(
-                            color: whiteColor,
-                            border: Border.all(
-                              color: blackColor,
-                              width: 2,
-                            ),
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

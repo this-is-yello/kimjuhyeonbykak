@@ -164,7 +164,9 @@ class _MainAppBarState extends State<MainAppBar> {
                                   right: 20,
                                 ),
                                 child: InkWell(
-                                  onTap: () {},
+                                  onTap: () {
+                                    Get.toNamed('/product');
+                                  },
                                   onHover: (value) {
                                     setState(() {
                                       navHover = value;
@@ -199,7 +201,9 @@ class _MainAppBarState extends State<MainAppBar> {
                                   right: 20,
                                 ),
                                 child: InkWell(
-                                  onTap: () {},
+                                  onTap: () {
+                                    Get.toNamed('/community');
+                                  },
                                   onHover: (value) {
                                     setState(() {
                                       navHover = value;
