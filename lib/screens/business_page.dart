@@ -978,7 +978,7 @@ class SponInquiryScreen extends StatelessWidget {
         Row(
           children: [
             Checkbox(
-              onChanged: onChanged,
+              onChanged: (value) {},
             )
           ],
         ),
