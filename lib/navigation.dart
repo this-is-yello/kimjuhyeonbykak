@@ -238,7 +238,9 @@ class _MainAppBarState extends State<MainAppBar> {
                                   right: 20,
                                 ),
                                 child: InkWell(
-                                  onTap: () {},
+                                  onTap: () {
+                                    Get.toNamed('/business');
+                                  },
                                   onHover: (value) {
                                     setState(() {
                                       navHover = value;

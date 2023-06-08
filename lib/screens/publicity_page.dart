@@ -156,6 +156,7 @@ class PublicityTabBar extends StatelessWidget {
       child: TabBar(
         labelColor: blackColor,
         indicatorColor: blackColor,
+        indicatorSize: TabBarIndicatorSize.label,
         labelStyle: TextStyle(
           fontWeight: FontWeight.bold,
         ),

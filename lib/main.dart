@@ -3,9 +3,10 @@ import 'package:kimjuhyeonbykak/style.dart';
 // import 'package:kimjuhyeonbykak/variable.dart';
 import 'package:kimjuhyeonbykak/navigation.dart';
 import 'package:kimjuhyeonbykak/screens/first_screen.dart';
-import 'package:kimjuhyeonbykak/screens/publicity.dart';
-import 'package:kimjuhyeonbykak/screens/product.dart';
+import 'package:kimjuhyeonbykak/screens/publicity_page.dart';
+import 'package:kimjuhyeonbykak/screens/product_page.dart';
 import 'package:kimjuhyeonbykak/screens/community_page.dart';
+import 'package:kimjuhyeonbykak/screens/business_page.dart';
 import 'package:kimjuhyeonbykak/screens/brand/tailorshop_page.dart';
 import 'package:kimjuhyeonbykak/screens/brand/tailoracademy_page.dart';
 import 'package:kimjuhyeonbykak/screens/brand/jemulpoclub_page.dart';
@@ -71,6 +72,12 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: '/community',
           page: () => const CommunityPage(),
+          transition: Transition.fadeIn,
+          transitionDuration: Duration(milliseconds: 700),
+        ),
+        GetPage(
+          name: '/business',
+          page: () => const BusinessPage(),
           transition: Transition.fadeIn,
           transitionDuration: Duration(milliseconds: 700),
         ),

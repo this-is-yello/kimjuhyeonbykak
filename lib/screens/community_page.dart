@@ -1,10 +1,8 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:kimjuhyeonbykak/style.dart';
 
 import 'package:kimjuhyeonbykak/navigation.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class CommunityPage extends StatefulWidget {
   const CommunityPage({super.key});
@@ -28,7 +26,13 @@ class _CommunityPageState extends State<CommunityPage> {
                 length: 4,
                 child: Column(
                   children: [
-                    CommunityTabBar(),
+                    Padding(
+                      padding: EdgeInsets.only(
+                        left: 20,
+                        right: 20,
+                      ),
+                      child: CommunityTabBar(),
+                    ),
                     CommunityTabBarView(),
                   ],
                 ),
@@ -140,6 +144,7 @@ class CommunityTabBar extends StatelessWidget {
       child: TabBar(
         labelColor: blackColor,
         indicatorColor: blackColor,
+        indicatorSize: TabBarIndicatorSize.label,
         labelStyle: TextStyle(
           fontWeight: FontWeight.bold,
         ),
