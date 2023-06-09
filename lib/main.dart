@@ -7,6 +7,7 @@ import 'package:kimjuhyeonbykak/screens/publicity_page.dart';
 import 'package:kimjuhyeonbykak/screens/product_page.dart';
 import 'package:kimjuhyeonbykak/screens/community_page.dart';
 import 'package:kimjuhyeonbykak/screens/business_page.dart';
+import 'package:kimjuhyeonbykak/screens/login_page.dart';
 import 'package:kimjuhyeonbykak/screens/brand/tailorshop_page.dart';
 import 'package:kimjuhyeonbykak/screens/brand/tailoracademy_page.dart';
 import 'package:kimjuhyeonbykak/screens/brand/jemulpoclub_page.dart';
@@ -81,6 +82,12 @@ class MyApp extends StatelessWidget {
           transition: Transition.fadeIn,
           transitionDuration: Duration(milliseconds: 700),
         ),
+        GetPage(
+          name: '/login',
+          page: () => const LogInPage(),
+          transition: Transition.fadeIn,
+          transitionDuration: Duration(milliseconds: 700),
+        ),
       ],
       theme: ThemeData(
         fontFamily: 'LINE_seed',
@@ -127,7 +134,7 @@ class _MainPageState extends State<MainPage> {
           duration: const Duration(milliseconds: 1800),
           curve: Curves.fastOutSlowIn,
         );
-        btnCurrentPage = 0;
+        btnCurrentPage = 1;
       });
     } else {
       _scrollController.animateTo(
@@ -152,25 +159,6 @@ class _MainPageState extends State<MainPage> {
       body: Stack(
         alignment: Alignment.topCenter,
         children: [
-          // PageView(
-          //   scrollDirection: Axis.vertical,
-          //   children: [
-          //     CarouselScreen(),
-          //     BykakStory(),
-          //     TailorShopScreen(),
-          //     TailorAcademyScreen(),
-          //     ListView(
-          //       children: [
-          //         NewJemulpoClubScreen(),
-          //         Padding(
-          //           padding: EdgeInsets.only(top: 120, bottom: 120),
-          //           child: MainComment(),
-          //         ),
-          //         Footer(),
-          //       ],
-          //     ),
-          //   ],
-          // ),
           ListView(
             controller: _scrollController,
             children: const [

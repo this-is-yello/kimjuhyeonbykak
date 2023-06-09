@@ -56,6 +56,13 @@ class _CarouselScreenState extends State<CarouselScreen> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    btnCurrentPage = 1;
+    print(btnCurrentPage);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Stack(
       alignment: Alignment.bottomCenter,

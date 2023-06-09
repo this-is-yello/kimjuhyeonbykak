@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:kimjuhyeonbykak/style.dart';
+import 'package:autoscale_tabbarview/autoscale_tabbarview.dart';
 
 import 'package:kimjuhyeonbykak/navigation.dart';
 
@@ -196,16 +197,14 @@ class PublicityTabBarView extends StatelessWidget {
       ),
       child: SizedBox(
         width: widgetSize(context),
-        height: MediaQuery.of(context).size.height - (c1BoxSize(context) + 160),
-        child: Center(
-          child: TabBarView(
-            children: [
-              MagazineScreen(),
-              NewsScreen(),
-              SponsorShipScreen(),
-              CiBiScreen(),
-            ],
-          ),
+        // height: MediaQuery.of(context).size.longestSide,
+        child: AutoScaleTabBarView(
+          children: [
+            MagazineScreen(),
+            NewsScreen(),
+            SponsorShipScreen(),
+            CiBiScreen(),
+          ],
         ),
       ),
     );
@@ -419,142 +418,137 @@ class CiBiScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: MediaQuery.of(context).size.width,
-      child: Center(
-        child: SizedBox(
-          width: widgetSize(context),
-          child: ListView(
-            children: [
-              Container(
-                width: widgetSize(context),
-                padding: EdgeInsets.only(top: 40),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        bottom: 8,
-                      ),
-                      child: Text(
-                        '1. 로고',
-                        style: TextStyle(
-                          fontSize: h3FontSize(context),
-                          color: blackColor,
-                        ),
-                      ),
+      width: widgetSize(context),
+      child: Column(
+        children: [
+          Container(
+            width: widgetSize(context),
+            padding: EdgeInsets.only(top: 40),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(
+                    bottom: 8,
+                  ),
+                  child: Text(
+                    '1. 로고',
+                    style: TextStyle(
+                      fontSize: h3FontSize(context),
+                      color: blackColor,
                     ),
-                    Text(
-                      'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ',
-                      style: TextStyle(
-                        fontSize: h7FontSize(context),
-                        color: blackColor,
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 20),
-                      child: Container(
-                        width: widgetSize(context),
-                        height: c1BoxSize(context),
-                        decoration: BoxDecoration(
-                          color: whiteColor,
-                          border: Border.all(
-                            color: blackColor,
-                            width: 2,
-                          ),
-                        ),
-                      ),
-                    )
-                  ],
+                  ),
                 ),
-              ),
-              Container(
-                width: widgetSize(context),
-                padding: EdgeInsets.only(top: 40),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        bottom: 8,
-                      ),
-                      child: Text(
-                        '2. 심볼마크',
-                        style: TextStyle(
-                          fontSize: h3FontSize(context),
-                          color: blackColor,
-                        ),
-                      ),
-                    ),
-                    Text(
-                      'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ',
-                      style: TextStyle(
-                        fontSize: h7FontSize(context),
-                        color: blackColor,
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 20),
-                      child: Container(
-                        width: widgetSize(context),
-                        height: c1BoxSize(context),
-                        decoration: BoxDecoration(
-                          color: whiteColor,
-                          border: Border.all(
-                            color: blackColor,
-                            width: 2,
-                          ),
-                        ),
-                      ),
-                    )
-                  ],
+                Text(
+                  'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ',
+                  style: TextStyle(
+                    fontSize: h7FontSize(context),
+                    color: blackColor,
+                  ),
                 ),
-              ),
-              Container(
-                width: widgetSize(context),
-                padding: EdgeInsets.only(top: 40),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        bottom: 8,
-                      ),
-                      child: Text(
-                        '3, 전용색상',
-                        style: TextStyle(
-                          fontSize: h3FontSize(context),
-                          color: blackColor,
-                        ),
-                      ),
-                    ),
-                    Text(
-                      'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ',
-                      style: TextStyle(
-                        fontSize: h7FontSize(context),
+                Padding(
+                  padding: EdgeInsets.only(top: 20),
+                  child: Container(
+                    width: widgetSize(context),
+                    height: c1BoxSize(context),
+                    decoration: BoxDecoration(
+                      color: whiteColor,
+                      border: Border.all(
                         color: blackColor,
+                        width: 2,
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 20),
-                      child: Container(
-                        width: widgetSize(context),
-                        height: c1BoxSize(context),
-                        decoration: BoxDecoration(
-                          color: whiteColor,
-                          border: Border.all(
-                            color: blackColor,
-                            width: 2,
-                          ),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ],
+                  ),
+                )
+              ],
+            ),
           ),
-        ),
+          Container(
+            width: widgetSize(context),
+            padding: EdgeInsets.only(top: 40),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(
+                    bottom: 8,
+                  ),
+                  child: Text(
+                    '2. 심볼마크',
+                    style: TextStyle(
+                      fontSize: h3FontSize(context),
+                      color: blackColor,
+                    ),
+                  ),
+                ),
+                Text(
+                  'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ',
+                  style: TextStyle(
+                    fontSize: h7FontSize(context),
+                    color: blackColor,
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 20),
+                  child: Container(
+                    width: widgetSize(context),
+                    height: c1BoxSize(context),
+                    decoration: BoxDecoration(
+                      color: whiteColor,
+                      border: Border.all(
+                        color: blackColor,
+                        width: 2,
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+          Container(
+            width: widgetSize(context),
+            padding: EdgeInsets.only(top: 40),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(
+                    bottom: 8,
+                  ),
+                  child: Text(
+                    '3, 전용색상',
+                    style: TextStyle(
+                      fontSize: h3FontSize(context),
+                      color: blackColor,
+                    ),
+                  ),
+                ),
+                Text(
+                  'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ',
+                  style: TextStyle(
+                    fontSize: h7FontSize(context),
+                    color: blackColor,
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 20),
+                  child: Container(
+                    width: widgetSize(context),
+                    height: c1BoxSize(context),
+                    decoration: BoxDecoration(
+                      color: whiteColor,
+                      border: Border.all(
+                        color: blackColor,
+                        width: 2,
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

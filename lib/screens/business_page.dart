@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:kimjuhyeonbykak/style.dart';
+import 'package:autoscale_tabbarview/autoscale_tabbarview.dart';
 
 import 'package:kimjuhyeonbykak/navigation.dart';
 
@@ -24,7 +25,7 @@ class _BusinessPageState extends State<BusinessPage> {
             children: [
               BusinessTitle(),
               DefaultTabController(
-                length: 3,
+                length: 2,
                 child: Column(
                   children: [
                     BusinessTabBar(),
@@ -151,10 +152,7 @@ class BusinessTabBar extends StatelessWidget {
             text: '서포터즈',
           ),
           Tab(
-            text: '협찬·협업 문의',
-          ),
-          Tab(
-            text: '단체복 문의',
+            text: '협찬·협업·단체복 문의',
           ),
         ],
       ),
@@ -176,15 +174,12 @@ class BusinessTabBarView extends StatelessWidget {
       ),
       child: SizedBox(
         width: widgetSize(context),
-        height: MediaQuery.of(context).size.height - (c1BoxSize(context) + 160),
+        // height: MediaQuery.of(context).size.height - (c1BoxSize(context) + 160),
         child: Center(
-          child: TabBarView(
+          child: AutoScaleTabBarView(
             children: [
               SupportersScreen(),
               SponInquiryScreen(),
-              Container(
-                color: Colors.blue,
-              ),
             ],
           ),
         ),
@@ -206,7 +201,7 @@ class _SupportersScreenState extends State<SupportersScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
+    return Column(
       children: [
         Row(
           children: [
@@ -648,12 +643,22 @@ class SupportersAmbassador extends StatelessWidget {
 }
 
 // ---------- SponInquiry -----------------------------------------------------------------------------------------------------
-class SponInquiryScreen extends StatelessWidget {
+class SponInquiryScreen extends StatefulWidget {
   const SponInquiryScreen({super.key});
 
   @override
+  State<SponInquiryScreen> createState() => _SponInquiryScreenState();
+}
+
+class _SponInquiryScreenState extends State<SponInquiryScreen> {
+  bool _checkSponsorship = false;
+  bool _checkCoperation = false;
+  bool _checkUniform = false;
+
+  @override
   Widget build(BuildContext context) {
-    return ListView(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           '1. 기본정보',
@@ -703,6 +708,7 @@ class SponInquiryScreen extends StatelessWidget {
                       child: TextField(
                         // controller: _inputCompany,
                         cursorColor: blackColor,
+                        keyboardType: TextInputType.name,
                         style: TextStyle(
                           fontSize: h4FontSize(context),
                           color: blackColor,
@@ -747,12 +753,13 @@ class SponInquiryScreen extends StatelessWidget {
                       child: TextField(
                         // controller: _inputBrand,
                         cursorColor: blackColor,
+                        keyboardType: TextInputType.name,
                         style: TextStyle(
                           fontSize: h4FontSize(context),
                           color: blackColor,
                         ),
                         decoration: InputDecoration(
-                          hintText: '예시 : 김주현바이각',
+                          hintText: '예시 : 데시그너',
                           border: InputBorder.none,
                         ),
                       ),
@@ -804,6 +811,7 @@ class SponInquiryScreen extends StatelessWidget {
                       child: TextField(
                         // controller: _inputName,
                         cursorColor: blackColor,
+                        keyboardType: TextInputType.name,
                         style: TextStyle(
                           fontSize: h4FontSize(context),
                           color: blackColor,
@@ -848,6 +856,7 @@ class SponInquiryScreen extends StatelessWidget {
                       child: TextField(
                         // controller: _inputMail,
                         cursorColor: blackColor,
+                        keyboardType: TextInputType.emailAddress,
                         style: TextStyle(
                           fontSize: h4FontSize(context),
                           color: blackColor,
@@ -905,6 +914,7 @@ class SponInquiryScreen extends StatelessWidget {
                       child: TextField(
                         // controller: _inputWeb,
                         cursorColor: blackColor,
+                        keyboardType: TextInputType.url,
                         style: TextStyle(
                           fontSize: h4FontSize(context),
                           color: blackColor,
@@ -949,6 +959,7 @@ class SponInquiryScreen extends StatelessWidget {
                       child: TextField(
                         // controller: _inputContact,
                         cursorColor: blackColor,
+                        keyboardType: TextInputType.phone,
                         style: TextStyle(
                           fontSize: h4FontSize(context),
                           color: blackColor,
@@ -976,10 +987,101 @@ class SponInquiryScreen extends StatelessWidget {
           ),
         ),
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Checkbox(
-              onChanged: (value) {},
-            )
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  '협찬 문의',
+                  style: TextStyle(
+                    fontSize: h6FontSize(context),
+                    color: blackColor,
+                  ),
+                ),
+                Checkbox(
+                  activeColor: blackColor,
+                  checkColor: whiteColor,
+                  value: _checkSponsorship,
+                  onChanged: (bool? value) {
+                    if (_checkCoperation == true || _checkUniform == true) {
+                      setState(() {
+                        _checkCoperation = false;
+                        _checkUniform = false;
+                        _checkSponsorship = value!;
+                      });
+                    } else {
+                      setState(() {
+                        _checkSponsorship = value!;
+                      });
+                    }
+                    print('협찬 문의 : $value');
+                  },
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  '협업 문의',
+                  style: TextStyle(
+                    fontSize: h6FontSize(context),
+                    color: blackColor,
+                  ),
+                ),
+                Checkbox(
+                  activeColor: blackColor,
+                  checkColor: whiteColor,
+                  value: _checkCoperation,
+                  onChanged: (bool? value) {
+                    if (_checkSponsorship == true || _checkUniform == true) {
+                      setState(() {
+                        _checkUniform = false;
+                        _checkSponsorship = false;
+                        _checkCoperation = value!;
+                      });
+                    } else {
+                      setState(() {
+                        _checkCoperation = value!;
+                      });
+                    }
+                    print('협업 문의 : $value');
+                  },
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  '단체복 문의',
+                  style: TextStyle(
+                    fontSize: h6FontSize(context),
+                    color: blackColor,
+                  ),
+                ),
+                Checkbox(
+                  activeColor: blackColor,
+                  checkColor: whiteColor,
+                  value: _checkUniform,
+                  onChanged: (bool? value) {
+                    if (_checkSponsorship == true || _checkCoperation == true) {
+                      setState(() {
+                        _checkSponsorship = false;
+                        _checkCoperation = false;
+                        _checkUniform = value!;
+                      });
+                    } else {
+                      setState(() {
+                        _checkUniform = value!;
+                      });
+                    }
+                    print('단체복 문의 : $value');
+                  },
+                ),
+              ],
+            ),
           ],
         ),
         Container(
@@ -990,6 +1092,7 @@ class SponInquiryScreen extends StatelessWidget {
             // controller: _inputSub,
             cursorColor: blackColor,
             maxLines: 18,
+            keyboardType: TextInputType.multiline,
             style: TextStyle(
               fontSize: h4FontSize(context),
               color: blackColor,

@@ -40,7 +40,7 @@ class _MainAppBarState extends State<MainAppBar> {
     ['매거진', '보도자료', '협찬', 'CI·BI'],
     ['제품 보러가기'],
     ['문의하기', '공지사항', '이벤트', '미디어', '후기'],
-    ['서포터즈', '협찬·협업 문의', '단체복 문의'],
+    ['서포터즈', '협찬·협업·단체복 문의'],
   ];
   int i = 0;
 
@@ -301,7 +301,9 @@ class _MainAppBarState extends State<MainAppBar> {
                                   color: whiteColor,
                                 ),
                               ),
-                              onTap: () {},
+                              onTap: () {
+                                Get.toNamed('/login');
+                              },
                             ),
                           ),
                           MediaQuery.of(context).size.width < 800
@@ -351,21 +353,25 @@ class _MainAppBarState extends State<MainAppBar> {
                           right: 20,
                         ),
                         child: SizedBox(
-                          width: 800,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
+                          width: widgetSize(context),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               SizedBox(
-                                width: 160,
+                                width: widgetSize(context),
+                                height: c4BoxSize(context),
                                 child: Center(
                                   child: ListView.builder(
+                                    scrollDirection: Axis.horizontal,
                                     itemCount: subMenu[i].length,
                                     itemBuilder: (context, index) {
                                       return Padding(
-                                        padding: const EdgeInsets.only(
-                                          top: 16,
-                                          bottom: 16,
+                                        padding: const EdgeInsets.fromLTRB(
+                                          20,
+                                          0,
+                                          20,
+                                          20,
                                         ),
                                         child: InkWell(
                                           onTap: () {
@@ -384,11 +390,14 @@ class _MainAppBarState extends State<MainAppBar> {
                                   ),
                                 ),
                               ),
-                              Text(
-                                'Lorem Ipsum is simply dummy text of the and typesetting industry.\nLorem Ipsum has been the standard dummy text ever since the 1500s\nLorem Ipsum is simply dummy text of the and typesetting industry.\nLorem Ipsum has been the standard dummy text ever since the 1500s',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  color: whiteColor,
+                              Padding(
+                                padding: const EdgeInsets.only(left: 20),
+                                child: Text(
+                                  'Lorem Ipsum is simply dummy text of the and typesetting industry.\nLorem Ipsum has been the standard dummy text ever since the 1500s\nLorem Ipsum is simply dummy text of the and typesetting industry.\nLorem Ipsum has been the standard dummy text ever since the 1500s',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    color: whiteColor,
+                                  ),
                                 ),
                               )
                             ],

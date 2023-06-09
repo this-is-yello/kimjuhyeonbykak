@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:kimjuhyeonbykak/style.dart';
+import 'package:autoscale_tabbarview/autoscale_tabbarview.dart';
 
 import 'package:kimjuhyeonbykak/navigation.dart';
 
@@ -184,9 +185,8 @@ class CommunityTabBarView extends StatelessWidget {
       ),
       child: SizedBox(
         width: widgetSize(context),
-        height: MediaQuery.of(context).size.height - (c1BoxSize(context) + 160),
         child: Center(
-          child: TabBarView(
+          child: AutoScaleTabBarView(
             children: [
               InquiryScreen(),
               NotificationScreen(),
@@ -220,7 +220,7 @@ class _InquiryScreenState extends State<InquiryScreen> {
   String _selectedValue = '주제를 선택하세요.';
   @override
   Widget build(BuildContext context) {
-    return ListView(
+    return Column(
       children: [
         Container(
           width: widgetSize(context),
