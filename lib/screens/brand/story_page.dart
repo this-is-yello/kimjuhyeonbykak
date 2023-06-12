@@ -24,7 +24,7 @@ class StoryPage extends StatelessWidget {
                   child: Column(
                     children: [
                       StoryTabBar(),
-                      PublicityTabBarView(),
+                      StoryTabBarView(),
                       Padding(
                         padding: EdgeInsets.only(
                           top: MediaQuery.of(context).size.width < 800
@@ -150,8 +150,8 @@ class StoryTabBar extends StatelessWidget {
 }
 
 // ---------- TabBar_View -----------------------------------------------------------------------------------------------------
-class PublicityTabBarView extends StatelessWidget {
-  const PublicityTabBarView({super.key});
+class StoryTabBarView extends StatelessWidget {
+  const StoryTabBarView({super.key});
 
   @override
   Widget build(BuildContext context) {
