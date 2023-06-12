@@ -207,38 +207,12 @@ class _SupportersScreenState extends State<SupportersScreen> {
           children: [
             Flexible(
               fit: FlexFit.tight,
-              child: InkWell(
-                onTap: () {
-                  setState(() {
-                    supporterState = true;
-                  });
-                },
-                child: Container(
-                  height: c5BoxSize(context),
-                  child: Center(
-                    child: Text(
-                      '각인(覺人)',
-                      style: TextStyle(
-                        fontSize: h4FontSize(context),
-                        color: whiteColor,
-                      ),
-                    ),
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: blackColor,
-                  ),
-                ),
-              ),
-            ),
-            Flexible(
-              fit: FlexFit.tight,
               child: Padding(
-                padding: const EdgeInsets.only(left: 12),
+                padding: const EdgeInsets.only(right: 12),
                 child: InkWell(
                   onTap: () {
                     setState(() {
-                      supporterState = false;
+                      supporterState = true;
                     });
                   },
                   child: Container(
@@ -260,9 +234,35 @@ class _SupportersScreenState extends State<SupportersScreen> {
                 ),
               ),
             ),
+            Flexible(
+              fit: FlexFit.tight,
+              child: InkWell(
+                onTap: () {
+                  setState(() {
+                    supporterState = false;
+                  });
+                },
+                child: Container(
+                  height: c5BoxSize(context),
+                  child: Center(
+                    child: Text(
+                      '각인(覺人)',
+                      style: TextStyle(
+                        fontSize: h4FontSize(context),
+                        color: whiteColor,
+                      ),
+                    ),
+                  ),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: blackColor,
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
-        supporterState ? SupportersKakIn() : SupportersAmbassador(),
+        supporterState ? SupportersAmbassador() : SupportersKakIn(),
       ],
     );
   }
@@ -353,7 +353,7 @@ class SupportersAmbassador extends StatelessWidget {
       children: [
         Padding(
           padding: EdgeInsets.only(
-            top: 80,
+            top: 40,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

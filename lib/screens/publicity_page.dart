@@ -44,7 +44,7 @@ class _PublicityPageState extends State<PublicityPage> {
             children: [
               PublicityTitle(),
               DefaultTabController(
-                length: 4,
+                length: 3,
                 child: Column(
                   children: [
                     PublicityTabBar(),
@@ -174,9 +174,6 @@ class PublicityTabBar extends StatelessWidget {
           Tab(
             text: '협찬',
           ),
-          Tab(
-            text: 'CI·BI',
-          ),
         ],
       ),
     );
@@ -203,7 +200,6 @@ class PublicityTabBarView extends StatelessWidget {
             MagazineScreen(),
             NewsScreen(),
             SponsorShipScreen(),
-            CiBiScreen(),
           ],
         ),
       ),

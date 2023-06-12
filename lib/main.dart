@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kimjuhyeonbykak/screens/brand/story_page.dart';
 import 'package:kimjuhyeonbykak/style.dart';
 // import 'package:kimjuhyeonbykak/variable.dart';
 import 'package:kimjuhyeonbykak/navigation.dart';
@@ -31,6 +32,12 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: '/',
           page: () => const MainPage(),
+          transition: Transition.fadeIn,
+          transitionDuration: Duration(milliseconds: 700),
+        ),
+        GetPage(
+          name: '/story',
+          page: () => const StoryPage(),
           transition: Transition.fadeIn,
           transitionDuration: Duration(milliseconds: 700),
         ),

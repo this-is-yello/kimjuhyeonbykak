@@ -19,10 +19,10 @@ List subMenuLinks = [
     '/newJemulpoClub',
     '/rentalCenter'
   ],
-  ['/magazine', '/news', '/sponsorship', '/ciBi'],
+  ['/publicity', '/publicity', '/publicity'],
   ['/product'],
-  ['/inquiry', '/notice', '/event', '/media', '/review'],
-  ['/supporters', '/sponsorInquiry', '/uniformInquiry'],
+  ['/community', '/community', '/community', '/community', '/community'],
+  ['business', 'business'],
 ];
 
 // ---------- Contents_Width -----------------------------------------------------------------------------------------------------
