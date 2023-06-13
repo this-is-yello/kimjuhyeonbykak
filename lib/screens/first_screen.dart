@@ -239,7 +239,7 @@ class _CarouselScreenState extends State<CarouselScreen> {
               ),
             ],
           ),
-        )
+        ),
       ],
     );
   }
@@ -352,7 +352,9 @@ class _BykakStoryState extends State<BykakStory> {
               color: blackColor,
             ),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.toNamed('/story');
+              },
               child: Text(
                 '자세히보기',
                 style: TextStyle(

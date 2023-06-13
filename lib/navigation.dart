@@ -39,8 +39,21 @@ class _MainAppBarState extends State<MainAppBar> {
     ['바이각스토리', '김주현바이각', '바이각 테일러아카데미', '신제물포구락부', '바이각 수트렌탈센터'],
     ['매거진', '보도자료', '협찬'],
     ['제품 보러가기'],
-    ['문의하기', '공지사항', '이벤트', '미디어', '후기'],
+    ['문의하기', '공지사항', '이벤트', '미디어'],
     ['서포터즈', '협찬·협업·단체복 문의'],
+  ];
+  List subMenuLinks = [
+    [
+      '/story',
+      '/tailorShop',
+      '/tailorAcademy',
+      '/newJemulpoClub',
+      '/rentalCenter'
+    ],
+    ['/publicity', '/publicity', '/publicity'],
+    ['/product'],
+    ['/community', '/community', '/community', '/community', '/community'],
+    ['business', 'business'],
   ];
   int i = 0;
 
@@ -71,6 +84,17 @@ class _MainAppBarState extends State<MainAppBar> {
                       onTap: () {
                         Get.toNamed('/');
                       },
+                      onHover: (value) {
+                        if (value == true) {
+                          setState(() {
+                            navBarColor = blackColor;
+                          });
+                        } else {
+                          setState(() {
+                            navBarColor = blackColor.withOpacity(0.8);
+                          });
+                        }
+                      },
                       child: SizedBox(
                         width:
                             MediaQuery.of(context).size.width < 1240 ? 60 : 80,
@@ -85,6 +109,7 @@ class _MainAppBarState extends State<MainAppBar> {
                     MediaQuery.of(context).size.width < 800
                         ? Container()
                         : Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(
@@ -128,11 +153,13 @@ class _MainAppBarState extends State<MainAppBar> {
                                 ),
                                 child: InkWell(
                                   onTap: () {
+                                    Get.toNamed('/');
                                     Get.toNamed('/publicity');
                                   },
                                   onHover: (value) {
                                     setState(() {
                                       navHover = value;
+                                      initTab = 0;
                                       i = 1;
                                     });
                                     showNavDetail();
@@ -202,6 +229,7 @@ class _MainAppBarState extends State<MainAppBar> {
                                 ),
                                 child: InkWell(
                                   onTap: () {
+                                    Get.toNamed('/');
                                     Get.toNamed('/community');
                                   },
                                   onHover: (value) {
@@ -239,6 +267,7 @@ class _MainAppBarState extends State<MainAppBar> {
                                 ),
                                 child: InkWell(
                                   onTap: () {
+                                    Get.toNamed('/');
                                     Get.toNamed('/business');
                                   },
                                   onHover: (value) {
@@ -294,6 +323,20 @@ class _MainAppBarState extends State<MainAppBar> {
                               left: 20,
                             ),
                             child: InkWell(
+                              onTap: () {
+                                Get.toNamed('/login');
+                              },
+                              onHover: (value) {
+                                if (value == true) {
+                                  setState(() {
+                                    navBarColor = blackColor;
+                                  });
+                                } else {
+                                  setState(() {
+                                    navBarColor = blackColor.withOpacity(0.8);
+                                  });
+                                }
+                              },
                               child: Text(
                                 '로그인',
                                 style: TextStyle(
@@ -301,9 +344,6 @@ class _MainAppBarState extends State<MainAppBar> {
                                   color: whiteColor,
                                 ),
                               ),
-                              onTap: () {
-                                Get.toNamed('/login');
-                              },
                             ),
                           ),
                           MediaQuery.of(context).size.width < 800
@@ -375,6 +415,11 @@ class _MainAppBarState extends State<MainAppBar> {
                                         ),
                                         child: InkWell(
                                           onTap: () {
+                                            setState(() {
+                                              initTab = index;
+                                            });
+                                            print(initTab);
+                                            Get.toNamed('/');
                                             Get.toNamed(subMenuLinks[i][index]);
                                           },
                                           child: Text(

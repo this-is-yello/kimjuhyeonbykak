@@ -17,24 +17,18 @@ class StoryPage extends StatelessWidget {
           SizedBox(
             width: MediaQuery.of(context).size.width,
             child: ListView(
+              shrinkWrap: true,
               children: [
                 StoryMain(),
                 DefaultTabController(
                   length: 3,
-                  child: Column(
-                    children: [
-                      StoryTabBar(),
-                      StoryTabBarView(),
-                      Padding(
-                        padding: EdgeInsets.only(
-                          top: MediaQuery.of(context).size.width < 800
-                              ? 120
-                              : 160,
-                        ),
-                        child: Footer(),
-                      ),
-                    ],
+                  child: StoryTabBarView(),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.width < 800 ? 120 : 160,
                   ),
+                  child: Footer(),
                 ),
               ],
             ),
@@ -114,75 +108,330 @@ class StoryMain extends StatelessWidget {
   }
 }
 
-// ---------- TabBar -----------------------------------------------------------------------------------------------------
-class StoryTabBar extends StatelessWidget {
-  const StoryTabBar({super.key});
+// ---------- TabBar_View -----------------------------------------------------------------------------------------------------
+class StoryTabBarView extends StatefulWidget {
+  const StoryTabBarView({super.key});
+
+  @override
+  State<StoryTabBarView> createState() => _StoryTabBarViewState();
+}
+
+class _StoryTabBarViewState extends State<StoryTabBarView>
+    with TickerProviderStateMixin {
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(
+      length: 3,
+      vsync: this,
+      initialIndex: initTab,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      color: whiteColor,
-      child: TabBar(
-        labelColor: blackColor,
-        indicatorColor: blackColor,
-        indicatorSize: TabBarIndicatorSize.label,
-        labelStyle: TextStyle(
-          fontWeight: FontWeight.bold,
+    return Column(
+      children: [
+        Container(
+          width: MediaQuery.of(context).size.width,
+          color: whiteColor,
+          child: TabBar(
+            labelColor: blackColor,
+            indicatorColor: blackColor,
+            indicatorSize: TabBarIndicatorSize.label,
+            controller: _tabController,
+            labelStyle: TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
+            unselectedLabelStyle: TextStyle(
+              fontWeight: FontWeight.normal,
+            ),
+            tabs: [
+              Tab(
+                text: 'CEO Message',
+              ),
+              Tab(
+                text: '연혁',
+              ),
+              Tab(
+                text: 'CI·BI',
+              ),
+            ],
+          ),
         ),
-        unselectedLabelStyle: TextStyle(
-          fontWeight: FontWeight.normal,
+        Padding(
+          padding: EdgeInsets.fromLTRB(20, 40, 20, 0),
+          child: SizedBox(
+            width: widgetSize(context),
+            // height: null,
+            child: AutoScaleTabBarView(
+              controller: _tabController,
+              children: [
+                CeoMessageScreen(),
+                HistoryScreen(),
+                CiBiScreen(),
+              ],
+            ),
+          ),
         ),
-        tabs: [
-          Tab(
-            text: 'CEO Message',
-          ),
-          Tab(
-            text: '연혁',
-          ),
-          Tab(
-            text: 'CI·BI',
-          ),
-        ],
+      ],
+    );
+  }
+}
+
+// ---------- CEO_Message -----------------------------------------------------------------------------------------------------
+class CeoMessageScreen extends StatelessWidget {
+  const CeoMessageScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 40),
+      child: SizedBox(
+        width: widgetSize(context),
+        child: Wrap(
+          direction: Axis.horizontal,
+          alignment: WrapAlignment.start,
+          spacing: 20,
+          runSpacing: 20,
+          children: [
+            SizedBox(
+              width: MediaQuery.of(context).size.width < 800
+                  ? widgetSize(context)
+                  : widgetSize(context) / 2 - 10,
+              child: Image.asset('assets/images/ceoMessage_bg.png'),
+            ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width < 800
+                  ? widgetSize(context)
+                  : widgetSize(context) / 2 - 10,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '김주현입니다.',
+                    style: TextStyle(
+                      fontSize: h2FontSize(context),
+                      fontFamily: 'Cafe_24',
+                      fontWeight: FontWeight.bold,
+                      color: blackColor,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      top: 20,
+                    ),
+                    child: Text(
+                      '#전통과 정통을 바느질 하다.',
+                      style: TextStyle(
+                        fontSize: h4FontSize(context),
+                        color: blackColor,
+                      ),
+                    ),
+                  ),
+                  Text(
+                    '2014년 처음 문을 연 k!mjuhyeon by 覺(김주현바이각)은\n살아온 인천에 고급수제양복을 알리기 위해,\n남성들의 문화 공간이 될 수 있는 놀이터를 만들고자 설립되었습니다.\nby 覺(바이각)의 상위라벨인 Black Label(블랙라벨)은\n빠르게 만들어져 쉽게 소비되고, 버려지는 옷이 아닌\n입는 사람의 직업, 취향, 추억을 공유할 수 있는 인천 유일의\n맞춤 테일러링을 기반으로 하는 비스포크 테일러샵 입니다.',
+                    style: TextStyle(
+                      height: 2,
+                      fontSize: h7FontSize(context),
+                      color: blackColor,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      top: 32,
+                      bottom: 32,
+                    ),
+                    child: Text(
+                      '자신을 가꾸어 나가는 거, 그리고 유행을 따르지 않는 것,\n그것이 비스포크의 매력입니다.\n우리의 주 고객들은 자신을 사랑하고, 자신감이 넘치며\n성공적인 삶을 사는 남성분들입니다.\n올바른 옷 입기가 우리의 삶을 윤택하게 만들 것 입니다.\n좋은 인연으로 맺기를 기도합니다.',
+                      style: TextStyle(
+                        height: 2,
+                        fontSize: h7FontSize(context),
+                        color: blackColor,
+                      ),
+                    ),
+                  ),
+                  Text(
+                    '감사합니다.',
+                    style: TextStyle(
+                      fontSize: h7FontSize(context),
+                      color: blackColor,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 }
 
-// ---------- TabBar_View -----------------------------------------------------------------------------------------------------
-class StoryTabBarView extends StatelessWidget {
-  const StoryTabBarView({super.key});
+// ---------- History -----------------------------------------------------------------------------------------------------
+class HistoryScreen extends StatelessWidget {
+  const HistoryScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(
-        left: 20,
-        top: 40,
-        right: 20,
-      ),
-      child: SizedBox(
-        width: widgetSize(context),
-        // height: MediaQuery.of(context).size.longestSide,
-        child: AutoScaleTabBarView(
+    return SizedBox(
+      width: widgetSize(context) - 100,
+      child: Padding(
+        padding: const EdgeInsets.only(top: 40),
+        child: Column(
           children: [
-            Container(
-              width: widgetSize(context),
-              height: 900,
-              color: Colors.red,
-            ),
-            Container(
-              width: widgetSize(context),
-              height: 900,
-              color: Colors.green,
-            ),
-            Container(
-              width: widgetSize(context),
-              height: 900,
-              color: Colors.blue,
+            Image.asset(
+              'assets/images/history.png',
+              fit: BoxFit.contain,
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+// ---------- CI·BI -----------------------------------------------------------------------------------------------------
+class CiBiScreen extends StatelessWidget {
+  const CiBiScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: widgetSize(context),
+      child: Column(
+        children: [
+          Container(
+            width: widgetSize(context),
+            padding: EdgeInsets.only(top: 40),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(
+                    bottom: 8,
+                  ),
+                  child: Text(
+                    '1. 로고',
+                    style: TextStyle(
+                      fontSize: h3FontSize(context),
+                      color: blackColor,
+                    ),
+                  ),
+                ),
+                Text(
+                  'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ',
+                  style: TextStyle(
+                    fontSize: h7FontSize(context),
+                    color: blackColor,
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 20),
+                  child: Container(
+                    width: widgetSize(context),
+                    height: c1BoxSize(context),
+                    decoration: BoxDecoration(
+                      color: whiteColor,
+                      border: Border.all(
+                        color: blackColor,
+                        width: 2,
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+          Container(
+            width: widgetSize(context),
+            padding: EdgeInsets.only(top: 40),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(
+                    bottom: 8,
+                  ),
+                  child: Text(
+                    '2. 심볼마크',
+                    style: TextStyle(
+                      fontSize: h3FontSize(context),
+                      color: blackColor,
+                    ),
+                  ),
+                ),
+                Text(
+                  'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ',
+                  style: TextStyle(
+                    fontSize: h7FontSize(context),
+                    color: blackColor,
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 20),
+                  child: Container(
+                    width: widgetSize(context),
+                    height: c1BoxSize(context),
+                    decoration: BoxDecoration(
+                      color: whiteColor,
+                      border: Border.all(
+                        color: blackColor,
+                        width: 2,
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+          Container(
+            width: widgetSize(context),
+            padding: EdgeInsets.only(top: 40),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(
+                    bottom: 8,
+                  ),
+                  child: Text(
+                    '3, 전용색상',
+                    style: TextStyle(
+                      fontSize: h3FontSize(context),
+                      color: blackColor,
+                    ),
+                  ),
+                ),
+                Text(
+                  'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ',
+                  style: TextStyle(
+                    fontSize: h7FontSize(context),
+                    color: blackColor,
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 20),
+                  child: Container(
+                    width: widgetSize(context),
+                    height: c1BoxSize(context),
+                    decoration: BoxDecoration(
+                      color: whiteColor,
+                      border: Border.all(
+                        color: blackColor,
+                        width: 2,
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

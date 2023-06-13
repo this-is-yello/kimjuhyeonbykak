@@ -10,20 +10,10 @@ var whiteColor = const Color(0xFFFFFFFF);
 // ---------- Variable -----------------------------------------------------------------------------------------------------
 int btnCurrentPage = 0;
 int scrollCurrentPage = 0;
+int initTab = 0;
 
-List subMenuLinks = [
-  [
-    '/story',
-    '/tailorShop',
-    '/tailorAcademy',
-    '/newJemulpoClub',
-    '/rentalCenter'
-  ],
-  ['/publicity', '/publicity', '/publicity'],
-  ['/product'],
-  ['/community', '/community', '/community', '/community', '/community'],
-  ['business', 'business'],
-];
+// var screenWidth = MediaQuery.of(context).size.width;
+// var screenHeight = MediaQuery.of(context).size.height;
 
 // ---------- Contents_Width -----------------------------------------------------------------------------------------------------
 widgetSize(context) {

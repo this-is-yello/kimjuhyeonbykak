@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:kimjuhyeonbykak/style.dart';
 import 'package:autoscale_tabbarview/autoscale_tabbarview.dart';
@@ -26,21 +27,13 @@ class _BusinessPageState extends State<BusinessPage> {
               BusinessTitle(),
               DefaultTabController(
                 length: 2,
-                child: Column(
-                  children: [
-                    BusinessTabBar(),
-                    BusinessTabBarView(),
-                  ],
-                ),
+                child: BusinessTabBarView(),
               ),
               Padding(
                 padding: EdgeInsets.only(
                   top: MediaQuery.of(context).size.width < 800 ? 120 : 160,
                 ),
                 child: Footer(),
-              ),
-              Column(
-                children: [],
               ),
             ],
           ),
@@ -128,62 +121,76 @@ class BusinessTitle extends StatelessWidget {
   }
 }
 
-// ---------- TabBar -----------------------------------------------------------------------------------------------------
-class BusinessTabBar extends StatelessWidget {
-  const BusinessTabBar({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      color: whiteColor,
-      child: TabBar(
-        labelColor: blackColor,
-        indicatorColor: blackColor,
-        indicatorSize: TabBarIndicatorSize.label,
-        labelStyle: TextStyle(
-          fontWeight: FontWeight.bold,
-        ),
-        unselectedLabelStyle: TextStyle(
-          fontWeight: FontWeight.normal,
-        ),
-        tabs: [
-          Tab(
-            text: '서포터즈',
-          ),
-          Tab(
-            text: '협찬·협업·단체복 문의',
-          ),
-        ],
-      ),
-    );
-  }
-}
-
 // ---------- TabBar_View -----------------------------------------------------------------------------------------------------
-class BusinessTabBarView extends StatelessWidget {
+class BusinessTabBarView extends StatefulWidget {
   const BusinessTabBarView({super.key});
 
   @override
+  State<BusinessTabBarView> createState() => _BusinessTabBarViewState();
+}
+
+class _BusinessTabBarViewState extends State<BusinessTabBarView>
+    with TickerProviderStateMixin {
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(
+      length: 2,
+      vsync: this,
+      initialIndex: initTab,
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(
-        left: 20,
-        top: 40,
-        right: 20,
-      ),
-      child: SizedBox(
-        width: widgetSize(context),
-        // height: MediaQuery.of(context).size.height - (c1BoxSize(context) + 160),
-        child: Center(
-          child: AutoScaleTabBarView(
-            children: [
-              SupportersScreen(),
-              SponInquiryScreen(),
+    return Column(
+      children: [
+        Container(
+          width: MediaQuery.of(context).size.width,
+          color: whiteColor,
+          child: TabBar(
+            controller: _tabController,
+            labelColor: blackColor,
+            indicatorColor: blackColor,
+            indicatorSize: TabBarIndicatorSize.label,
+            onTap: (value) {
+              initTab = value;
+            },
+            labelStyle: TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
+            unselectedLabelStyle: TextStyle(
+              fontWeight: FontWeight.normal,
+            ),
+            tabs: [
+              Tab(
+                text: '서포터즈',
+              ),
+              Tab(
+                text: '협찬·협업·단체복 문의',
+              ),
             ],
           ),
         ),
-      ),
+        Padding(
+          padding: EdgeInsets.fromLTRB(20, 40, 20, 0),
+          child: SizedBox(
+            width: widgetSize(context),
+            // height: MediaQuery.of(context).size.height - (c1BoxSize(context) + 160),
+            child: Center(
+              child: AutoScaleTabBarView(
+                controller: _tabController,
+                children: [
+                  SupportersScreen(),
+                  SponInquiryScreen(),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

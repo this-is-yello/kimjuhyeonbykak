@@ -25,27 +25,13 @@ class _CommunityPageState extends State<CommunityPage> {
               CommunityTitle(),
               DefaultTabController(
                 length: 4,
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(
-                        left: 20,
-                        right: 20,
-                      ),
-                      child: CommunityTabBar(),
-                    ),
-                    CommunityTabBarView(),
-                  ],
-                ),
+                child: CommunityTabBarView(),
               ),
               Padding(
                 padding: EdgeInsets.only(
                   top: MediaQuery.of(context).size.width < 800 ? 120 : 160,
                 ),
                 child: Footer(),
-              ),
-              Column(
-                children: [],
               ),
             ],
           ),
@@ -133,69 +119,83 @@ class CommunityTitle extends StatelessWidget {
   }
 }
 
-// ---------- TabBar -----------------------------------------------------------------------------------------------------
-class CommunityTabBar extends StatelessWidget {
-  const CommunityTabBar({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      color: whiteColor,
-      child: TabBar(
-        labelColor: blackColor,
-        indicatorColor: blackColor,
-        indicatorSize: TabBarIndicatorSize.label,
-        labelStyle: TextStyle(
-          fontWeight: FontWeight.bold,
-        ),
-        unselectedLabelStyle: TextStyle(
-          fontWeight: FontWeight.normal,
-        ),
-        tabs: [
-          Tab(
-            text: '문의하기',
-          ),
-          Tab(
-            text: '공지사항',
-          ),
-          Tab(
-            text: '이벤트',
-          ),
-          Tab(
-            text: '미디어',
-          ),
-        ],
-      ),
-    );
-  }
-}
-
 // ---------- TabBar_View -----------------------------------------------------------------------------------------------------
-class CommunityTabBarView extends StatelessWidget {
+class CommunityTabBarView extends StatefulWidget {
   const CommunityTabBarView({super.key});
 
   @override
+  State<CommunityTabBarView> createState() => _CommunityTabBarViewState();
+}
+
+class _CommunityTabBarViewState extends State<CommunityTabBarView>
+    with TickerProviderStateMixin {
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(
+      length: 4,
+      vsync: this,
+      initialIndex: initTab,
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(
-        left: 20,
-        top: 40,
-        right: 20,
-      ),
-      child: SizedBox(
-        width: widgetSize(context),
-        child: Center(
-          child: AutoScaleTabBarView(
-            children: [
-              InquiryScreen(),
-              NotificationScreen(),
-              EventScreen(),
-              MediaScreen(),
+    return Column(
+      children: [
+        Container(
+          width: MediaQuery.of(context).size.width,
+          color: whiteColor,
+          child: TabBar(
+            controller: _tabController,
+            labelColor: blackColor,
+            indicatorColor: blackColor,
+            indicatorSize: TabBarIndicatorSize.label,
+            onTap: (value) {
+              initTab = value;
+            },
+            labelStyle: TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
+            unselectedLabelStyle: TextStyle(
+              fontWeight: FontWeight.normal,
+            ),
+            tabs: [
+              Tab(
+                text: '문의하기',
+              ),
+              Tab(
+                text: '공지사항',
+              ),
+              Tab(
+                text: '이벤트',
+              ),
+              Tab(
+                text: '미디어',
+              ),
             ],
           ),
         ),
-      ),
+        Padding(
+          padding: EdgeInsets.fromLTRB(20, 40, 20, 0),
+          child: SizedBox(
+            width: widgetSize(context),
+            child: Center(
+              child: AutoScaleTabBarView(
+                controller: _tabController,
+                children: [
+                  InquiryScreen(),
+                  NotificationScreen(),
+                  EventScreen(),
+                  MediaScreen(),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
