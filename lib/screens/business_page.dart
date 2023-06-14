@@ -25,10 +25,7 @@ class _BusinessPageState extends State<BusinessPage> {
           ListView(
             children: [
               BusinessTitle(),
-              DefaultTabController(
-                length: 2,
-                child: BusinessTabBarView(),
-              ),
+              BusinessContent(),
               Padding(
                 padding: EdgeInsets.only(
                   top: MediaQuery.of(context).size.width < 800 ? 120 : 160,
@@ -121,76 +118,78 @@ class BusinessTitle extends StatelessWidget {
   }
 }
 
-// ---------- TabBar_View -----------------------------------------------------------------------------------------------------
-class BusinessTabBarView extends StatefulWidget {
-  const BusinessTabBarView({super.key});
+// ---------- Business_Content -----------------------------------------------------------------------------------------------------
+class BusinessContent extends StatefulWidget {
+  const BusinessContent({super.key});
 
   @override
-  State<BusinessTabBarView> createState() => _BusinessTabBarViewState();
+  State<BusinessContent> createState() => _BusinessContentState();
 }
 
-class _BusinessTabBarViewState extends State<BusinessTabBarView>
-    with TickerProviderStateMixin {
-  late TabController _tabController;
-
-  @override
-  void initState() {
-    super.initState();
-    _tabController = TabController(
-      length: 2,
-      vsync: this,
-      initialIndex: initTab,
-    );
-  }
-
+class _BusinessContentState extends State<BusinessContent> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          width: MediaQuery.of(context).size.width,
-          color: whiteColor,
-          child: TabBar(
-            controller: _tabController,
-            labelColor: blackColor,
-            indicatorColor: blackColor,
-            indicatorSize: TabBarIndicatorSize.label,
-            onTap: (value) {
-              initTab = value;
-            },
-            labelStyle: TextStyle(
-              fontWeight: FontWeight.bold,
-            ),
-            unselectedLabelStyle: TextStyle(
-              fontWeight: FontWeight.normal,
-            ),
-            tabs: [
-              Tab(
-                text: '서포터즈',
+    return Center(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: EdgeInsets.only(top: 40, bottom: 40),
+            child: Container(
+              width: 360,
+              padding: EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: blackColor.withOpacity(0.7),
+                borderRadius: BorderRadius.circular(100),
               ),
-              Tab(
-                text: '협찬·협업·단체복 문의',
-              ),
-            ],
-          ),
-        ),
-        Padding(
-          padding: EdgeInsets.fromLTRB(20, 40, 20, 0),
-          child: SizedBox(
-            width: widgetSize(context),
-            // height: MediaQuery.of(context).size.height - (c1BoxSize(context) + 160),
-            child: Center(
-              child: AutoScaleTabBarView(
-                controller: _tabController,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  SupportersScreen(),
-                  SponInquiryScreen(),
+                  ElevatedButton(
+                    style: elevatedBtnTheme,
+                    onPressed: () {
+                      setState(() {
+                        businessNum = 0;
+                      });
+                    },
+                    child: Text(
+                      '서포터즈',
+                      style: TextStyle(
+                        fontSize: businessNum == 0 ? 14 : 13,
+                        fontWeight: businessNum == 0
+                            ? FontWeight.bold
+                            : FontWeight.normal,
+                        color: whiteColor,
+                      ),
+                    ),
+                  ),
+                  ElevatedButton(
+                    style: elevatedBtnTheme,
+                    onPressed: () {
+                      setState(() {
+                        businessNum = 1;
+                      });
+                    },
+                    child: Text(
+                      '협찬·협업·단체복 문의',
+                      style: TextStyle(
+                        fontSize: businessNum == 1 ? 14 : 13,
+                        fontWeight: businessNum == 1
+                            ? FontWeight.bold
+                            : FontWeight.normal,
+                        color: whiteColor,
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
           ),
-        ),
-      ],
+          FadeIn(
+            child: businessNum == 0 ? SupportersScreen() : SponInquiryScreen(),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -208,14 +207,14 @@ class _SupportersScreenState extends State<SupportersScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          children: [
-            Flexible(
-              fit: FlexFit.tight,
-              child: Padding(
-                padding: const EdgeInsets.only(right: 12),
+    return SizedBox(
+      width: widgetSize(context),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Flexible(
+                fit: FlexFit.tight,
                 child: InkWell(
                   onTap: () {
                     setState(() {
@@ -226,7 +225,7 @@ class _SupportersScreenState extends State<SupportersScreen> {
                     height: c5BoxSize(context),
                     child: Center(
                       child: Text(
-                        '엠버서더',
+                        '각인(覺人)',
                         style: TextStyle(
                           fontSize: h4FontSize(context),
                           color: whiteColor,
@@ -240,37 +239,40 @@ class _SupportersScreenState extends State<SupportersScreen> {
                   ),
                 ),
               ),
-            ),
-            Flexible(
-              fit: FlexFit.tight,
-              child: InkWell(
-                onTap: () {
-                  setState(() {
-                    supporterState = false;
-                  });
-                },
-                child: Container(
-                  height: c5BoxSize(context),
-                  child: Center(
-                    child: Text(
-                      '각인(覺人)',
-                      style: TextStyle(
-                        fontSize: h4FontSize(context),
-                        color: whiteColor,
+              Flexible(
+                fit: FlexFit.tight,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 12),
+                  child: InkWell(
+                    onTap: () {
+                      setState(() {
+                        supporterState = false;
+                      });
+                    },
+                    child: Container(
+                      height: c5BoxSize(context),
+                      child: Center(
+                        child: Text(
+                          '엠버서더',
+                          style: TextStyle(
+                            fontSize: h4FontSize(context),
+                            color: whiteColor,
+                          ),
+                        ),
+                      ),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: blackColor,
                       ),
                     ),
                   ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: blackColor,
-                  ),
                 ),
               ),
-            ),
-          ],
-        ),
-        supporterState ? SupportersAmbassador() : SupportersKakIn(),
-      ],
+            ],
+          ),
+          supporterState ? SupportersKakIn() : SupportersAmbassador(),
+        ],
+      ),
     );
   }
 }
@@ -331,7 +333,8 @@ class SupportersKakIn extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 20),
-                child: TextButton(
+                child: ElevatedButton(
+                  style: elevatedBtnTheme,
                   onPressed: () {},
                   child: Text(
                     '마일리지 신청 및 등급 조회하기 >',
@@ -615,7 +618,8 @@ class SupportersAmbassador extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 40),
                 child: Row(
                   children: [
-                    TextButton(
+                    ElevatedButton(
+                      style: elevatedBtnTheme,
                       onPressed: () {},
                       child: Text(
                         '엠버서더 신청 >',
@@ -627,7 +631,8 @@ class SupportersAmbassador extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 10),
-                      child: TextButton(
+                      child: ElevatedButton(
+                        style: elevatedBtnTheme,
                         onPressed: () {},
                         child: Text(
                           '엠버서더 페이지 >',
@@ -664,460 +669,464 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          '1. 기본정보',
-          style: TextStyle(
-            fontSize: h1FontSize(context),
-            color: blackColor,
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: 20),
-          child: Wrap(
-            direction: Axis.horizontal,
-            crossAxisAlignment: WrapCrossAlignment.center,
-            runAlignment: WrapAlignment.spaceBetween,
-            alignment: WrapAlignment.start,
-            spacing: 20,
-            runSpacing: 20,
-            children: [
-              SizedBox(
-                width: MediaQuery.of(context).size.width < 800
-                    ? widgetSize(context)
-                    : widgetSize(context) / 2 - 10,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 8),
-                      child: Text(
-                        '회사명',
-                        style: TextStyle(
-                          fontSize: h5FontSize(context),
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      width: widgetSize(context),
-                      height: c6BoxSize(context),
-                      decoration: BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                            color: blackColor,
-                            width: 2,
-                          ),
-                        ),
-                      ),
-                      child: TextField(
-                        // controller: _inputCompany,
-                        cursorColor: blackColor,
-                        keyboardType: TextInputType.name,
-                        style: TextStyle(
-                          fontSize: h4FontSize(context),
-                          color: blackColor,
-                        ),
-                        decoration: InputDecoration(
-                          hintText: '예시 : 김주현바이각',
-                          border: InputBorder.none,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width < 800
-                    ? widgetSize(context)
-                    : widgetSize(context) / 2 - 10,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 8),
-                      child: Text(
-                        '브랜드명',
-                        style: TextStyle(
-                          fontSize: h5FontSize(context),
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      width: widgetSize(context),
-                      height: c6BoxSize(context),
-                      decoration: BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                            color: blackColor,
-                            width: 2,
-                          ),
-                        ),
-                      ),
-                      child: TextField(
-                        // controller: _inputBrand,
-                        cursorColor: blackColor,
-                        keyboardType: TextInputType.name,
-                        style: TextStyle(
-                          fontSize: h4FontSize(context),
-                          color: blackColor,
-                        ),
-                        decoration: InputDecoration(
-                          hintText: '예시 : 데시그너',
-                          border: InputBorder.none,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: 20),
-          child: Wrap(
-            direction: Axis.horizontal,
-            crossAxisAlignment: WrapCrossAlignment.center,
-            runAlignment: WrapAlignment.spaceBetween,
-            alignment: WrapAlignment.start,
-            spacing: 20,
-            runSpacing: 20,
-            children: [
-              SizedBox(
-                width: MediaQuery.of(context).size.width < 800
-                    ? widgetSize(context)
-                    : widgetSize(context) / 2 - 10,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 8),
-                      child: Text(
-                        '담당자 이름 / 직급',
-                        style: TextStyle(
-                          fontSize: h5FontSize(context),
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      width: widgetSize(context),
-                      height: c6BoxSize(context),
-                      decoration: BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                            color: blackColor,
-                            width: 2,
-                          ),
-                        ),
-                      ),
-                      child: TextField(
-                        // controller: _inputName,
-                        cursorColor: blackColor,
-                        keyboardType: TextInputType.name,
-                        style: TextStyle(
-                          fontSize: h4FontSize(context),
-                          color: blackColor,
-                        ),
-                        decoration: InputDecoration(
-                          hintText: '예시 : 홍길동 / 대리',
-                          border: InputBorder.none,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width < 800
-                    ? widgetSize(context)
-                    : widgetSize(context) / 2 - 10,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 8),
-                      child: Text(
-                        '이메일 주소',
-                        style: TextStyle(
-                          fontSize: h5FontSize(context),
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      width: widgetSize(context),
-                      height: c6BoxSize(context),
-                      decoration: BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                            color: blackColor,
-                            width: 2,
-                          ),
-                        ),
-                      ),
-                      child: TextField(
-                        // controller: _inputMail,
-                        cursorColor: blackColor,
-                        keyboardType: TextInputType.emailAddress,
-                        style: TextStyle(
-                          fontSize: h4FontSize(context),
-                          color: blackColor,
-                        ),
-                        decoration: InputDecoration(
-                          hintText: '예시 : designercom@naver.com',
-                          border: InputBorder.none,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: 20),
-          child: Wrap(
-            direction: Axis.horizontal,
-            crossAxisAlignment: WrapCrossAlignment.center,
-            runAlignment: WrapAlignment.spaceBetween,
-            alignment: WrapAlignment.start,
-            spacing: 20,
-            runSpacing: 20,
-            children: [
-              SizedBox(
-                width: MediaQuery.of(context).size.width < 800
-                    ? widgetSize(context)
-                    : widgetSize(context) / 2 - 10,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 8),
-                      child: Text(
-                        '참고 사이트 주소',
-                        style: TextStyle(
-                          fontSize: h5FontSize(context),
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      width: widgetSize(context),
-                      height: c6BoxSize(context),
-                      decoration: BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                            color: blackColor,
-                            width: 2,
-                          ),
-                        ),
-                      ),
-                      child: TextField(
-                        // controller: _inputWeb,
-                        cursorColor: blackColor,
-                        keyboardType: TextInputType.url,
-                        style: TextStyle(
-                          fontSize: h4FontSize(context),
-                          color: blackColor,
-                        ),
-                        decoration: InputDecoration(
-                          hintText: '예시 : https://www.bykak.com/html/',
-                          border: InputBorder.none,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width < 800
-                    ? widgetSize(context)
-                    : widgetSize(context) / 2 - 10,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 8),
-                      child: Text(
-                        '연락처',
-                        style: TextStyle(
-                          fontSize: h5FontSize(context),
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      width: widgetSize(context),
-                      height: c6BoxSize(context),
-                      decoration: BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                            color: blackColor,
-                            width: 2,
-                          ),
-                        ),
-                      ),
-                      child: TextField(
-                        // controller: _inputContact,
-                        cursorColor: blackColor,
-                        keyboardType: TextInputType.phone,
-                        style: TextStyle(
-                          fontSize: h4FontSize(context),
-                          color: blackColor,
-                        ),
-                        decoration: InputDecoration(
-                          hintText: '예시 : 010-1234-1234 / 032-5678-5678',
-                          border: InputBorder.none,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: 40, bottom: 20),
-          child: Text(
-            '2. 카테고리',
+    return SizedBox(
+      width: widgetSize(context),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            '1. 기본정보',
             style: TextStyle(
               fontSize: h1FontSize(context),
               color: blackColor,
             ),
           ),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+          Padding(
+            padding: const EdgeInsets.only(top: 20),
+            child: Wrap(
+              direction: Axis.horizontal,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              runAlignment: WrapAlignment.spaceBetween,
+              alignment: WrapAlignment.start,
+              spacing: 20,
+              runSpacing: 20,
               children: [
-                Text(
-                  '협찬 문의',
-                  style: TextStyle(
-                    fontSize: h6FontSize(context),
-                    color: blackColor,
+                SizedBox(
+                  width: MediaQuery.of(context).size.width < 800
+                      ? widgetSize(context)
+                      : widgetSize(context) / 2 - 10,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 8),
+                        child: Text(
+                          '회사명',
+                          style: TextStyle(
+                            fontSize: h5FontSize(context),
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: widgetSize(context),
+                        height: c6BoxSize(context),
+                        decoration: BoxDecoration(
+                          border: Border(
+                            bottom: BorderSide(
+                              color: blackColor,
+                              width: 2,
+                            ),
+                          ),
+                        ),
+                        child: TextField(
+                          // controller: _inputCompany,
+                          cursorColor: blackColor,
+                          keyboardType: TextInputType.name,
+                          style: TextStyle(
+                            fontSize: h4FontSize(context),
+                            color: blackColor,
+                          ),
+                          decoration: InputDecoration(
+                            hintText: '예시 : 김주현바이각',
+                            border: InputBorder.none,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                Checkbox(
-                  activeColor: blackColor,
-                  checkColor: whiteColor,
-                  value: _checkSponsorship,
-                  onChanged: (bool? value) {
-                    if (_checkCoperation == true || _checkUniform == true) {
-                      setState(() {
-                        _checkCoperation = false;
-                        _checkUniform = false;
-                        _checkSponsorship = value!;
-                      });
-                    } else {
-                      setState(() {
-                        _checkSponsorship = value!;
-                      });
-                    }
-                    print('협찬 문의 : $value');
-                  },
+                SizedBox(
+                  width: MediaQuery.of(context).size.width < 800
+                      ? widgetSize(context)
+                      : widgetSize(context) / 2 - 10,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 8),
+                        child: Text(
+                          '브랜드명',
+                          style: TextStyle(
+                            fontSize: h5FontSize(context),
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: widgetSize(context),
+                        height: c6BoxSize(context),
+                        decoration: BoxDecoration(
+                          border: Border(
+                            bottom: BorderSide(
+                              color: blackColor,
+                              width: 2,
+                            ),
+                          ),
+                        ),
+                        child: TextField(
+                          // controller: _inputBrand,
+                          cursorColor: blackColor,
+                          keyboardType: TextInputType.name,
+                          style: TextStyle(
+                            fontSize: h4FontSize(context),
+                            color: blackColor,
+                          ),
+                          decoration: InputDecoration(
+                            hintText: '예시 : 데시그너',
+                            border: InputBorder.none,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 20),
+            child: Wrap(
+              direction: Axis.horizontal,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              runAlignment: WrapAlignment.spaceBetween,
+              alignment: WrapAlignment.start,
+              spacing: 20,
+              runSpacing: 20,
               children: [
-                Text(
-                  '협업 문의',
-                  style: TextStyle(
-                    fontSize: h6FontSize(context),
-                    color: blackColor,
+                SizedBox(
+                  width: MediaQuery.of(context).size.width < 800
+                      ? widgetSize(context)
+                      : widgetSize(context) / 2 - 10,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 8),
+                        child: Text(
+                          '담당자 이름 / 직급',
+                          style: TextStyle(
+                            fontSize: h5FontSize(context),
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: widgetSize(context),
+                        height: c6BoxSize(context),
+                        decoration: BoxDecoration(
+                          border: Border(
+                            bottom: BorderSide(
+                              color: blackColor,
+                              width: 2,
+                            ),
+                          ),
+                        ),
+                        child: TextField(
+                          // controller: _inputName,
+                          cursorColor: blackColor,
+                          keyboardType: TextInputType.name,
+                          style: TextStyle(
+                            fontSize: h4FontSize(context),
+                            color: blackColor,
+                          ),
+                          decoration: InputDecoration(
+                            hintText: '예시 : 홍길동 / 대리',
+                            border: InputBorder.none,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                Checkbox(
-                  activeColor: blackColor,
-                  checkColor: whiteColor,
-                  value: _checkCoperation,
-                  onChanged: (bool? value) {
-                    if (_checkSponsorship == true || _checkUniform == true) {
-                      setState(() {
-                        _checkUniform = false;
-                        _checkSponsorship = false;
-                        _checkCoperation = value!;
-                      });
-                    } else {
-                      setState(() {
-                        _checkCoperation = value!;
-                      });
-                    }
-                    print('협업 문의 : $value');
-                  },
+                SizedBox(
+                  width: MediaQuery.of(context).size.width < 800
+                      ? widgetSize(context)
+                      : widgetSize(context) / 2 - 10,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 8),
+                        child: Text(
+                          '이메일 주소',
+                          style: TextStyle(
+                            fontSize: h5FontSize(context),
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: widgetSize(context),
+                        height: c6BoxSize(context),
+                        decoration: BoxDecoration(
+                          border: Border(
+                            bottom: BorderSide(
+                              color: blackColor,
+                              width: 2,
+                            ),
+                          ),
+                        ),
+                        child: TextField(
+                          // controller: _inputMail,
+                          cursorColor: blackColor,
+                          keyboardType: TextInputType.emailAddress,
+                          style: TextStyle(
+                            fontSize: h4FontSize(context),
+                            color: blackColor,
+                          ),
+                          decoration: InputDecoration(
+                            hintText: '예시 : designercom@naver.com',
+                            border: InputBorder.none,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 20),
+            child: Wrap(
+              direction: Axis.horizontal,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              runAlignment: WrapAlignment.spaceBetween,
+              alignment: WrapAlignment.start,
+              spacing: 20,
+              runSpacing: 20,
               children: [
-                Text(
-                  '단체복 문의',
-                  style: TextStyle(
-                    fontSize: h6FontSize(context),
-                    color: blackColor,
+                SizedBox(
+                  width: MediaQuery.of(context).size.width < 800
+                      ? widgetSize(context)
+                      : widgetSize(context) / 2 - 10,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 8),
+                        child: Text(
+                          '참고 사이트 주소',
+                          style: TextStyle(
+                            fontSize: h5FontSize(context),
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: widgetSize(context),
+                        height: c6BoxSize(context),
+                        decoration: BoxDecoration(
+                          border: Border(
+                            bottom: BorderSide(
+                              color: blackColor,
+                              width: 2,
+                            ),
+                          ),
+                        ),
+                        child: TextField(
+                          // controller: _inputWeb,
+                          cursorColor: blackColor,
+                          keyboardType: TextInputType.url,
+                          style: TextStyle(
+                            fontSize: h4FontSize(context),
+                            color: blackColor,
+                          ),
+                          decoration: InputDecoration(
+                            hintText: '예시 : https://www.bykak.com/html/',
+                            border: InputBorder.none,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                Checkbox(
-                  activeColor: blackColor,
-                  checkColor: whiteColor,
-                  value: _checkUniform,
-                  onChanged: (bool? value) {
-                    if (_checkSponsorship == true || _checkCoperation == true) {
-                      setState(() {
-                        _checkSponsorship = false;
-                        _checkCoperation = false;
-                        _checkUniform = value!;
-                      });
-                    } else {
-                      setState(() {
-                        _checkUniform = value!;
-                      });
-                    }
-                    print('단체복 문의 : $value');
-                  },
+                SizedBox(
+                  width: MediaQuery.of(context).size.width < 800
+                      ? widgetSize(context)
+                      : widgetSize(context) / 2 - 10,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 8),
+                        child: Text(
+                          '연락처',
+                          style: TextStyle(
+                            fontSize: h5FontSize(context),
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: widgetSize(context),
+                        height: c6BoxSize(context),
+                        decoration: BoxDecoration(
+                          border: Border(
+                            bottom: BorderSide(
+                              color: blackColor,
+                              width: 2,
+                            ),
+                          ),
+                        ),
+                        child: TextField(
+                          // controller: _inputContact,
+                          cursorColor: blackColor,
+                          keyboardType: TextInputType.phone,
+                          style: TextStyle(
+                            fontSize: h4FontSize(context),
+                            color: blackColor,
+                          ),
+                          decoration: InputDecoration(
+                            hintText: '예시 : 010-1234-1234 / 032-5678-5678',
+                            border: InputBorder.none,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
-          ],
-        ),
-        Container(
-          width: widgetSize(context),
-          height: c1BoxSize(context) + 200,
-          padding: EdgeInsets.only(top: 40),
-          child: TextField(
-            // controller: _inputSub,
-            cursorColor: blackColor,
-            maxLines: 18,
-            keyboardType: TextInputType.multiline,
-            style: TextStyle(
-              fontSize: h4FontSize(context),
-              color: blackColor,
-            ),
-            decoration: InputDecoration(
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: blackColor, width: 2),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 40, bottom: 20),
+            child: Text(
+              '2. 카테고리',
+              style: TextStyle(
+                fontSize: h1FontSize(context),
+                color: blackColor,
               ),
-              hintText: '내용을 입력하세요.',
-              border: OutlineInputBorder(
-                borderSide: BorderSide(
-                  color: blackColor,
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    '협찬 문의',
+                    style: TextStyle(
+                      fontSize: h6FontSize(context),
+                      color: blackColor,
+                    ),
+                  ),
+                  Checkbox(
+                    activeColor: blackColor,
+                    checkColor: whiteColor,
+                    value: _checkSponsorship,
+                    onChanged: (bool? value) {
+                      if (_checkCoperation == true || _checkUniform == true) {
+                        setState(() {
+                          _checkCoperation = false;
+                          _checkUniform = false;
+                          _checkSponsorship = value!;
+                        });
+                      } else {
+                        setState(() {
+                          _checkSponsorship = value!;
+                        });
+                      }
+                      print('협찬 문의 : $value');
+                    },
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    '협업 문의',
+                    style: TextStyle(
+                      fontSize: h6FontSize(context),
+                      color: blackColor,
+                    ),
+                  ),
+                  Checkbox(
+                    activeColor: blackColor,
+                    checkColor: whiteColor,
+                    value: _checkCoperation,
+                    onChanged: (bool? value) {
+                      if (_checkSponsorship == true || _checkUniform == true) {
+                        setState(() {
+                          _checkUniform = false;
+                          _checkSponsorship = false;
+                          _checkCoperation = value!;
+                        });
+                      } else {
+                        setState(() {
+                          _checkCoperation = value!;
+                        });
+                      }
+                      print('협업 문의 : $value');
+                    },
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    '단체복 문의',
+                    style: TextStyle(
+                      fontSize: h6FontSize(context),
+                      color: blackColor,
+                    ),
+                  ),
+                  Checkbox(
+                    activeColor: blackColor,
+                    checkColor: whiteColor,
+                    value: _checkUniform,
+                    onChanged: (bool? value) {
+                      if (_checkSponsorship == true ||
+                          _checkCoperation == true) {
+                        setState(() {
+                          _checkSponsorship = false;
+                          _checkCoperation = false;
+                          _checkUniform = value!;
+                        });
+                      } else {
+                        setState(() {
+                          _checkUniform = value!;
+                        });
+                      }
+                      print('단체복 문의 : $value');
+                    },
+                  ),
+                ],
+              ),
+            ],
+          ),
+          Container(
+            width: widgetSize(context),
+            height: c1BoxSize(context) + 200,
+            padding: EdgeInsets.only(top: 40),
+            child: TextField(
+              // controller: _inputSub,
+              cursorColor: blackColor,
+              maxLines: 18,
+              keyboardType: TextInputType.multiline,
+              style: TextStyle(
+                fontSize: h4FontSize(context),
+                color: blackColor,
+              ),
+              decoration: InputDecoration(
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: blackColor, width: 2),
+                ),
+                hintText: '내용을 입력하세요.',
+                border: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: blackColor,
+                  ),
                 ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

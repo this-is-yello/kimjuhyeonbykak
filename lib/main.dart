@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kimjuhyeonbykak/screens/brand/story_page.dart';
 import 'package:kimjuhyeonbykak/style.dart';
-// import 'package:kimjuhyeonbykak/variable.dart';
+
 import 'package:kimjuhyeonbykak/navigation.dart';
 import 'package:kimjuhyeonbykak/screens/first_screen.dart';
 import 'package:kimjuhyeonbykak/screens/publicity_page.dart';
@@ -9,13 +8,27 @@ import 'package:kimjuhyeonbykak/screens/product_page.dart';
 import 'package:kimjuhyeonbykak/screens/community_page.dart';
 import 'package:kimjuhyeonbykak/screens/business_page.dart';
 import 'package:kimjuhyeonbykak/screens/login_page.dart';
+import 'package:kimjuhyeonbykak/screens/brand/story_page.dart';
 import 'package:kimjuhyeonbykak/screens/brand/tailorshop_page.dart';
 import 'package:kimjuhyeonbykak/screens/brand/tailoracademy_page.dart';
 import 'package:kimjuhyeonbykak/screens/brand/jemulpoclub_page.dart';
 import 'package:kimjuhyeonbykak/screens/brand/rentalcenter_page.dart';
 
-// import 'package:opscroll_web/opscroll_web.dart';
 import 'package:get/get.dart';
+
+abstract class Routes {
+  static const MAIN = '/';
+  static const STORY = '/story';
+  static const TAILORSHOP = '/tailorShop';
+  static const TAILORACADEMY = '/tailorAcademy';
+  static const NEWJUMULPOCLUB = '/newJemulpoClub';
+  static const RENTALCENTER = '/rentalCenter';
+  static const PUBLICITY = '/publicity';
+  static const PRODUCT = '/product';
+  static const COMMUNITY = '/community';
+  static const BUSINESS = '/business';
+  static const LOGIN = '/login';
+}
 
 void main() => runApp(const MyApp());
 
@@ -30,67 +43,67 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       getPages: [
         GetPage(
-          name: '/',
+          name: Routes.MAIN,
           page: () => const MainPage(),
           transition: Transition.fadeIn,
           transitionDuration: Duration(milliseconds: 700),
         ),
         GetPage(
-          name: '/story',
+          name: Routes.STORY,
           page: () => const StoryPage(),
           transition: Transition.fadeIn,
           transitionDuration: Duration(milliseconds: 700),
         ),
         GetPage(
-          name: '/tailorShop',
+          name: Routes.TAILORSHOP,
           page: () => const TailorShopPage(),
           transition: Transition.fadeIn,
           transitionDuration: Duration(milliseconds: 700),
         ),
         GetPage(
-          name: '/tailorAcademy',
+          name: Routes.TAILORACADEMY,
           page: () => const TailorAcademyPage(),
           transition: Transition.fadeIn,
           transitionDuration: Duration(milliseconds: 700),
         ),
         GetPage(
-          name: '/newJemulpoClub',
+          name: Routes.NEWJUMULPOCLUB,
           page: () => const JemulpoClubPage(),
           transition: Transition.fadeIn,
           transitionDuration: Duration(milliseconds: 700),
         ),
         GetPage(
-          name: '/rentalCenter',
+          name: Routes.RENTALCENTER,
           page: () => const RentalCenterPage(),
           transition: Transition.fadeIn,
           transitionDuration: Duration(milliseconds: 700),
         ),
         GetPage(
-          name: '/publicity',
+          name: Routes.PUBLICITY,
           page: () => const PublicityPage(),
           transition: Transition.fadeIn,
           transitionDuration: Duration(milliseconds: 700),
         ),
         GetPage(
-          name: '/product',
+          name: Routes.PRODUCT,
           page: () => const ProductPage(),
           transition: Transition.fadeIn,
           transitionDuration: Duration(milliseconds: 700),
         ),
         GetPage(
-          name: '/community',
+          name: Routes.COMMUNITY,
           page: () => const CommunityPage(),
           transition: Transition.fadeIn,
           transitionDuration: Duration(milliseconds: 700),
         ),
         GetPage(
-          name: '/business',
+          name: Routes.BUSINESS,
           page: () => const BusinessPage(),
           transition: Transition.fadeIn,
           transitionDuration: Duration(milliseconds: 700),
         ),
         GetPage(
-          name: '/login',
+          name: Routes.LOGIN,
           page: () => const LogInPage(),
           transition: Transition.fadeIn,
           transitionDuration: Duration(milliseconds: 700),

@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:kimjuhyeonbykak/style.dart';
 import 'package:autoscale_tabbarview/autoscale_tabbarview.dart';
@@ -21,12 +22,10 @@ class _CommunityPageState extends State<CommunityPage> {
         alignment: Alignment.topCenter,
         children: [
           ListView(
+            shrinkWrap: true,
             children: [
               CommunityTitle(),
-              DefaultTabController(
-                length: 4,
-                child: CommunityTabBarView(),
-              ),
+              CommunityContent(),
               Padding(
                 padding: EdgeInsets.only(
                   top: MediaQuery.of(context).size.width < 800 ? 120 : 160,
@@ -119,83 +118,120 @@ class CommunityTitle extends StatelessWidget {
   }
 }
 
-// ---------- TabBar_View -----------------------------------------------------------------------------------------------------
-class CommunityTabBarView extends StatefulWidget {
-  const CommunityTabBarView({super.key});
+// ---------- Community_View -----------------------------------------------------------------------------------------------------
+class CommunityContent extends StatefulWidget {
+  const CommunityContent({super.key});
 
   @override
-  State<CommunityTabBarView> createState() => _CommunityTabBarViewState();
+  State<CommunityContent> createState() => _CommunityContentState();
 }
 
-class _CommunityTabBarViewState extends State<CommunityTabBarView>
-    with TickerProviderStateMixin {
-  late TabController _tabController;
-
-  @override
-  void initState() {
-    super.initState();
-    _tabController = TabController(
-      length: 4,
-      vsync: this,
-      initialIndex: initTab,
-    );
-  }
-
+class _CommunityContentState extends State<CommunityContent> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          width: MediaQuery.of(context).size.width,
-          color: whiteColor,
-          child: TabBar(
-            controller: _tabController,
-            labelColor: blackColor,
-            indicatorColor: blackColor,
-            indicatorSize: TabBarIndicatorSize.label,
-            onTap: (value) {
-              initTab = value;
-            },
-            labelStyle: TextStyle(
-              fontWeight: FontWeight.bold,
-            ),
-            unselectedLabelStyle: TextStyle(
-              fontWeight: FontWeight.normal,
-            ),
-            tabs: [
-              Tab(
-                text: '문의하기',
+    return Center(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: EdgeInsets.only(top: 40, bottom: 40),
+            child: Container(
+              width: 360,
+              padding: EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: blackColor.withOpacity(0.7),
+                borderRadius: BorderRadius.circular(100),
               ),
-              Tab(
-                text: '공지사항',
-              ),
-              Tab(
-                text: '이벤트',
-              ),
-              Tab(
-                text: '미디어',
-              ),
-            ],
-          ),
-        ),
-        Padding(
-          padding: EdgeInsets.fromLTRB(20, 40, 20, 0),
-          child: SizedBox(
-            width: widgetSize(context),
-            child: Center(
-              child: AutoScaleTabBarView(
-                controller: _tabController,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  InquiryScreen(),
-                  NotificationScreen(),
-                  EventScreen(),
-                  MediaScreen(),
+                  ElevatedButton(
+                    style: elevatedBtnTheme,
+                    onPressed: () {
+                      setState(() {
+                        communityNum = 0;
+                      });
+                    },
+                    child: Text(
+                      '문의하기',
+                      style: TextStyle(
+                        fontSize: communityNum == 0 ? 14 : 13,
+                        fontWeight: communityNum == 0
+                            ? FontWeight.bold
+                            : FontWeight.normal,
+                        color: whiteColor,
+                      ),
+                    ),
+                  ),
+                  ElevatedButton(
+                    style: elevatedBtnTheme,
+                    onPressed: () {
+                      setState(() {
+                        communityNum = 1;
+                      });
+                    },
+                    child: Text(
+                      '공지사항',
+                      style: TextStyle(
+                        fontSize: communityNum == 1 ? 14 : 13,
+                        fontWeight: communityNum == 1
+                            ? FontWeight.bold
+                            : FontWeight.normal,
+                        color: whiteColor,
+                      ),
+                    ),
+                  ),
+                  ElevatedButton(
+                    style: elevatedBtnTheme,
+                    onPressed: () {
+                      setState(() {
+                        communityNum = 2;
+                      });
+                    },
+                    child: Text(
+                      '이벤트',
+                      style: TextStyle(
+                        fontSize: communityNum == 2 ? 14 : 13,
+                        fontWeight: communityNum == 2
+                            ? FontWeight.bold
+                            : FontWeight.normal,
+                        color: whiteColor,
+                      ),
+                    ),
+                  ),
+                  ElevatedButton(
+                    style: elevatedBtnTheme,
+                    onPressed: () {
+                      setState(() {
+                        communityNum = 3;
+                      });
+                    },
+                    child: Text(
+                      '미디어',
+                      style: TextStyle(
+                        fontSize: communityNum == 3 ? 14 : 13,
+                        fontWeight: communityNum == 3
+                            ? FontWeight.bold
+                            : FontWeight.normal,
+                        color: whiteColor,
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
           ),
-        ),
-      ],
+          FadeIn(
+            child: communityNum == 0
+                ? InquiryScreen()
+                : communityNum == 1
+                    ? NotificationScreen()
+                    : communityNum == 2
+                        ? EventScreen()
+                        : MediaScreen(),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -438,56 +474,59 @@ class NotificationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: 20,
-      shrinkWrap: true,
-      itemBuilder: (context, index) {
-        return Padding(
-          padding: const EdgeInsets.only(bottom: 16),
-          child: InkWell(
-            onTap: () {},
-            child: Container(
-              width: widgetSize(context),
-              height: c5BoxSize(context),
-              padding: EdgeInsets.only(
-                left: 8,
-                right: 8,
-              ),
-              decoration: BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(
-                    color: blackColor,
-                    width: 2,
+    return SizedBox(
+      width: widgetSize(context),
+      child: ListView.builder(
+        itemCount: 20,
+        shrinkWrap: true,
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: const EdgeInsets.only(bottom: 16),
+            child: InkWell(
+              onTap: () {},
+              child: Container(
+                width: widgetSize(context),
+                height: c5BoxSize(context),
+                padding: EdgeInsets.only(
+                  left: 8,
+                  right: 8,
+                ),
+                decoration: BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(
+                      color: blackColor,
+                      width: 2,
+                    ),
                   ),
                 ),
-              ),
-              // padding: EdgeInsets.only(bottom: 4),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    '[공지사항] 공지사항은 읽어줬으면..',
-                    maxLines: 1,
-                    style: TextStyle(
-                      fontSize: h5FontSize(context),
-                      fontWeight: FontWeight.bold,
-                      color: blackColor,
+                // padding: EdgeInsets.only(bottom: 4),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      '[공지사항] 공지사항은 읽어줬으면..',
+                      maxLines: 1,
+                      style: TextStyle(
+                        fontSize: h5FontSize(context),
+                        fontWeight: FontWeight.bold,
+                        color: blackColor,
+                      ),
                     ),
-                  ),
-                  Text(
-                    '23.06.06',
-                    style: TextStyle(
-                      fontSize: h7FontSize(context),
-                      color: blackColor,
+                    Text(
+                      '23.06.06',
+                      style: TextStyle(
+                        fontSize: h7FontSize(context),
+                        color: blackColor,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }
@@ -498,65 +537,68 @@ class EventScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      itemCount: 8,
-      shrinkWrap: true,
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: MediaQuery.of(context).size.width < 800 ? 1 : 2,
-        childAspectRatio: 3 / 2.3,
-        mainAxisSpacing: 40,
-        crossAxisSpacing: 10,
-      ),
-      itemBuilder: (context, index) {
-        return InkWell(
-          onTap: () {},
-          child: Column(
-            children: [
-              Expanded(
-                flex: 1,
-                child: Container(
-                  color: blackColor,
+    return SizedBox(
+      width: widgetSize(context),
+      child: GridView.builder(
+        itemCount: 8,
+        shrinkWrap: true,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: MediaQuery.of(context).size.width < 800 ? 1 : 2,
+          childAspectRatio: 3 / 2.3,
+          mainAxisSpacing: 40,
+          crossAxisSpacing: 10,
+        ),
+        itemBuilder: (context, index) {
+          return InkWell(
+            onTap: () {},
+            child: Column(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    color: blackColor,
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 8),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      '주제',
-                      style: TextStyle(
-                        fontSize: h7FontSize(context),
-                        color: blackColor,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        top: 4,
-                        bottom: 8,
-                      ),
-                      child: Text(
-                        '제목입니다.영어로 title입니다.',
+                Padding(
+                  padding: const EdgeInsets.only(top: 8),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        '주제',
                         style: TextStyle(
-                          fontSize: h3FontSize(context),
+                          fontSize: h7FontSize(context),
                           color: blackColor,
                         ),
                       ),
-                    ),
-                    Text(
-                      'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ',
-                      style: TextStyle(
-                        fontSize: h7FontSize(context),
-                        color: blackColor,
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          top: 4,
+                          bottom: 8,
+                        ),
+                        child: Text(
+                          '제목입니다.영어로 title입니다.',
+                          style: TextStyle(
+                            fontSize: h3FontSize(context),
+                            color: blackColor,
+                          ),
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              )
-            ],
-          ),
-        );
-      },
+                      Text(
+                        'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ',
+                        style: TextStyle(
+                          fontSize: h7FontSize(context),
+                          color: blackColor,
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 }

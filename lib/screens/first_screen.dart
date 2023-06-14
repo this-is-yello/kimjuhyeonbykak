@@ -181,7 +181,8 @@ class _CarouselScreenState extends State<CarouselScreen> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              TextButton(
+              ElevatedButton(
+                style: elevatedBtnTheme,
                 onPressed: () {
                   picNum = 0;
                   moveSel();
@@ -195,7 +196,8 @@ class _CarouselScreenState extends State<CarouselScreen> {
                   ),
                 ),
               ),
-              TextButton(
+              ElevatedButton(
+                style: elevatedBtnTheme,
                 onPressed: () {
                   picNum = 1;
                   moveSel();
@@ -209,7 +211,8 @@ class _CarouselScreenState extends State<CarouselScreen> {
                   ),
                 ),
               ),
-              TextButton(
+              ElevatedButton(
+                style: elevatedBtnTheme,
                 onPressed: () {
                   picNum = 2;
                   moveSel();
@@ -223,7 +226,8 @@ class _CarouselScreenState extends State<CarouselScreen> {
                   ),
                 ),
               ),
-              TextButton(
+              ElevatedButton(
+                style: elevatedBtnTheme,
                 onPressed: () {
                   picNum = 3;
                   moveSel();
@@ -351,7 +355,8 @@ class _BykakStoryState extends State<BykakStory> {
               margin: const EdgeInsets.only(bottom: 20),
               color: blackColor,
             ),
-            TextButton(
+            ElevatedButton(
+              style: elevatedBtnTheme,
               onPressed: () {
                 Get.toNamed('/story');
               },
@@ -538,7 +543,8 @@ class _TailorShopScreenState extends State<TailorShopScreen> {
                   padding: const EdgeInsets.only(
                     bottom: 40,
                   ),
-                  child: TextButton(
+                  child: ElevatedButton(
+                    style: elevatedBtnTheme,
                     onPressed: () {
                       Get.toNamed('/tailorShop');
                     },
@@ -724,7 +730,8 @@ class _TailorAcademyScreenState extends State<TailorAcademyScreen> {
                   padding: const EdgeInsets.only(
                     bottom: 40,
                   ),
-                  child: TextButton(
+                  child: ElevatedButton(
+                    style: elevatedBtnTheme,
                     onPressed: () {
                       Get.toNamed('/tailorAcademy');
                     },
@@ -843,7 +850,8 @@ class _NewJemulpoClubScreenState extends State<NewJemulpoClubScreen> {
                     padding: const EdgeInsets.only(
                       bottom: 40,
                     ),
-                    child: TextButton(
+                    child: ElevatedButton(
+                      style: elevatedBtnTheme,
                       onPressed: () {
                         Get.toNamed('/newJemulpoClub');
                       },

@@ -10,7 +10,16 @@ var whiteColor = const Color(0xFFFFFFFF);
 // ---------- Variable -----------------------------------------------------------------------------------------------------
 int btnCurrentPage = 0;
 int scrollCurrentPage = 0;
-int initTab = 0;
+
+int publicityNum = 0;
+int communityNum = 0;
+int businessNum = 0;
+
+var elevatedBtnTheme = ElevatedButton.styleFrom(
+  backgroundColor: whiteColor.withOpacity(0),
+  shadowColor: whiteColor.withOpacity(0),
+  elevation: 0,
+);
 
 // var screenWidth = MediaQuery.of(context).size.width;
 // var screenHeight = MediaQuery.of(context).size.height;

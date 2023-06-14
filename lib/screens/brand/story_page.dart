@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:kimjuhyeonbykak/style.dart';
 import 'package:autoscale_tabbarview/autoscale_tabbarview.dart';
@@ -20,10 +21,7 @@ class StoryPage extends StatelessWidget {
               shrinkWrap: true,
               children: [
                 StoryMain(),
-                DefaultTabController(
-                  length: 3,
-                  child: StoryTabBarView(),
-                ),
+                StoryContent(),
                 Padding(
                   padding: EdgeInsets.only(
                     top: MediaQuery.of(context).size.width < 800 ? 120 : 160,
@@ -108,75 +106,99 @@ class StoryMain extends StatelessWidget {
   }
 }
 
-// ---------- TabBar_View -----------------------------------------------------------------------------------------------------
-class StoryTabBarView extends StatefulWidget {
-  const StoryTabBarView({super.key});
+// ---------- Story_Content -----------------------------------------------------------------------------------------------------
+class StoryContent extends StatefulWidget {
+  const StoryContent({super.key});
 
   @override
-  State<StoryTabBarView> createState() => _StoryTabBarViewState();
+  State<StoryContent> createState() => _StoryContentState();
 }
 
-class _StoryTabBarViewState extends State<StoryTabBarView>
-    with TickerProviderStateMixin {
-  late TabController _tabController;
-
-  @override
-  void initState() {
-    super.initState();
-    _tabController = TabController(
-      length: 3,
-      vsync: this,
-      initialIndex: initTab,
-    );
-  }
+class _StoryContentState extends State<StoryContent> {
+  int storyNum = 0;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          width: MediaQuery.of(context).size.width,
-          color: whiteColor,
-          child: TabBar(
-            labelColor: blackColor,
-            indicatorColor: blackColor,
-            indicatorSize: TabBarIndicatorSize.label,
-            controller: _tabController,
-            labelStyle: TextStyle(
-              fontWeight: FontWeight.bold,
+    return Center(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: EdgeInsets.only(top: 40, bottom: 40),
+            child: Container(
+              width: 360,
+              padding: EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: blackColor.withOpacity(0.7),
+                borderRadius: BorderRadius.circular(100),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ElevatedButton(
+                    style: elevatedBtnTheme,
+                    onPressed: () {
+                      setState(() {
+                        storyNum = 0;
+                      });
+                    },
+                    child: Text(
+                      'Ceo Message',
+                      style: TextStyle(
+                        fontSize: storyNum == 0 ? 14 : 13,
+                        fontWeight:
+                            storyNum == 0 ? FontWeight.bold : FontWeight.normal,
+                        color: whiteColor,
+                      ),
+                    ),
+                  ),
+                  ElevatedButton(
+                    style: elevatedBtnTheme,
+                    onPressed: () {
+                      setState(() {
+                        storyNum = 1;
+                      });
+                    },
+                    child: Text(
+                      '연혁',
+                      style: TextStyle(
+                        fontSize: storyNum == 1 ? 14 : 13,
+                        fontWeight:
+                            storyNum == 1 ? FontWeight.bold : FontWeight.normal,
+                        color: whiteColor,
+                      ),
+                    ),
+                  ),
+                  ElevatedButton(
+                    style: elevatedBtnTheme,
+                    onPressed: () {
+                      setState(() {
+                        storyNum = 2;
+                      });
+                    },
+                    child: Text(
+                      'CI·BI',
+                      style: TextStyle(
+                        fontSize: storyNum == 2 ? 14 : 13,
+                        fontWeight:
+                            storyNum == 2 ? FontWeight.bold : FontWeight.normal,
+                        color: whiteColor,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-            unselectedLabelStyle: TextStyle(
-              fontWeight: FontWeight.normal,
-            ),
-            tabs: [
-              Tab(
-                text: 'CEO Message',
-              ),
-              Tab(
-                text: '연혁',
-              ),
-              Tab(
-                text: 'CI·BI',
-              ),
-            ],
           ),
-        ),
-        Padding(
-          padding: EdgeInsets.fromLTRB(20, 40, 20, 0),
-          child: SizedBox(
-            width: widgetSize(context),
-            // height: null,
-            child: AutoScaleTabBarView(
-              controller: _tabController,
-              children: [
-                CeoMessageScreen(),
-                HistoryScreen(),
-                CiBiScreen(),
-              ],
-            ),
+          FadeIn(
+            child: storyNum == 0
+                ? CeoMessageScreen()
+                : storyNum == 1
+                    ? HistoryScreen()
+                    : CiBiScreen(),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
@@ -187,85 +209,82 @@ class CeoMessageScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 40),
-      child: SizedBox(
-        width: widgetSize(context),
-        child: Wrap(
-          direction: Axis.horizontal,
-          alignment: WrapAlignment.start,
-          spacing: 20,
-          runSpacing: 20,
-          children: [
-            SizedBox(
-              width: MediaQuery.of(context).size.width < 800
-                  ? widgetSize(context)
-                  : widgetSize(context) / 2 - 10,
-              child: Image.asset('assets/images/ceoMessage_bg.png'),
-            ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width < 800
-                  ? widgetSize(context)
-                  : widgetSize(context) / 2 - 10,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    '김주현입니다.',
+    return SizedBox(
+      width: widgetSize(context),
+      child: Wrap(
+        direction: Axis.horizontal,
+        alignment: WrapAlignment.start,
+        spacing: 20,
+        runSpacing: 20,
+        children: [
+          SizedBox(
+            width: MediaQuery.of(context).size.width < 800
+                ? widgetSize(context)
+                : widgetSize(context) / 2 - 10,
+            child: Image.asset('assets/images/ceoMessage_bg.png'),
+          ),
+          SizedBox(
+            width: MediaQuery.of(context).size.width < 800
+                ? widgetSize(context)
+                : widgetSize(context) / 2 - 10,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '김주현입니다.',
+                  style: TextStyle(
+                    fontSize: h2FontSize(context),
+                    fontFamily: 'Cafe_24',
+                    fontWeight: FontWeight.bold,
+                    color: blackColor,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    top: 20,
+                  ),
+                  child: Text(
+                    '#전통과 정통을 바느질 하다.',
                     style: TextStyle(
-                      fontSize: h2FontSize(context),
-                      fontFamily: 'Cafe_24',
-                      fontWeight: FontWeight.bold,
+                      fontSize: h4FontSize(context),
                       color: blackColor,
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 20,
-                    ),
-                    child: Text(
-                      '#전통과 정통을 바느질 하다.',
-                      style: TextStyle(
-                        fontSize: h4FontSize(context),
-                        color: blackColor,
-                      ),
-                    ),
+                ),
+                Text(
+                  '2014년 처음 문을 연 k!mjuhyeon by 覺(김주현바이각)은\n살아온 인천에 고급수제양복을 알리기 위해,\n남성들의 문화 공간이 될 수 있는 놀이터를 만들고자 설립되었습니다.\nby 覺(바이각)의 상위라벨인 Black Label(블랙라벨)은\n빠르게 만들어져 쉽게 소비되고, 버려지는 옷이 아닌\n입는 사람의 직업, 취향, 추억을 공유할 수 있는 인천 유일의\n맞춤 테일러링을 기반으로 하는 비스포크 테일러샵 입니다.',
+                  style: TextStyle(
+                    height: 2,
+                    fontSize: h7FontSize(context),
+                    color: blackColor,
                   ),
-                  Text(
-                    '2014년 처음 문을 연 k!mjuhyeon by 覺(김주현바이각)은\n살아온 인천에 고급수제양복을 알리기 위해,\n남성들의 문화 공간이 될 수 있는 놀이터를 만들고자 설립되었습니다.\nby 覺(바이각)의 상위라벨인 Black Label(블랙라벨)은\n빠르게 만들어져 쉽게 소비되고, 버려지는 옷이 아닌\n입는 사람의 직업, 취향, 추억을 공유할 수 있는 인천 유일의\n맞춤 테일러링을 기반으로 하는 비스포크 테일러샵 입니다.',
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    top: 32,
+                    bottom: 32,
+                  ),
+                  child: Text(
+                    '자신을 가꾸어 나가는 거, 그리고 유행을 따르지 않는 것,\n그것이 비스포크의 매력입니다.\n우리의 주 고객들은 자신을 사랑하고, 자신감이 넘치며\n성공적인 삶을 사는 남성분들입니다.\n올바른 옷 입기가 우리의 삶을 윤택하게 만들 것 입니다.\n좋은 인연으로 맺기를 기도합니다.',
                     style: TextStyle(
                       height: 2,
                       fontSize: h7FontSize(context),
                       color: blackColor,
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 32,
-                      bottom: 32,
-                    ),
-                    child: Text(
-                      '자신을 가꾸어 나가는 거, 그리고 유행을 따르지 않는 것,\n그것이 비스포크의 매력입니다.\n우리의 주 고객들은 자신을 사랑하고, 자신감이 넘치며\n성공적인 삶을 사는 남성분들입니다.\n올바른 옷 입기가 우리의 삶을 윤택하게 만들 것 입니다.\n좋은 인연으로 맺기를 기도합니다.',
-                      style: TextStyle(
-                        height: 2,
-                        fontSize: h7FontSize(context),
-                        color: blackColor,
-                      ),
-                    ),
+                ),
+                Text(
+                  '감사합니다.',
+                  style: TextStyle(
+                    fontSize: h7FontSize(context),
+                    color: blackColor,
                   ),
-                  Text(
-                    '감사합니다.',
-                    style: TextStyle(
-                      fontSize: h7FontSize(context),
-                      color: blackColor,
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -278,17 +297,14 @@ class HistoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: widgetSize(context) - 100,
-      child: Padding(
-        padding: const EdgeInsets.only(top: 40),
-        child: Column(
-          children: [
-            Image.asset(
-              'assets/images/history.png',
-              fit: BoxFit.contain,
-            ),
-          ],
-        ),
+      width: widgetSize(context),
+      child: Column(
+        children: [
+          Image.asset(
+            'assets/images/history.png',
+            fit: BoxFit.contain,
+          ),
+        ],
       ),
     );
   }
@@ -304,9 +320,8 @@ class CiBiScreen extends StatelessWidget {
       width: widgetSize(context),
       child: Column(
         children: [
-          Container(
+          SizedBox(
             width: widgetSize(context),
-            padding: EdgeInsets.only(top: 40),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,

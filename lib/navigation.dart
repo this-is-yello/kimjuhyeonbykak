@@ -14,26 +14,15 @@ class MainAppBar extends StatefulWidget {
 }
 
 class _MainAppBarState extends State<MainAppBar> {
-  bool navHover = false;
-  var navBarColor;
-
-  showNavDetail() {
-    if (navHover == true) {
-      setState(() {
-        navBarColor = blackColor;
-      });
-    } else {
-      setState(() {
-        navBarColor = blackColor.withOpacity(0.8);
-      });
-    }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    showNavDetail();
-  }
+  List navsMenu = ['브랜드', '홍보', '제품', '커뮤니티', '비즈니스'];
+  List navsMenuLinks = [
+    '/story',
+    '/publicity',
+    '/product',
+    '/community',
+    'business'
+  ];
+  List userMenu = ['KOR', '로그인'];
 
   List subMenu = [
     ['바이각스토리', '김주현바이각', '바이각 테일러아카데미', '신제물포구락부', '바이각 수트렌탈센터'],
@@ -41,6 +30,13 @@ class _MainAppBarState extends State<MainAppBar> {
     ['제품 보러가기'],
     ['문의하기', '공지사항', '이벤트', '미디어'],
     ['서포터즈', '협찬·협업·단체복 문의'],
+  ];
+  List subMenuText = [
+    'Lorem Ipsum is 11111 dummy text of the and typesetting industry.\nLorem Ipsum has 1111 the standard dummy text ever since the 1111s\nLorem Ipsum is simply dummy text of the and typesetting industry.\nLorem Ipsum has been the standard dummy text ever since the 1111s',
+    'Lorem Ipsum is 22222 dummy text of the and typesetting industry.\nLorem Ipsum has 2222 the standard dummy text ever since the 2222s\nLorem Ipsum is simply dummy text of the and typesetting industry.\nLorem Ipsum has been the standard dummy text ever since the 2222s',
+    'Lorem Ipsum is 33333 dummy text of the and typesetting industry.\nLorem Ipsum has 3333 the standard dummy text ever since the 3333s\nLorem Ipsum is simply dummy text of the and typesetting industry.\nLorem Ipsum has been the standard dummy text ever since the 33331s',
+    'Lorem Ipsum is 44444 dummy text of the and typesetting industry.\nLorem Ipsum has 4444 the standard dummy text ever since the 4444s\nLorem Ipsum is simply dummy text of the and typesetting industry.\nLorem Ipsum has been the standard dummy text ever since the 4444s',
+    'Lorem Ipsum is 55555 dummy text of the and typesetting industry.\nLorem Ipsum has 5555 the standard dummy text ever since the 5555s\nLorem Ipsum is simply dummy text of the and typesetting industry.\nLorem Ipsum has been the standard dummy text ever since the 5555s',
   ];
   List subMenuLinks = [
     [
@@ -55,6 +51,21 @@ class _MainAppBarState extends State<MainAppBar> {
     ['/community', '/community', '/community', '/community', '/community'],
     ['business', 'business'],
   ];
+
+  bool navBarHover = false;
+  var navBarColor = blackColor.withOpacity(0.7);
+  navBarColorState() {
+    if (navBarHover == true) {
+      setState(() {
+        navBarColor = blackColor;
+      });
+    } else {
+      setState(() {
+        navBarColor = blackColor.withOpacity(0.7);
+      });
+    }
+  }
+
   int i = 0;
 
   @override
@@ -65,390 +76,207 @@ class _MainAppBarState extends State<MainAppBar> {
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.width < 1240 ? 80 : 100,
           color: navBarColor,
-          // padding: const EdgeInsets.only(
-          //   top: 20,
-          //   bottom: 20,
-          // ),
           child: Center(
-            child: Padding(
-              padding: const EdgeInsets.only(
-                left: 20,
-                right: 20,
-              ),
-              child: SizedBox(
-                width: widgetSize(context),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        Get.toNamed('/');
-                      },
-                      onHover: (value) {
-                        if (value == true) {
-                          setState(() {
-                            navBarColor = blackColor;
-                          });
-                        } else {
-                          setState(() {
-                            navBarColor = blackColor.withOpacity(0.8);
-                          });
-                        }
-                      },
-                      child: SizedBox(
-                        width:
-                            MediaQuery.of(context).size.width < 1240 ? 60 : 80,
-                        height:
-                            MediaQuery.of(context).size.width < 1240 ? 60 : 80,
-                        child: Image.asset(
-                          'assets/images/logos/bykakLogo_w.png',
-                          fit: BoxFit.contain,
-                        ),
-                      ),
+            child: SizedBox(
+              width: widgetSize(context),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // FilledButton(
+                  //   style: FilledButton.styleFrom(
+                  //     backgroundColor: blackColor.withOpacity(0),
+                  //   ),
+                  //   onPressed: () {},
+                  //   child: SizedBox(
+                  //     // width: MediaQuery.of(context).size.width < 1240 ? 60 : 80,
+                  //     // height:
+                  //     //     MediaQuery.of(context).size.width < 1240 ? 60 : 80,
+                  //     child: Image.asset(
+                  //       'assets/images/logos/bykakLogo_w.png',
+                  //       fit: BoxFit.contain,
+                  //     ),
+                  //   ),
+                  // ),
+                  ElevatedButton(
+                    style: elevatedBtnTheme,
+                    onPressed: () {
+                      Get.toNamed('/');
+                    },
+                    onHover: (value) {
+                      if (value == true) {
+                        setState(() {
+                          navBarColor = blackColor;
+                        });
+                      } else {
+                        setState(() {
+                          navBarColor = blackColor.withOpacity(0.7);
+                        });
+                      }
+                    },
+                    child: Image.asset(
+                      'assets/images/logos/bykakLogo_w.png',
+                      fit: BoxFit.contain,
                     ),
-                    MediaQuery.of(context).size.width < 800
-                        ? Container()
-                        : Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                  left: 20,
-                                  right: 20,
-                                ),
-                                child: InkWell(
-                                  onTap: () {},
-                                  onHover: (value) {
-                                    setState(() {
-                                      navHover = value;
-                                      i = 0;
-                                    });
-                                    showNavDetail();
-                                  },
-                                  child: Container(
-                                    padding: const EdgeInsets.only(
-                                      left: 20,
-                                      right: 20,
-                                    ),
-                                    height:
-                                        MediaQuery.of(context).size.width < 1240
-                                            ? 80
-                                            : 100,
-                                    child: Center(
-                                      child: Text(
-                                        '브랜드',
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          color: whiteColor,
-                                        ),
+                  ),
+                  MediaQuery.of(context).size.width < 800
+                      ? Container()
+                      : Row(
+                          children: [
+                            ListView.builder(
+                              itemCount: 5,
+                              shrinkWrap: true,
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (context, index) {
+                                return Container(
+                                  width: 100,
+                                  child: ElevatedButton(
+                                    style: elevatedBtnTheme,
+                                    onPressed: () {
+                                      Get.toNamed(navsMenuLinks[index]);
+                                    },
+                                    onHover: (value) {
+                                      setState(() {
+                                        navBarHover = value;
+                                        navBarColorState();
+                                        i = index;
+                                      });
+                                    },
+                                    child: Text(
+                                      navsMenu[index],
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        color: whiteColor,
                                       ),
                                     ),
                                   ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                  left: 20,
-                                  right: 20,
-                                ),
-                                child: InkWell(
-                                  onTap: () {
-                                    Get.toNamed('/');
-                                    Get.toNamed('/publicity');
-                                  },
-                                  onHover: (value) {
-                                    setState(() {
-                                      navHover = value;
-                                      initTab = 0;
-                                      i = 1;
-                                    });
-                                    showNavDetail();
-                                  },
-                                  child: Container(
-                                    padding: const EdgeInsets.only(
-                                      left: 20,
-                                      right: 20,
-                                    ),
-                                    height:
-                                        MediaQuery.of(context).size.width < 1240
-                                            ? 80
-                                            : 100,
-                                    child: Center(
-                                      child: Text(
-                                        '홍보',
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          color: whiteColor,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                  left: 20,
-                                  right: 20,
-                                ),
-                                child: InkWell(
-                                  onTap: () {
-                                    Get.toNamed('/product');
-                                  },
-                                  onHover: (value) {
-                                    setState(() {
-                                      navHover = value;
-                                      i = 2;
-                                    });
-                                    showNavDetail();
-                                  },
-                                  child: Container(
-                                    padding: const EdgeInsets.only(
-                                      left: 20,
-                                      right: 20,
-                                    ),
-                                    height:
-                                        MediaQuery.of(context).size.width < 1240
-                                            ? 80
-                                            : 100,
-                                    child: Center(
-                                      child: Text(
-                                        '제품',
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          color: whiteColor,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                  left: 20,
-                                  right: 20,
-                                ),
-                                child: InkWell(
-                                  onTap: () {
-                                    Get.toNamed('/');
-                                    Get.toNamed('/community');
-                                  },
-                                  onHover: (value) {
-                                    setState(() {
-                                      navHover = value;
-                                      i = 3;
-                                    });
-                                    showNavDetail();
-                                  },
-                                  child: Container(
-                                    padding: const EdgeInsets.only(
-                                      left: 20,
-                                      right: 20,
-                                    ),
-                                    height:
-                                        MediaQuery.of(context).size.width < 1240
-                                            ? 80
-                                            : 100,
-                                    child: Center(
-                                      child: Text(
-                                        '커뮤니티',
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          color: whiteColor,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                  left: 20,
-                                  right: 20,
-                                ),
-                                child: InkWell(
-                                  onTap: () {
-                                    Get.toNamed('/');
-                                    Get.toNamed('/business');
-                                  },
-                                  onHover: (value) {
-                                    setState(() {
-                                      navHover = value;
-                                      i = 4;
-                                    });
-                                    showNavDetail();
-                                  },
-                                  child: Container(
-                                    padding: const EdgeInsets.only(
-                                      left: 20,
-                                      right: 20,
-                                    ),
-                                    height:
-                                        MediaQuery.of(context).size.width < 1240
-                                            ? 80
-                                            : 100,
-                                    child: Center(
-                                      child: Text(
-                                        '비즈니스',
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          color: whiteColor,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                    SizedBox(
-                      child: Row(
-                        children: [
-                          // Padding(
-                          //   padding: const EdgeInsets.only(
-                          //     right: 20,
-                          //   ),
-                          //   child: InkWell(
-                          //     child: Text(
-                          //       'KOR',
-                          //       style: TextStyle(
-                          //         fontSize: 16,
-                          //         color: whiteColor,
-                          //       ),
-                          //     ),
-                          //     onTap: () {},
-                          //   ),
-                          // ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                              left: 20,
+                                );
+                              },
                             ),
-                            child: InkWell(
-                              onTap: () {
-                                Get.toNamed('/login');
-                              },
-                              onHover: (value) {
-                                if (value == true) {
-                                  setState(() {
-                                    navBarColor = blackColor;
-                                  });
-                                } else {
-                                  setState(() {
-                                    navBarColor = blackColor.withOpacity(0.8);
-                                  });
-                                }
-                              },
-                              child: Text(
-                                '로그인',
-                                style: TextStyle(
-                                  fontSize: 16,
+                          ],
+                        ),
+                  Row(
+                    children: [
+                      ListView.builder(
+                        itemCount: 1,
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          return ElevatedButton(
+                            style: elevatedBtnTheme,
+                            onPressed: () {
+                              Get.toNamed('/login');
+                            },
+                            onHover: (value) {
+                              if (value == true) {
+                                setState(() {
+                                  navBarColor = blackColor;
+                                });
+                              } else {
+                                setState(() {
+                                  navBarColor = blackColor.withOpacity(0.7);
+                                });
+                              }
+                            },
+                            child: Text(
+                              userMenu[1],
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: whiteColor,
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                      MediaQuery.of(context).size.width < 800
+                          ? Padding(
+                              padding: const EdgeInsets.only(left: 16),
+                              child: InkWell(
+                                onTap: () {},
+                                child: Icon(
+                                  Icons.menu_rounded,
+                                  size: 32,
                                   color: whiteColor,
                                 ),
                               ),
-                            ),
-                          ),
-                          MediaQuery.of(context).size.width < 800
-                              ? Padding(
-                                  padding: const EdgeInsets.only(
-                                    left: 20,
-                                  ),
-                                  child: InkWell(
-                                    child: Icon(
-                                      Icons.menu_rounded,
-                                      size: 32,
-                                      color: whiteColor,
-                                    ),
-                                    onTap: () {},
-                                  ),
-                                )
-                              : Container()
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+                            )
+                          : Container(),
+                    ],
+                  )
+                ],
               ),
             ),
           ),
         ),
-        navHover
+        // ------------------------------ Sub_Menu ------------------------------
+        navBarHover
             ? FadeIn(
-                duration: Duration(milliseconds: 300),
                 child: InkWell(
-                  mouseCursor: MouseCursor.defer,
                   onTap: () {},
                   onHover: (value) {
                     setState(() {
-                      navHover = value;
+                      navBarHover = value;
+                      navBarColorState();
                     });
-                    showNavDetail();
                   },
                   child: Container(
                     width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.width < 800 ? 0 : 280,
+                    height: 240,
                     color: blackColor,
-                    child: Center(
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                          left: 20,
-                          right: 20,
-                        ),
-                        child: SizedBox(
-                          width: widgetSize(context),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SizedBox(
-                                width: widgetSize(context),
-                                height: c4BoxSize(context),
-                                child: Center(
-                                  child: ListView.builder(
-                                    scrollDirection: Axis.horizontal,
-                                    itemCount: subMenu[i].length,
-                                    itemBuilder: (context, index) {
-                                      return Padding(
-                                        padding: const EdgeInsets.fromLTRB(
-                                          20,
-                                          0,
-                                          20,
-                                          20,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              width: widgetSize(context),
+                              height: 40,
+                              child: ListView.builder(
+                                itemCount: subMenu[i].length,
+                                shrinkWrap: true,
+                                scrollDirection: Axis.horizontal,
+                                itemBuilder: (context, index) {
+                                  return Container(
+                                    padding: EdgeInsets.only(
+                                      left: 8,
+                                      right: 8,
+                                    ),
+                                    child: ElevatedButton(
+                                      style: elevatedBtnTheme,
+                                      onPressed: () {
+                                        Get.toNamed(subMenuLinks[i][index]);
+                                        setState(() {
+                                          publicityNum = index;
+                                          communityNum = index;
+                                          businessNum = index;
+                                        });
+                                      },
+                                      child: Text(
+                                        subMenu[i][index],
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          color: whiteColor,
                                         ),
-                                        child: InkWell(
-                                          onTap: () {
-                                            setState(() {
-                                              initTab = index;
-                                            });
-                                            print(initTab);
-                                            Get.toNamed('/');
-                                            Get.toNamed(subMenuLinks[i][index]);
-                                          },
-                                          child: Text(
-                                            subMenu[i][index],
-                                            style: TextStyle(
-                                              fontSize: 16,
-                                              color: whiteColor,
-                                            ),
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
+                                      ),
+                                    ),
+                                  );
+                                },
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 20),
-                                child: Text(
-                                  'Lorem Ipsum is simply dummy text of the and typesetting industry.\nLorem Ipsum has been the standard dummy text ever since the 1500s\nLorem Ipsum is simply dummy text of the and typesetting industry.\nLorem Ipsum has been the standard dummy text ever since the 1500s',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    color: whiteColor,
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
-                      ),
+                        Container(
+                          width: widgetSize(context),
+                          padding: EdgeInsets.only(left: 20, top: 60),
+                          child: Text(
+                            subMenuText[i],
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: whiteColor,
+                            ),
+                          ),
+                        )
+                      ],
                     ),
                   ),
                 ),
@@ -514,7 +342,8 @@ class _FooterState extends State<Footer> {
                 children: [
                   Row(
                     children: [
-                      TextButton(
+                      ElevatedButton(
+                        style: elevatedBtnTheme,
                         onPressed: () {},
                         child: Text(
                           'Instagram',
@@ -525,7 +354,8 @@ class _FooterState extends State<Footer> {
                           ),
                         ),
                       ),
-                      TextButton(
+                      ElevatedButton(
+                        style: elevatedBtnTheme,
                         onPressed: () {},
                         child: Text(
                           'Blog',
@@ -536,7 +366,8 @@ class _FooterState extends State<Footer> {
                           ),
                         ),
                       ),
-                      TextButton(
+                      ElevatedButton(
+                        style: elevatedBtnTheme,
                         onPressed: () {},
                         child: Text(
                           'Youtube',
@@ -551,7 +382,8 @@ class _FooterState extends State<Footer> {
                   ),
                   Row(
                     children: [
-                      TextButton(
+                      ElevatedButton(
+                        style: elevatedBtnTheme,
                         onPressed: () {},
                         child: Text(
                           '개인정보취급방침',
@@ -562,7 +394,8 @@ class _FooterState extends State<Footer> {
                           ),
                         ),
                       ),
-                      TextButton(
+                      ElevatedButton(
+                        style: elevatedBtnTheme,
                         onPressed: () {},
                         child: Text(
                           '이용약관',
@@ -573,7 +406,8 @@ class _FooterState extends State<Footer> {
                           ),
                         ),
                       ),
-                      TextButton(
+                      ElevatedButton(
+                        style: elevatedBtnTheme,
                         onPressed: () {},
                         child: Text(
                           '이메일무단수집거부',
@@ -586,7 +420,8 @@ class _FooterState extends State<Footer> {
                       ),
                     ],
                   ),
-                  TextButton(
+                  ElevatedButton(
+                    style: elevatedBtnTheme,
                     onPressed: () {},
                     child: Text(
                       '2023 DESIGNER ALL RIGHT RESERVED',

@@ -1,8 +1,7 @@
 import 'dart:ui';
-import 'package:carousel_slider/carousel_slider.dart';
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:kimjuhyeonbykak/style.dart';
-import 'package:autoscale_tabbarview/autoscale_tabbarview.dart';
 
 import 'package:kimjuhyeonbykak/navigation.dart';
 
@@ -13,28 +12,7 @@ class PublicityPage extends StatefulWidget {
   State<PublicityPage> createState() => _PublicityPageState();
 }
 
-class _PublicityPageState extends State<PublicityPage>
-    with TickerProviderStateMixin {
-  late TabController _tabController;
-
-  int tabNum = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    _tabController = TabController(
-      length: 3,
-      vsync: this,
-      // initialIndex: tabNum,
-    );
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _tabController.dispose();
-  }
-
+class _PublicityPageState extends State<PublicityPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,10 +24,7 @@ class _PublicityPageState extends State<PublicityPage>
             shrinkWrap: true,
             children: [
               PublicityTitle(),
-              DefaultTabController(
-                length: 3,
-                child: PublicityTabBarView(),
-              ),
+              PublicityContent(),
               Padding(
                 padding: EdgeInsets.only(
                   top: MediaQuery.of(context).size.width < 800 ? 120 : 160,
@@ -73,7 +48,7 @@ class PublicityTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: MediaQuery.of(context).size.width,
-      height: c1BoxSize(context) + 100,
+      height: c1BoxSize(context) + 200,
       child: Stack(
         alignment: Alignment.bottomLeft,
         children: [
@@ -81,12 +56,12 @@ class PublicityTitle extends StatelessWidget {
             children: [
               Image.asset(
                 width: MediaQuery.of(context).size.width,
-                height: c1BoxSize(context) + 100,
+                height: c1BoxSize(context) + 200,
                 'assets/images/tailorAcademy_bg.png',
                 fit: BoxFit.cover,
               ),
               Container(
-                height: c1BoxSize(context) + 100,
+                height: c1BoxSize(context) + 200,
                 decoration: BoxDecoration(
                   color: whiteColor,
                   gradient: LinearGradient(
@@ -142,131 +117,100 @@ class PublicityTitle extends StatelessWidget {
   }
 }
 
-// ---------- TabBar_View -----------------------------------------------------------------------------------------------------
-class PublicityTabBarView extends StatefulWidget {
-  const PublicityTabBarView({super.key});
+// ---------- Publicity_Content -----------------------------------------------------------------------------------------------------
+class PublicityContent extends StatefulWidget {
+  const PublicityContent({super.key});
 
   @override
-  State<PublicityTabBarView> createState() => _PublicityTabBarViewState();
+  State<PublicityContent> createState() => _PublicityContentState();
 }
 
-class _PublicityTabBarViewState extends State<PublicityTabBarView>
-    with TickerProviderStateMixin {
-  late TabController _tabController;
-
-  @override
-  void initState() {
-    super.initState();
-    _tabController = TabController(
-      length: 3,
-      vsync: this,
-      initialIndex: initTab,
-    );
-  }
-
+class _PublicityContentState extends State<PublicityContent> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        // Row(
-        //   mainAxisAlignment: MainAxisAlignment.center,
-        //   children: [
-        //     TextButton(
-        //       onPressed: () {},
-        //       child: Text(
-        //         'Tailor Shop',
-        //         style: TextStyle(
-        //           fontSize: 12,
-        //           color: blackColor,
-        //         ),
-        //       ),
-        //     ),
-        //     TextButton(
-        //       onPressed: () {},
-        //       child: Text(
-        //         'Tailor Academy',
-        //         style: TextStyle(
-        //           fontSize: 12,
-        //           color: blackColor,
-        //         ),
-        //       ),
-        //     ),
-        //     TextButton(
-        //       onPressed: () {},
-        //       child: Text(
-        //         'Studio',
-        //         style: TextStyle(
-        //           fontSize: 12,
-        //           color: blackColor,
-        //         ),
-        //       ),
-        //     ),
-        //     TextButton(
-        //       onPressed: () {},
-        //       child: Text(
-        //         'Rental Center',
-        //         style: TextStyle(
-        //           fontSize: 12,
-        //           color: blackColor,
-        //         ),
-        //       ),
-        //     ),
-        //   ],
-        // ),
-        // CarouselSlider(
-        //   items: [
-        //     MagazineScreen(),
-        //     NewsScreen(),
-        //     SponsorShipScreen(),
-        //   ],
-        //   options: CarouselOptions(
-        //     aspectRatio: MediaQuery.of(context).size.width /
-        //         MediaQuery.of(context).size.height,
-        //     viewportFraction: 1,
-        //     animateToClosest: false,
-        //     autoPlay: false,
-        //   ),
-        // ),
-        Container(
-          width: MediaQuery.of(context).size.width,
-          color: whiteColor,
-          child: TabBar(
-            controller: _tabController,
-            labelColor: blackColor,
-            indicatorColor: blackColor,
-            indicatorSize: TabBarIndicatorSize.label,
-            onTap: (value) {
-              initTab = value;
-            },
-            labelStyle: TextStyle(
-              fontWeight: FontWeight.bold,
-            ),
-            unselectedLabelStyle: TextStyle(
-              fontWeight: FontWeight.normal,
-            ),
-            tabs: [
-              Tab(text: '매거진'),
-              Tab(text: '보도자료'),
-              Tab(text: '협찬'),
-            ],
-          ),
-        ),
-        Padding(
-          padding: EdgeInsets.fromLTRB(20, 40, 20, 0),
-          child: SizedBox(
-            width: widgetSize(context),
-            // height: 1200,
-            child: AutoScaleTabBarView(
-              controller: _tabController,
-              children: [
-                MagazineScreen(),
-                NewsScreen(),
-                SponsorShipScreen(),
-              ],
+    return Center(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: EdgeInsets.only(top: 40, bottom: 40),
+            child: Container(
+              width: 360,
+              padding: EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: blackColor.withOpacity(0.7),
+                borderRadius: BorderRadius.circular(100),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ElevatedButton(
+                    style: elevatedBtnTheme,
+                    onPressed: () {
+                      setState(() {
+                        publicityNum = 0;
+                      });
+                    },
+                    child: Text(
+                      '매거진',
+                      style: TextStyle(
+                        fontSize: publicityNum == 0 ? 14 : 13,
+                        fontWeight: publicityNum == 0
+                            ? FontWeight.bold
+                            : FontWeight.normal,
+                        color: whiteColor,
+                      ),
+                    ),
+                  ),
+                  ElevatedButton(
+                    style: elevatedBtnTheme,
+                    onPressed: () {
+                      setState(() {
+                        publicityNum = 1;
+                      });
+                    },
+                    child: Text(
+                      '보도자료',
+                      style: TextStyle(
+                        fontSize: publicityNum == 1 ? 14 : 13,
+                        fontWeight: publicityNum == 1
+                            ? FontWeight.bold
+                            : FontWeight.normal,
+                        color: whiteColor,
+                      ),
+                    ),
+                  ),
+                  ElevatedButton(
+                    style: elevatedBtnTheme,
+                    onPressed: () {
+                      setState(() {
+                        publicityNum = 2;
+                      });
+                    },
+                    child: Text(
+                      '협찬',
+                      style: TextStyle(
+                        fontSize: publicityNum == 2 ? 14 : 13,
+                        fontWeight: publicityNum == 2
+                            ? FontWeight.bold
+                            : FontWeight.normal,
+                        color: whiteColor,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
-        ),
-      ],
+          FadeIn(
+            child: publicityNum == 0
+                ? MagazineScreen()
+                : publicityNum == 1
+                    ? NewsScreen()
+                    : SponsorShipScreen(),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -279,65 +223,69 @@ class MagazineScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: widgetSize(context),
-      child: GridView.builder(
-        itemCount: 8,
-        shrinkWrap: true,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: MediaQuery.of(context).size.width < 800 ? 1 : 2,
-          childAspectRatio: 3 / 2.3,
-          mainAxisSpacing: 40,
-          crossAxisSpacing: 10,
-        ),
-        itemBuilder: (context, index) {
-          return InkWell(
-            onTap: () {},
-            child: Column(
-              children: [
-                Expanded(
-                  flex: 1,
-                  child: Container(
-                    color: blackColor,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 8),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        '주제',
-                        style: TextStyle(
-                          fontSize: h7FontSize(context),
-                          color: blackColor,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          top: 4,
-                          bottom: 8,
-                        ),
-                        child: Text(
-                          '제목입니다.영어로 title입니다.',
-                          style: TextStyle(
-                            fontSize: h3FontSize(context),
-                            color: blackColor,
-                          ),
-                        ),
-                      ),
-                      Text(
-                        'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ',
-                        style: TextStyle(
-                          fontSize: h7FontSize(context),
-                          color: blackColor,
-                        ),
-                      ),
-                    ],
-                  ),
-                )
-              ],
+      child: Column(
+        children: [
+          GridView.builder(
+            itemCount: 8,
+            shrinkWrap: true,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: MediaQuery.of(context).size.width < 800 ? 1 : 2,
+              childAspectRatio: 3 / 2.3,
+              mainAxisSpacing: 40,
+              crossAxisSpacing: 10,
             ),
-          );
-        },
+            itemBuilder: (context, index) {
+              return InkWell(
+                onTap: () {},
+                child: Column(
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                        color: blackColor,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            '주제',
+                            style: TextStyle(
+                              fontSize: h7FontSize(context),
+                              color: blackColor,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              top: 4,
+                              bottom: 8,
+                            ),
+                            child: Text(
+                              '제목입니다.영어로 title입니다.',
+                              style: TextStyle(
+                                fontSize: h3FontSize(context),
+                                color: blackColor,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ',
+                            style: TextStyle(
+                              fontSize: h7FontSize(context),
+                              color: blackColor,
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              );
+            },
+          ),
+        ],
       ),
     );
   }
@@ -442,7 +390,7 @@ class SponsorShipScreen extends StatelessWidget {
           },
         ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Center(
               child: SizedBox(
@@ -458,9 +406,6 @@ class SponsorShipScreen extends StatelessWidget {
                   itemCount: 20,
                   itemBuilder: (context, index) {
                     return Container(
-                      // width: c1BoxSize(context) + 20,
-                      // height: c1BoxSize(context) + 100,
-                      // margin: EdgeInsets.all(10),
                       color: blackColor,
                     );
                   },
