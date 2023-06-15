@@ -24,7 +24,6 @@ class _CommunityPageState extends State<CommunityPage> {
           ListView(
             shrinkWrap: true,
             children: [
-              CommunityTitle(),
               CommunityContent(),
               Padding(
                 padding: EdgeInsets.only(
@@ -41,84 +40,7 @@ class _CommunityPageState extends State<CommunityPage> {
   }
 }
 
-// ---------- Community_Title -----------------------------------------------------------------------------------------------------
-class CommunityTitle extends StatelessWidget {
-  const CommunityTitle({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width,
-      height: c1BoxSize(context) + 200,
-      child: Stack(
-        alignment: Alignment.bottomLeft,
-        children: [
-          Stack(
-            children: [
-              Image.asset(
-                width: MediaQuery.of(context).size.width,
-                height: c1BoxSize(context) + 200,
-                'assets/images/jemulpoClub_bg.png',
-                fit: BoxFit.cover,
-              ),
-              Container(
-                height: c1BoxSize(context) + 200,
-                decoration: BoxDecoration(
-                  color: whiteColor,
-                  gradient: LinearGradient(
-                    begin: FractionalOffset.topCenter,
-                    end: FractionalOffset.bottomCenter,
-                    colors: [
-                      blackColor.withOpacity(0),
-                      whiteColor,
-                    ],
-                    stops: [0, 1],
-                  ),
-                ),
-              )
-            ],
-          ),
-          Center(
-            child: Padding(
-              padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
-              child: SizedBox(
-                width: widgetSize(context),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        bottom: 8,
-                      ),
-                      child: Text(
-                        '커뮤니티',
-                        style: TextStyle(
-                          fontSize: h1FontSize(context),
-                          fontWeight: FontWeight.bold,
-                          color: blackColor,
-                        ),
-                      ),
-                    ),
-                    Text(
-                      '어제보다 나은 작업물을 만드는 것이 이 시대의 장인정신입니다.',
-                      style: TextStyle(
-                        fontSize: h6FontSize(context),
-                        color: blackColor,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          )
-        ],
-      ),
-    );
-  }
-}
-
-// ---------- Community_View -----------------------------------------------------------------------------------------------------
+// ---------- Community_Content -----------------------------------------------------------------------------------------------------
 class CommunityContent extends StatefulWidget {
   const CommunityContent({super.key});
 
@@ -127,108 +49,186 @@ class CommunityContent extends StatefulWidget {
 }
 
 class _CommunityContentState extends State<CommunityContent> {
+  var communityTitle = '문의하기';
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Padding(
-            padding: EdgeInsets.only(top: 40, bottom: 40),
-            child: Container(
-              width: 360,
-              padding: EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: blackColor.withOpacity(0.7),
-                borderRadius: BorderRadius.circular(100),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ElevatedButton(
-                    style: elevatedBtnTheme,
-                    onPressed: () {
-                      setState(() {
-                        communityNum = 0;
-                      });
-                    },
-                    child: Text(
-                      '문의하기',
-                      style: TextStyle(
-                        fontSize: communityNum == 0 ? 14 : 13,
-                        fontWeight: communityNum == 0
-                            ? FontWeight.bold
-                            : FontWeight.normal,
+          SizedBox(
+            width: MediaQuery.of(context).size.width,
+            height: c1BoxSize(context) + 200,
+            child: Stack(
+              alignment: Alignment.bottomLeft,
+              children: [
+                Stack(
+                  children: [
+                    Image.asset(
+                      width: MediaQuery.of(context).size.width,
+                      height: c1BoxSize(context) + 200,
+                      'assets/images/jemulpoClub_bg.png',
+                      fit: BoxFit.cover,
+                    ),
+                    Container(
+                      height: c1BoxSize(context) + 200,
+                      decoration: BoxDecoration(
                         color: whiteColor,
+                        gradient: LinearGradient(
+                          begin: FractionalOffset.topCenter,
+                          end: FractionalOffset.bottomCenter,
+                          colors: [
+                            blackColor.withOpacity(0),
+                            whiteColor,
+                          ],
+                          stops: [0, 1],
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+                Center(
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
+                    child: SizedBox(
+                      width: widgetSize(context),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              bottom: 8,
+                            ),
+                            child: Text(
+                              communityTitle,
+                              style: TextStyle(
+                                fontSize: h1FontSize(context),
+                                fontWeight: FontWeight.bold,
+                                color: blackColor,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            '어제보다 나은 작업물을 만드는 것이 이 시대의 장인정신입니다.',
+                            style: TextStyle(
+                              fontSize: h6FontSize(context),
+                              color: blackColor,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
-                  ElevatedButton(
-                    style: elevatedBtnTheme,
-                    onPressed: () {
-                      setState(() {
-                        communityNum = 1;
-                      });
-                    },
-                    child: Text(
-                      '공지사항',
-                      style: TextStyle(
-                        fontSize: communityNum == 1 ? 14 : 13,
-                        fontWeight: communityNum == 1
-                            ? FontWeight.bold
-                            : FontWeight.normal,
-                        color: whiteColor,
-                      ),
-                    ),
-                  ),
-                  ElevatedButton(
-                    style: elevatedBtnTheme,
-                    onPressed: () {
-                      setState(() {
-                        communityNum = 2;
-                      });
-                    },
-                    child: Text(
-                      '이벤트',
-                      style: TextStyle(
-                        fontSize: communityNum == 2 ? 14 : 13,
-                        fontWeight: communityNum == 2
-                            ? FontWeight.bold
-                            : FontWeight.normal,
-                        color: whiteColor,
-                      ),
-                    ),
-                  ),
-                  ElevatedButton(
-                    style: elevatedBtnTheme,
-                    onPressed: () {
-                      setState(() {
-                        communityNum = 3;
-                      });
-                    },
-                    child: Text(
-                      '미디어',
-                      style: TextStyle(
-                        fontSize: communityNum == 3 ? 14 : 13,
-                        fontWeight: communityNum == 3
-                            ? FontWeight.bold
-                            : FontWeight.normal,
-                        color: whiteColor,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+                )
+              ],
             ),
           ),
-          FadeIn(
-            child: communityNum == 0
-                ? InquiryScreen()
-                : communityNum == 1
-                    ? NotificationScreen()
-                    : communityNum == 2
-                        ? EventScreen()
-                        : MediaScreen(),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: EdgeInsets.only(top: 40, bottom: 40),
+                child: Container(
+                  width: 360,
+                  padding: EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: blackColor.withOpacity(0.7),
+                    borderRadius: BorderRadius.circular(100),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ElevatedButton(
+                        style: elevatedBtnTheme,
+                        onPressed: () {
+                          setState(() {
+                            communityNum = 0;
+                            communityTitle = '문의하기';
+                          });
+                        },
+                        child: Text(
+                          '문의하기',
+                          style: TextStyle(
+                            fontSize: communityNum == 0 ? 14 : 13,
+                            fontWeight: communityNum == 0
+                                ? FontWeight.bold
+                                : FontWeight.normal,
+                            color: whiteColor,
+                          ),
+                        ),
+                      ),
+                      ElevatedButton(
+                        style: elevatedBtnTheme,
+                        onPressed: () {
+                          setState(() {
+                            communityNum = 1;
+                            communityTitle = '공지사항';
+                          });
+                        },
+                        child: Text(
+                          '공지사항',
+                          style: TextStyle(
+                            fontSize: communityNum == 1 ? 14 : 13,
+                            fontWeight: communityNum == 1
+                                ? FontWeight.bold
+                                : FontWeight.normal,
+                            color: whiteColor,
+                          ),
+                        ),
+                      ),
+                      ElevatedButton(
+                        style: elevatedBtnTheme,
+                        onPressed: () {
+                          setState(() {
+                            communityNum = 2;
+                            communityTitle = '이벤트';
+                          });
+                        },
+                        child: Text(
+                          '이벤트',
+                          style: TextStyle(
+                            fontSize: communityNum == 2 ? 14 : 13,
+                            fontWeight: communityNum == 2
+                                ? FontWeight.bold
+                                : FontWeight.normal,
+                            color: whiteColor,
+                          ),
+                        ),
+                      ),
+                      ElevatedButton(
+                        style: elevatedBtnTheme,
+                        onPressed: () {
+                          setState(() {
+                            communityNum = 3;
+                            communityTitle = '미디어';
+                          });
+                        },
+                        child: Text(
+                          '미디어',
+                          style: TextStyle(
+                            fontSize: communityNum == 3 ? 14 : 13,
+                            fontWeight: communityNum == 3
+                                ? FontWeight.bold
+                                : FontWeight.normal,
+                            color: whiteColor,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              FadeIn(
+                child: communityNum == 0
+                    ? InquiryScreen()
+                    : communityNum == 1
+                        ? NotificationScreen()
+                        : communityNum == 2
+                            ? EventScreen()
+                            : MediaScreen(),
+              ),
+            ],
           ),
         ],
       ),

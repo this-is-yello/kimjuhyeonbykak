@@ -14,13 +14,42 @@ class MainAppBar extends StatefulWidget {
 }
 
 class _MainAppBarState extends State<MainAppBar> {
-  // List subMenuText = [
-  //   'Lorem Ipsum is 11111 dummy text of the and typesetting industry.\nLorem Ipsum has 1111 the standard dummy text ever since the 1111s\nLorem Ipsum is simply dummy text of the and typesetting industry.\nLorem Ipsum has been the standard dummy text ever since the 1111s',
-  //   'Lorem Ipsum is 22222 dummy text of the and typesetting industry.\nLorem Ipsum has 2222 the standard dummy text ever since the 2222s\nLorem Ipsum is simply dummy text of the and typesetting industry.\nLorem Ipsum has been the standard dummy text ever since the 2222s',
-  //   'Lorem Ipsum is 33333 dummy text of the and typesetting industry.\nLorem Ipsum has 3333 the standard dummy text ever since the 3333s\nLorem Ipsum is simply dummy text of the and typesetting industry.\nLorem Ipsum has been the standard dummy text ever since the 33331s',
-  //   'Lorem Ipsum is 44444 dummy text of the and typesetting industry.\nLorem Ipsum has 4444 the standard dummy text ever since the 4444s\nLorem Ipsum is simply dummy text of the and typesetting industry.\nLorem Ipsum has been the standard dummy text ever since the 4444s',
-  //   'Lorem Ipsum is 55555 dummy text of the and typesetting industry.\nLorem Ipsum has 5555 the standard dummy text ever since the 5555s\nLorem Ipsum is simply dummy text of the and typesetting industry.\nLorem Ipsum has been the standard dummy text ever since the 5555s',
-  // ];
+  List navsMenu = ['브랜드', '홍보', '제품', '커뮤니티', '비즈니스'];
+  List navsMenuLinks = [
+    Routes.STORY,
+    Routes.PUBLICITY,
+    Routes.PRODUCT,
+    Routes.COMMUNITY,
+    Routes.BUSINESS
+  ];
+  List userMenu = ['KOR', '로그인'];
+
+  List subMenu = [
+    ['바이각스토리', '김주현바이각', '바이각 테일러아카데미', '신제물포구락부', '바이각 수트렌탈센터'],
+    ['매거진', '보도자료', '협찬'],
+    ['제품 보러가기'],
+    ['문의하기', '공지사항', '이벤트', '미디어'],
+    ['서포터즈', '협찬·협업·단체복 문의'],
+  ];
+  List subMenuLinks = [
+    [
+      Routes.STORY,
+      Routes.TAILORSHOP,
+      Routes.TAILORACADEMY,
+      Routes.NEWJUMULPOCLUB,
+      Routes.RENTALCENTER
+    ],
+    [Routes.PUBLICITY, Routes.PUBLICITY, Routes.PUBLICITY],
+    [Routes.PRODUCT],
+    [
+      Routes.COMMUNITY,
+      Routes.COMMUNITY,
+      Routes.COMMUNITY,
+      Routes.COMMUNITY,
+      Routes.COMMUNITY
+    ],
+    [Routes.BUSINESS, Routes.BUSINESS],
+  ];
 
   bool navBarHover = false;
 

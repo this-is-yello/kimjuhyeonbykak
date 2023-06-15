@@ -24,7 +24,6 @@ class _BusinessPageState extends State<BusinessPage> {
         children: [
           ListView(
             children: [
-              BusinessTitle(),
               BusinessContent(),
               Padding(
                 padding: EdgeInsets.only(
@@ -41,83 +40,6 @@ class _BusinessPageState extends State<BusinessPage> {
   }
 }
 
-// ---------- Busniess_Title -----------------------------------------------------------------------------------------------------
-class BusinessTitle extends StatelessWidget {
-  const BusinessTitle({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width,
-      height: c1BoxSize(context) + 200,
-      child: Stack(
-        alignment: Alignment.bottomLeft,
-        children: [
-          Stack(
-            children: [
-              Image.asset(
-                width: MediaQuery.of(context).size.width,
-                height: c1BoxSize(context) + 200,
-                'assets/images/tailorShop_bg.png',
-                fit: BoxFit.cover,
-              ),
-              Container(
-                height: c1BoxSize(context) + 200,
-                decoration: BoxDecoration(
-                  color: whiteColor,
-                  gradient: LinearGradient(
-                    begin: FractionalOffset.topCenter,
-                    end: FractionalOffset.bottomCenter,
-                    colors: [
-                      blackColor.withOpacity(0),
-                      whiteColor,
-                    ],
-                    stops: [0, 1],
-                  ),
-                ),
-              )
-            ],
-          ),
-          Center(
-            child: Padding(
-              padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
-              child: SizedBox(
-                width: widgetSize(context),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        bottom: 8,
-                      ),
-                      child: Text(
-                        '비즈니스',
-                        style: TextStyle(
-                          fontSize: h1FontSize(context),
-                          fontWeight: FontWeight.bold,
-                          color: blackColor,
-                        ),
-                      ),
-                    ),
-                    Text(
-                      '어제보다 나은 작업물을 만드는 것이 이 시대의 장인정신입니다.',
-                      style: TextStyle(
-                        fontSize: h6FontSize(context),
-                        color: blackColor,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          )
-        ],
-      ),
-    );
-  }
-}
-
 // ---------- Business_Content -----------------------------------------------------------------------------------------------------
 class BusinessContent extends StatefulWidget {
   const BusinessContent({super.key});
@@ -127,66 +49,143 @@ class BusinessContent extends StatefulWidget {
 }
 
 class _BusinessContentState extends State<BusinessContent> {
+  var businessTitle = '서포터즈';
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Padding(
-            padding: EdgeInsets.only(top: 40, bottom: 40),
-            child: Container(
-              width: 360,
-              padding: EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: blackColor.withOpacity(0.7),
-                borderRadius: BorderRadius.circular(100),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ElevatedButton(
-                    style: elevatedBtnTheme,
-                    onPressed: () {
-                      setState(() {
-                        businessNum = 0;
-                      });
-                    },
-                    child: Text(
-                      '서포터즈',
-                      style: TextStyle(
-                        fontSize: businessNum == 0 ? 14 : 13,
-                        fontWeight: businessNum == 0
-                            ? FontWeight.bold
-                            : FontWeight.normal,
+          SizedBox(
+            width: MediaQuery.of(context).size.width,
+            height: c1BoxSize(context) + 200,
+            child: Stack(
+              alignment: Alignment.bottomLeft,
+              children: [
+                Stack(
+                  children: [
+                    Image.asset(
+                      width: MediaQuery.of(context).size.width,
+                      height: c1BoxSize(context) + 200,
+                      'assets/images/tailorShop_bg.png',
+                      fit: BoxFit.cover,
+                    ),
+                    Container(
+                      height: c1BoxSize(context) + 200,
+                      decoration: BoxDecoration(
                         color: whiteColor,
+                        gradient: LinearGradient(
+                          begin: FractionalOffset.topCenter,
+                          end: FractionalOffset.bottomCenter,
+                          colors: [
+                            blackColor.withOpacity(0),
+                            whiteColor,
+                          ],
+                          stops: [0, 1],
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+                Center(
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
+                    child: SizedBox(
+                      width: widgetSize(context),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              bottom: 8,
+                            ),
+                            child: Text(
+                              businessTitle,
+                              style: TextStyle(
+                                fontSize: h1FontSize(context),
+                                fontWeight: FontWeight.bold,
+                                color: blackColor,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            '어제보다 나은 작업물을 만드는 것이 이 시대의 장인정신입니다.',
+                            style: TextStyle(
+                              fontSize: h6FontSize(context),
+                              color: blackColor,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
-                  ElevatedButton(
-                    style: elevatedBtnTheme,
-                    onPressed: () {
-                      setState(() {
-                        businessNum = 1;
-                      });
-                    },
-                    child: Text(
-                      '협찬·협업·단체복 문의',
-                      style: TextStyle(
-                        fontSize: businessNum == 1 ? 14 : 13,
-                        fontWeight: businessNum == 1
-                            ? FontWeight.bold
-                            : FontWeight.normal,
-                        color: whiteColor,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+                )
+              ],
             ),
           ),
-          FadeIn(
-            child: businessNum == 0 ? SupportersScreen() : SponInquiryScreen(),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: EdgeInsets.only(top: 40, bottom: 40),
+                child: Container(
+                  width: 360,
+                  padding: EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: blackColor.withOpacity(0.7),
+                    borderRadius: BorderRadius.circular(100),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ElevatedButton(
+                        style: elevatedBtnTheme,
+                        onPressed: () {
+                          setState(() {
+                            businessNum = 0;
+                            businessTitle = '서포터즈';
+                          });
+                        },
+                        child: Text(
+                          '서포터즈',
+                          style: TextStyle(
+                            fontSize: businessNum == 0 ? 14 : 13,
+                            fontWeight: businessNum == 0
+                                ? FontWeight.bold
+                                : FontWeight.normal,
+                            color: whiteColor,
+                          ),
+                        ),
+                      ),
+                      ElevatedButton(
+                        style: elevatedBtnTheme,
+                        onPressed: () {
+                          setState(() {
+                            businessNum = 1;
+                            businessTitle = '협찬·협업·단체복 문의';
+                          });
+                        },
+                        child: Text(
+                          '협찬·협업·단체복 문의',
+                          style: TextStyle(
+                            fontSize: businessNum == 1 ? 14 : 13,
+                            fontWeight: businessNum == 1
+                                ? FontWeight.bold
+                                : FontWeight.normal,
+                            color: whiteColor,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              FadeIn(
+                child:
+                    businessNum == 0 ? SupportersScreen() : SponInquiryScreen(),
+              ),
+            ],
           ),
         ],
       ),

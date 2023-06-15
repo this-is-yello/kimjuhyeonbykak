@@ -23,7 +23,6 @@ class _PublicityPageState extends State<PublicityPage> {
           ListView(
             shrinkWrap: true,
             children: [
-              PublicityTitle(),
               PublicityContent(),
               Padding(
                 padding: EdgeInsets.only(
@@ -40,122 +39,6 @@ class _PublicityPageState extends State<PublicityPage> {
   }
 }
 
-// ---------- Publicity_Title -----------------------------------------------------------------------------------------------------
-class PublicityTitle extends StatefulWidget {
-  const PublicityTitle({super.key});
-
-  @override
-  State<PublicityTitle> createState() => _PublicityTitleState();
-}
-
-class _PublicityTitleState extends State<PublicityTitle> {
-  publicityTitles() {
-    if (publicityNum == 0) {
-      setState(() {
-        publicityTitle = '매거진';
-      });
-    } else if (publicityNum == 1) {
-      setState(() {
-        publicityTitle = '보도자료';
-      });
-    } else {
-      setState(() {
-        publicityTitle = '협찬';
-      });
-    }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    if (publicityNum == 0) {
-      setState(() {
-        publicityTitle = '매거진';
-      });
-    } else if (publicityNum == 1) {
-      setState(() {
-        publicityTitle = '보도자료';
-      });
-    } else {
-      setState(() {
-        publicityTitle = '협찬';
-      });
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width,
-      height: c1BoxSize(context) + 200,
-      child: Stack(
-        alignment: Alignment.bottomLeft,
-        children: [
-          Stack(
-            children: [
-              Image.asset(
-                width: MediaQuery.of(context).size.width,
-                height: c1BoxSize(context) + 200,
-                'assets/images/tailorAcademy_bg.png',
-                fit: BoxFit.cover,
-              ),
-              Container(
-                height: c1BoxSize(context) + 200,
-                decoration: BoxDecoration(
-                  color: whiteColor,
-                  gradient: LinearGradient(
-                    begin: FractionalOffset.topCenter,
-                    end: FractionalOffset.bottomCenter,
-                    colors: [
-                      blackColor.withOpacity(0),
-                      whiteColor,
-                    ],
-                    stops: [0, 1],
-                  ),
-                ),
-              )
-            ],
-          ),
-          Center(
-            child: Padding(
-              padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
-              child: SizedBox(
-                width: widgetSize(context),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        bottom: 8,
-                      ),
-                      child: Text(
-                        '매거진',
-                        style: TextStyle(
-                          fontSize: h1FontSize(context),
-                          fontWeight: FontWeight.bold,
-                          color: blackColor,
-                        ),
-                      ),
-                    ),
-                    Text(
-                      '어제보다 나은 작업물을 만드는 것이 이 시대의 장인정신입니다.',
-                      style: TextStyle(
-                        fontSize: h6FontSize(context),
-                        color: blackColor,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          )
-        ],
-      ),
-    );
-  }
-}
-
 // ---------- Publicity_Content -----------------------------------------------------------------------------------------------------
 class PublicityContent extends StatefulWidget {
   const PublicityContent({super.key});
@@ -165,116 +48,167 @@ class PublicityContent extends StatefulWidget {
 }
 
 class _PublicityContentState extends State<PublicityContent> {
+  var publicityTitle = '매거진';
+
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Padding(
-            padding: EdgeInsets.only(top: 40, bottom: 40),
-            child: Container(
-              width: 360,
-              height: 40,
-              padding: EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: blackColor.withOpacity(0.7),
-                borderRadius: BorderRadius.circular(100),
-              ),
-              // child: ListView.builder(
-              //   itemCount: subMenu[i].length,
-              //   scrollDirection: Axis.horizontal,
-              //   itemBuilder: (context, index) {
-              //     return ElevatedButton(
-              //       style: elevatedBtnTheme,
-              //       onPressed: () {
-              //         setState(() {
-              //           publicityNum = 0;
-              //         });
-              //       },
-              //       child: Text(
-              //         subMenu[i][index],
-              //         style: TextStyle(
-              //           fontSize: publicityNum == 0 ? 14 : 13,
-              //           fontWeight: publicityNum == 0
-              //               ? FontWeight.bold
-              //               : FontWeight.normal,
-              //           color: whiteColor,
-              //         ),
-              //       ),
-              //     );
-              //   },
-              // )
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ElevatedButton(
-                    style: elevatedBtnTheme,
-                    onPressed: () {
-                      setState(() {
-                        publicityNum = 0;
-                      });
-                      print(['매거진', '보도자료', '협찬'][publicityNum]);
-                    },
-                    child: Text(
-                      '매거진',
-                      style: TextStyle(
-                        fontSize: publicityNum == 0 ? 14 : 13,
-                        fontWeight: publicityNum == 0
-                            ? FontWeight.bold
-                            : FontWeight.normal,
+          SizedBox(
+            width: MediaQuery.of(context).size.width,
+            height: c1BoxSize(context) + 200,
+            child: Stack(
+              alignment: Alignment.bottomLeft,
+              children: [
+                Stack(
+                  children: [
+                    Image.asset(
+                      width: MediaQuery.of(context).size.width,
+                      height: c1BoxSize(context) + 200,
+                      'assets/images/tailorAcademy_bg.png',
+                      fit: BoxFit.cover,
+                    ),
+                    Container(
+                      height: c1BoxSize(context) + 200,
+                      decoration: BoxDecoration(
                         color: whiteColor,
+                        gradient: LinearGradient(
+                          begin: FractionalOffset.topCenter,
+                          end: FractionalOffset.bottomCenter,
+                          colors: [
+                            blackColor.withOpacity(0),
+                            whiteColor,
+                          ],
+                          stops: [0, 1],
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+                Center(
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
+                    child: SizedBox(
+                      width: widgetSize(context),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              bottom: 8,
+                            ),
+                            child: Text(
+                              publicityTitle,
+                              style: TextStyle(
+                                fontSize: h1FontSize(context),
+                                fontWeight: FontWeight.bold,
+                                color: blackColor,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            '어제보다 나은 작업물을 만드는 것이 이 시대의 장인정신입니다.',
+                            style: TextStyle(
+                              fontSize: h6FontSize(context),
+                              color: blackColor,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
-                  ElevatedButton(
-                    style: elevatedBtnTheme,
-                    onPressed: () {
-                      setState(() {
-                        publicityNum = 1;
-                      });
-                      print(['매거진', '보도자료', '협찬'][publicityNum]);
-                    },
-                    child: Text(
-                      '보도자료',
-                      style: TextStyle(
-                        fontSize: publicityNum == 1 ? 14 : 13,
-                        fontWeight: publicityNum == 1
-                            ? FontWeight.bold
-                            : FontWeight.normal,
-                        color: whiteColor,
-                      ),
-                    ),
-                  ),
-                  ElevatedButton(
-                    style: elevatedBtnTheme,
-                    onPressed: () {
-                      setState(() {
-                        publicityNum = 2;
-                      });
-                      print(['매거진', '보도자료', '협찬'][publicityNum]);
-                    },
-                    child: Text(
-                      '협찬',
-                      style: TextStyle(
-                        fontSize: publicityNum == 2 ? 14 : 13,
-                        fontWeight: publicityNum == 2
-                            ? FontWeight.bold
-                            : FontWeight.normal,
-                        color: whiteColor,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+                )
+              ],
             ),
           ),
-          FadeIn(
-            child: publicityNum == 0
-                ? MagazineScreen()
-                : publicityNum == 1
-                    ? NewsScreen()
-                    : SponsorShipScreen(),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: EdgeInsets.only(top: 40, bottom: 40),
+                child: Container(
+                  width: 360,
+                  height: 40,
+                  padding: EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: blackColor.withOpacity(0.7),
+                    borderRadius: BorderRadius.circular(100),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ElevatedButton(
+                        style: elevatedBtnTheme,
+                        onPressed: () {
+                          setState(() {
+                            publicityNum = 0;
+                            publicityTitle = '매거진';
+                          });
+                        },
+                        child: Text(
+                          '매거진',
+                          style: TextStyle(
+                            fontSize: publicityNum == 0 ? 14 : 13,
+                            fontWeight: publicityNum == 0
+                                ? FontWeight.bold
+                                : FontWeight.normal,
+                            color: whiteColor,
+                          ),
+                        ),
+                      ),
+                      ElevatedButton(
+                        style: elevatedBtnTheme,
+                        onPressed: () {
+                          setState(() {
+                            publicityNum = 1;
+                            publicityTitle = '보도자료';
+                          });
+                        },
+                        child: Text(
+                          '보도자료',
+                          style: TextStyle(
+                            fontSize: publicityNum == 1 ? 14 : 13,
+                            fontWeight: publicityNum == 1
+                                ? FontWeight.bold
+                                : FontWeight.normal,
+                            color: whiteColor,
+                          ),
+                        ),
+                      ),
+                      ElevatedButton(
+                        style: elevatedBtnTheme,
+                        onPressed: () {
+                          setState(() {
+                            publicityNum = 2;
+                            publicityTitle = '협찬';
+                          });
+                        },
+                        child: Text(
+                          '협찬',
+                          style: TextStyle(
+                            fontSize: publicityNum == 2 ? 14 : 13,
+                            fontWeight: publicityNum == 2
+                                ? FontWeight.bold
+                                : FontWeight.normal,
+                            color: whiteColor,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              FadeIn(
+                child: publicityNum == 0
+                    ? MagazineScreen()
+                    : publicityNum == 1
+                        ? NewsScreen()
+                        : SponsorShipScreen(),
+              ),
+            ],
           ),
         ],
       ),
