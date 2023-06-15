@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:kimjuhyeonbykak/style.dart';
+import 'package:kimjuhyeonbykak/main.dart';
+
+import 'package:get/get.dart';
 
 class LogInPage extends StatelessWidget {
   const LogInPage({super.key});
@@ -17,7 +19,7 @@ class LogInPage extends StatelessWidget {
           children: [
             InkWell(
               onTap: () {
-                Get.toNamed('/');
+                Get.rootDelegate.toNamed(Routes.MAIN);
               },
               child: Container(
                 width: 200,

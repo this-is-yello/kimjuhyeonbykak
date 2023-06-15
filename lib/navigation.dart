@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kimjuhyeonbykak/style.dart';
-// import 'package:kimjuhyeonbykak/variable.dart';
+import 'package:kimjuhyeonbykak/main.dart';
 
 import 'package:animate_do/animate_do.dart';
 import 'package:get/get.dart';
@@ -14,45 +14,16 @@ class MainAppBar extends StatefulWidget {
 }
 
 class _MainAppBarState extends State<MainAppBar> {
-  List navsMenu = ['브랜드', '홍보', '제품', '커뮤니티', '비즈니스'];
-  List navsMenuLinks = [
-    '/story',
-    '/publicity',
-    '/product',
-    '/community',
-    'business'
-  ];
-  List userMenu = ['KOR', '로그인'];
-
-  List subMenu = [
-    ['바이각스토리', '김주현바이각', '바이각 테일러아카데미', '신제물포구락부', '바이각 수트렌탈센터'],
-    ['매거진', '보도자료', '협찬'],
-    ['제품 보러가기'],
-    ['문의하기', '공지사항', '이벤트', '미디어'],
-    ['서포터즈', '협찬·협업·단체복 문의'],
-  ];
-  List subMenuText = [
-    'Lorem Ipsum is 11111 dummy text of the and typesetting industry.\nLorem Ipsum has 1111 the standard dummy text ever since the 1111s\nLorem Ipsum is simply dummy text of the and typesetting industry.\nLorem Ipsum has been the standard dummy text ever since the 1111s',
-    'Lorem Ipsum is 22222 dummy text of the and typesetting industry.\nLorem Ipsum has 2222 the standard dummy text ever since the 2222s\nLorem Ipsum is simply dummy text of the and typesetting industry.\nLorem Ipsum has been the standard dummy text ever since the 2222s',
-    'Lorem Ipsum is 33333 dummy text of the and typesetting industry.\nLorem Ipsum has 3333 the standard dummy text ever since the 3333s\nLorem Ipsum is simply dummy text of the and typesetting industry.\nLorem Ipsum has been the standard dummy text ever since the 33331s',
-    'Lorem Ipsum is 44444 dummy text of the and typesetting industry.\nLorem Ipsum has 4444 the standard dummy text ever since the 4444s\nLorem Ipsum is simply dummy text of the and typesetting industry.\nLorem Ipsum has been the standard dummy text ever since the 4444s',
-    'Lorem Ipsum is 55555 dummy text of the and typesetting industry.\nLorem Ipsum has 5555 the standard dummy text ever since the 5555s\nLorem Ipsum is simply dummy text of the and typesetting industry.\nLorem Ipsum has been the standard dummy text ever since the 5555s',
-  ];
-  List subMenuLinks = [
-    [
-      '/story',
-      '/tailorShop',
-      '/tailorAcademy',
-      '/newJemulpoClub',
-      '/rentalCenter'
-    ],
-    ['/publicity', '/publicity', '/publicity'],
-    ['/product'],
-    ['/community', '/community', '/community', '/community', '/community'],
-    ['business', 'business'],
-  ];
+  // List subMenuText = [
+  //   'Lorem Ipsum is 11111 dummy text of the and typesetting industry.\nLorem Ipsum has 1111 the standard dummy text ever since the 1111s\nLorem Ipsum is simply dummy text of the and typesetting industry.\nLorem Ipsum has been the standard dummy text ever since the 1111s',
+  //   'Lorem Ipsum is 22222 dummy text of the and typesetting industry.\nLorem Ipsum has 2222 the standard dummy text ever since the 2222s\nLorem Ipsum is simply dummy text of the and typesetting industry.\nLorem Ipsum has been the standard dummy text ever since the 2222s',
+  //   'Lorem Ipsum is 33333 dummy text of the and typesetting industry.\nLorem Ipsum has 3333 the standard dummy text ever since the 3333s\nLorem Ipsum is simply dummy text of the and typesetting industry.\nLorem Ipsum has been the standard dummy text ever since the 33331s',
+  //   'Lorem Ipsum is 44444 dummy text of the and typesetting industry.\nLorem Ipsum has 4444 the standard dummy text ever since the 4444s\nLorem Ipsum is simply dummy text of the and typesetting industry.\nLorem Ipsum has been the standard dummy text ever since the 4444s',
+  //   'Lorem Ipsum is 55555 dummy text of the and typesetting industry.\nLorem Ipsum has 5555 the standard dummy text ever since the 5555s\nLorem Ipsum is simply dummy text of the and typesetting industry.\nLorem Ipsum has been the standard dummy text ever since the 5555s',
+  // ];
 
   bool navBarHover = false;
+
   var navBarColor = blackColor.withOpacity(0.7);
   navBarColorState() {
     if (navBarHover == true) {
@@ -65,8 +36,6 @@ class _MainAppBarState extends State<MainAppBar> {
       });
     }
   }
-
-  int i = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +69,7 @@ class _MainAppBarState extends State<MainAppBar> {
                   ElevatedButton(
                     style: elevatedBtnTheme,
                     onPressed: () {
-                      Get.toNamed('/');
+                      Get.rootDelegate.toNamed(Routes.MAIN);
                     },
                     onHover: (value) {
                       if (value == true) {
@@ -132,7 +101,13 @@ class _MainAppBarState extends State<MainAppBar> {
                                   child: ElevatedButton(
                                     style: elevatedBtnTheme,
                                     onPressed: () {
-                                      Get.toNamed(navsMenuLinks[index]);
+                                      setState(() {
+                                        publicityNum = 0;
+                                        communityNum = 0;
+                                        businessNum = 0;
+                                      });
+                                      Get.rootDelegate
+                                          .toNamed(navsMenuLinks[index]);
                                     },
                                     onHover: (value) {
                                       setState(() {
@@ -164,7 +139,7 @@ class _MainAppBarState extends State<MainAppBar> {
                           return ElevatedButton(
                             style: elevatedBtnTheme,
                             onPressed: () {
-                              Get.toNamed('/login');
+                              Get.rootDelegate.toNamed(Routes.LOGIN);
                             },
                             onHover: (value) {
                               if (value == true) {
@@ -220,7 +195,7 @@ class _MainAppBarState extends State<MainAppBar> {
                   },
                   child: Container(
                     width: MediaQuery.of(context).size.width,
-                    height: 240,
+                    height: 100,
                     color: blackColor,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -244,12 +219,13 @@ class _MainAppBarState extends State<MainAppBar> {
                                     child: ElevatedButton(
                                       style: elevatedBtnTheme,
                                       onPressed: () {
-                                        Get.toNamed(subMenuLinks[i][index]);
                                         setState(() {
                                           publicityNum = index;
                                           communityNum = index;
                                           businessNum = index;
                                         });
+                                        Get.rootDelegate
+                                            .toNamed(subMenuLinks[i][index]);
                                       },
                                       child: Text(
                                         subMenu[i][index],
@@ -265,17 +241,17 @@ class _MainAppBarState extends State<MainAppBar> {
                             ),
                           ],
                         ),
-                        Container(
-                          width: widgetSize(context),
-                          padding: EdgeInsets.only(left: 20, top: 60),
-                          child: Text(
-                            subMenuText[i],
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: whiteColor,
-                            ),
-                          ),
-                        )
+                        // Container(
+                        //   width: widgetSize(context),
+                        //   padding: EdgeInsets.only(left: 20, top: 60),
+                        //   child: Text(
+                        //     subMenuText[i],
+                        //     style: TextStyle(
+                        //       fontSize: 16,
+                        //       color: whiteColor,
+                        //     ),
+                        //   ),
+                        // ),
                       ],
                     ),
                   ),
@@ -300,7 +276,6 @@ class _FooterState extends State<Footer> {
   void initState() {
     super.initState();
     btnCurrentPage = 0;
-    print(btnCurrentPage);
   }
 
   @override
@@ -325,7 +300,7 @@ class _FooterState extends State<Footer> {
             children: [
               InkWell(
                 onTap: () {
-                  Get.toNamed('/');
+                  Get.rootDelegate.toNamed(Routes.MAIN);
                 },
                 child: SizedBox(
                   width: c5BoxSize(context),

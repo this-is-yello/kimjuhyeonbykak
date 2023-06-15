@@ -41,8 +41,47 @@ class _PublicityPageState extends State<PublicityPage> {
 }
 
 // ---------- Publicity_Title -----------------------------------------------------------------------------------------------------
-class PublicityTitle extends StatelessWidget {
+class PublicityTitle extends StatefulWidget {
   const PublicityTitle({super.key});
+
+  @override
+  State<PublicityTitle> createState() => _PublicityTitleState();
+}
+
+class _PublicityTitleState extends State<PublicityTitle> {
+  publicityTitles() {
+    if (publicityNum == 0) {
+      setState(() {
+        publicityTitle = '매거진';
+      });
+    } else if (publicityNum == 1) {
+      setState(() {
+        publicityTitle = '보도자료';
+      });
+    } else {
+      setState(() {
+        publicityTitle = '협찬';
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    if (publicityNum == 0) {
+      setState(() {
+        publicityTitle = '매거진';
+      });
+    } else if (publicityNum == 1) {
+      setState(() {
+        publicityTitle = '보도자료';
+      });
+    } else {
+      setState(() {
+        publicityTitle = '협찬';
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +130,7 @@ class PublicityTitle extends StatelessWidget {
                         bottom: 8,
                       ),
                       child: Text(
-                        '홍보',
+                        '매거진',
                         style: TextStyle(
                           fontSize: h1FontSize(context),
                           fontWeight: FontWeight.bold,
@@ -136,11 +175,36 @@ class _PublicityContentState extends State<PublicityContent> {
             padding: EdgeInsets.only(top: 40, bottom: 40),
             child: Container(
               width: 360,
+              height: 40,
               padding: EdgeInsets.all(8),
               decoration: BoxDecoration(
                 color: blackColor.withOpacity(0.7),
                 borderRadius: BorderRadius.circular(100),
               ),
+              // child: ListView.builder(
+              //   itemCount: subMenu[i].length,
+              //   scrollDirection: Axis.horizontal,
+              //   itemBuilder: (context, index) {
+              //     return ElevatedButton(
+              //       style: elevatedBtnTheme,
+              //       onPressed: () {
+              //         setState(() {
+              //           publicityNum = 0;
+              //         });
+              //       },
+              //       child: Text(
+              //         subMenu[i][index],
+              //         style: TextStyle(
+              //           fontSize: publicityNum == 0 ? 14 : 13,
+              //           fontWeight: publicityNum == 0
+              //               ? FontWeight.bold
+              //               : FontWeight.normal,
+              //           color: whiteColor,
+              //         ),
+              //       ),
+              //     );
+              //   },
+              // )
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -150,6 +214,7 @@ class _PublicityContentState extends State<PublicityContent> {
                       setState(() {
                         publicityNum = 0;
                       });
+                      print(['매거진', '보도자료', '협찬'][publicityNum]);
                     },
                     child: Text(
                       '매거진',
@@ -168,6 +233,7 @@ class _PublicityContentState extends State<PublicityContent> {
                       setState(() {
                         publicityNum = 1;
                       });
+                      print(['매거진', '보도자료', '협찬'][publicityNum]);
                     },
                     child: Text(
                       '보도자료',
@@ -186,6 +252,7 @@ class _PublicityContentState extends State<PublicityContent> {
                       setState(() {
                         publicityNum = 2;
                       });
+                      print(['매거진', '보도자료', '협찬'][publicityNum]);
                     },
                     child: Text(
                       '협찬',

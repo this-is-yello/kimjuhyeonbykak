@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kimjuhyeonbykak/main.dart';
 
 // ---------- Color -----------------------------------------------------------------------------------------------------
 var bykakColor = const Color(0xFF205B48);
@@ -10,6 +11,7 @@ var whiteColor = const Color(0xFFFFFFFF);
 // ---------- Variable -----------------------------------------------------------------------------------------------------
 int btnCurrentPage = 0;
 int scrollCurrentPage = 0;
+int i = 0;
 
 int publicityNum = 0;
 int communityNum = 0;
@@ -21,6 +23,44 @@ var elevatedBtnTheme = ElevatedButton.styleFrom(
   elevation: 0,
 );
 
+List navsMenu = ['브랜드', '홍보', '제품', '커뮤니티', '비즈니스'];
+List navsMenuLinks = [
+  Routes.STORY,
+  Routes.PUBLICITY,
+  Routes.PRODUCT,
+  Routes.COMMUNITY,
+  Routes.BUSINESS
+];
+List userMenu = ['KOR', '로그인'];
+
+List subMenu = [
+  ['바이각스토리', '김주현바이각', '바이각 테일러아카데미', '신제물포구락부', '바이각 수트렌탈센터'],
+  ['매거진', '보도자료', '협찬'],
+  ['제품 보러가기'],
+  ['문의하기', '공지사항', '이벤트', '미디어'],
+  ['서포터즈', '협찬·협업·단체복 문의'],
+];
+List subMenuLinks = [
+  [
+    Routes.STORY,
+    Routes.TAILORSHOP,
+    Routes.TAILORACADEMY,
+    Routes.NEWJUMULPOCLUB,
+    Routes.RENTALCENTER
+  ],
+  [Routes.PUBLICITY, Routes.PUBLICITY, Routes.PUBLICITY],
+  [Routes.PRODUCT],
+  [
+    Routes.COMMUNITY,
+    Routes.COMMUNITY,
+    Routes.COMMUNITY,
+    Routes.COMMUNITY,
+    Routes.COMMUNITY
+  ],
+  [Routes.BUSINESS, Routes.BUSINESS],
+];
+
+var publicityTitle = ['매거진', '보도자료', '협찬'][publicityNum];
 // var screenWidth = MediaQuery.of(context).size.width;
 // var screenHeight = MediaQuery.of(context).size.height;
 

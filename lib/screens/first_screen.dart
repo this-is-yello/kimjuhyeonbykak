@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:kimjuhyeonbykak/style.dart';
+import 'package:kimjuhyeonbykak/main.dart';
 
 // import 'package:opscroll_web/opscroll_web.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -39,11 +40,11 @@ class _CarouselScreenState extends State<CarouselScreen> {
     '개화기 제물포구락부의 역사를 계승하고자 합니다.',
     '그 날을 위한 자신감, 바이각',
   ];
-  List<String> mainViewLinks = [
-    '/tailorShop',
-    '/tailorAcademy',
-    '/newJemulpoClub',
-    '/rentalCenter',
+  List mainViewLinks = [
+    Routes.TAILORSHOP,
+    Routes.TAILORACADEMY,
+    Routes.NEWJUMULPOCLUB,
+    Routes.RENTALCENTER
   ];
 
   int picNum = 0;
@@ -146,7 +147,7 @@ class _CarouselScreenState extends State<CarouselScreen> {
                             ),
                             InkWell(
                               onTap: () {
-                                Get.toNamed(mainViewLinks[index]);
+                                Get.rootDelegate.toNamed(mainViewLinks[index]);
                               },
                               child: Container(
                                 width: c4BoxSize(context) - 10,
@@ -358,7 +359,7 @@ class _BykakStoryState extends State<BykakStory> {
             ElevatedButton(
               style: elevatedBtnTheme,
               onPressed: () {
-                Get.toNamed('/story');
+                Get.rootDelegate.toNamed(Routes.STORY);
               },
               child: Text(
                 '자세히보기',
@@ -546,7 +547,7 @@ class _TailorShopScreenState extends State<TailorShopScreen> {
                   child: ElevatedButton(
                     style: elevatedBtnTheme,
                     onPressed: () {
-                      Get.toNamed('/tailorShop');
+                      Get.rootDelegate.toNamed(Routes.TAILORSHOP);
                     },
                     child: Text(
                       '자세히보기',
@@ -733,7 +734,7 @@ class _TailorAcademyScreenState extends State<TailorAcademyScreen> {
                   child: ElevatedButton(
                     style: elevatedBtnTheme,
                     onPressed: () {
-                      Get.toNamed('/tailorAcademy');
+                      Get.rootDelegate.toNamed(Routes.TAILORACADEMY);
                     },
                     child: Text(
                       '자세히보기',
@@ -853,7 +854,7 @@ class _NewJemulpoClubScreenState extends State<NewJemulpoClubScreen> {
                     child: ElevatedButton(
                       style: elevatedBtnTheme,
                       onPressed: () {
-                        Get.toNamed('/newJemulpoClub');
+                        Get.rootDelegate.toNamed(Routes.NEWJUMULPOCLUB);
                       },
                       child: Text(
                         '자세히보기',

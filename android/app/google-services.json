@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "807369422416",
+    "project_id": "kimjuhyeonbykak",
+    "storage_bucket": "kimjuhyeonbykak.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:807369422416:android:a9d58e98f31cdffff1c355",
+        "android_client_info": {
+          "package_name": "com.designer.kimjuhyeonbykak"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "807369422416-p9t1f4f6s7kuj09m665idjij5bqvnj8v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxu-d96HkBw1_4VW5N0qxYA4bl5UFfziU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "807369422416-p9t1f4f6s7kuj09m665idjij5bqvnj8v.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "807369422416-46ksjfd6b7d7t1t5vmf1k0ss06g2uo9c.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.designer.kimjuhyeonbykak"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
