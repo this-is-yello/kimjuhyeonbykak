@@ -68,9 +68,10 @@ class _CarouselScreenState extends State<CarouselScreen> {
     return Stack(
       alignment: Alignment.bottomCenter,
       children: [
-        SizedBox(
+        Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
+          color: blackColor,
           child: CarouselSlider.builder(
             carouselController: _carouselController,
             itemCount: 4,
