@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:kimjuhyeonbykak/style.dart';
 import 'package:kimjuhyeonbykak/main.dart';
+import 'package:kimjuhyeonbykak/navigation.dart';
 
 // import 'package:opscroll_web/opscroll_web.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -9,7 +10,101 @@ import 'package:widget_and_text_animator/widget_and_text_animator.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:countup/countup.dart';
+import 'package:motion/motion.dart';
 import 'package:get/get.dart';
+
+class MainPage extends StatefulWidget {
+  const MainPage({super.key});
+
+  @override
+  State<MainPage> createState() => _MainPageState();
+}
+
+class _MainPageState extends State<MainPage> {
+  final ScrollController _scrollController = ScrollController();
+
+  scrollState() {
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels ==
+              _scrollController.position.minScrollExtent ||
+          _scrollController.position.pixels ==
+              _scrollController.position.maxScrollExtent) {
+        setState(() {
+          topState = true;
+        });
+      } else {
+        setState(() {
+          topState = false;
+        });
+      }
+    });
+  }
+
+  moveTop() {
+    _scrollController.animateTo(
+      MediaQuery.of(context).size.height * 0,
+      duration: const Duration(milliseconds: 1800),
+      curve: Curves.fastOutSlowIn,
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    topState = true;
+    scrollState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: whiteColor,
+      body: Stack(
+        alignment: Alignment.topCenter,
+        children: [
+          ListView(
+            controller: _scrollController,
+            children: [
+              CarouselScreen(),
+              BykakStory(),
+              TailorShopScreen(),
+              TailorAcademyScreen(),
+              NewJemulpoClubScreen(),
+              Padding(
+                padding: EdgeInsets.only(top: 120, bottom: 120),
+                child: MainComment(),
+              ),
+              Footer(),
+              bottomToTop(context, () => moveTop()),
+            ],
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const MainAppBar(),
+            ],
+          ),
+        ],
+      ),
+      floatingActionButton: topState
+          ? Container()
+          : Padding(
+              padding: const EdgeInsets.only(right: 8, bottom: 8),
+              child: FloatingActionButton(
+                child: Icon(
+                  Icons.keyboard_arrow_up_rounded,
+                  color: whiteColor,
+                  size: 30,
+                ),
+                backgroundColor: blackColor.withOpacity(0.5),
+                onPressed: () {
+                  moveTop();
+                },
+              ),
+            ),
+    );
+  }
+}
 
 // ---------- Main_Carousel -----------------------------------------------------------------------------------------------------
 class CarouselScreen extends StatefulWidget {
@@ -57,13 +152,6 @@ class _CarouselScreenState extends State<CarouselScreen> {
   }
 
   @override
-  void initState() {
-    super.initState();
-    btnCurrentPage = 1;
-    print(btnCurrentPage);
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Stack(
       alignment: Alignment.bottomCenter,
@@ -95,16 +183,29 @@ class _CarouselScreenState extends State<CarouselScreen> {
               return Stack(
                 alignment: Alignment.center,
                 children: [
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height,
-                    child: WidgetAnimator(
-                      atRestEffect: WidgetRestingEffects.size(
-                        duration: Duration(milliseconds: 24000),
+                  Motion.only(
+                    filterQuality: FilterQuality.low,
+                    translation:
+                        TranslationConfiguration(maxOffset: Offset(0, 0)),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage(
+                            mainBackgrounds[index],
+                          ),
+                          fit: BoxFit.fill,
+                        ),
                       ),
-                      child: Image.asset(
-                        mainBackgrounds[index],
-                        fit: BoxFit.cover,
+                      child: WidgetAnimator(
+                        atRestEffect: WidgetRestingEffects.size(
+                          duration: Duration(milliseconds: 24000),
+                        ),
+                        child: Image.asset(
+                          mainBackgrounds[index],
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ),
@@ -178,73 +279,90 @@ class _CarouselScreenState extends State<CarouselScreen> {
             },
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.only(bottom: 120),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ElevatedButton(
-                style: elevatedBtnTheme,
-                onPressed: () {
-                  picNum = 0;
-                  moveSel();
-                },
-                child: Text(
-                  'Tailor Shop',
-                  style: TextStyle(
-                    fontSize: picNum == 0 ? 13 : 12,
-                    fontWeight: picNum == 0 ? FontWeight.bold : null,
-                    color: whiteColor,
+        Column(
+          children: [
+            MediaQuery.of(context).size.width < 800
+                ? Container()
+                : Padding(
+                    padding: const EdgeInsets.only(bottom: 40),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ElevatedButton(
+                          style: elevatedBtnTheme,
+                          onPressed: () {
+                            picNum = 0;
+                            moveSel();
+                          },
+                          child: Text(
+                            'Tailor Shop',
+                            style: TextStyle(
+                              fontSize: picNum == 0 ? 13 : 12,
+                              fontWeight: picNum == 0 ? FontWeight.bold : null,
+                              color: whiteColor,
+                            ),
+                          ),
+                        ),
+                        ElevatedButton(
+                          style: elevatedBtnTheme,
+                          onPressed: () {
+                            picNum = 1;
+                            moveSel();
+                          },
+                          child: Text(
+                            'Tailor Academy',
+                            style: TextStyle(
+                              fontSize: picNum == 1 ? 13 : 12,
+                              fontWeight: picNum == 1 ? FontWeight.bold : null,
+                              color: whiteColor,
+                            ),
+                          ),
+                        ),
+                        ElevatedButton(
+                          style: elevatedBtnTheme,
+                          onPressed: () {
+                            picNum = 2;
+                            moveSel();
+                          },
+                          child: Text(
+                            'Studio',
+                            style: TextStyle(
+                              fontSize: picNum == 2 ? 13 : 12,
+                              fontWeight: picNum == 2 ? FontWeight.bold : null,
+                              color: whiteColor,
+                            ),
+                          ),
+                        ),
+                        ElevatedButton(
+                          style: elevatedBtnTheme,
+                          onPressed: () {
+                            picNum = 3;
+                            moveSel();
+                          },
+                          child: Text(
+                            'Rental Center',
+                            style: TextStyle(
+                              fontSize: picNum == 3 ? 13 : 12,
+                              fontWeight: picNum == 3 ? FontWeight.bold : null,
+                              color: whiteColor,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
+            Padding(
+              padding: EdgeInsets.only(bottom: 32),
+              child: WidgetAnimator(
+                atRestEffect: WidgetRestingEffects.bounce(),
+                child: Icon(
+                  Icons.keyboard_arrow_down_rounded,
+                  color: whiteColor,
+                  size: 72,
                 ),
               ),
-              ElevatedButton(
-                style: elevatedBtnTheme,
-                onPressed: () {
-                  picNum = 1;
-                  moveSel();
-                },
-                child: Text(
-                  'Tailor Academy',
-                  style: TextStyle(
-                    fontSize: picNum == 1 ? 13 : 12,
-                    fontWeight: picNum == 1 ? FontWeight.bold : null,
-                    color: whiteColor,
-                  ),
-                ),
-              ),
-              ElevatedButton(
-                style: elevatedBtnTheme,
-                onPressed: () {
-                  picNum = 2;
-                  moveSel();
-                },
-                child: Text(
-                  'Studio',
-                  style: TextStyle(
-                    fontSize: picNum == 2 ? 13 : 12,
-                    fontWeight: picNum == 2 ? FontWeight.bold : null,
-                    color: whiteColor,
-                  ),
-                ),
-              ),
-              ElevatedButton(
-                style: elevatedBtnTheme,
-                onPressed: () {
-                  picNum = 3;
-                  moveSel();
-                },
-                child: Text(
-                  'Rental Center',
-                  style: TextStyle(
-                    fontSize: picNum == 3 ? 13 : 12,
-                    fontWeight: picNum == 3 ? FontWeight.bold : null,
-                    color: whiteColor,
-                  ),
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ],
     );
@@ -260,13 +378,6 @@ class BykakStory extends StatefulWidget {
 }
 
 class _BykakStoryState extends State<BykakStory> {
-  @override
-  void initState() {
-    super.initState();
-    btnCurrentPage = 1;
-    print(btnCurrentPage);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -399,7 +510,7 @@ countingText(context) {
             ),
           ),
           SizedBox(
-            width: c1BoxSize(context) + 30,
+            width: c1BoxSize(context) + 40,
             child: Countup(
               begin: 0,
               end: 5981,
@@ -433,7 +544,7 @@ countingText(context) {
               ),
             ),
             SizedBox(
-              width: c1BoxSize(context) + 30,
+              width: c1BoxSize(context) + 40,
               child: Countup(
                 begin: 0,
                 end: 59804019,
@@ -463,7 +574,7 @@ countingText(context) {
             ),
           ),
           SizedBox(
-            width: c1BoxSize(context) + 30,
+            width: c1BoxSize(context) + 40,
             child: Countup(
               begin: 0,
               end: 592119,
@@ -495,13 +606,6 @@ class TailorShopScreen extends StatefulWidget {
 }
 
 class _TailorShopScreenState extends State<TailorShopScreen> {
-  @override
-  void initState() {
-    super.initState();
-    btnCurrentPage = 2;
-    print(btnCurrentPage);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -604,7 +708,7 @@ doWhat(context) {
       Text(
         '맞춤정장을 배워 무엇을 할 수 있을까?',
         style: TextStyle(
-          fontSize: h5FontSize(context),
+          fontSize: h3FontSize(context),
         ),
       ),
       Row(
@@ -613,11 +717,11 @@ doWhat(context) {
           Text(
             '"테일러링을 배워서 ',
             style: TextStyle(
-              fontSize: h5FontSize(context),
+              fontSize: h3FontSize(context),
             ),
           ),
           Container(
-            width: c4BoxSize(context) + 8,
+            width: c2BoxSize(context),
             height: MediaQuery.of(context).size.width < 800 ? 32 : 40,
             decoration: BoxDecoration(
               border: Border(
@@ -631,23 +735,23 @@ doWhat(context) {
               totalRepeatCount: 50000,
               animatedTexts: [
                 RotateAnimatedText(
-                  '나의 수트제작',
+                  '나만의 수트제작',
                   textStyle: TextStyle(
-                    fontSize: h7FontSize(context) + 1,
+                    fontSize: h6FontSize(context) + 1,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 RotateAnimatedText(
                   '테일러샵 창업',
                   textStyle: TextStyle(
-                    fontSize: h7FontSize(context) + 1,
+                    fontSize: h6FontSize(context) + 1,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 RotateAnimatedText(
                   '쇼핑몰 오픈',
                   textStyle: TextStyle(
-                    fontSize: h7FontSize(context) + 1,
+                    fontSize: h6FontSize(context) + 1,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -657,7 +761,7 @@ doWhat(context) {
           Text(
             ' 을 하고싶다"',
             style: TextStyle(
-              fontSize: h5FontSize(context),
+              fontSize: h3FontSize(context),
             ),
           ),
         ],
@@ -681,13 +785,6 @@ class TailorAcademyScreen extends StatefulWidget {
 }
 
 class _TailorAcademyScreenState extends State<TailorAcademyScreen> {
-  @override
-  void initState() {
-    super.initState();
-    btnCurrentPage = 3;
-    print(btnCurrentPage);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -801,13 +898,6 @@ class NewJemulpoClubScreen extends StatefulWidget {
 
 class _NewJemulpoClubScreenState extends State<NewJemulpoClubScreen> {
   @override
-  void initState() {
-    super.initState();
-    btnCurrentPage = 4;
-    print(btnCurrentPage);
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
@@ -909,13 +999,6 @@ class MainComment extends StatefulWidget {
 }
 
 class _MainCommentState extends State<MainComment> {
-  @override
-  void initState() {
-    super.initState();
-    btnCurrentPage = 5;
-    print(btnCurrentPage);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Padding(

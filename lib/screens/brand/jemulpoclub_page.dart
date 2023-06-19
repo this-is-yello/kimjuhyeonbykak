@@ -4,8 +4,49 @@ import 'package:kimjuhyeonbykak/style.dart';
 import 'package:kimjuhyeonbykak/screens/first_screen.dart';
 import 'package:kimjuhyeonbykak/navigation.dart';
 
-class JemulpoClubPage extends StatelessWidget {
+import 'package:widget_and_text_animator/widget_and_text_animator.dart';
+
+class JemulpoClubPage extends StatefulWidget {
   const JemulpoClubPage({super.key});
+
+  @override
+  State<JemulpoClubPage> createState() => _JemulpoClubPageState();
+}
+
+class _JemulpoClubPageState extends State<JemulpoClubPage> {
+  final ScrollController _scrollController = ScrollController();
+
+  scrollState() {
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels ==
+              _scrollController.position.minScrollExtent ||
+          _scrollController.position.pixels ==
+              _scrollController.position.maxScrollExtent) {
+        setState(() {
+          topState = true;
+        });
+      } else {
+        setState(() {
+          topState = false;
+        });
+      }
+    });
+  }
+
+  moveTop() {
+    _scrollController.animateTo(
+      0,
+      duration: const Duration(milliseconds: 1800),
+      curve: Curves.fastOutSlowIn,
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    topState = true;
+    scrollState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +58,7 @@ class JemulpoClubPage extends StatelessWidget {
           SizedBox(
             width: MediaQuery.of(context).size.width,
             child: ListView(
+              controller: _scrollController,
               children: [
                 JemulpoClubMain(),
                 Padding(
@@ -43,12 +85,29 @@ class JemulpoClubPage extends StatelessWidget {
                   ),
                   child: Footer(),
                 ),
+                bottomToTop(context, () => moveTop()),
               ],
             ),
           ),
           MainAppBar(),
         ],
       ),
+      floatingActionButton: topState
+          ? Container()
+          : Padding(
+              padding: const EdgeInsets.only(right: 8, bottom: 8),
+              child: FloatingActionButton(
+                child: Icon(
+                  Icons.keyboard_arrow_up_rounded,
+                  color: whiteColor,
+                  size: 30,
+                ),
+                backgroundColor: blackColor.withOpacity(0.5),
+                onPressed: () {
+                  moveTop();
+                },
+              ),
+            ),
     );
   }
 }
@@ -63,7 +122,7 @@ class JemulpoClubMain extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
       child: Stack(
-        alignment: Alignment.bottomLeft,
+        alignment: Alignment.bottomCenter,
         children: [
           Image.asset(
             width: MediaQuery.of(context).size.width,
@@ -104,7 +163,7 @@ class JemulpoClubMain extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      '다양한 수트를 입어보면서 올바른 옷입기에 도움이 돼..',
+                      '신제물포구락부 관련멘트 삽입',
                       style: TextStyle(
                         fontSize: h6FontSize(context),
                         color: whiteColor,
@@ -114,7 +173,18 @@ class JemulpoClubMain extends StatelessWidget {
                 ),
               ),
             ),
-          )
+          ),
+          Padding(
+            padding: EdgeInsets.only(bottom: 32),
+            child: WidgetAnimator(
+              atRestEffect: WidgetRestingEffects.bounce(),
+              child: Icon(
+                Icons.keyboard_arrow_down_rounded,
+                color: whiteColor,
+                size: 72,
+              ),
+            ),
+          ),
         ],
       ),
     );

@@ -13,6 +13,40 @@ class ProductPage extends StatefulWidget {
 }
 
 class _ProductPageState extends State<ProductPage> {
+  final ScrollController _scrollController = ScrollController();
+
+  scrollState() {
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels ==
+              _scrollController.position.minScrollExtent ||
+          _scrollController.position.pixels ==
+              _scrollController.position.maxScrollExtent) {
+        setState(() {
+          topState = true;
+        });
+      } else {
+        setState(() {
+          topState = false;
+        });
+      }
+    });
+  }
+
+  moveTop() {
+    _scrollController.animateTo(
+      0,
+      duration: const Duration(milliseconds: 1800),
+      curve: Curves.fastOutSlowIn,
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    topState = true;
+    scrollState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,6 +55,7 @@ class _ProductPageState extends State<ProductPage> {
         alignment: Alignment.topCenter,
         children: [
           ListView(
+            controller: _scrollController,
             children: [
               ProductTitle(),
               ProductsGrid(),
@@ -32,6 +67,7 @@ class _ProductPageState extends State<ProductPage> {
                     ),
                     child: Footer(),
                   ),
+                  bottomToTop(context, () => moveTop()),
                 ],
               ),
             ],
@@ -39,6 +75,22 @@ class _ProductPageState extends State<ProductPage> {
           MainAppBar(),
         ],
       ),
+      floatingActionButton: topState
+          ? Container()
+          : Padding(
+              padding: const EdgeInsets.only(right: 8, bottom: 8),
+              child: FloatingActionButton(
+                child: Icon(
+                  Icons.keyboard_arrow_up_rounded,
+                  color: whiteColor,
+                  size: 30,
+                ),
+                backgroundColor: blackColor.withOpacity(0.5),
+                onPressed: () {
+                  moveTop();
+                },
+              ),
+            ),
     );
   }
 }

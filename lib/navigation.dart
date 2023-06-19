@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kimjuhyeonbykak/style.dart';
 import 'package:kimjuhyeonbykak/main.dart';
 
+import 'package:side_sheet/side_sheet.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:get/get.dart';
 
@@ -51,6 +52,153 @@ class _MainAppBarState extends State<MainAppBar> {
     [Routes.BUSINESS, Routes.BUSINESS],
   ];
 
+  mobileMenu() async {
+    // -------------------- Mobile_Menu --------------------
+    return await SideSheet.right(
+      context: context,
+      width: MediaQuery.of(context).size.width * 0.9,
+      body: Container(
+        color: blackColor,
+        padding: EdgeInsets.all(16),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ElevatedButton(
+                style: elevatedBtnTheme,
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Icon(
+                  Icons.close_rounded,
+                  size: 40,
+                  color: whiteColor,
+                ),
+              ),
+              ListView.builder(
+                itemCount: navsMenu.length,
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  return SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      style: elevatedBtnTheme,
+                      onPressed: () async {
+                        setState(() {
+                          i = index;
+                        });
+                        // -------------------- Mobile_SubMenu --------------------
+                        await SideSheet.left(
+                          context: context,
+                          width: MediaQuery.of(context).size.width * 0.8,
+                          body: Container(
+                            color: whiteColor,
+                            padding: EdgeInsets.all(16),
+                            child: Center(
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  ElevatedButton(
+                                    style: elevatedBtnTheme,
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: Icon(
+                                      Icons.arrow_back_rounded,
+                                      size: 40,
+                                      color: blackColor,
+                                    ),
+                                  ),
+                                  ListView.builder(
+                                    itemCount: subMenu[i].length,
+                                    shrinkWrap: true,
+                                    itemBuilder: (context, index) {
+                                      return SizedBox(
+                                        width: double.infinity,
+                                        child: ElevatedButton(
+                                          style: elevatedBtnTheme,
+                                          onPressed: () {
+                                            setState(() {
+                                              publicityNum = index;
+                                              communityNum = index;
+                                              businessNum = index;
+                                            });
+                                            Get.rootDelegate.toNamed(
+                                                subMenuLinks[i][index]);
+                                            print(subMenu[i][index]);
+                                          },
+                                          child: Padding(
+                                            padding: EdgeInsets.only(
+                                              top: 16,
+                                              bottom: 16,
+                                            ),
+                                            child: Text(
+                                              subMenu[i][index],
+                                              style: TextStyle(
+                                                fontSize: 20,
+                                                color: blackColor,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                  Container(
+                                    width: double.infinity,
+                                    height: 160,
+                                    padding: EdgeInsets.only(
+                                      bottom: 40,
+                                    ),
+                                    child: Image.asset(
+                                      'assets/images/logos/bykakLogo_b.png',
+                                      fit: BoxFit.contain,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                          top: 16,
+                          bottom: 16,
+                        ),
+                        child: Text(
+                          navsMenu[index],
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: whiteColor,
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+              Container(
+                width: double.infinity,
+                height: 160,
+                padding: EdgeInsets.only(
+                  bottom: 40,
+                ),
+                child: Image.asset(
+                  'assets/images/logos/bykakLogo_w.png',
+                  fit: BoxFit.contain,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   bool navBarHover = false;
 
   var navBarColor = blackColor.withOpacity(0.7);
@@ -72,7 +220,7 @@ class _MainAppBarState extends State<MainAppBar> {
       children: [
         Container(
           width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.width < 1240 ? 80 : 100,
+          height: MediaQuery.of(context).size.width < 800 ? 72 : 80,
           color: navBarColor,
           child: Center(
             child: SizedBox(
@@ -80,21 +228,6 @@ class _MainAppBarState extends State<MainAppBar> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  // FilledButton(
-                  //   style: FilledButton.styleFrom(
-                  //     backgroundColor: blackColor.withOpacity(0),
-                  //   ),
-                  //   onPressed: () {},
-                  //   child: SizedBox(
-                  //     // width: MediaQuery.of(context).size.width < 1240 ? 60 : 80,
-                  //     // height:
-                  //     //     MediaQuery.of(context).size.width < 1240 ? 60 : 80,
-                  //     child: Image.asset(
-                  //       'assets/images/logos/bykakLogo_w.png',
-                  //       fit: BoxFit.contain,
-                  //     ),
-                  //   ),
-                  // ),
                   ElevatedButton(
                     style: elevatedBtnTheme,
                     onPressed: () {
@@ -112,6 +245,8 @@ class _MainAppBarState extends State<MainAppBar> {
                       }
                     },
                     child: Image.asset(
+                      width: MediaQuery.of(context).size.width < 800 ? 56 : 64,
+                      height: MediaQuery.of(context).size.width < 800 ? 56 : 64,
                       'assets/images/logos/bykakLogo_w.png',
                       fit: BoxFit.contain,
                     ),
@@ -182,6 +317,7 @@ class _MainAppBarState extends State<MainAppBar> {
                               }
                             },
                             child: Text(
+                              // -------------------- 언어전환을위한 리스트 --------------------
                               userMenu[1],
                               style: TextStyle(
                                 fontSize: 16,
@@ -195,7 +331,25 @@ class _MainAppBarState extends State<MainAppBar> {
                           ? Padding(
                               padding: const EdgeInsets.only(left: 16),
                               child: InkWell(
-                                onTap: () {},
+                                onTap: () async {
+                                  setState(() {
+                                    publicityNum = 0;
+                                    communityNum = 0;
+                                    businessNum = 0;
+                                  });
+                                  mobileMenu();
+                                },
+                                onHover: (value) {
+                                  if (value == true) {
+                                    setState(() {
+                                      navBarColor = blackColor;
+                                    });
+                                  } else {
+                                    setState(() {
+                                      navBarColor = blackColor.withOpacity(0.7);
+                                    });
+                                  }
+                                },
                                 child: Icon(
                                   Icons.menu_rounded,
                                   size: 32,
@@ -233,7 +387,7 @@ class _MainAppBarState extends State<MainAppBar> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             SizedBox(
-                              width: widgetSize(context),
+                              // width: widgetSize(context),
                               height: 40,
                               child: ListView.builder(
                                 itemCount: subMenu[i].length,
@@ -255,6 +409,7 @@ class _MainAppBarState extends State<MainAppBar> {
                                         });
                                         Get.rootDelegate
                                             .toNamed(subMenuLinks[i][index]);
+                                        print(subMenu[i][index]);
                                       },
                                       child: Text(
                                         subMenu[i][index],
@@ -270,17 +425,6 @@ class _MainAppBarState extends State<MainAppBar> {
                             ),
                           ],
                         ),
-                        // Container(
-                        //   width: widgetSize(context),
-                        //   padding: EdgeInsets.only(left: 20, top: 60),
-                        //   child: Text(
-                        //     subMenuText[i],
-                        //     style: TextStyle(
-                        //       fontSize: 16,
-                        //       color: whiteColor,
-                        //     ),
-                        //   ),
-                        // ),
                       ],
                     ),
                   ),
@@ -302,16 +446,10 @@ class Footer extends StatefulWidget {
 
 class _FooterState extends State<Footer> {
   @override
-  void initState() {
-    super.initState();
-    btnCurrentPage = 0;
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      padding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
+      padding: const EdgeInsets.fromLTRB(20, 4, 20, 4),
       decoration: BoxDecoration(
         border: Border(
           top: BorderSide(
@@ -323,6 +461,7 @@ class _FooterState extends State<Footer> {
       ),
       child: Center(
         child: SizedBox(
+          width: widgetSize(context),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -341,6 +480,10 @@ class _FooterState extends State<Footer> {
                   ),
                 ),
               ),
+              // Container(
+              //   width: 100,
+              //   height: 100,
+              // ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [

@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:kimjuhyeonbykak/style.dart';
-import 'package:autoscale_tabbarview/autoscale_tabbarview.dart';
 
 import 'package:kimjuhyeonbykak/navigation.dart';
 
@@ -15,6 +14,40 @@ class BusinessPage extends StatefulWidget {
 }
 
 class _BusinessPageState extends State<BusinessPage> {
+  final ScrollController _scrollController = ScrollController();
+
+  scrollState() {
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels ==
+              _scrollController.position.minScrollExtent ||
+          _scrollController.position.pixels ==
+              _scrollController.position.maxScrollExtent) {
+        setState(() {
+          topState = true;
+        });
+      } else {
+        setState(() {
+          topState = false;
+        });
+      }
+    });
+  }
+
+  moveTop() {
+    _scrollController.animateTo(
+      0,
+      duration: const Duration(milliseconds: 1800),
+      curve: Curves.fastOutSlowIn,
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    topState = true;
+    scrollState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,6 +56,7 @@ class _BusinessPageState extends State<BusinessPage> {
         alignment: Alignment.topCenter,
         children: [
           ListView(
+            controller: _scrollController,
             children: [
               BusinessContent(),
               Padding(
@@ -31,11 +65,28 @@ class _BusinessPageState extends State<BusinessPage> {
                 ),
                 child: Footer(),
               ),
+              bottomToTop(context, () => moveTop()),
             ],
           ),
           MainAppBar(),
         ],
       ),
+      floatingActionButton: topState
+          ? Container()
+          : Padding(
+              padding: const EdgeInsets.only(right: 8, bottom: 8),
+              child: FloatingActionButton(
+                child: Icon(
+                  Icons.keyboard_arrow_up_rounded,
+                  color: whiteColor,
+                  size: 30,
+                ),
+                backgroundColor: blackColor.withOpacity(0.5),
+                onPressed: () {
+                  moveTop();
+                },
+              ),
+            ),
     );
   }
 }
@@ -49,7 +100,7 @@ class BusinessContent extends StatefulWidget {
 }
 
 class _BusinessContentState extends State<BusinessContent> {
-  var businessTitle = '서포터즈';
+  List businessTitle = ['서포터즈', '협찬·협업·단체복 문의'];
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -101,7 +152,7 @@ class _BusinessContentState extends State<BusinessContent> {
                               bottom: 8,
                             ),
                             child: Text(
-                              businessTitle,
+                              businessTitle[businessNum],
                               style: TextStyle(
                                 fontSize: h1FontSize(context),
                                 fontWeight: FontWeight.bold,
@@ -144,7 +195,6 @@ class _BusinessContentState extends State<BusinessContent> {
                         onPressed: () {
                           setState(() {
                             businessNum = 0;
-                            businessTitle = '서포터즈';
                           });
                         },
                         child: Text(
@@ -163,7 +213,6 @@ class _BusinessContentState extends State<BusinessContent> {
                         onPressed: () {
                           setState(() {
                             businessNum = 1;
-                            businessTitle = '협찬·협업·단체복 문의';
                           });
                         },
                         child: Text(
@@ -368,7 +417,7 @@ class SupportersAmbassador extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                '엠버서더는 엠버서더입니다.',
+                '엠버서더 관련 타이틀 삽입',
                 style: TextStyle(
                   fontSize: h3FontSize(context),
                 ),

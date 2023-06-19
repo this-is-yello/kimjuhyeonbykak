@@ -4,9 +4,49 @@ import 'package:kimjuhyeonbykak/style.dart';
 import 'package:kimjuhyeonbykak/navigation.dart';
 
 import 'package:countup/countup.dart';
+import 'package:widget_and_text_animator/widget_and_text_animator.dart';
 
-class TailorShopPage extends StatelessWidget {
+class TailorShopPage extends StatefulWidget {
   const TailorShopPage({super.key});
+
+  @override
+  State<TailorShopPage> createState() => _TailorShopPageState();
+}
+
+class _TailorShopPageState extends State<TailorShopPage> {
+  final ScrollController _scrollController = ScrollController();
+
+  scrollState() {
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels ==
+              _scrollController.position.minScrollExtent ||
+          _scrollController.position.pixels ==
+              _scrollController.position.maxScrollExtent) {
+        setState(() {
+          topState = true;
+        });
+      } else {
+        setState(() {
+          topState = false;
+        });
+      }
+    });
+  }
+
+  moveTop() {
+    _scrollController.animateTo(
+      0,
+      duration: const Duration(milliseconds: 1800),
+      curve: Curves.fastOutSlowIn,
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    topState = true;
+    scrollState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +58,7 @@ class TailorShopPage extends StatelessWidget {
           SizedBox(
             width: MediaQuery.of(context).size.width,
             child: ListView(
+              controller: _scrollController,
               children: [
                 TailorShopMain(),
                 Padding(
@@ -56,12 +97,29 @@ class TailorShopPage extends StatelessWidget {
                   ),
                   child: Footer(),
                 ),
+                bottomToTop(context, () => moveTop()),
               ],
             ),
           ),
           MainAppBar(),
         ],
       ),
+      floatingActionButton: topState
+          ? Container()
+          : Padding(
+              padding: const EdgeInsets.only(right: 8, bottom: 8),
+              child: FloatingActionButton(
+                child: Icon(
+                  Icons.keyboard_arrow_up_rounded,
+                  color: whiteColor,
+                  size: 30,
+                ),
+                backgroundColor: blackColor.withOpacity(0.5),
+                onPressed: () {
+                  moveTop();
+                },
+              ),
+            ),
     );
   }
 }
@@ -76,7 +134,7 @@ class TailorShopMain extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
       child: Stack(
-        alignment: Alignment.bottomLeft,
+        alignment: Alignment.bottomCenter,
         children: [
           Image.asset(
             width: MediaQuery.of(context).size.width,
@@ -127,7 +185,18 @@ class TailorShopMain extends StatelessWidget {
                 ),
               ),
             ),
-          )
+          ),
+          Padding(
+            padding: EdgeInsets.only(bottom: 32),
+            child: WidgetAnimator(
+              atRestEffect: WidgetRestingEffects.bounce(),
+              child: Icon(
+                Icons.keyboard_arrow_down_rounded,
+                color: whiteColor,
+                size: 72,
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -368,12 +437,15 @@ class _LabelState extends State<Label> {
               ),
             ),
           ),
-          Text(
-            blackLabelTexts[4],
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: h6FontSize(context),
-              color: blackColor,
+          SizedBox(
+            width: widgetSize(context),
+            child: Text(
+              blackLabelTexts[4],
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: h6FontSize(context),
+                color: blackColor,
+              ),
             ),
           ),
           Padding(
@@ -437,12 +509,15 @@ class _LabelState extends State<Label> {
               ),
             ),
           ),
-          Text(
-            whiteLabelTexts[4],
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: h6FontSize(context),
-              color: blackColor,
+          SizedBox(
+            width: widgetSize(context),
+            child: Text(
+              whiteLabelTexts[4],
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: h6FontSize(context),
+                color: blackColor,
+              ),
             ),
           ),
           Padding(
@@ -503,7 +578,7 @@ class CountUpText extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                width: c3BoxSize(context),
+                width: c3BoxSize(context) + 16,
                 child: Countup(
                   begin: 0,
                   end: 5981,
@@ -541,7 +616,7 @@ class CountUpText extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  width: c1BoxSize(context) + 30,
+                  width: c1BoxSize(context) + 40,
                   child: Countup(
                     begin: 0,
                     end: 59804019,
@@ -575,7 +650,7 @@ class CountUpText extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                width: c2BoxSize(context) + 16,
+                width: c2BoxSize(context) + 20,
                 child: Countup(
                   begin: 0,
                   end: 592119,
@@ -820,7 +895,7 @@ class _MakingProcessState extends State<MakingProcess> {
   }
 }
 
-// ---------- Making_Process -----------------------------------------------------------------------------------------------------
+// ---------- Service -----------------------------------------------------------------------------------------------------
 servicePic(context) {
   return Container(
     height: c1BoxSize(context) + 100,
@@ -839,7 +914,7 @@ serviceText(context) {
             border: Border(
               bottom: BorderSide(
                 color: blackColor,
-                width: 4,
+                width: 3,
               ),
             ),
           ),
@@ -863,11 +938,14 @@ serviceText(context) {
             ),
           ),
         ),
-        child: Text(
-          '1. Lorem Ipsum is simply dummy text',
-          style: TextStyle(
-            fontSize: h6FontSize(context),
-            color: blackColor,
+        child: Padding(
+          padding: EdgeInsets.only(bottom: 4),
+          child: Text(
+            '1. Lorem Ipsum is simply dummy text',
+            style: TextStyle(
+              fontSize: h6FontSize(context),
+              color: blackColor,
+            ),
           ),
         ),
       ),
@@ -882,11 +960,14 @@ serviceText(context) {
             ),
           ),
         ),
-        child: Text(
-          '2. Lorem Ipsum is simply dummy text',
-          style: TextStyle(
-            fontSize: h6FontSize(context),
-            color: blackColor,
+        child: Padding(
+          padding: EdgeInsets.only(bottom: 4),
+          child: Text(
+            '2. Lorem Ipsum is simply dummy text',
+            style: TextStyle(
+              fontSize: h6FontSize(context),
+              color: blackColor,
+            ),
           ),
         ),
       ),
@@ -901,11 +982,14 @@ serviceText(context) {
             ),
           ),
         ),
-        child: Text(
-          '3. Lorem Ipsum is simply dummy text',
-          style: TextStyle(
-            fontSize: h6FontSize(context),
-            color: blackColor,
+        child: Padding(
+          padding: EdgeInsets.only(bottom: 4),
+          child: Text(
+            '3. Lorem Ipsum is simply dummy text',
+            style: TextStyle(
+              fontSize: h6FontSize(context),
+              color: blackColor,
+            ),
           ),
         ),
       ),
@@ -920,11 +1004,14 @@ serviceText(context) {
             ),
           ),
         ),
-        child: Text(
-          '4. Lorem Ipsum is simply dummy text',
-          style: TextStyle(
-            fontSize: h6FontSize(context),
-            color: blackColor,
+        child: Padding(
+          padding: EdgeInsets.only(bottom: 4),
+          child: Text(
+            '4. Lorem Ipsum is simply dummy text',
+            style: TextStyle(
+              fontSize: h6FontSize(context),
+              color: blackColor,
+            ),
           ),
         ),
       ),
@@ -938,11 +1025,14 @@ serviceText(context) {
             ),
           ),
         ),
-        child: Text(
-          '5. Lorem Ipsum is simply dummy text',
-          style: TextStyle(
-            fontSize: h6FontSize(context),
-            color: blackColor,
+        child: Padding(
+          padding: EdgeInsets.only(bottom: 4),
+          child: Text(
+            '5. Lorem Ipsum is simply dummy text',
+            style: TextStyle(
+              fontSize: h6FontSize(context),
+              color: blackColor,
+            ),
           ),
         ),
       ),

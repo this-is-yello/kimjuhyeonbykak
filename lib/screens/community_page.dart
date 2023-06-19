@@ -2,7 +2,6 @@ import 'dart:ui';
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:kimjuhyeonbykak/style.dart';
-import 'package:autoscale_tabbarview/autoscale_tabbarview.dart';
 
 import 'package:kimjuhyeonbykak/navigation.dart';
 
@@ -14,6 +13,40 @@ class CommunityPage extends StatefulWidget {
 }
 
 class _CommunityPageState extends State<CommunityPage> {
+  final ScrollController _scrollController = ScrollController();
+
+  scrollState() {
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels ==
+              _scrollController.position.minScrollExtent ||
+          _scrollController.position.pixels ==
+              _scrollController.position.maxScrollExtent) {
+        setState(() {
+          topState = true;
+        });
+      } else {
+        setState(() {
+          topState = false;
+        });
+      }
+    });
+  }
+
+  moveTop() {
+    _scrollController.animateTo(
+      0,
+      duration: const Duration(milliseconds: 1800),
+      curve: Curves.fastOutSlowIn,
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    topState = true;
+    scrollState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,6 +55,7 @@ class _CommunityPageState extends State<CommunityPage> {
         alignment: Alignment.topCenter,
         children: [
           ListView(
+            controller: _scrollController,
             shrinkWrap: true,
             children: [
               CommunityContent(),
@@ -31,11 +65,28 @@ class _CommunityPageState extends State<CommunityPage> {
                 ),
                 child: Footer(),
               ),
+              bottomToTop(context, () => moveTop()),
             ],
           ),
           MainAppBar(),
         ],
       ),
+      floatingActionButton: topState
+          ? Container()
+          : Padding(
+              padding: const EdgeInsets.only(right: 8, bottom: 8),
+              child: FloatingActionButton(
+                child: Icon(
+                  Icons.keyboard_arrow_up_rounded,
+                  color: whiteColor,
+                  size: 30,
+                ),
+                backgroundColor: blackColor.withOpacity(0.5),
+                onPressed: () {
+                  moveTop();
+                },
+              ),
+            ),
     );
   }
 }
@@ -49,7 +100,7 @@ class CommunityContent extends StatefulWidget {
 }
 
 class _CommunityContentState extends State<CommunityContent> {
-  var communityTitle = '문의하기';
+  List communityTitle = ['문의하기', '공지사항', '이벤트', '미디어'];
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -101,7 +152,7 @@ class _CommunityContentState extends State<CommunityContent> {
                               bottom: 8,
                             ),
                             child: Text(
-                              communityTitle,
+                              communityTitle[communityNum],
                               style: TextStyle(
                                 fontSize: h1FontSize(context),
                                 fontWeight: FontWeight.bold,
@@ -144,7 +195,6 @@ class _CommunityContentState extends State<CommunityContent> {
                         onPressed: () {
                           setState(() {
                             communityNum = 0;
-                            communityTitle = '문의하기';
                           });
                         },
                         child: Text(
@@ -163,7 +213,6 @@ class _CommunityContentState extends State<CommunityContent> {
                         onPressed: () {
                           setState(() {
                             communityNum = 1;
-                            communityTitle = '공지사항';
                           });
                         },
                         child: Text(
@@ -182,7 +231,6 @@ class _CommunityContentState extends State<CommunityContent> {
                         onPressed: () {
                           setState(() {
                             communityNum = 2;
-                            communityTitle = '이벤트';
                           });
                         },
                         child: Text(
@@ -201,7 +249,6 @@ class _CommunityContentState extends State<CommunityContent> {
                         onPressed: () {
                           setState(() {
                             communityNum = 3;
-                            communityTitle = '미디어';
                           });
                         },
                         child: Text(
@@ -256,214 +303,217 @@ class _InquiryScreenState extends State<InquiryScreen> {
   String _selectedValue = '주제를 선택하세요.';
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          width: widgetSize(context),
-          height: c5BoxSize(context),
-          padding: EdgeInsets.only(
-            left: 8,
-            right: 8,
-          ),
-          decoration: BoxDecoration(
-            border: Border(
-              bottom: BorderSide(
-                color: blackColor,
-                width: 2,
-              ),
-            ),
-          ),
-          child: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(right: 16),
-                child: SizedBox(
-                  width: c4BoxSize(context),
-                  child: Text(
-                    '이름',
-                    style: TextStyle(
-                      fontSize: h4FontSize(context),
-                      fontWeight: FontWeight.bold,
-                      color: blackColor,
-                    ),
-                  ),
-                ),
-              ),
-              Expanded(
-                flex: 1,
-                child: TextField(
-                  // controller: _inputName,
-                  style: TextStyle(
-                    fontSize: h4FontSize(context),
-                    color: blackColor,
-                  ),
-                  keyboardType: TextInputType.name,
-                  decoration: InputDecoration(
-                    hintText: '이름을 입력하세요.',
-                    border: InputBorder.none,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-        Container(
-          width: widgetSize(context),
-          height: c5BoxSize(context),
-          padding: EdgeInsets.only(
-            left: 8,
-            right: 8,
-          ),
-          decoration: BoxDecoration(
-            border: Border(
-              bottom: BorderSide(
-                color: blackColor,
-                width: 2,
-              ),
-            ),
-          ),
-          child: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(right: 16),
-                child: SizedBox(
-                  width: c4BoxSize(context),
-                  child: Text(
-                    '전화번호',
-                    style: TextStyle(
-                      fontSize: h4FontSize(context),
-                      fontWeight: FontWeight.bold,
-                      color: blackColor,
-                    ),
-                  ),
-                ),
-              ),
-              Expanded(
-                flex: 1,
-                child: TextField(
-                  // controller: _inputPhone,
-                  style: TextStyle(
-                    fontSize: h4FontSize(context),
-                    color: blackColor,
-                  ),
-                  keyboardType: TextInputType.phone,
-                  decoration: InputDecoration(
-                    hintText: '전화번호을 입력하세요.',
-                    border: InputBorder.none,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-        Container(
-          width: widgetSize(context),
-          height: c5BoxSize(context),
-          padding: EdgeInsets.only(
-            left: 8,
-            right: 8,
-          ),
-          decoration: BoxDecoration(
-            border: Border(
-              bottom: BorderSide(
-                color: blackColor,
-                width: 2,
-              ),
-            ),
-          ),
-          child: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(right: 16),
-                child: SizedBox(
-                  width: c4BoxSize(context),
-                  child: Text(
-                    '이메일',
-                    style: TextStyle(
-                      fontSize: h4FontSize(context),
-                      fontWeight: FontWeight.bold,
-                      color: blackColor,
-                    ),
-                  ),
-                ),
-              ),
-              Expanded(
-                flex: 1,
-                child: TextField(
-                  // controller: _inputMail,
-                  style: TextStyle(
-                    fontSize: h4FontSize(context),
-                    color: blackColor,
-                  ),
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: InputDecoration(
-                    hintText: '이메일을 입력하세요.',
-                    border: InputBorder.none,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-        Container(
-          width: widgetSize(context),
-          height: c3BoxSize(context),
-          alignment: Alignment.center,
-          padding: const EdgeInsets.only(top: 20, bottom: 20),
-          child: DropdownButton(
-            dropdownColor: whiteColor,
-            isExpanded: true,
-            value: _selectedValue,
-            underline: SizedBox.shrink(),
+    return SizedBox(
+      width: widgetSize(context),
+      child: Column(
+        children: [
+          Container(
+            width: 800,
+            height: c5BoxSize(context),
             padding: EdgeInsets.only(
               left: 8,
               right: 8,
             ),
-            items: inquiryDropDown.map(
-              (value) {
-                return DropdownMenuItem(
-                  value: value,
-                  child: Text(
-                    value,
-                    style: TextStyle(
-                      fontSize: h4FontSize(context),
+            decoration: BoxDecoration(
+              border: Border(
+                bottom: BorderSide(
+                  color: blackColor,
+                  width: 2,
+                ),
+              ),
+            ),
+            child: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 16),
+                  child: SizedBox(
+                    width: c4BoxSize(context),
+                    child: Text(
+                      '이름',
+                      style: TextStyle(
+                        fontSize: h4FontSize(context),
+                        fontWeight: FontWeight.bold,
+                        color: blackColor,
+                      ),
                     ),
                   ),
-                );
-              },
-            ).toList(),
-            onChanged: (dynamic value) {
-              setState(() {
-                _selectedValue = value;
-              });
-            },
-          ),
-        ),
-        Container(
-          width: widgetSize(context),
-          height: c1BoxSize(context) + 200,
-          child: TextField(
-            // controller: _inputSub,
-            cursorColor: blackColor,
-            maxLines: 18,
-            style: TextStyle(
-              fontSize: h4FontSize(context),
-              color: blackColor,
+                ),
+                Expanded(
+                  flex: 1,
+                  child: TextField(
+                    // controller: _inputName,
+                    style: TextStyle(
+                      fontSize: h4FontSize(context),
+                      color: blackColor,
+                    ),
+                    keyboardType: TextInputType.name,
+                    decoration: InputDecoration(
+                      hintText: '이름을 입력하세요.',
+                      border: InputBorder.none,
+                    ),
+                  ),
+                ),
+              ],
             ),
-            decoration: InputDecoration(
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: blackColor, width: 2),
-              ),
-              hintText: '내용을 입력하세요.',
-              border: OutlineInputBorder(
-                borderSide: BorderSide(
+          ),
+          Container(
+            width: 800,
+            height: c5BoxSize(context),
+            padding: EdgeInsets.only(
+              left: 8,
+              right: 8,
+            ),
+            decoration: BoxDecoration(
+              border: Border(
+                bottom: BorderSide(
                   color: blackColor,
+                  width: 2,
+                ),
+              ),
+            ),
+            child: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 16),
+                  child: SizedBox(
+                    width: c4BoxSize(context),
+                    child: Text(
+                      '전화번호',
+                      style: TextStyle(
+                        fontSize: h4FontSize(context),
+                        fontWeight: FontWeight.bold,
+                        color: blackColor,
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: TextField(
+                    // controller: _inputPhone,
+                    style: TextStyle(
+                      fontSize: h4FontSize(context),
+                      color: blackColor,
+                    ),
+                    keyboardType: TextInputType.phone,
+                    decoration: InputDecoration(
+                      hintText: '전화번호을 입력하세요.',
+                      border: InputBorder.none,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            width: 800,
+            height: c5BoxSize(context),
+            padding: EdgeInsets.only(
+              left: 8,
+              right: 8,
+            ),
+            decoration: BoxDecoration(
+              border: Border(
+                bottom: BorderSide(
+                  color: blackColor,
+                  width: 2,
+                ),
+              ),
+            ),
+            child: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 16),
+                  child: SizedBox(
+                    width: c4BoxSize(context),
+                    child: Text(
+                      '이메일',
+                      style: TextStyle(
+                        fontSize: h4FontSize(context),
+                        fontWeight: FontWeight.bold,
+                        color: blackColor,
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: TextField(
+                    // controller: _inputMail,
+                    style: TextStyle(
+                      fontSize: h4FontSize(context),
+                      color: blackColor,
+                    ),
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: InputDecoration(
+                      hintText: '이메일을 입력하세요.',
+                      border: InputBorder.none,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            width: 800,
+            height: c3BoxSize(context),
+            alignment: Alignment.center,
+            padding: const EdgeInsets.only(top: 20, bottom: 20),
+            child: DropdownButton(
+              dropdownColor: whiteColor,
+              isExpanded: true,
+              value: _selectedValue,
+              underline: SizedBox.shrink(),
+              padding: EdgeInsets.only(
+                left: 8,
+                right: 8,
+              ),
+              items: inquiryDropDown.map(
+                (value) {
+                  return DropdownMenuItem(
+                    value: value,
+                    child: Text(
+                      value,
+                      style: TextStyle(
+                        fontSize: h4FontSize(context),
+                      ),
+                    ),
+                  );
+                },
+              ).toList(),
+              onChanged: (dynamic value) {
+                setState(() {
+                  _selectedValue = value;
+                });
+              },
+            ),
+          ),
+          Container(
+            width: 800,
+            height: c1BoxSize(context) + 200,
+            child: TextField(
+              // controller: _inputSub,
+              cursorColor: blackColor,
+              maxLines: 18,
+              style: TextStyle(
+                fontSize: h4FontSize(context),
+                color: blackColor,
+              ),
+              decoration: InputDecoration(
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: blackColor, width: 2),
+                ),
+                hintText: '내용을 입력하세요.',
+                border: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: blackColor,
+                  ),
                 ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
@@ -479,6 +529,7 @@ class NotificationScreen extends StatelessWidget {
       child: ListView.builder(
         itemCount: 20,
         shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.only(bottom: 16),
@@ -505,7 +556,7 @@ class NotificationScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      '[공지사항] 공지사항은 읽어줬으면..',
+                      '[공지사항] 공지사항 타이틀 삽입',
                       maxLines: 1,
                       style: TextStyle(
                         fontSize: h5FontSize(context),
@@ -542,6 +593,7 @@ class EventScreen extends StatelessWidget {
       child: GridView.builder(
         itemCount: 8,
         shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: MediaQuery.of(context).size.width < 800 ? 1 : 2,
           childAspectRatio: 3 / 2.3,
@@ -577,7 +629,7 @@ class EventScreen extends StatelessWidget {
                           bottom: 8,
                         ),
                         child: Text(
-                          '제목입니다.영어로 title입니다.',
+                          '컨텐츠 관련 제목 삽입 ',
                           style: TextStyle(
                             fontSize: h3FontSize(context),
                             color: blackColor,
@@ -638,9 +690,9 @@ class MediaScreen extends StatelessWidget {
                     left: MediaQuery.of(context).size.width < 800 ? 0 : 16,
                   ),
                   child: Text(
-                    '바이각 유튜브 영상이라던가?',
+                    '바이각 유튜브 영상 타이틀',
                     style: TextStyle(
-                      fontSize: h3FontSize(context),
+                      fontSize: h2FontSize(context),
                       color: blackColor,
                     ),
                   ),
@@ -667,7 +719,7 @@ class MediaScreen extends StatelessWidget {
                 // itemCount: ,
                 itemBuilder: (context, index) {
                   return Container(
-                    width: c1BoxSize(context) + 40,
+                    width: c1BoxSize(context) + 60,
                     height: c1BoxSize(context),
                     margin: EdgeInsets.only(right: 16),
                     color: blackColor,

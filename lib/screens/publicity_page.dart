@@ -13,6 +13,40 @@ class PublicityPage extends StatefulWidget {
 }
 
 class _PublicityPageState extends State<PublicityPage> {
+  final ScrollController _scrollController = ScrollController();
+
+  scrollState() {
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels ==
+              _scrollController.position.minScrollExtent ||
+          _scrollController.position.pixels ==
+              _scrollController.position.maxScrollExtent) {
+        setState(() {
+          topState = true;
+        });
+      } else {
+        setState(() {
+          topState = false;
+        });
+      }
+    });
+  }
+
+  moveTop() {
+    _scrollController.animateTo(
+      0,
+      duration: const Duration(milliseconds: 1800),
+      curve: Curves.fastOutSlowIn,
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    topState = true;
+    scrollState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,6 +55,7 @@ class _PublicityPageState extends State<PublicityPage> {
         alignment: Alignment.topCenter,
         children: [
           ListView(
+            controller: _scrollController,
             shrinkWrap: true,
             children: [
               PublicityContent(),
@@ -30,11 +65,28 @@ class _PublicityPageState extends State<PublicityPage> {
                 ),
                 child: Footer(),
               ),
+              bottomToTop(context, () => moveTop()),
             ],
           ),
           MainAppBar(),
         ],
       ),
+      floatingActionButton: topState
+          ? Container()
+          : Padding(
+              padding: const EdgeInsets.only(right: 8, bottom: 8),
+              child: FloatingActionButton(
+                child: Icon(
+                  Icons.keyboard_arrow_up_rounded,
+                  color: whiteColor,
+                  size: 30,
+                ),
+                backgroundColor: blackColor.withOpacity(0.5),
+                onPressed: () {
+                  moveTop();
+                },
+              ),
+            ),
     );
   }
 }
@@ -48,7 +100,7 @@ class PublicityContent extends StatefulWidget {
 }
 
 class _PublicityContentState extends State<PublicityContent> {
-  var publicityTitle = '매거진';
+  List publicityTitle = ['매거진', '보도자료', '협찬'];
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +153,7 @@ class _PublicityContentState extends State<PublicityContent> {
                               bottom: 8,
                             ),
                             child: Text(
-                              publicityTitle,
+                              publicityTitle[publicityNum],
                               style: TextStyle(
                                 fontSize: h1FontSize(context),
                                 fontWeight: FontWeight.bold,
@@ -145,7 +197,6 @@ class _PublicityContentState extends State<PublicityContent> {
                         onPressed: () {
                           setState(() {
                             publicityNum = 0;
-                            publicityTitle = '매거진';
                           });
                         },
                         child: Text(
@@ -164,7 +215,6 @@ class _PublicityContentState extends State<PublicityContent> {
                         onPressed: () {
                           setState(() {
                             publicityNum = 1;
-                            publicityTitle = '보도자료';
                           });
                         },
                         child: Text(
@@ -183,7 +233,6 @@ class _PublicityContentState extends State<PublicityContent> {
                         onPressed: () {
                           setState(() {
                             publicityNum = 2;
-                            publicityTitle = '협찬';
                           });
                         },
                         child: Text(
@@ -229,6 +278,7 @@ class MagazineScreen extends StatelessWidget {
           GridView.builder(
             itemCount: 8,
             shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: MediaQuery.of(context).size.width < 800 ? 1 : 2,
               childAspectRatio: 3 / 2.3,
@@ -264,7 +314,7 @@ class MagazineScreen extends StatelessWidget {
                               bottom: 8,
                             ),
                             child: Text(
-                              '제목입니다.영어로 title입니다.',
+                              '컨텐츠 관련 제목 삽입 ',
                               style: TextStyle(
                                 fontSize: h3FontSize(context),
                                 color: blackColor,
@@ -303,6 +353,7 @@ class NewsScreen extends StatelessWidget {
       child: ListView.builder(
         itemCount: 20,
         shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.only(bottom: 16),
@@ -311,6 +362,7 @@ class NewsScreen extends StatelessWidget {
               child: Container(
                 width: widgetSize(context),
                 decoration: BoxDecoration(
+                  // color: whiteColor,
                   border: Border(
                     bottom: BorderSide(
                       color: blackColor,
@@ -344,7 +396,7 @@ class NewsScreen extends StatelessWidget {
                               bottom: 8,
                             ),
                             child: Text(
-                              '제목입니다.영어로 title입니다.',
+                              '컨텐츠 관련 제목 삽입 ',
                               maxLines: 1,
                               style: TextStyle(
                                 fontSize: h5FontSize(context),

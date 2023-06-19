@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:kimjuhyeonbykak/main.dart';
 
 // ---------- Color -----------------------------------------------------------------------------------------------------
 var bykakColor = const Color(0xFF205B48);
@@ -9,13 +8,12 @@ var lightGreyColor = const Color(0xFFEEEEEE);
 var whiteColor = const Color(0xFFFFFFFF);
 
 // ---------- Variable -----------------------------------------------------------------------------------------------------
-int btnCurrentPage = 0;
-int scrollCurrentPage = 0;
 int i = 0;
-
 int publicityNum = 0;
 int communityNum = 0;
 int businessNum = 0;
+
+bool topState = true;
 
 var elevatedBtnTheme = ElevatedButton.styleFrom(
   backgroundColor: whiteColor.withOpacity(0),
@@ -23,25 +21,48 @@ var elevatedBtnTheme = ElevatedButton.styleFrom(
   elevation: 0,
 );
 
+bottomToTop(context, moveTop()) {
+  return SizedBox(
+    width: widgetSize(context),
+    height: 80,
+    child: ElevatedButton(
+      style: elevatedBtnTheme,
+      onPressed: () {
+        moveTop();
+      },
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Text(
+          '맨 위로 ↑',
+          style: TextStyle(
+            color: blackColor,
+            fontSize: h4FontSize(context),
+          ),
+        ),
+      ),
+    ),
+  );
+}
+
 // ---------- Contents_Width -----------------------------------------------------------------------------------------------------
 widgetSize(context) {
   if (MediaQuery.of(context).size.width < 800) {
     return 360;
   } else if (MediaQuery.of(context).size.width < 1240) {
-    return 770;
+    return 760;
   } else {
-    return 1200;
+    return 1000;
   }
 }
 
 // ---------- Fonts_Size -----------------------------------------------------------------------------------------------------
 h1FontSize(context) {
   if (MediaQuery.of(context).size.width < 800) {
-    return 24;
+    return 28;
   } else if (MediaQuery.of(context).size.width < 1240) {
     return 32;
   } else {
-    return 40;
+    return 36;
   }
 }
 
@@ -49,19 +70,19 @@ h2FontSize(context) {
   if (MediaQuery.of(context).size.width < 800) {
     return 20;
   } else if (MediaQuery.of(context).size.width < 1240) {
-    return 28;
+    return 24;
   } else {
-    return 36;
+    return 28;
   }
 }
 
 h3FontSize(context) {
   if (MediaQuery.of(context).size.width < 800) {
-    return 20;
+    return 18;
   } else if (MediaQuery.of(context).size.width < 1240) {
-    return 28;
+    return 20;
   } else {
-    return 32;
+    return 24;
   }
 }
 
@@ -69,9 +90,9 @@ h4FontSize(context) {
   if (MediaQuery.of(context).size.width < 800) {
     return 16;
   } else if (MediaQuery.of(context).size.width < 1240) {
-    return 20;
+    return 18;
   } else {
-    return 28;
+    return 20;
   }
 }
 
@@ -81,7 +102,7 @@ h5FontSize(context) {
   } else if (MediaQuery.of(context).size.width < 1240) {
     return 16;
   } else {
-    return 24;
+    return 18;
   }
 }
 
@@ -89,19 +110,19 @@ h6FontSize(context) {
   if (MediaQuery.of(context).size.width < 800) {
     return 12;
   } else if (MediaQuery.of(context).size.width < 1240) {
-    return 16;
+    return 14;
   } else {
-    return 20;
+    return 16;
   }
 }
 
 h7FontSize(context) {
   if (MediaQuery.of(context).size.width < 800) {
-    return 10;
+    return 12;
   } else if (MediaQuery.of(context).size.width < 1240) {
-    return 14;
+    return 12;
   } else {
-    return 18;
+    return 14;
   }
 }
 

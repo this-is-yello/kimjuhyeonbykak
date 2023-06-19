@@ -2,8 +2,49 @@ import 'package:flutter/material.dart';
 import 'package:kimjuhyeonbykak/style.dart';
 import 'package:kimjuhyeonbykak/navigation.dart';
 
-class RentalCenterPage extends StatelessWidget {
+import 'package:widget_and_text_animator/widget_and_text_animator.dart';
+
+class RentalCenterPage extends StatefulWidget {
   const RentalCenterPage({super.key});
+
+  @override
+  State<RentalCenterPage> createState() => _RentalCenterPageState();
+}
+
+class _RentalCenterPageState extends State<RentalCenterPage> {
+  final ScrollController _scrollController = ScrollController();
+
+  scrollState() {
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels ==
+              _scrollController.position.minScrollExtent ||
+          _scrollController.position.pixels ==
+              _scrollController.position.maxScrollExtent) {
+        setState(() {
+          topState = true;
+        });
+      } else {
+        setState(() {
+          topState = false;
+        });
+      }
+    });
+  }
+
+  moveTop() {
+    _scrollController.animateTo(
+      0,
+      duration: const Duration(milliseconds: 1800),
+      curve: Curves.fastOutSlowIn,
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    topState = true;
+    scrollState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +56,7 @@ class RentalCenterPage extends StatelessWidget {
           SizedBox(
             width: MediaQuery.of(context).size.width,
             child: ListView(
+              controller: _scrollController,
               children: [
                 RentalCenterMain(),
                 Padding(
@@ -41,12 +83,29 @@ class RentalCenterPage extends StatelessWidget {
                   ),
                   child: Footer(),
                 ),
+                bottomToTop(context, () => moveTop()),
               ],
             ),
           ),
           MainAppBar(),
         ],
       ),
+      floatingActionButton: topState
+          ? Container()
+          : Padding(
+              padding: const EdgeInsets.only(right: 8, bottom: 8),
+              child: FloatingActionButton(
+                child: Icon(
+                  Icons.keyboard_arrow_up_rounded,
+                  color: whiteColor,
+                  size: 30,
+                ),
+                backgroundColor: blackColor.withOpacity(0.5),
+                onPressed: () {
+                  moveTop();
+                },
+              ),
+            ),
     );
   }
 }
@@ -61,7 +120,7 @@ class RentalCenterMain extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
       child: Stack(
-        alignment: Alignment.bottomLeft,
+        alignment: Alignment.bottomCenter,
         children: [
           Image.asset(
             width: MediaQuery.of(context).size.width,
@@ -112,7 +171,18 @@ class RentalCenterMain extends StatelessWidget {
                 ),
               ),
             ),
-          )
+          ),
+          Padding(
+            padding: EdgeInsets.only(bottom: 32),
+            child: WidgetAnimator(
+              atRestEffect: WidgetRestingEffects.bounce(),
+              child: Icon(
+                Icons.keyboard_arrow_down_rounded,
+                color: whiteColor,
+                size: 72,
+              ),
+            ),
+          ),
         ],
       ),
     );
