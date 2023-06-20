@@ -5,16 +5,23 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
 import 'package:kimjuhyeonbykak/screens/first_screen.dart';
-import 'package:kimjuhyeonbykak/screens/publicity_page.dart';
-import 'package:kimjuhyeonbykak/screens/product_page.dart';
-import 'package:kimjuhyeonbykak/screens/community_page.dart';
-import 'package:kimjuhyeonbykak/screens/business_page.dart';
 import 'package:kimjuhyeonbykak/screens/login_page.dart';
+
 import 'package:kimjuhyeonbykak/screens/brand/story_page.dart';
 import 'package:kimjuhyeonbykak/screens/brand/tailorshop_page.dart';
 import 'package:kimjuhyeonbykak/screens/brand/tailoracademy_page.dart';
 import 'package:kimjuhyeonbykak/screens/brand/jemulpoclub_page.dart';
 import 'package:kimjuhyeonbykak/screens/brand/rentalcenter_page.dart';
+
+import 'package:kimjuhyeonbykak/screens/publicity/publicity_page.dart';
+import 'package:kimjuhyeonbykak/screens/publicity/magazine_view_page.dart';
+import 'package:kimjuhyeonbykak/screens/publicity/news_view_page.dart';
+
+import 'package:kimjuhyeonbykak/screens/product_page.dart';
+
+import 'package:kimjuhyeonbykak/screens/community/community_page.dart';
+
+import 'package:kimjuhyeonbykak/screens/business/business_page.dart';
 
 import 'package:get/get.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -27,6 +34,8 @@ abstract class Routes {
   static const NEWJUMULPOCLUB = '/newJemulpoClub';
   static const RENTALCENTER = '/rentalCenter';
   static const PUBLICITY = '/publicity';
+  static const MAGAZINEVIEW = '/publicity/magazineview';
+  static const NEWSVIEW = '/publicity/newsview';
   static const PRODUCT = '/product';
   static const COMMUNITY = '/community';
   static const BUSINESS = '/business';
@@ -64,6 +73,7 @@ abstract class AppPages {
       transition: Transition.fadeIn,
       transitionDuration: Duration(milliseconds: 700),
     ),
+    // ---------------------------------------- About_Brand ----------------------------------------
     GetPage(
       name: Routes.STORY,
       page: () => const StoryPage(),
@@ -94,6 +104,7 @@ abstract class AppPages {
       transition: Transition.fadeIn,
       transitionDuration: Duration(milliseconds: 700),
     ),
+    // ---------------------------------------- About_Publicity ----------------------------------------
     GetPage(
       name: Routes.PUBLICITY,
       page: () => const PublicityPage(),
@@ -101,23 +112,39 @@ abstract class AppPages {
       transitionDuration: Duration(milliseconds: 700),
     ),
     GetPage(
+      name: Routes.NEWSVIEW,
+      page: () => const NewsViewPage(),
+      transition: Transition.fadeIn,
+      transitionDuration: Duration(milliseconds: 700),
+    ),
+    GetPage(
+      name: Routes.MAGAZINEVIEW,
+      page: () => const MagazineViewPage(),
+      transition: Transition.fadeIn,
+      transitionDuration: Duration(milliseconds: 700),
+    ),
+    // ---------------------------------------- Product ----------------------------------------
+    GetPage(
       name: Routes.PRODUCT,
       page: () => const ProductPage(),
       transition: Transition.fadeIn,
       transitionDuration: Duration(milliseconds: 700),
     ),
+    // ---------------------------------------- About_Community ----------------------------------------
     GetPage(
       name: Routes.COMMUNITY,
       page: () => const CommunityPage(),
       transition: Transition.fadeIn,
       transitionDuration: Duration(milliseconds: 700),
     ),
+    // ---------------------------------------- Business ----------------------------------------
     GetPage(
       name: Routes.BUSINESS,
       page: () => const BusinessPage(),
       transition: Transition.fadeIn,
       transitionDuration: Duration(milliseconds: 700),
     ),
+    // ---------------------------------------- Login ----------------------------------------
     GetPage(
       name: Routes.LOGIN,
       page: () => const LogInPage(),

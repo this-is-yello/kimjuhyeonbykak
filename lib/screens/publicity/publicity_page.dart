@@ -1,9 +1,11 @@
-import 'dart:ui';
-import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:kimjuhyeonbykak/main.dart';
 import 'package:kimjuhyeonbykak/style.dart';
-
 import 'package:kimjuhyeonbykak/navigation.dart';
+
+import 'dart:ui';
+import 'package:get/get.dart';
+import 'package:animate_do/animate_do.dart';
 
 class PublicityPage extends StatefulWidget {
   const PublicityPage({super.key});
@@ -266,9 +268,14 @@ class _PublicityContentState extends State<PublicityContent> {
 }
 
 // ---------- Magazine -----------------------------------------------------------------------------------------------------
-class MagazineScreen extends StatelessWidget {
+class MagazineScreen extends StatefulWidget {
   const MagazineScreen({super.key});
 
+  @override
+  State<MagazineScreen> createState() => _MagazineScreenState();
+}
+
+class _MagazineScreenState extends State<MagazineScreen> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -287,7 +294,14 @@ class MagazineScreen extends StatelessWidget {
             ),
             itemBuilder: (context, index) {
               return InkWell(
-                onTap: () {},
+                onTap: () {
+                  setState(() {
+                    magazineNum = index;
+                  });
+                  Get.rootDelegate
+                      .toNamed('${Routes.MAGAZINEVIEW}/$magazineNum');
+                  print(magazineNum);
+                },
                 child: Column(
                   children: [
                     Expanded(
@@ -302,7 +316,7 @@ class MagazineScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            '주제',
+                            '주제 $magazineNum',
                             style: TextStyle(
                               fontSize: h7FontSize(context),
                               color: blackColor,
@@ -314,7 +328,7 @@ class MagazineScreen extends StatelessWidget {
                               bottom: 8,
                             ),
                             child: Text(
-                              '컨텐츠 관련 제목 삽입 ',
+                              '컨텐츠 관련 제목 삽입 $magazineNum',
                               style: TextStyle(
                                 fontSize: h3FontSize(context),
                                 color: blackColor,
@@ -343,9 +357,14 @@ class MagazineScreen extends StatelessWidget {
 }
 
 // ---------- News -----------------------------------------------------------------------------------------------------
-class NewsScreen extends StatelessWidget {
+class NewsScreen extends StatefulWidget {
   const NewsScreen({super.key});
 
+  @override
+  State<NewsScreen> createState() => _NewsScreenState();
+}
+
+class _NewsScreenState extends State<NewsScreen> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -355,10 +374,17 @@ class NewsScreen extends StatelessWidget {
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
+          // newsNum = index;
           return Padding(
             padding: const EdgeInsets.only(bottom: 16),
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                setState(() {
+                  newsNum = index;
+                });
+                Get.rootDelegate.toNamed('${Routes.NEWSVIEW}/$newsNum');
+                print(newsNum);
+              },
               child: Container(
                 width: widgetSize(context),
                 decoration: BoxDecoration(
@@ -384,7 +410,7 @@ class NewsScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            '주제',
+                            '주제 $newsNum',
                             style: TextStyle(
                               fontSize: h7FontSize(context),
                               color: blackColor,
@@ -396,7 +422,7 @@ class NewsScreen extends StatelessWidget {
                               bottom: 8,
                             ),
                             child: Text(
-                              '컨텐츠 관련 제목 삽입 ',
+                              '보도자료 제목입니다. $newsNum',
                               maxLines: 1,
                               style: TextStyle(
                                 fontSize: h5FontSize(context),
@@ -406,7 +432,7 @@ class NewsScreen extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            '23.06.06',
+                            '23.06.06 $newsNum',
                             style: TextStyle(
                               fontSize: h7FontSize(context),
                               color: blackColor,

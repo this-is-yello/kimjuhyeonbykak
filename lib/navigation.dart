@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:kimjuhyeonbykak/style.dart';
 import 'package:kimjuhyeonbykak/main.dart';
@@ -220,8 +222,9 @@ class _MainAppBarState extends State<MainAppBar> {
       children: [
         Container(
           width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.width < 800 ? 72 : 80,
-          color: navBarColor,
+          height: MediaQuery.of(context).size.width < 800 ? 56 : 64,
+          // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+          color: blackColor,
           child: Center(
             child: SizedBox(
               width: widgetSize(context),
@@ -247,7 +250,7 @@ class _MainAppBarState extends State<MainAppBar> {
                     child: Image.asset(
                       width: MediaQuery.of(context).size.width < 800 ? 56 : 64,
                       height: MediaQuery.of(context).size.width < 800 ? 56 : 64,
-                      'assets/images/logos/bykakLogo_w.png',
+                      'assets/images/logos/bykakScissorLogo_w.png',
                       fit: BoxFit.contain,
                     ),
                   ),
@@ -380,50 +383,45 @@ class _MainAppBarState extends State<MainAppBar> {
                     width: MediaQuery.of(context).size.width,
                     height: 100,
                     color: blackColor,
-                    child: Column(
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SizedBox(
-                              // width: widgetSize(context),
-                              height: 40,
-                              child: ListView.builder(
-                                itemCount: subMenu[i].length,
-                                shrinkWrap: true,
-                                scrollDirection: Axis.horizontal,
-                                itemBuilder: (context, index) {
-                                  return Container(
-                                    padding: EdgeInsets.only(
-                                      left: 8,
-                                      right: 8,
+                        SizedBox(
+                          // width: widgetSize(context),
+                          height: 40,
+                          child: ListView.builder(
+                            itemCount: subMenu[i].length,
+                            shrinkWrap: true,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (context, index) {
+                              return Container(
+                                padding: EdgeInsets.only(
+                                  left: 8,
+                                  right: 8,
+                                ),
+                                child: ElevatedButton(
+                                  style: elevatedBtnTheme,
+                                  onPressed: () {
+                                    setState(() {
+                                      publicityNum = index;
+                                      communityNum = index;
+                                      businessNum = index;
+                                    });
+                                    Get.rootDelegate
+                                        .toNamed(subMenuLinks[i][index]);
+                                    print(subMenu[i][index]);
+                                  },
+                                  child: Text(
+                                    subMenu[i][index],
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      color: whiteColor,
                                     ),
-                                    child: ElevatedButton(
-                                      style: elevatedBtnTheme,
-                                      onPressed: () {
-                                        setState(() {
-                                          publicityNum = index;
-                                          communityNum = index;
-                                          businessNum = index;
-                                        });
-                                        Get.rootDelegate
-                                            .toNamed(subMenuLinks[i][index]);
-                                        print(subMenu[i][index]);
-                                      },
-                                      child: Text(
-                                        subMenu[i][index],
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          color: whiteColor,
-                                        ),
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ),
-                            ),
-                          ],
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
                         ),
                       ],
                     ),

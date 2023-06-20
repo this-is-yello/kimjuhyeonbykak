@@ -282,9 +282,84 @@ class _CarouselScreenState extends State<CarouselScreen> {
         Column(
           children: [
             MediaQuery.of(context).size.width < 800
-                ? Container()
+                ? Padding(
+                    padding: const EdgeInsets.only(bottom: 32),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ElevatedButton(
+                          style: elevatedBtnTheme,
+                          onPressed: () {
+                            picNum = 0;
+                            moveSel();
+                          },
+                          child: Container(
+                            width: picNum == 0 ? 40 : 12,
+                            height: 12,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(100),
+                              color: picNum == 0
+                                  ? greyColor.withAlpha(200)
+                                  : whiteColor,
+                            ),
+                          ),
+                        ),
+                        ElevatedButton(
+                          style: elevatedBtnTheme,
+                          onPressed: () {
+                            picNum = 1;
+                            moveSel();
+                          },
+                          child: Container(
+                            width: picNum == 1 ? 40 : 12,
+                            height: 12,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(100),
+                              color: picNum == 1
+                                  ? greyColor.withAlpha(200)
+                                  : whiteColor,
+                            ),
+                          ),
+                        ),
+                        ElevatedButton(
+                          style: elevatedBtnTheme,
+                          onPressed: () {
+                            picNum = 2;
+                            moveSel();
+                          },
+                          child: Container(
+                            width: picNum == 2 ? 40 : 12,
+                            height: 12,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(100),
+                              color: picNum == 2
+                                  ? greyColor.withAlpha(200)
+                                  : whiteColor,
+                            ),
+                          ),
+                        ),
+                        ElevatedButton(
+                          style: elevatedBtnTheme,
+                          onPressed: () {
+                            picNum = 3;
+                            moveSel();
+                          },
+                          child: Container(
+                            width: picNum == 3 ? 40 : 12,
+                            height: 12,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(100),
+                              color: picNum == 3
+                                  ? greyColor.withAlpha(200)
+                                  : whiteColor,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
                 : Padding(
-                    padding: const EdgeInsets.only(bottom: 40),
+                    padding: const EdgeInsets.only(bottom: 32),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -297,7 +372,7 @@ class _CarouselScreenState extends State<CarouselScreen> {
                           child: Text(
                             'Tailor Shop',
                             style: TextStyle(
-                              fontSize: picNum == 0 ? 13 : 12,
+                              fontSize: picNum == 0 ? 16 : 12,
                               fontWeight: picNum == 0 ? FontWeight.bold : null,
                               color: whiteColor,
                             ),
@@ -312,7 +387,7 @@ class _CarouselScreenState extends State<CarouselScreen> {
                           child: Text(
                             'Tailor Academy',
                             style: TextStyle(
-                              fontSize: picNum == 1 ? 13 : 12,
+                              fontSize: picNum == 1 ? 16 : 12,
                               fontWeight: picNum == 1 ? FontWeight.bold : null,
                               color: whiteColor,
                             ),
@@ -327,7 +402,7 @@ class _CarouselScreenState extends State<CarouselScreen> {
                           child: Text(
                             'Studio',
                             style: TextStyle(
-                              fontSize: picNum == 2 ? 13 : 12,
+                              fontSize: picNum == 2 ? 16 : 12,
                               fontWeight: picNum == 2 ? FontWeight.bold : null,
                               color: whiteColor,
                             ),
@@ -342,7 +417,7 @@ class _CarouselScreenState extends State<CarouselScreen> {
                           child: Text(
                             'Rental Center',
                             style: TextStyle(
-                              fontSize: picNum == 3 ? 13 : 12,
+                              fontSize: picNum == 3 ? 16 : 12,
                               fontWeight: picNum == 3 ? FontWeight.bold : null,
                               color: whiteColor,
                             ),
@@ -352,7 +427,7 @@ class _CarouselScreenState extends State<CarouselScreen> {
                     ),
                   ),
             Padding(
-              padding: EdgeInsets.only(bottom: 32),
+              padding: EdgeInsets.only(bottom: 24),
               child: WidgetAnimator(
                 atRestEffect: WidgetRestingEffects.bounce(),
                 child: Icon(
@@ -708,7 +783,7 @@ doWhat(context) {
       Text(
         '맞춤정장을 배워 무엇을 할 수 있을까?',
         style: TextStyle(
-          fontSize: h3FontSize(context),
+          fontSize: h4FontSize(context),
         ),
       ),
       Row(
@@ -717,11 +792,11 @@ doWhat(context) {
           Text(
             '"테일러링을 배워서 ',
             style: TextStyle(
-              fontSize: h3FontSize(context),
+              fontSize: h4FontSize(context),
             ),
           ),
           Container(
-            width: c2BoxSize(context),
+            width: c3BoxSize(context),
             height: MediaQuery.of(context).size.width < 800 ? 32 : 40,
             decoration: BoxDecoration(
               border: Border(
@@ -737,21 +812,21 @@ doWhat(context) {
                 RotateAnimatedText(
                   '나만의 수트제작',
                   textStyle: TextStyle(
-                    fontSize: h6FontSize(context) + 1,
+                    fontSize: h6FontSize(context),
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 RotateAnimatedText(
                   '테일러샵 창업',
                   textStyle: TextStyle(
-                    fontSize: h6FontSize(context) + 1,
+                    fontSize: h6FontSize(context),
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 RotateAnimatedText(
                   '쇼핑몰 오픈',
                   textStyle: TextStyle(
-                    fontSize: h6FontSize(context) + 1,
+                    fontSize: h6FontSize(context),
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -761,7 +836,7 @@ doWhat(context) {
           Text(
             ' 을 하고싶다"',
             style: TextStyle(
-              fontSize: h3FontSize(context),
+              fontSize: h4FontSize(context),
             ),
           ),
         ],

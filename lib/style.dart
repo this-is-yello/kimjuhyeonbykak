@@ -13,6 +13,9 @@ int publicityNum = 0;
 int communityNum = 0;
 int businessNum = 0;
 
+int newsNum = 0;
+int magazineNum = 0;
+
 bool topState = true;
 
 var elevatedBtnTheme = ElevatedButton.styleFrom(
@@ -22,9 +25,10 @@ var elevatedBtnTheme = ElevatedButton.styleFrom(
 );
 
 bottomToTop(context, moveTop()) {
-  return SizedBox(
-    width: widgetSize(context),
-    height: 80,
+  return Container(
+    width: double.infinity,
+    height: 72,
+    color: blackColor,
     child: ElevatedButton(
       style: elevatedBtnTheme,
       onPressed: () {
@@ -35,8 +39,8 @@ bottomToTop(context, moveTop()) {
         child: Text(
           '맨 위로 ↑',
           style: TextStyle(
-            color: blackColor,
-            fontSize: h4FontSize(context),
+            color: whiteColor,
+            fontSize: h5FontSize(context),
           ),
         ),
       ),
