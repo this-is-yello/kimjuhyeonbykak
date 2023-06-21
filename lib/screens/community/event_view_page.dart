@@ -6,14 +6,14 @@ import 'package:kimjuhyeonbykak/navigation.dart';
 
 import 'package:get/get.dart';
 
-class MagazineViewPage extends StatefulWidget {
-  const MagazineViewPage({super.key});
+class EventViewPage extends StatefulWidget {
+  const EventViewPage({super.key});
 
   @override
-  State<MagazineViewPage> createState() => _MagazineViewPageState();
+  State<EventViewPage> createState() => _EventViewPageState();
 }
 
-class _MagazineViewPageState extends State<MagazineViewPage> {
+class _EventViewPageState extends State<EventViewPage> {
   final ScrollController _scrollController = ScrollController();
 
   scrollState() {
@@ -59,7 +59,7 @@ class _MagazineViewPageState extends State<MagazineViewPage> {
             controller: _scrollController,
             shrinkWrap: true,
             children: [
-              MagazineViewContent(),
+              EventViewContent(),
               Padding(
                 padding: EdgeInsets.only(
                   top: MediaQuery.of(context).size.width < 800 ? 120 : 160,
@@ -92,15 +92,15 @@ class _MagazineViewPageState extends State<MagazineViewPage> {
   }
 }
 
-// ---------- MagazineView_Content -----------------------------------------------------------------------------------------------------
-class MagazineViewContent extends StatefulWidget {
-  const MagazineViewContent({super.key});
+// ---------- EventView_Content -----------------------------------------------------------------------------------------------------
+class EventViewContent extends StatefulWidget {
+  const EventViewContent({super.key});
 
   @override
-  State<MagazineViewContent> createState() => _MagazineViewContentState();
+  State<EventViewContent> createState() => _EventViewContentState();
 }
 
-class _MagazineViewContentState extends State<MagazineViewContent> {
+class _EventViewContentState extends State<EventViewContent> {
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -118,7 +118,7 @@ class _MagazineViewContentState extends State<MagazineViewContent> {
                     Image.asset(
                       width: MediaQuery.of(context).size.width,
                       height: c1BoxSize(context) + 200,
-                      'assets/images/tailorAcademy_bg.png',
+                      'assets/images/jemulpoClub_bg.png',
                       fit: BoxFit.cover,
                     ),
                     Container(
@@ -152,7 +152,7 @@ class _MagazineViewContentState extends State<MagazineViewContent> {
                               bottom: 8,
                             ),
                             child: Text(
-                              '매거진',
+                              '이벤트',
                               style: TextStyle(
                                 fontSize: h1FontSize(context),
                                 fontWeight: FontWeight.bold,
@@ -183,9 +183,9 @@ class _MagazineViewContentState extends State<MagazineViewContent> {
                 child: InkWell(
                   onTap: () {
                     setState(() {
-                      publicityNum = 0;
+                      communityNum = 1;
                     });
-                    Get.rootDelegate.toNamed(Routes.PUBLICITY);
+                    Get.rootDelegate.toNamed(Routes.COMMUNITY);
                   },
                   child: SizedBox(
                     width: c2BoxSize(context),
@@ -210,19 +210,68 @@ class _MagazineViewContentState extends State<MagazineViewContent> {
                   ),
                 ),
               ),
-              SizedBox(
-                width: widgetSize(context),
-                child: ListView.builder(
-                  itemCount: 1,
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    return Image.asset(
-                      'assets/images/magazine_0.png',
-                      fit: BoxFit.fitWidth,
-                    );
-                  },
-                ),
+              Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 8),
+                    child: SizedBox(
+                      width: widgetSize(context),
+                      child: Text(
+                        '[이벤트$eventNum] 바이각 프로모션 $eventNum',
+                        style: TextStyle(
+                          fontSize: h2FontSize(context),
+                          color: blackColor,
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: widgetSize(context),
+                    child: Row(
+                      children: [
+                        Text(
+                          '작성자 $eventNum',
+                          style: TextStyle(
+                            fontSize: h6FontSize(context),
+                            color: blackColor,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 16),
+                          child: Text(
+                            '23.06.20 - 23.07.20 $eventNum',
+                            style: TextStyle(
+                              fontSize: h6FontSize(context),
+                              color: blackColor,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8, bottom: 32),
+                    child: Container(
+                      width: widgetSize(context),
+                      height: 2,
+                      color: greyColor,
+                    ),
+                  ),
+                  SizedBox(
+                    width: widgetSize(context),
+                    child: ListView.builder(
+                      itemCount: 1,
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemBuilder: (context, index) {
+                        return Image.asset(
+                          'assets/images/event_0.png',
+                          fit: BoxFit.fitWidth,
+                        );
+                      },
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

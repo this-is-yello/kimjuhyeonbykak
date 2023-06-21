@@ -1,9 +1,12 @@
-import 'dart:ui';
-import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:kimjuhyeonbykak/style.dart';
 
+import 'package:kimjuhyeonbykak/main.dart';
 import 'package:kimjuhyeonbykak/navigation.dart';
+
+import 'dart:ui';
+import 'package:animate_do/animate_do.dart';
 
 class CommunityPage extends StatefulWidget {
   const CommunityPage({super.key});
@@ -81,7 +84,7 @@ class _CommunityPageState extends State<CommunityPage> {
                   color: whiteColor,
                   size: 30,
                 ),
-                backgroundColor: blackColor.withOpacity(0.5),
+                backgroundColor: bykakColor,
                 onPressed: () {
                   moveTop();
                 },
@@ -461,6 +464,7 @@ class _InquiryScreenState extends State<InquiryScreen> {
             padding: const EdgeInsets.only(top: 20, bottom: 20),
             child: DropdownButton(
               dropdownColor: whiteColor,
+              focusColor: whiteColor,
               isExpanded: true,
               value: _selectedValue,
               underline: SizedBox.shrink(),
@@ -512,6 +516,29 @@ class _InquiryScreenState extends State<InquiryScreen> {
               ),
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.only(top: 40),
+            child: InkWell(
+              onTap: () {},
+              child: Container(
+                width: 300,
+                height: 56,
+                decoration: BoxDecoration(
+                  color: blackColor,
+                  borderRadius: BorderRadius.circular(500),
+                ),
+                child: Center(
+                  child: Text(
+                    '완료',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: whiteColor,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -519,9 +546,14 @@ class _InquiryScreenState extends State<InquiryScreen> {
 }
 
 // ---------- Notification -----------------------------------------------------------------------------------------------------
-class NotificationScreen extends StatelessWidget {
+class NotificationScreen extends StatefulWidget {
   const NotificationScreen({super.key});
 
+  @override
+  State<NotificationScreen> createState() => _NotificationScreenState();
+}
+
+class _NotificationScreenState extends State<NotificationScreen> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -534,7 +566,14 @@ class NotificationScreen extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.only(bottom: 16),
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                setState(() {
+                  notificationNum = index;
+                });
+                Get.rootDelegate
+                    .toNamed('${Routes.NOTIFICATIONVIEW}/$notificationNum');
+                print(notificationNum);
+              },
               child: Container(
                 width: widgetSize(context),
                 height: c5BoxSize(context),
@@ -556,7 +595,7 @@ class NotificationScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      '[공지사항] 공지사항 타이틀 삽입',
+                      '[공지사항] 공지사항 타이틀 삽입 $notificationNum',
                       maxLines: 1,
                       style: TextStyle(
                         fontSize: h5FontSize(context),
@@ -565,7 +604,7 @@ class NotificationScreen extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      '23.06.06',
+                      '23.06.06 $notificationNum',
                       style: TextStyle(
                         fontSize: h7FontSize(context),
                         color: blackColor,
@@ -583,9 +622,14 @@ class NotificationScreen extends StatelessWidget {
 }
 
 // ---------- Event -----------------------------------------------------------------------------------------------------
-class EventScreen extends StatelessWidget {
+class EventScreen extends StatefulWidget {
   const EventScreen({super.key});
 
+  @override
+  State<EventScreen> createState() => _EventScreenState();
+}
+
+class _EventScreenState extends State<EventScreen> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -602,7 +646,13 @@ class EventScreen extends StatelessWidget {
         ),
         itemBuilder: (context, index) {
           return InkWell(
-            onTap: () {},
+            onTap: () {
+              setState(() {
+                eventNum = index;
+              });
+              Get.rootDelegate.toNamed('${Routes.EVENTVIEW}/$eventNum');
+              print(notificationNum);
+            },
             child: Column(
               children: [
                 Expanded(
@@ -617,7 +667,7 @@ class EventScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        '주제',
+                        '주제 $eventNum',
                         style: TextStyle(
                           fontSize: h7FontSize(context),
                           color: blackColor,
@@ -629,7 +679,7 @@ class EventScreen extends StatelessWidget {
                           bottom: 8,
                         ),
                         child: Text(
-                          '컨텐츠 관련 제목 삽입 ',
+                          '컨텐츠 관련 제목 삽입 $eventNum',
                           style: TextStyle(
                             fontSize: h3FontSize(context),
                             color: blackColor,

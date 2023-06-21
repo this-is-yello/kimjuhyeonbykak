@@ -84,13 +84,15 @@ class LogInPage extends StatelessWidget {
                     ),
                     Container(
                       width: 360,
-                      padding: EdgeInsets.only(top: 12, bottom: 12),
+                      padding: EdgeInsets.only(top: 20, bottom: 20),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           InkWell(
+                            onTap: () {
+                              Get.rootDelegate.toNamed(Routes.SIGNUP);
+                            },
                             child: Text('회원가입'),
-                            onTap: () {},
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 8, right: 8),

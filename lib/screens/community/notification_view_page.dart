@@ -6,14 +6,14 @@ import 'package:kimjuhyeonbykak/navigation.dart';
 
 import 'package:get/get.dart';
 
-class MagazineViewPage extends StatefulWidget {
-  const MagazineViewPage({super.key});
+class NotificationViewPage extends StatefulWidget {
+  const NotificationViewPage({super.key});
 
   @override
-  State<MagazineViewPage> createState() => _MagazineViewPageState();
+  State<NotificationViewPage> createState() => _NotificationViewPageState();
 }
 
-class _MagazineViewPageState extends State<MagazineViewPage> {
+class _NotificationViewPageState extends State<NotificationViewPage> {
   final ScrollController _scrollController = ScrollController();
 
   scrollState() {
@@ -59,7 +59,7 @@ class _MagazineViewPageState extends State<MagazineViewPage> {
             controller: _scrollController,
             shrinkWrap: true,
             children: [
-              MagazineViewContent(),
+              NotificationViewContent(),
               Padding(
                 padding: EdgeInsets.only(
                   top: MediaQuery.of(context).size.width < 800 ? 120 : 160,
@@ -92,15 +92,16 @@ class _MagazineViewPageState extends State<MagazineViewPage> {
   }
 }
 
-// ---------- MagazineView_Content -----------------------------------------------------------------------------------------------------
-class MagazineViewContent extends StatefulWidget {
-  const MagazineViewContent({super.key});
+// ---------- NotificationView_Content -----------------------------------------------------------------------------------------------------
+class NotificationViewContent extends StatefulWidget {
+  const NotificationViewContent({super.key});
 
   @override
-  State<MagazineViewContent> createState() => _MagazineViewContentState();
+  State<NotificationViewContent> createState() =>
+      _NotificationViewContentState();
 }
 
-class _MagazineViewContentState extends State<MagazineViewContent> {
+class _NotificationViewContentState extends State<NotificationViewContent> {
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -118,7 +119,7 @@ class _MagazineViewContentState extends State<MagazineViewContent> {
                     Image.asset(
                       width: MediaQuery.of(context).size.width,
                       height: c1BoxSize(context) + 200,
-                      'assets/images/tailorAcademy_bg.png',
+                      'assets/images/jemulpoClub_bg.png',
                       fit: BoxFit.cover,
                     ),
                     Container(
@@ -152,7 +153,7 @@ class _MagazineViewContentState extends State<MagazineViewContent> {
                               bottom: 8,
                             ),
                             child: Text(
-                              '매거진',
+                              '공지사항',
                               style: TextStyle(
                                 fontSize: h1FontSize(context),
                                 fontWeight: FontWeight.bold,
@@ -183,9 +184,9 @@ class _MagazineViewContentState extends State<MagazineViewContent> {
                 child: InkWell(
                   onTap: () {
                     setState(() {
-                      publicityNum = 0;
+                      communityNum = 1;
                     });
-                    Get.rootDelegate.toNamed(Routes.PUBLICITY);
+                    Get.rootDelegate.toNamed(Routes.COMMUNITY);
                   },
                   child: SizedBox(
                     width: c2BoxSize(context),
@@ -210,19 +211,68 @@ class _MagazineViewContentState extends State<MagazineViewContent> {
                   ),
                 ),
               ),
-              SizedBox(
-                width: widgetSize(context),
-                child: ListView.builder(
-                  itemCount: 1,
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    return Image.asset(
-                      'assets/images/magazine_0.png',
-                      fit: BoxFit.fitWidth,
-                    );
-                  },
-                ),
+              Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 8),
+                    child: SizedBox(
+                      width: widgetSize(context),
+                      child: Text(
+                        '[공지사항$notificationNum] 공지사항 타이틀 삽입 $notificationNum',
+                        style: TextStyle(
+                          fontSize: h2FontSize(context),
+                          color: blackColor,
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: widgetSize(context),
+                    child: Row(
+                      children: [
+                        Text(
+                          '작성자 $notificationNum',
+                          style: TextStyle(
+                            fontSize: h6FontSize(context),
+                            color: blackColor,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 16),
+                          child: Text(
+                            '23.06.20 $notificationNum',
+                            style: TextStyle(
+                              fontSize: h6FontSize(context),
+                              color: blackColor,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8, bottom: 32),
+                    child: Container(
+                      width: widgetSize(context),
+                      height: 2,
+                      color: greyColor,
+                    ),
+                  ),
+                  SizedBox(
+                    width: widgetSize(context),
+                    child: ListView.builder(
+                      itemCount: 1,
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemBuilder: (context, index) {
+                        return Image.asset(
+                          'assets/images/notification_0.png',
+                          fit: BoxFit.fitWidth,
+                        );
+                      },
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

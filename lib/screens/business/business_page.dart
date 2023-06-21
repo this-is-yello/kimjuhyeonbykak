@@ -81,7 +81,7 @@ class _BusinessPageState extends State<BusinessPage> {
                   color: whiteColor,
                   size: 30,
                 ),
-                backgroundColor: blackColor.withOpacity(0.5),
+                backgroundColor: bykakColor,
                 onPressed: () {
                   moveTop();
                 },
@@ -388,6 +388,7 @@ class SupportersKakIn extends StatelessWidget {
                     '마일리지 신청 및 등급 조회하기 >',
                     style: TextStyle(
                       fontSize: h5FontSize(context),
+                      fontWeight: FontWeight.bold,
                       color: blackColor,
                     ),
                   ),
@@ -673,6 +674,7 @@ class SupportersAmbassador extends StatelessWidget {
                         '엠버서더 신청 >',
                         style: TextStyle(
                           fontSize: h5FontSize(context),
+                          fontWeight: FontWeight.bold,
                           color: blackColor,
                         ),
                       ),
@@ -686,6 +688,7 @@ class SupportersAmbassador extends StatelessWidget {
                           '엠버서더 페이지 >',
                           style: TextStyle(
                             fontSize: h5FontSize(context),
+                            fontWeight: FontWeight.bold,
                             color: blackColor,
                           ),
                         ),
@@ -720,13 +723,16 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
     return SizedBox(
       width: widgetSize(context),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(
-            '1. 기본정보',
-            style: TextStyle(
-              fontSize: h1FontSize(context),
-              color: blackColor,
+          SizedBox(
+            width: widgetSize(context),
+            child: Text(
+              '1. 기본정보',
+              style: TextStyle(
+                fontSize: h1FontSize(context),
+                color: blackColor,
+              ),
             ),
           ),
           Padding(
@@ -1040,11 +1046,14 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
           ),
           Padding(
             padding: const EdgeInsets.only(top: 40, bottom: 20),
-            child: Text(
-              '2. 카테고리',
-              style: TextStyle(
-                fontSize: h1FontSize(context),
-                color: blackColor,
+            child: SizedBox(
+              width: widgetSize(context),
+              child: Text(
+                '2. 카테고리',
+                style: TextStyle(
+                  fontSize: h1FontSize(context),
+                  color: blackColor,
+                ),
               ),
             ),
           ),
@@ -1168,6 +1177,29 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
                 border: OutlineInputBorder(
                   borderSide: BorderSide(
                     color: blackColor,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 40),
+            child: InkWell(
+              onTap: () {},
+              child: Container(
+                width: 300,
+                height: 56,
+                decoration: BoxDecoration(
+                  color: blackColor,
+                  borderRadius: BorderRadius.circular(500),
+                ),
+                child: Center(
+                  child: Text(
+                    '완료',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: whiteColor,
+                    ),
                   ),
                 ),
               ),

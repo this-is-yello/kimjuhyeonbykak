@@ -100,7 +100,7 @@ class _RentalCenterPageState extends State<RentalCenterPage> {
                   color: whiteColor,
                   size: 30,
                 ),
-                backgroundColor: blackColor.withOpacity(0.5),
+                backgroundColor: bykakColor,
                 onPressed: () {
                   moveTop();
                 },

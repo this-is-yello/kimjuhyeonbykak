@@ -447,7 +447,7 @@ class _FooterState extends State<Footer> {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      padding: const EdgeInsets.fromLTRB(20, 4, 20, 4),
+      padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
       decoration: BoxDecoration(
         border: Border(
           top: BorderSide(
@@ -469,8 +469,8 @@ class _FooterState extends State<Footer> {
                   Get.rootDelegate.toNamed(Routes.MAIN);
                 },
                 child: SizedBox(
-                  width: c5BoxSize(context),
-                  height: c5BoxSize(context),
+                  width: c4BoxSize(context),
+                  height: c4BoxSize(context),
                   // color: blackColor,
                   child: Image.asset(
                     'assets/images/logos/bykakLogo_b.png',
@@ -487,7 +487,7 @@ class _FooterState extends State<Footer> {
                 children: [
                   Row(
                     children: [
-                      ElevatedButton(
+                      TextButton(
                         style: elevatedBtnTheme,
                         onPressed: () {},
                         child: Text(
@@ -499,7 +499,7 @@ class _FooterState extends State<Footer> {
                           ),
                         ),
                       ),
-                      ElevatedButton(
+                      TextButton(
                         style: elevatedBtnTheme,
                         onPressed: () {},
                         child: Text(
@@ -511,7 +511,7 @@ class _FooterState extends State<Footer> {
                           ),
                         ),
                       ),
-                      ElevatedButton(
+                      TextButton(
                         style: elevatedBtnTheme,
                         onPressed: () {},
                         child: Text(
@@ -527,7 +527,7 @@ class _FooterState extends State<Footer> {
                   ),
                   Row(
                     children: [
-                      ElevatedButton(
+                      TextButton(
                         style: elevatedBtnTheme,
                         onPressed: () {},
                         child: Text(
@@ -539,7 +539,7 @@ class _FooterState extends State<Footer> {
                           ),
                         ),
                       ),
-                      ElevatedButton(
+                      TextButton(
                         style: elevatedBtnTheme,
                         onPressed: () {},
                         child: Text(
@@ -551,7 +551,7 @@ class _FooterState extends State<Footer> {
                           ),
                         ),
                       ),
-                      ElevatedButton(
+                      TextButton(
                         style: elevatedBtnTheme,
                         onPressed: () {},
                         child: Text(
@@ -565,7 +565,7 @@ class _FooterState extends State<Footer> {
                       ),
                     ],
                   ),
-                  ElevatedButton(
+                  TextButton(
                     style: elevatedBtnTheme,
                     onPressed: () {},
                     child: Text(
