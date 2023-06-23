@@ -4,8 +4,33 @@ import 'package:kimjuhyeonbykak/main.dart';
 
 import 'package:get/get.dart';
 
-class LogInPage extends StatelessWidget {
+class LogInPage extends StatefulWidget {
   const LogInPage({super.key});
+
+  @override
+  State<LogInPage> createState() => _LogInPageState();
+}
+
+var _inputId = TextEditingController();
+var _inputPassword = TextEditingController();
+
+class _LogInPageState extends State<LogInPage> {
+  logInBtn() async {
+    try {
+      if (_inputId.text.isEmpty || _inputPassword.text.isEmpty) {
+        print('아이디, 비밀번호 입력해');
+      } else {
+        await auth.signInWithEmailAndPassword(
+          email: _inputId.text,
+          password: _inputPassword.text,
+        );
+        Get.rootDelegate.toNamed(Routes.MAIN);
+      }
+      print(auth.currentUser?.uid);
+    } catch (e) {
+      print(e);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,8 +64,10 @@ class LogInPage extends StatelessWidget {
                     SizedBox(
                       width: 360,
                       child: TextField(
-                        // controller: _inputId,
+                        controller: _inputId,
                         keyboardType: TextInputType.emailAddress,
+                        textInputAction: TextInputAction.go,
+                        onSubmitted: (value) => logInBtn(),
                         decoration: InputDecoration(
                           hintText: '아이디',
                           border: OutlineInputBorder(
@@ -62,8 +89,10 @@ class LogInPage extends StatelessWidget {
                       child: SizedBox(
                         width: 360,
                         child: TextField(
-                          // controller: _inputPassword,
+                          controller: _inputPassword,
                           keyboardType: TextInputType.visiblePassword,
+                          textInputAction: TextInputAction.go,
+                          onSubmitted: (value) => logInBtn(),
                           obscureText: true,
                           decoration: InputDecoration(
                             hintText: '비밀번호',
@@ -100,31 +129,34 @@ class LogInPage extends StatelessWidget {
                           ),
                           InkWell(
                             child: Text('아이디, 비밀번호 찾기'),
-                            onTap: () {},
+                            onTap: () {
+                              Get.rootDelegate.toNamed(Routes.ACCOUNTINQUIRY);
+                            },
                           ),
                         ],
                       ),
                     ),
                     InkWell(
-                      child: Container(
-                        width: 360,
-                        height: 48,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          color: blackColor,
-                        ),
-                        child: Center(
-                          child: Text(
-                            '로그인',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: whiteColor,
+                        child: Container(
+                          width: 360,
+                          height: 48,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: blackColor,
+                          ),
+                          child: Center(
+                            child: Text(
+                              '로그인',
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: whiteColor,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      onTap: () {},
-                    ),
+                        onTap: () async {
+                          logInBtn();
+                        }),
                     // Padding(
                     //   padding: const EdgeInsets.only(top: 24, bottom: 24),
                     //   child: Container(

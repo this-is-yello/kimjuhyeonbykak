@@ -276,13 +276,14 @@ class _SupportersScreenState extends State<SupportersScreen> {
                         '각인(覺人)',
                         style: TextStyle(
                           fontSize: h4FontSize(context),
-                          color: whiteColor,
+                          color: supporterState ? whiteColor : blackColor,
                         ),
                       ),
                     ),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
-                      color: blackColor,
+                      border: Border.all(color: blackColor, width: 2),
+                      color: supporterState ? blackColor : whiteColor,
                     ),
                   ),
                 ),
@@ -304,13 +305,14 @@ class _SupportersScreenState extends State<SupportersScreen> {
                           '엠버서더',
                           style: TextStyle(
                             fontSize: h4FontSize(context),
-                            color: whiteColor,
+                            color: supporterState ? blackColor : whiteColor,
                           ),
                         ),
                       ),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
-                        color: blackColor,
+                        border: Border.all(color: blackColor, width: 2),
+                        color: supporterState ? whiteColor : blackColor,
                       ),
                     ),
                   ),

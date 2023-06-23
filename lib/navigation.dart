@@ -25,7 +25,8 @@ class _MainAppBarState extends State<MainAppBar> {
     Routes.COMMUNITY,
     Routes.BUSINESS
   ];
-  List userMenu = ['KOR', '로그인'];
+
+  bool langBtn = true;
 
   List subMenu = [
     ['바이각스토리', '김주현바이각', '바이각 테일러아카데미', '신제물포구락부', '바이각 수트렌탈센터'],
@@ -203,19 +204,6 @@ class _MainAppBarState extends State<MainAppBar> {
 
   bool navBarHover = false;
 
-  var navBarColor = blackColor.withOpacity(0.7);
-  navBarColorState() {
-    if (navBarHover == true) {
-      setState(() {
-        navBarColor = blackColor;
-      });
-    } else {
-      setState(() {
-        navBarColor = blackColor.withOpacity(0.7);
-      });
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -223,7 +211,6 @@ class _MainAppBarState extends State<MainAppBar> {
         Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.width < 800 ? 56 : 64,
-          // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
           color: blackColor,
           child: Center(
             child: SizedBox(
@@ -235,17 +222,6 @@ class _MainAppBarState extends State<MainAppBar> {
                     style: elevatedBtnTheme,
                     onPressed: () {
                       Get.rootDelegate.toNamed(Routes.MAIN);
-                    },
-                    onHover: (value) {
-                      if (value == true) {
-                        setState(() {
-                          navBarColor = blackColor;
-                        });
-                      } else {
-                        setState(() {
-                          navBarColor = blackColor.withOpacity(0.7);
-                        });
-                      }
                     },
                     child: Image.asset(
                       width: MediaQuery.of(context).size.width < 800 ? 56 : 64,
@@ -276,13 +252,6 @@ class _MainAppBarState extends State<MainAppBar> {
                                       Get.rootDelegate
                                           .toNamed(navsMenuLinks[index]);
                                     },
-                                    onHover: (value) {
-                                      setState(() {
-                                        navBarHover = value;
-                                        navBarColorState();
-                                        i = index;
-                                      });
-                                    },
                                     child: Text(
                                       navsMenu[index],
                                       style: TextStyle(
@@ -298,37 +267,50 @@ class _MainAppBarState extends State<MainAppBar> {
                         ),
                   Row(
                     children: [
-                      ListView.builder(
-                        itemCount: 1,
+                      ListView(
                         shrinkWrap: true,
                         scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, index) {
-                          return ElevatedButton(
+                        children: [
+// -------------------------------------------------- 언어변환 --------------------------------------------------
+                          // ElevatedButton(
+                          //   style: elevatedBtnTheme,
+                          //   onPressed: () {
+                          //     setState(() {
+                          //       if (langBtn == true) {
+                          //         langBtn = false;
+                          //       } else {
+                          //         langBtn = true;
+                          //       }
+                          //     });
+                          //   },
+                          //   child: Text(
+                          //     langBtn ? KOR : ENG,
+                          //     style: TextStyle(
+                          //       fontSize: 16,
+                          //       color: whiteColor,
+                          //     ),
+                          //   ),
+                          // ),
+                          ElevatedButton(
                             style: elevatedBtnTheme,
                             onPressed: () {
-                              Get.rootDelegate.toNamed(Routes.LOGIN);
-                            },
-                            onHover: (value) {
-                              if (value == true) {
-                                setState(() {
-                                  navBarColor = blackColor;
-                                });
-                              } else {
-                                setState(() {
-                                  navBarColor = blackColor.withOpacity(0.7);
-                                });
+                              if (auth.currentUser?.uid != null) {
+                                print('마이페이지');
+                                // auth.signOut();
+                              } else if (auth.currentUser?.uid == null) {
+                                Get.rootDelegate.toNamed(Routes.LOGIN);
+                                print(auth.currentUser?.uid);
                               }
                             },
                             child: Text(
-                              // -------------------- 언어전환을위한 리스트 --------------------
-                              userMenu[1],
+                              auth.currentUser?.uid == null ? '로그인' : '마이페이지',
                               style: TextStyle(
                                 fontSize: 16,
                                 color: whiteColor,
                               ),
                             ),
-                          );
-                        },
+                          ),
+                        ],
                       ),
                       MediaQuery.of(context).size.width < 800
                           ? Padding(
@@ -341,17 +323,6 @@ class _MainAppBarState extends State<MainAppBar> {
                                     businessNum = 0;
                                   });
                                   mobileMenu();
-                                },
-                                onHover: (value) {
-                                  if (value == true) {
-                                    setState(() {
-                                      navBarColor = blackColor;
-                                    });
-                                  } else {
-                                    setState(() {
-                                      navBarColor = blackColor.withOpacity(0.7);
-                                    });
-                                  }
                                 },
                                 child: Icon(
                                   Icons.menu_rounded,
@@ -373,12 +344,6 @@ class _MainAppBarState extends State<MainAppBar> {
             ? FadeIn(
                 child: InkWell(
                   onTap: () {},
-                  onHover: (value) {
-                    setState(() {
-                      navBarHover = value;
-                      navBarColorState();
-                    });
-                  },
                   child: Container(
                     width: MediaQuery.of(context).size.width,
                     height: 100,
