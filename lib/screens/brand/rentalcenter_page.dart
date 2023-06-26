@@ -43,6 +43,7 @@ class _RentalCenterPageState extends State<RentalCenterPage> {
   void initState() {
     super.initState();
     topState = true;
+    inMypage = false;
     scrollState();
   }
 

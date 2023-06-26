@@ -18,7 +18,10 @@ class _LogInPageState extends State<LogInPage> {
   logInBtn() async {
     try {
       if (_inputId.text.isEmpty || _inputPassword.text.isEmpty) {
-        print('아이디, 비밀번호 입력해');
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Center(child: Text('이메일 혹은 비밀번호를 입력하세요.')),
+          backgroundColor: bykakColor,
+        ));
       } else {
         await auth.signInWithEmailAndPassword(
           email: _inputId.text,
@@ -29,6 +32,10 @@ class _LogInPageState extends State<LogInPage> {
       print(auth.currentUser?.uid);
     } catch (e) {
       print(e);
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Center(child: Text('이메일 혹은 비밀번호를 잘 못 입력하였습니다.')),
+        backgroundColor: bykakColor,
+      ));
     }
   }
 
@@ -69,7 +76,7 @@ class _LogInPageState extends State<LogInPage> {
                         textInputAction: TextInputAction.go,
                         onSubmitted: (value) => logInBtn(),
                         decoration: InputDecoration(
-                          hintText: '아이디',
+                          hintText: '이메일',
                           border: OutlineInputBorder(
                             borderSide: BorderSide(width: 1),
                             borderRadius: BorderRadius.circular(8),
@@ -128,7 +135,7 @@ class _LogInPageState extends State<LogInPage> {
                             child: Text('/'),
                           ),
                           InkWell(
-                            child: Text('아이디, 비밀번호 찾기'),
+                            child: Text('이메일, 비밀번호 찾기'),
                             onTap: () {
                               Get.rootDelegate.toNamed(Routes.ACCOUNTINQUIRY);
                             },

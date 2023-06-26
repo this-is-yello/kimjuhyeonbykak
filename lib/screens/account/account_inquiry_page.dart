@@ -1,5 +1,3 @@
-import 'dart:js_interop';
-
 import 'package:flutter/material.dart';
 import 'package:kimjuhyeonbykak/style.dart';
 import 'package:kimjuhyeonbykak/main.dart';
@@ -57,7 +55,7 @@ class _AccountInquiryPageState extends State<AccountInquiryPage> {
                           height: 48,
                           child: Center(
                             child: Text(
-                              '아이디 찾기',
+                              '이메일 찾기',
                               style: TextStyle(
                                 fontSize: 16,
                                 color: searchState ? whiteColor : blackColor,
@@ -127,31 +125,68 @@ class _IdInquiryState extends State<IdInquiry> {
   var _inputInquiryPhone = TextEditingController();
 
   searchId() async {
-    var nameSearch = await firestore
-        .collection('account')
-        .doc('${_inputInquiryName.text}, ${_inputInquiryPhone.text}')
-        .get();
-    var idSearch = nameSearch.get('id');
-    print(idSearch);
-    return showDialog(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        content: Text('조회하신 이름으로 등록된 아이디는\n$idSearch 입니다.'),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: Text(
-              '확인',
-              style: TextStyle(
-                color: blackColor,
-              ),
-            ),
-          )
-        ],
-      ),
-    );
+    try {
+      if (_inputInquiryName.text.isEmpty || _inputInquiryPhone.text.isEmpty) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Center(child: Text('입력되지 않은 정보가 있습니다.')),
+            backgroundColor: bykakColor,
+          ),
+        );
+      } else {
+        var nameSearch = await firestore
+            .collection('account')
+            .doc('${_inputInquiryName.text}, ${_inputInquiryPhone.text}')
+            .get();
+        var idSearch = nameSearch.get('id');
+        print(idSearch);
+        return showDialog(
+          context: context,
+          builder: (ctx) => AlertDialog(
+            content: Text('조회하신 이름으로 등록된 이메일는\n$idSearch 입니다.'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text(
+                  '확인',
+                  style: TextStyle(
+                    color: blackColor,
+                  ),
+                ),
+              )
+            ],
+          ),
+        );
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('가입된 정보가 없습니다.'),
+              Padding(
+                padding: const EdgeInsets.only(left: 16),
+                child: InkWell(
+                  onTap: () {
+                    Get.rootDelegate.toNamed(Routes.SIGNUP);
+                  },
+                  child: Text(
+                    '회원가입',
+                    style: TextStyle(
+                      decoration: TextDecoration.underline,
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
+          backgroundColor: bykakColor,
+        ),
+      );
+    }
   }
 
   @override
@@ -235,7 +270,7 @@ class _IdInquiryState extends State<IdInquiry> {
                   ),
                   child: Center(
                     child: Text(
-                      '아이디 조회',
+                      '이메일 조회',
                       style: TextStyle(
                         fontSize: 16,
                         color: whiteColor,
@@ -266,57 +301,79 @@ class _PwInquiryState extends State<PwInquiry> {
   var _inputInquiryPhone = TextEditingController();
 
   searchPw() async {
-    var nameSearch = await firestore
-        .collection('account')
-        .doc('${_inputInquiryName.text}, ${_inputInquiryPhone.text}')
-        .get();
-    var idSearch = nameSearch.get('id');
-    var pwSearch = nameSearch.get('password');
-    print(pwSearch);
-
-    try {
-      if (_inputInquiryId.text == idSearch) {
-        return showDialog(
-          context: context,
-          builder: (ctx) => AlertDialog(
-            content: Text('조회하신 이메일의 비밀번호는\n$pwSearch 입니다.'),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: Text(
-                  '확인',
-                  style: TextStyle(
-                    color: blackColor,
+    if (_inputInquiryName.text.isEmpty ||
+        _inputInquiryPhone.text.isEmpty ||
+        _inputInquiryId.text.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Center(child: Text('입력되지 않은 정보가 있습니다.')),
+          backgroundColor: bykakColor,
+        ),
+      );
+    } else {
+      try {
+        var nameSearch = await firestore
+            .collection('account')
+            .doc('${_inputInquiryName.text}, ${_inputInquiryPhone.text}')
+            .get();
+        var idSearch = nameSearch.get('id');
+        var pwSearch = nameSearch.get('password');
+        if (_inputInquiryId.text == idSearch) {
+          print(pwSearch);
+          return showDialog(
+            context: context,
+            builder: (ctx) => AlertDialog(
+              content: Text('조회하신 이메일로 등록된 비밀번호는\n$pwSearch 입니다.'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text(
+                    '확인',
+                    style: TextStyle(
+                      color: blackColor,
+                    ),
                   ),
-                ),
-              )
-            ],
+                )
+              ],
+            ),
+          );
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Center(child: Text('입력하신 이메일가 정확하지 않습니다.')),
+              backgroundColor: bykakColor,
+            ),
+          );
+        }
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('가입된 정보가 없습니다.'),
+                Padding(
+                  padding: const EdgeInsets.only(left: 16),
+                  child: InkWell(
+                    onTap: () {
+                      Get.rootDelegate.toNamed(Routes.SIGNUP);
+                    },
+                    child: Text(
+                      '회원가입',
+                      style: TextStyle(
+                        decoration: TextDecoration.underline,
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+            backgroundColor: bykakColor,
           ),
         );
       }
-    } catch (e) {
-      print(e);
-      return showDialog(
-        context: context,
-        builder: (ctx) => AlertDialog(
-          content: Text('입력하신 정보가 조회되지 않습니다\n다시 한 번 확인해주세요'),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: Text(
-                '확인',
-                style: TextStyle(
-                  color: blackColor,
-                ),
-              ),
-            )
-          ],
-        ),
-      );
     }
   }
 
@@ -336,7 +393,7 @@ class _PwInquiryState extends State<PwInquiry> {
                 textInputAction: TextInputAction.go,
                 onSubmitted: (value) => searchPw(),
                 decoration: InputDecoration(
-                  hintText: '아이디',
+                  hintText: '이메일',
                   border: OutlineInputBorder(
                     borderSide: BorderSide(width: 1),
                     borderRadius: BorderRadius.only(

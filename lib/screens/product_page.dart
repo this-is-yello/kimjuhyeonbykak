@@ -44,6 +44,7 @@ class _ProductPageState extends State<ProductPage> {
   void initState() {
     super.initState();
     topState = true;
+    inMypage = false;
     scrollState();
   }
 

@@ -45,6 +45,7 @@ class _TailorAcademyPageState extends State<TailorAcademyPage> {
   void initState() {
     super.initState();
     topState = true;
+    inMypage = false;
     scrollState();
   }
 

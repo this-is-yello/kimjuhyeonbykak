@@ -1,10 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:kimjuhyeonbykak/style.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-// import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'firebase_options.dart';
 
 import 'package:kimjuhyeonbykak/screens/first_screen.dart';
@@ -30,6 +29,7 @@ import 'package:kimjuhyeonbykak/screens/business/business_page.dart';
 import 'package:kimjuhyeonbykak/screens/account/log_in_page.dart';
 import 'package:kimjuhyeonbykak/screens/account/signup_page.dart';
 import 'package:kimjuhyeonbykak/screens/account/account_inquiry_page.dart';
+import 'package:kimjuhyeonbykak/screens/account/my_page.dart';
 
 import 'package:get/get.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -57,10 +57,11 @@ abstract class Routes {
   static const EVENTVIEW = '/community/event';
   // ---------------------------------------- Business ----------------------------------------
   static const BUSINESS = '/business';
-  // ---------------------------------------- About_sAccount ----------------------------------------
+  // ---------------------------------------- About_Account ----------------------------------------
   static const LOGIN = '/login';
   static const SIGNUP = '/signup';
   static const ACCOUNTINQUIRY = '/accountinquiry';
+  static const MYPAGE = '/mypage';
 }
 
 class AppRouterDelegate extends GetDelegate {
@@ -162,6 +163,10 @@ abstract class AppPages {
       name: Routes.ACCOUNTINQUIRY,
       page: () => const AccountInquiryPage(),
     ),
+    GetPage(
+      name: Routes.MYPAGE,
+      page: () => const MyPage(),
+    ),
   ];
 }
 
@@ -183,7 +188,7 @@ void main() async {
         // darkTheme: FlexThemeData.dark(scheme: FlexScheme.amber),
         // themeMode: ThemeMode.system,
         defaultTransition: Transition.fadeIn,
-        transitionDuration: Duration(milliseconds: 1000),
+        transitionDuration: Duration(milliseconds: 700),
         getPages: AppPages.pages,
         routerDelegate: AppRouterDelegate(),
         localizationsDelegates: GlobalMaterialLocalizations.delegates,

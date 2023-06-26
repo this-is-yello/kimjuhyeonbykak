@@ -44,6 +44,7 @@ class _StoryPageState extends State<StoryPage> {
   void initState() {
     super.initState();
     topState = true;
+    inMypage = false;
     scrollState();
   }
 

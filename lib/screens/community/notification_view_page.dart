@@ -45,6 +45,7 @@ class _NotificationViewPageState extends State<NotificationViewPage> {
   void initState() {
     super.initState();
     topState = true;
+    inMypage = false;
     scrollState();
   }
 

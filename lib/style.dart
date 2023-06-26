@@ -19,6 +19,7 @@ int notificationNum = 0;
 int eventNum = 0;
 
 bool topState = true;
+bool inMypage = false;
 
 var elevatedBtnTheme = ElevatedButton.styleFrom(
   backgroundColor: whiteColor.withOpacity(0),
@@ -29,7 +30,7 @@ var elevatedBtnTheme = ElevatedButton.styleFrom(
 bottomToTop(context, moveTop()) {
   return Container(
     width: double.infinity,
-    height: 72,
+    height: 64,
     color: blackColor,
     child: ElevatedButton(
       style: elevatedBtnTheme,

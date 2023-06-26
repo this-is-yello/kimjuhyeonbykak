@@ -45,6 +45,7 @@ class _JemulpoClubPageState extends State<JemulpoClubPage> {
   void initState() {
     super.initState();
     topState = true;
+    inMypage = false;
     scrollState();
   }
 

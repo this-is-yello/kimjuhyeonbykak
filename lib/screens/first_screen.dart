@@ -52,6 +52,7 @@ class _MainPageState extends State<MainPage> {
   void initState() {
     super.initState();
     topState = true;
+    inMypage = false;
     scrollState();
   }
 
@@ -183,10 +184,8 @@ class _CarouselScreenState extends State<CarouselScreen> {
               return Stack(
                 alignment: Alignment.center,
                 children: [
-                  Motion.only(
-                    filterQuality: FilterQuality.low,
-                    translation:
-                        TranslationConfiguration(maxOffset: Offset(0, 0)),
+                  Motion(
+                    filterQuality: FilterQuality.high,
                     child: Container(
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height,

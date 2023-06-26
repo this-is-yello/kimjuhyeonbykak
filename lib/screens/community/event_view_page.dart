@@ -45,6 +45,7 @@ class _EventViewPageState extends State<EventViewPage> {
   void initState() {
     super.initState();
     topState = true;
+    inMypage = false;
     scrollState();
   }
 

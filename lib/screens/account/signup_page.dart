@@ -53,20 +53,19 @@ class _SignUpPageState extends State<SignUpPage> {
   var _inputNewPhone = TextEditingController();
 
   goSignUp() async {
-    if (_inputNewId.text == '') {
-      print('아이디 미입력');
-    } else if (_inputNewPassword.text == '') {
-      print('비번 미입력');
-    } else if (_inputNewPasswordCheck.text == '') {
-      print('비번확인 미입력');
-    } else if (_inputNewName.text == '') {
-      print('이름 미입력');
-    } else if (_inputNewBirth.text == '') {
-      print('생일 미입력');
+    if (_inputNewId.text.isEmpty ||
+        _inputNewPassword.text.isEmpty ||
+        _inputNewPasswordCheck.text.isEmpty ||
+        _inputNewName.text.isEmpty ||
+        _inputNewBirth.text.isEmpty ||
+        _inputNewPhone.text.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Center(child: Text('입력되지 않은 정보가 있습니다.')),
+        backgroundColor: bykakColor,
+      ));
     } else {
-      if (_inputNewPassword.text == _inputNewPasswordCheck.text) {
-        print('가자');
-        try {
+      try {
+        if (_inputNewPassword.text == _inputNewPasswordCheck.text) {
           var signupResult = await auth.createUserWithEmailAndPassword(
             email: _inputNewId.text,
             password: _inputNewPassword.text,
@@ -85,16 +84,20 @@ class _SignUpPageState extends State<SignUpPage> {
             'birth': _inputNewBirth.text,
           });
           print([signUpData]);
-        } catch (e) {
-          print(e);
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Center(child: Text('비밀번호가 일치하지 않습니다.')),
+            backgroundColor: bykakColor,
+          ));
         }
-      } else {
-        print('비번이 틀리다');
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Center(child: Text('이미 가입되었거나, 가입 불가능한 이메일입니다.')),
+          backgroundColor: bykakColor,
+        ));
       }
     }
   }
-
-  addAccount() async {}
 
   @override
   void initState() {
@@ -138,7 +141,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       controller: _inputNewId,
                       keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
-                        hintText: '아이디',
+                        hintText: '이메일',
                         border: OutlineInputBorder(
                           borderSide: BorderSide(width: 1),
                           borderRadius: BorderRadius.only(
@@ -334,7 +337,6 @@ class _SignUpPageState extends State<SignUpPage> {
               child: InkWell(
                 onTap: () {
                   goSignUp();
-                  addAccount();
                 },
                 child: Container(
                   width: 300,

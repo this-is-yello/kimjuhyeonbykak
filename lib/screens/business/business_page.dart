@@ -45,6 +45,7 @@ class _BusinessPageState extends State<BusinessPage> {
   void initState() {
     super.initState();
     topState = true;
+    inMypage = false;
     scrollState();
   }
 

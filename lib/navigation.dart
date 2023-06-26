@@ -35,6 +35,13 @@ class _MainAppBarState extends State<MainAppBar> {
     ['문의하기', '공지사항', '이벤트', '미디어'],
     ['서포터즈', '협찬·협업·단체복 문의'],
   ];
+  List subMenuText = [
+    'Lorem Ipsum is simply dummy text of the printing and typesetting industry. 브랜드의 설명 the industrys standard dummy text ever since the 1500s',
+    'Lorem Ipsum is simply dummy text of the printing and typesetting industry. 홍보의 설명 the industrys standard dummy text ever since the 1500s',
+    'Lorem Ipsum is simply dummy text of the printing and typesetting industry. 제품 관련 설명 the industrys standard dummy text ever since the 1500s',
+    'Lorem Ipsum is simply dummy text of the printing and typesetting industry. 커뮤니티의 설명 the industrys standard dummy text ever since the 1500s',
+    'Lorem Ipsum is simply dummy text of the printing and typesetting industry. 비즈니스 관련 설명 the industrys standard dummy text ever since the 1500s',
+  ];
   List subMenuLinks = [
     [
       Routes.STORY,
@@ -239,24 +246,33 @@ class _MainAppBarState extends State<MainAppBar> {
                               shrinkWrap: true,
                               scrollDirection: Axis.horizontal,
                               itemBuilder: (context, index) {
-                                return Container(
-                                  width: 100,
-                                  child: ElevatedButton(
-                                    style: elevatedBtnTheme,
-                                    onPressed: () {
-                                      setState(() {
-                                        publicityNum = 0;
-                                        communityNum = 0;
-                                        businessNum = 0;
-                                      });
-                                      Get.rootDelegate
-                                          .toNamed(navsMenuLinks[index]);
-                                    },
-                                    child: Text(
-                                      navsMenu[index],
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        color: whiteColor,
+                                return InkWell(
+                                  onTap: () {},
+                                  onHover: (value) {
+                                    setState(() {
+                                      navBarHover = value;
+                                      i = index;
+                                    });
+                                  },
+                                  child: Container(
+                                    width: 100,
+                                    child: ElevatedButton(
+                                      style: elevatedBtnTheme,
+                                      onPressed: () {
+                                        setState(() {
+                                          publicityNum = 0;
+                                          communityNum = 0;
+                                          businessNum = 0;
+                                        });
+                                        Get.rootDelegate
+                                            .toNamed(navsMenuLinks[index]);
+                                      },
+                                      child: Text(
+                                        navsMenu[index],
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          color: whiteColor,
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -294,16 +310,33 @@ class _MainAppBarState extends State<MainAppBar> {
                           ElevatedButton(
                             style: elevatedBtnTheme,
                             onPressed: () {
-                              if (auth.currentUser?.uid != null) {
-                                print('마이페이지');
-                                // auth.signOut();
+                              if (auth.currentUser?.uid != null &&
+                                  inMypage == true) {
+                                auth.signOut();
+                                Get.rootDelegate.toNamed(Routes.MAIN);
+                                Future.delayed(Duration(milliseconds: 700), () {
+                                  return ScaffoldMessenger.of(context)
+                                      .showSnackBar(SnackBar(
+                                    content: Center(
+                                      child: Text('로그아웃 되었습니다.'),
+                                    ),
+                                    backgroundColor: bykakColor,
+                                  ));
+                                });
                               } else if (auth.currentUser?.uid == null) {
                                 Get.rootDelegate.toNamed(Routes.LOGIN);
                                 print(auth.currentUser?.uid);
+                              } else if (auth.currentUser?.uid != null) {
+                                print('마이페이지');
+                                Get.rootDelegate.toNamed(Routes.MYPAGE);
                               }
                             },
                             child: Text(
-                              auth.currentUser?.uid == null ? '로그인' : '마이페이지',
+                              auth.currentUser?.uid == null
+                                  ? '로그인'
+                                  : inMypage
+                                      ? '로그아웃'
+                                      : '마이페이지',
                               style: TextStyle(
                                 fontSize: 16,
                                 color: whiteColor,
@@ -344,51 +377,79 @@ class _MainAppBarState extends State<MainAppBar> {
             ? FadeIn(
                 child: InkWell(
                   onTap: () {},
+                  onHover: (value) {
+                    setState(() {
+                      navBarHover = value;
+                    });
+                  },
                   child: Container(
                     width: MediaQuery.of(context).size.width,
-                    height: 100,
+                    height: 280,
                     color: blackColor,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          // width: widgetSize(context),
-                          height: 40,
-                          child: ListView.builder(
-                            itemCount: subMenu[i].length,
-                            shrinkWrap: true,
-                            scrollDirection: Axis.horizontal,
-                            itemBuilder: (context, index) {
-                              return Container(
-                                padding: EdgeInsets.only(
-                                  left: 8,
-                                  right: 8,
-                                ),
-                                child: ElevatedButton(
-                                  style: elevatedBtnTheme,
-                                  onPressed: () {
-                                    setState(() {
-                                      publicityNum = index;
-                                      communityNum = index;
-                                      businessNum = index;
-                                    });
-                                    Get.rootDelegate
-                                        .toNamed(subMenuLinks[i][index]);
-                                    print(subMenu[i][index]);
+                    child: SizedBox(
+                      // width: widgetSize(context),
+                      child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 40),
+                              child: SizedBox(
+                                // width: 800,
+                                height: 60,
+                                child: ListView.builder(
+                                  itemCount: subMenu[i].length,
+                                  shrinkWrap: true,
+                                  scrollDirection: Axis.horizontal,
+                                  itemBuilder: (context, index) {
+                                    return Container(
+                                      height: 60,
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor:
+                                              whiteColor.withOpacity(0),
+                                          shadowColor:
+                                              whiteColor.withOpacity(0),
+                                          alignment: Alignment.centerLeft,
+                                          elevation: 0,
+                                        ),
+                                        onPressed: () {
+                                          setState(() {
+                                            publicityNum = index;
+                                            communityNum = index;
+                                            businessNum = index;
+                                          });
+                                          Get.rootDelegate
+                                              .toNamed(subMenuLinks[i][index]);
+                                          print(subMenu[i][index]);
+                                        },
+                                        child: Text(
+                                          subMenu[i][index],
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            color: whiteColor,
+                                          ),
+                                        ),
+                                      ),
+                                    );
                                   },
-                                  child: Text(
-                                    subMenu[i][index],
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      color: whiteColor,
-                                    ),
-                                  ),
                                 ),
-                              );
-                            },
-                          ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 800,
+                              child: Text(
+                                subMenuText[i],
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: whiteColor,
+                                ),
+                              ),
+                            )
+                          ],
                         ),
-                      ],
+                      ),
                     ),
                   ),
                 ),
