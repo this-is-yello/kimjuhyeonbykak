@@ -122,11 +122,16 @@ class IdInquiry extends StatefulWidget {
 
 class _IdInquiryState extends State<IdInquiry> {
   var _inputInquiryName = TextEditingController();
+  var _inputInquiryBirth = TextEditingController();
   var _inputInquiryPhone = TextEditingController();
+  var userSearch;
+  var idSearch;
 
   searchId() async {
     try {
-      if (_inputInquiryName.text.isEmpty || _inputInquiryPhone.text.isEmpty) {
+      if (_inputInquiryName.text.isEmpty ||
+          _inputInquiryPhone.text.isEmpty ||
+          _inputInquiryBirth.text.isEmpty) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Center(child: Text('입력되지 않은 정보가 있습니다.')),
@@ -134,11 +139,15 @@ class _IdInquiryState extends State<IdInquiry> {
           ),
         );
       } else {
-        var nameSearch = await firestore
+        userSearch = await firestore
             .collection('account')
-            .doc('${_inputInquiryName.text}, ${_inputInquiryPhone.text}')
-            .get();
-        var idSearch = nameSearch.get('id');
+            .where('name', isEqualTo: _inputInquiryName.text)
+            .where('birth', isEqualTo: _inputInquiryBirth.text)
+            .where('phone', isEqualTo: _inputInquiryPhone.text)
+            .get()
+            .then((value) {
+          idSearch = value.docs[0]['id'];
+        });
         print(idSearch);
         return showDialog(
           context: context,
@@ -161,28 +170,10 @@ class _IdInquiryState extends State<IdInquiry> {
         );
       }
     } catch (e) {
+      print(e);
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('가입된 정보가 없습니다.'),
-              Padding(
-                padding: const EdgeInsets.only(left: 16),
-                child: InkWell(
-                  onTap: () {
-                    Get.rootDelegate.toNamed(Routes.SIGNUP);
-                  },
-                  child: Text(
-                    '회원가입',
-                    style: TextStyle(
-                      decoration: TextDecoration.underline,
-                    ),
-                  ),
-                ),
-              )
-            ],
-          ),
+          content: Center(child: Text('가입된 정보가 없거나, 잘못된 정보입니다.')),
           backgroundColor: bykakColor,
         ),
       );
@@ -222,6 +213,29 @@ class _IdInquiryState extends State<IdInquiry> {
                       topLeft: Radius.circular(8),
                       topRight: Radius.circular(8),
                     ),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              width: 360,
+              child: TextField(
+                controller: _inputInquiryBirth,
+                keyboardType: TextInputType.number,
+                textInputAction: TextInputAction.go,
+                onSubmitted: (value) => searchId(),
+                decoration: InputDecoration(
+                  hintText: '생년월일 (예시 : 230606)',
+                  border: const OutlineInputBorder(
+                    borderSide: BorderSide(width: 1),
+                    borderRadius: BorderRadius.zero,
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      width: 2,
+                      color: blackColor,
+                    ),
+                    borderRadius: BorderRadius.zero,
                   ),
                 ),
               ),
@@ -298,7 +312,10 @@ class PwInquiry extends StatefulWidget {
 class _PwInquiryState extends State<PwInquiry> {
   var _inputInquiryId = TextEditingController();
   var _inputInquiryName = TextEditingController();
+  var _inputInquiryBirth = TextEditingController();
   var _inputInquiryPhone = TextEditingController();
+  var userSearch;
+  var pwSearch;
 
   searchPw() async {
     if (_inputInquiryName.text.isEmpty ||
@@ -312,64 +329,39 @@ class _PwInquiryState extends State<PwInquiry> {
       );
     } else {
       try {
-        var nameSearch = await firestore
+        userSearch = await firestore
             .collection('account')
-            .doc('${_inputInquiryName.text}, ${_inputInquiryPhone.text}')
-            .get();
-        var idSearch = nameSearch.get('id');
-        var pwSearch = nameSearch.get('password');
-        if (_inputInquiryId.text == idSearch) {
-          print(pwSearch);
-          return showDialog(
-            context: context,
-            builder: (ctx) => AlertDialog(
-              content: Text('조회하신 이메일로 등록된 비밀번호는\n$pwSearch 입니다.'),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: Text(
-                    '확인',
-                    style: TextStyle(
-                      color: blackColor,
-                    ),
+            .where('id', isEqualTo: _inputInquiryId.text)
+            .where('name', isEqualTo: _inputInquiryName.text)
+            .where('birth', isEqualTo: _inputInquiryBirth.text)
+            .where('phone', isEqualTo: _inputInquiryPhone.text)
+            .get()
+            .then((value) {
+          pwSearch = value.docs[0]['password'];
+        });
+        return showDialog(
+          context: context,
+          builder: (ctx) => AlertDialog(
+            content: Text('조회하신 정보로 등록된 비밀번호는\n$pwSearch 입니다.'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text(
+                  '확인',
+                  style: TextStyle(
+                    color: blackColor,
                   ),
-                )
-              ],
-            ),
-          );
-        } else {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Center(child: Text('입력하신 이메일가 정확하지 않습니다.')),
-              backgroundColor: bykakColor,
-            ),
-          );
-        }
+                ),
+              )
+            ],
+          ),
+        );
       } catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('가입된 정보가 없습니다.'),
-                Padding(
-                  padding: const EdgeInsets.only(left: 16),
-                  child: InkWell(
-                    onTap: () {
-                      Get.rootDelegate.toNamed(Routes.SIGNUP);
-                    },
-                    child: Text(
-                      '회원가입',
-                      style: TextStyle(
-                        decoration: TextDecoration.underline,
-                      ),
-                    ),
-                  ),
-                )
-              ],
-            ),
+            content: Center(child: Text('가입된 정보가 없거나, 잘못된 정보입니다.')),
             backgroundColor: bykakColor,
           ),
         );
@@ -433,6 +425,29 @@ class _PwInquiryState extends State<PwInquiry> {
                       color: blackColor,
                     ),
                     borderRadius: BorderRadius.circular(0),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              width: 360,
+              child: TextField(
+                controller: _inputInquiryBirth,
+                keyboardType: TextInputType.number,
+                textInputAction: TextInputAction.go,
+                onSubmitted: (value) => searchPw(),
+                decoration: InputDecoration(
+                  hintText: '생년월일 (예시 : 230606)',
+                  border: const OutlineInputBorder(
+                    borderSide: BorderSide(width: 1),
+                    borderRadius: BorderRadius.zero,
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      width: 2,
+                      color: blackColor,
+                    ),
+                    borderRadius: BorderRadius.zero,
                   ),
                 ),
               ),

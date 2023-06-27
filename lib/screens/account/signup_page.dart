@@ -15,8 +15,7 @@ class _SignUpPageState extends State<SignUpPage> {
   bool male = false;
   bool female = false;
   bool none = false;
-
-  var genderState;
+  var _genderState;
 
   late List<bool> genderSelect;
 
@@ -26,21 +25,21 @@ class _SignUpPageState extends State<SignUpPage> {
         male = true;
         female = false;
         none = false;
-        genderState = '남자';
+        _genderState = '남자';
       });
     } else if (i == 1) {
       setState(() {
         male = false;
         female = true;
         none = false;
-        genderState = '여자';
+        _genderState = '여자';
       });
     } else {
       setState(() {
         male = false;
         female = false;
         none = true;
-        genderState = null;
+        _genderState = '선택안함';
       });
     }
   }
@@ -71,19 +70,17 @@ class _SignUpPageState extends State<SignUpPage> {
             password: _inputNewPassword.text,
           );
           signupResult.user?.updateDisplayName(_inputNewName.text);
-          var signUpData = await firestore
-              .collection('account')
-              .doc('${_inputNewName.text}, ${_inputNewPhone.text}')
-              .set({
-            'grade': 'user',
+          var signUpData = await firestore.collection('account').doc().set({
+            'grade': '각인',
             'name': _inputNewName.text,
             'phone': _inputNewPhone.text,
-            'gender': genderState,
+            'gender': _genderState,
             'id': _inputNewId.text,
             'password': _inputNewPassword.text,
             'birth': _inputNewBirth.text,
           });
-          print([signUpData]);
+          auth.signOut();
+          Get.rootDelegate.toNamed(Routes.MAIN);
         } else {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Center(child: Text('비밀번호가 일치하지 않습니다.')),
@@ -313,7 +310,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     setState(() {
                       genderSelect = [male, female, none];
                     });
-                    print(genderState);
+                    print(_genderState);
                   },
                   children: [
                     Padding(

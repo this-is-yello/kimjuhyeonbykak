@@ -31,7 +31,6 @@ class _LogInPageState extends State<LogInPage> {
       }
       print(auth.currentUser?.uid);
     } catch (e) {
-      print(e);
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Center(child: Text('이메일 혹은 비밀번호를 잘 못 입력하였습니다.')),
         backgroundColor: bykakColor,

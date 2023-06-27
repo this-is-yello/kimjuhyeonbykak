@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:kimjuhyeonbykak/style.dart';
 
 import 'package:kimjuhyeonbykak/main.dart';
 import 'package:kimjuhyeonbykak/navigation.dart';
 
 import 'dart:ui';
+import 'package:get/get.dart';
 import 'package:animate_do/animate_do.dart';
 
 class CommunityPage extends StatefulWidget {
