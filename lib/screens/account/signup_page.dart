@@ -70,7 +70,10 @@ class _SignUpPageState extends State<SignUpPage> {
             password: _inputNewPassword.text,
           );
           signupResult.user?.updateDisplayName(_inputNewName.text);
-          var signUpData = await firestore.collection('account').doc().set({
+          var signUpData = await firestore
+              .collection('account')
+              .doc('${_inputNewId.text}')
+              .set({
             'grade': '각인',
             'name': _inputNewName.text,
             'phone': _inputNewPhone.text,

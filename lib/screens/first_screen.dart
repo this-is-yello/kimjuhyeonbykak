@@ -5,12 +5,12 @@ import 'package:kimjuhyeonbykak/main.dart';
 import 'package:kimjuhyeonbykak/navigation.dart';
 
 // import 'package:opscroll_web/opscroll_web.dart';
+// import 'package:motion/motion.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:widget_and_text_animator/widget_and_text_animator.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:countup/countup.dart';
-import 'package:motion/motion.dart';
 import 'package:get/get.dart';
 
 class MainPage extends StatefulWidget {

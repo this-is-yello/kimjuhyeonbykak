@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:kimjuhyeonbykak/style.dart';
 import 'package:kimjuhyeonbykak/main.dart';
 import 'package:kimjuhyeonbykak/navigation.dart';
@@ -104,18 +103,17 @@ class Profile extends StatefulWidget {
   State<Profile> createState() => _ProfileState();
 }
 
-var userName = auth.currentUser?.displayName;
-var userId = auth.currentUser?.email;
-var userSearch;
-var userGrade;
-var userPhone;
-var userBirth;
-var userGender;
-
-List infoTitles = [];
-List userInfo = [];
-
 class _ProfileState extends State<Profile> {
+  var userName = auth.currentUser?.displayName;
+  var userId = auth.currentUser?.email;
+  var userSearch;
+  var userGrade;
+  var userPhone;
+  var userBirth;
+  var userGender;
+
+  List infoTitles = [];
+  List userInfo = [];
   searchUser() async {
     userSearch = await firestore
         .collection('account')
@@ -181,7 +179,7 @@ class _ProfileState extends State<Profile> {
                   ),
                 ),
                 Text(
-                  userGrade.toString(),
+                  '$userGrade',
                   style: TextStyle(
                     fontSize: h3FontSize(context),
                     fontWeight: FontWeight.bold,

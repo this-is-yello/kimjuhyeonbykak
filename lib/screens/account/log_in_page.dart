@@ -11,10 +11,10 @@ class LogInPage extends StatefulWidget {
   State<LogInPage> createState() => _LogInPageState();
 }
 
-var _inputId = TextEditingController();
-var _inputPassword = TextEditingController();
-
 class _LogInPageState extends State<LogInPage> {
+  var _inputId = TextEditingController();
+  var _inputPassword = TextEditingController();
+
   logInBtn() async {
     try {
       if (_inputId.text.isEmpty || _inputPassword.text.isEmpty) {
@@ -28,8 +28,8 @@ class _LogInPageState extends State<LogInPage> {
           password: _inputPassword.text,
         );
         Get.rootDelegate.toNamed(Routes.MAIN);
+        print('로그인 완료 : ${auth.currentUser?.email}');
       }
-      print(auth.currentUser?.uid);
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Center(child: Text('이메일 혹은 비밀번호를 잘 못 입력하였습니다.')),

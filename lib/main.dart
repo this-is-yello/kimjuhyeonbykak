@@ -77,7 +77,7 @@ class AppRouterDelegate extends GetDelegate {
 
   @override
   Widget build(BuildContext context) {
-    print(history.toString());
+    // print(history.toString());
     return Navigator(
       onPopPage: (route, result) => route.didPop(result),
       pages: currentConfiguration != null
