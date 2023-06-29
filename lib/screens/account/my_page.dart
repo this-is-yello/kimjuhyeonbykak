@@ -71,7 +71,7 @@ class _MyPageState extends State<MyPage> {
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const MainAppBar(),
+              MainAppBar(),
             ],
           ),
         ],
@@ -81,15 +81,15 @@ class _MyPageState extends State<MyPage> {
           : Padding(
               padding: const EdgeInsets.only(right: 8, bottom: 8),
               child: FloatingActionButton(
+                onPressed: () {
+                  moveTop();
+                },
+                backgroundColor: bykakColor,
                 child: Icon(
                   Icons.keyboard_arrow_up_rounded,
                   color: whiteColor,
                   size: 30,
                 ),
-                backgroundColor: bykakColor,
-                onPressed: () {
-                  moveTop();
-                },
               ),
             ),
     );
@@ -104,33 +104,32 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  var userName = auth.currentUser?.displayName;
-  var userId = auth.currentUser?.email;
-  var userSearch;
-  var userGrade;
-  var userPhone;
-  var userBirth;
-  var userGender;
+  var currentUserName = auth.currentUser?.displayName;
+  var currentUserId = auth.currentUser?.email;
+  var currentUserSearch;
+  var currentUserGrade;
+  var currentUserPhone;
+  var currentUserBirth;
+  var currentUserGender;
 
   List infoTitles = [];
-  List userInfo = [];
+  List currentUserInfo = [];
   searchUser() async {
-    userSearch = await firestore
-        .collection('account')
-        .where('name', isEqualTo: userName)
-        .where('id', isEqualTo: userId)
-        .get()
-        .then((value) {
-      setState(() {
-        userName = userName;
-        userId = userId;
-        userGrade = value.docs[0]['grade'];
-        userPhone = value.docs[0]['phone'];
-        userBirth = value.docs[0]['birth'];
-        userGender = value.docs[0]['gender'];
-        infoTitles = ['이름', '이메일', '전화번호', '생년월일', '성별'];
-        userInfo = [userName, userId, '$userPhone', userBirth, userGender];
-      });
+    currentUserSearch =
+        await firestore.collection('account').doc('$currentUserId').get();
+    setState(() {
+      currentUserGrade = currentUserSearch.get('grade');
+      currentUserPhone = currentUserSearch.get('phone');
+      currentUserBirth = currentUserSearch.get('birth');
+      currentUserGender = currentUserSearch.get('gender');
+      infoTitles = ['이름', '이메일', '전화번호', '생년월일', '성별'];
+      currentUserInfo = [
+        currentUserName,
+        currentUserId,
+        currentUserPhone,
+        currentUserBirth,
+        currentUserGender
+      ];
     });
   }
 
@@ -151,7 +150,7 @@ class _ProfileState extends State<Profile> {
             child: Row(
               children: [
                 Text(
-                  userName.toString(),
+                  currentUserName.toString(),
                   style: TextStyle(
                     color: blackColor,
                     fontSize: h1FontSize(context),
@@ -179,7 +178,7 @@ class _ProfileState extends State<Profile> {
                   ),
                 ),
                 Text(
-                  '$userGrade',
+                  '$currentUserGrade',
                   style: TextStyle(
                     fontSize: h3FontSize(context),
                     fontWeight: FontWeight.bold,
@@ -253,7 +252,7 @@ class _ProfileState extends State<Profile> {
                               Padding(
                                 padding: const EdgeInsets.only(left: 16),
                                 child: Text(
-                                  userInfo[index],
+                                  currentUserInfo[index],
                                   style: TextStyle(
                                     fontSize: h4FontSize(context),
                                     color: blackColor,
@@ -280,7 +279,7 @@ class _ProfileState extends State<Profile> {
           ),
           Padding(
             padding: EdgeInsets.only(top: 60),
-            child: userGrade == '관리자' ? AdminMyPage() : UserMyPage(),
+            child: currentUserGrade == '관리자' ? AdminMyPage() : UserMyPage(),
           ),
         ],
       ),
@@ -314,7 +313,49 @@ class AdminMyPage extends StatefulWidget {
 }
 
 class _AdminMyPageState extends State<AdminMyPage> {
-  List memoAdmin = ['매거진 업로드', '보도자료 업로드', '공지사항 업로드', '미디어 업로드', '제품 업로드'];
+  var _inputSearchName = TextEditingController();
+  var adminNameSearch;
+  var adminUserName;
+  var adminUserId;
+  var adminUserSearch;
+  var adminUserGrade;
+  var adminUserPhone;
+  var adminUserBirth;
+  var adminUserGender;
+
+  List adminUserInfo = [];
+
+  adminUser(i) async {
+    adminNameSearch = await firestore
+        .collection('account')
+        .where('name', isEqualTo: _inputSearchName.text)
+        .get()
+        .then((value) {
+      setState(() {
+        adminUserName = value.docs[i]['name'];
+        adminUserId = value.docs[i]['id'];
+        adminUserGrade = value.docs[i]['grade'];
+        adminUserPhone = value.docs[i]['phone'];
+        adminUserBirth = value.docs[i]['birth'];
+        adminUserGender = value.docs[i]['gender'];
+        adminUserInfo = [
+          adminUserName,
+          adminUserId,
+          adminUserGrade,
+          adminUserPhone,
+          adminUserBirth,
+          adminUserGender
+        ];
+      });
+    });
+  }
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   adminUser();
+  // }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -400,79 +441,217 @@ class _AdminMyPageState extends State<AdminMyPage> {
                   padding: EdgeInsets.only(top: 16),
                   child: SizedBox(
                     width: widgetSize(context),
-                    height: 40,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    child: Wrap(
+                      direction: Axis.horizontal,
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      runAlignment: WrapAlignment.spaceBetween,
+                      alignment: WrapAlignment.spaceBetween,
                       children: [
-                        ElevatedButton(
-                          style: elevatedBtnTheme,
-                          onPressed: () {},
-                          child: Text(
-                            '매거진 업로드',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: blackColor,
+                        SizedBox(
+                          height: 40,
+                          child: TextButton(
+                            onPressed: () {},
+                            child: Text(
+                              '매거진 업로드',
+                              style: TextStyle(
+                                fontSize: h5FontSize(context),
+                                color: blackColor,
+                              ),
                             ),
                           ),
                         ),
-                        ElevatedButton(
-                          style: elevatedBtnTheme,
-                          onPressed: () {},
-                          child: Text(
-                            '보도자료 업로드',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: blackColor,
+                        SizedBox(
+                          height: 40,
+                          child: TextButton(
+                            onPressed: () {},
+                            child: Text(
+                              '보도자료 업로드',
+                              style: TextStyle(
+                                fontSize: h5FontSize(context),
+                                color: blackColor,
+                              ),
                             ),
                           ),
                         ),
-                        ElevatedButton(
-                          style: elevatedBtnTheme,
-                          onPressed: () {},
-                          child: Text(
-                            '공지사항 업로드',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: blackColor,
+                        SizedBox(
+                          height: 40,
+                          child: TextButton(
+                            onPressed: () {},
+                            child: Text(
+                              '공지사항 업로드',
+                              style: TextStyle(
+                                fontSize: h5FontSize(context),
+                                color: blackColor,
+                              ),
                             ),
                           ),
                         ),
-                        ElevatedButton(
-                          style: elevatedBtnTheme,
-                          onPressed: () {},
-                          child: Text(
-                            '이벤트 업로드',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: blackColor,
+                        SizedBox(
+                          height: 40,
+                          child: TextButton(
+                            onPressed: () {},
+                            child: Text(
+                              '이벤트 업로드',
+                              style: TextStyle(
+                                fontSize: h5FontSize(context),
+                                color: blackColor,
+                              ),
                             ),
                           ),
                         ),
-                        ElevatedButton(
-                          style: elevatedBtnTheme,
-                          onPressed: () {},
-                          child: Text(
-                            '미디어 업로드',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: blackColor,
+                        SizedBox(
+                          height: 40,
+                          child: TextButton(
+                            onPressed: () {},
+                            child: Text(
+                              '미디어 업로드',
+                              style: TextStyle(
+                                fontSize: h5FontSize(context),
+                                color: blackColor,
+                              ),
                             ),
                           ),
                         ),
-                        ElevatedButton(
-                          style: elevatedBtnTheme,
-                          onPressed: () {},
-                          child: Text(
-                            '제품 업로드',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: blackColor,
+                        SizedBox(
+                          height: 40,
+                          child: TextButton(
+                            onPressed: () {},
+                            child: Text(
+                              '제품 업로드',
+                              style: TextStyle(
+                                fontSize: h5FontSize(context),
+                                color: blackColor,
+                              ),
                             ),
                           ),
                         ),
                       ],
                     ),
                   ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 60),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '회원 관리',
+                  style: TextStyle(
+                    fontSize: h2FontSize(context),
+                    color: blackColor,
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 16),
+                  child: SizedBox(
+                    width: widgetSize(context),
+                    child: TextField(
+                      controller: _inputSearchName,
+                      cursorColor: blackColor,
+                      keyboardType: TextInputType.name,
+                      textInputAction: TextInputAction.go,
+                      onSubmitted: (value) {
+                        setState(() {
+                          _inputSearchName.text = value;
+                        });
+                        adminUser(i);
+                      },
+                      style: TextStyle(
+                        fontSize: h4FontSize(context),
+                        color: blackColor,
+                      ),
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: blackColor,
+                          ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: blackColor, width: 2),
+                        ),
+                        hintText: '이름을 입력하세요.',
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(8, 16, 8, 0),
+                  child: adminUserName == null
+                      ? Container()
+                      : ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: adminNameSearch.length,
+                          itemBuilder: (context, index) {
+                            adminUser(index);
+                            return Padding(
+                              padding: const EdgeInsets.only(bottom: 16),
+                              child: InkWell(
+                                onTap: () {},
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Text(
+                                          '$adminUserName',
+                                          style: TextStyle(
+                                            fontSize: h4FontSize(context),
+                                            fontWeight: FontWeight.bold,
+                                            color: blackColor,
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(left: 16),
+                                          child: Text(
+                                            '$adminUserBirth',
+                                            style: TextStyle(
+                                              fontSize: h4FontSize(context),
+                                              color: blackColor,
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(left: 16),
+                                          child: Text(
+                                            '$adminUserGrade',
+                                            style: TextStyle(
+                                              fontSize: h4FontSize(context),
+                                              color: blackColor,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(top: 8),
+                                      child: Text(
+                                        '$adminUserId',
+                                        style: TextStyle(
+                                          fontSize: h4FontSize(context),
+                                          color: blackColor,
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(top: 8),
+                                      child: Text(
+                                        '$adminUserPhone',
+                                        style: TextStyle(
+                                          fontSize: h4FontSize(context),
+                                          fontWeight: FontWeight.bold,
+                                          color: blackColor,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          },
+                        ),
                 ),
               ],
             ),

@@ -327,7 +327,6 @@ class _MainAppBarState extends State<MainAppBar> {
                                 Get.rootDelegate.toNamed(Routes.LOGIN);
                                 print(auth.currentUser?.uid);
                               } else if (auth.currentUser?.uid != null) {
-                                print('마이페이지');
                                 Get.rootDelegate.toNamed(Routes.MYPAGE);
                               }
                             },
