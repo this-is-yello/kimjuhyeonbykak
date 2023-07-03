@@ -383,9 +383,14 @@ class SupportersKakIn extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 20),
+                padding: const EdgeInsets.only(top: 40),
                 child: ElevatedButton(
-                  style: elevatedBtnTheme,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: whiteColor.withOpacity(0),
+                    shadowColor: whiteColor.withOpacity(0),
+                    elevation: 0,
+                    alignment: Alignment.centerLeft,
+                  ),
                   onPressed: () {},
                   child: Text(
                     '마일리지 신청 및 등급 조회하기 >',
@@ -532,48 +537,7 @@ class SupportersAmbassador extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 20),
-                child: ScrollConfiguration(
-                  behavior: ScrollConfiguration.of(context).copyWith(
-                    dragDevices: {
-                      PointerDeviceKind.mouse,
-                      PointerDeviceKind.touch,
-                      PointerDeviceKind.trackpad,
-                    },
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Center(
-                        child: SizedBox(
-                          width: widgetSize(context),
-                          height: c1BoxSize(context) + 200,
-                          child: GridView.builder(
-                            scrollDirection: Axis.horizontal,
-                            gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 1,
-                              childAspectRatio: 1.5 / 1,
-                              mainAxisSpacing: 20,
-                            ),
-                            itemCount: 20,
-                            itemBuilder: (context, index) {
-                              return Container(
-                                // width: c1BoxSize(context) + 20,
-                                // height: c1BoxSize(context) + 100,
-                                // margin: EdgeInsets.all(10),
-                                color: blackColor,
-                              );
-                            },
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 20),
+                padding: const EdgeInsets.only(top: 40),
                 child: Wrap(
                   direction: Axis.horizontal,
                   crossAxisAlignment: WrapCrossAlignment.center,
@@ -671,7 +635,12 @@ class SupportersAmbassador extends StatelessWidget {
                 child: Row(
                   children: [
                     ElevatedButton(
-                      style: elevatedBtnTheme,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: whiteColor.withOpacity(0),
+                        shadowColor: whiteColor.withOpacity(0),
+                        elevation: 0,
+                        alignment: Alignment.centerLeft,
+                      ),
                       onPressed: () {},
                       child: Text(
                         '엠버서더 신청 >',
@@ -685,7 +654,12 @@ class SupportersAmbassador extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(left: 10),
                       child: ElevatedButton(
-                        style: elevatedBtnTheme,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: whiteColor.withOpacity(0),
+                          shadowColor: whiteColor.withOpacity(0),
+                          elevation: 0,
+                          alignment: Alignment.centerLeft,
+                        ),
                         onPressed: () {},
                         child: Text(
                           '엠버서더 페이지 >',

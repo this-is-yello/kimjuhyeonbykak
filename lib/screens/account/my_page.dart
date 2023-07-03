@@ -1,3 +1,7 @@
+import 'dart:js_interop';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:kimjuhyeonbykak/style.dart';
 import 'package:kimjuhyeonbykak/main.dart';
@@ -112,6 +116,13 @@ class _ProfileState extends State<Profile> {
   var currentUserBirth;
   var currentUserGender;
 
+  var _inputCurrentPassword;
+  var _inputModifyPassword;
+  var _inputModifyPasswordCheck;
+  var _inputmodifyName;
+  var _inputModifyPhone;
+  var _inputModifyBirth;
+
   List infoTitles = [];
   List currentUserInfo = [];
   searchUser() async {
@@ -131,6 +142,277 @@ class _ProfileState extends State<Profile> {
         currentUserGender
       ];
     });
+    _inputCurrentPassword = TextEditingController();
+    _inputModifyPassword = TextEditingController();
+    _inputModifyPasswordCheck = TextEditingController();
+    _inputmodifyName = TextEditingController(
+      text: auth.currentUser?.displayName,
+    );
+    _inputModifyPhone = TextEditingController(
+      text: currentUserPhone,
+    );
+    _inputModifyBirth = TextEditingController(
+      text: currentUserBirth,
+    );
+  }
+
+  modifyAc() async {
+    return showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        content: SizedBox(
+          width: widgetSize(context),
+          height: 800,
+          child: Center(
+            child: ListView(
+              children: [
+                Text(
+                  '계정정보 변경',
+                  style: TextStyle(
+                    fontSize: h3FontSize(context),
+                    color: blackColor,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20, bottom: 8),
+                  child: SizedBox(
+                    width: 360,
+                    child: Row(
+                      children: [
+                        Text('이메일: '),
+                        Text('$currentUserId'),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: 360,
+                  child: TextField(
+                    controller: _inputCurrentPassword,
+                    keyboardType: TextInputType.visiblePassword,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      hintText: '현재 비밀번호',
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(width: 1),
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(8),
+                          topRight: Radius.circular(8),
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          width: 2,
+                          color: blackColor,
+                        ),
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(8),
+                          topRight: Radius.circular(8),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: 360,
+                  child: TextField(
+                    controller: _inputModifyPassword,
+                    keyboardType: TextInputType.visiblePassword,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      hintText: '새 비밀번호',
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(width: 1),
+                        borderRadius: BorderRadius.circular(0),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          width: 2,
+                          color: blackColor,
+                        ),
+                        borderRadius: BorderRadius.circular(0),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: 360,
+                  child: TextField(
+                    controller: _inputModifyPasswordCheck,
+                    keyboardType: TextInputType.visiblePassword,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      hintText: '새 비밀번호 확인',
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(width: 1),
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(8),
+                          bottomRight: Radius.circular(8),
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          width: 2,
+                          color: blackColor,
+                        ),
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(8),
+                          bottomRight: Radius.circular(8),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20),
+                  child: InkWell(
+                    onTap: () {},
+                    child: Container(
+                      width: 300,
+                      height: 56,
+                      decoration: BoxDecoration(
+                        color: blackColor,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Center(
+                        child: Text(
+                          '비밀번호 변경',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: whiteColor,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 40),
+                  child: Text(
+                    '개인정보 변경',
+                    style: TextStyle(
+                      fontSize: h3FontSize(context),
+                      color: blackColor,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20),
+                  child: SizedBox(
+                    width: 360,
+                    child: TextField(
+                      controller: _inputmodifyName,
+                      decoration: InputDecoration(
+                        hintText: '이름',
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide(width: 1),
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(8),
+                            topRight: Radius.circular(8),
+                          ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            width: 2,
+                            color: blackColor,
+                          ),
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(8),
+                            topRight: Radius.circular(8),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: 360,
+                  child: TextField(
+                    controller: _inputModifyPhone,
+                    decoration: InputDecoration(
+                      hintText: '전화번호',
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(width: 1),
+                        borderRadius: BorderRadius.circular(0),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          width: 2,
+                          color: blackColor,
+                        ),
+                        borderRadius: BorderRadius.circular(0),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: 360,
+                  child: TextField(
+                    controller: _inputModifyBirth,
+                    decoration: InputDecoration(
+                      hintText: '생년월일',
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(width: 1),
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(8),
+                          bottomRight: Radius.circular(8),
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          width: 2,
+                          color: blackColor,
+                        ),
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(8),
+                          bottomRight: Radius.circular(8),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20),
+                  child: InkWell(
+                    onTap: () {},
+                    child: Container(
+                      width: 300,
+                      height: 56,
+                      decoration: BoxDecoration(
+                        color: blackColor,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Center(
+                        child: Text(
+                          '개인정보 변경',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: whiteColor,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: Text(
+              '닫기',
+              style: TextStyle(
+                color: blackColor,
+              ),
+            ),
+          )
+        ],
+      ),
+    );
   }
 
   @override
@@ -221,7 +503,9 @@ class _ProfileState extends State<Profile> {
                         ),
                       ),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          modifyAc();
+                        },
                         child: Text(
                           '정보변경',
                           style: TextStyle(
@@ -266,6 +550,19 @@ class _ProfileState extends State<Profile> {
                     ),
                   ),
                   Padding(
+                    padding: const EdgeInsets.only(top: 16),
+                    child: TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        '마일리지 조회 및 신청 >',
+                        style: TextStyle(
+                          fontSize: h4FontSize(context),
+                          color: blackColor,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
                     padding: const EdgeInsets.only(top: 8),
                     child: Container(
                       width: widgetSize(context),
@@ -300,6 +597,150 @@ class _UserMyPageState extends State<UserMyPage> {
   Widget build(BuildContext context) {
     return SizedBox(
       width: widgetSize(context),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            '문의 정보',
+            style: TextStyle(
+              fontSize: h2FontSize(context),
+              color: blackColor,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 16),
+            child: 1 == 2
+                ? ListView.builder(
+                    itemCount: 5,
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 8),
+                        child: InkWell(
+                          onTap: () {},
+                          child: Container(
+                            width: widgetSize(context),
+                            padding: EdgeInsets.only(
+                              left: 8,
+                              top: 20,
+                              right: 8,
+                              bottom: 20,
+                            ),
+                            // padding: EdgeInsets.only(bottom: 4),
+                            decoration: BoxDecoration(
+                              border: Border(
+                                bottom: BorderSide(
+                                  color: greyColor,
+                                  width: 2,
+                                ),
+                              ),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  '[주제] 문의제목 삽입',
+                                  maxLines: 1,
+                                  style: TextStyle(
+                                    fontSize: h5FontSize(context),
+                                    fontWeight: FontWeight.bold,
+                                    color: blackColor,
+                                  ),
+                                ),
+                                Text(
+                                  '23.06.06',
+                                  style: TextStyle(
+                                    fontSize: h7FontSize(context),
+                                    color: blackColor,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  )
+                : SizedBox(
+                    width: widgetSize(context),
+                    child: Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            '문의하신 정보가 없습니다',
+                            style: TextStyle(
+                              fontSize: h5FontSize(context),
+                              color: blackColor,
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () {},
+                            child: Text(
+                              '문의하러가기',
+                              style: TextStyle(
+                                fontSize: h5FontSize(context),
+                                color: blackColor,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 60),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '엠버서더 프로필',
+                  style: TextStyle(
+                    fontSize: h2FontSize(context),
+                    color: blackColor,
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 16),
+                  child: SizedBox(
+                    width: widgetSize(context),
+                    child: SizedBox(
+                      width: widgetSize(context),
+                      child: Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              '회원님은 엠버서더가 아닙니다',
+                              style: TextStyle(
+                                fontSize: h5FontSize(context),
+                                color: blackColor,
+                              ),
+                            ),
+                            TextButton(
+                              onPressed: () {},
+                              child: Text(
+                                '엠버서더 신청',
+                                style: TextStyle(
+                                  fontSize: h5FontSize(context),
+                                  color: blackColor,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -314,47 +755,34 @@ class AdminMyPage extends StatefulWidget {
 
 class _AdminMyPageState extends State<AdminMyPage> {
   var _inputSearchName = TextEditingController();
-  var adminNameSearch;
-  var adminUserName;
-  var adminUserId;
-  var adminUserSearch;
-  var adminUserGrade;
-  var adminUserPhone;
-  var adminUserBirth;
-  var adminUserGender;
+  var searchAdmin;
+  var searchAdminLength;
 
-  List adminUserInfo = [];
+  emptyTextFormField() {
+    _inputSearchName.addListener(() {
+      _inputSearchName.clear();
+    });
+  }
 
-  adminUser(i) async {
-    adminNameSearch = await firestore
+  searchItems() async {
+    Map<String, dynamic> searchResult = await firestore
         .collection('account')
         .where('name', isEqualTo: _inputSearchName.text)
         .get()
         .then((value) {
       setState(() {
-        adminUserName = value.docs[i]['name'];
-        adminUserId = value.docs[i]['id'];
-        adminUserGrade = value.docs[i]['grade'];
-        adminUserPhone = value.docs[i]['phone'];
-        adminUserBirth = value.docs[i]['birth'];
-        adminUserGender = value.docs[i]['gender'];
-        adminUserInfo = [
-          adminUserName,
-          adminUserId,
-          adminUserGrade,
-          adminUserPhone,
-          adminUserBirth,
-          adminUserGender
-        ];
+        searchAdmin = value.docs;
+        searchAdminLength = value.docs.length;
       });
+      return Future.delayed(Duration.zero);
     });
   }
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   adminUser();
-  // }
+  @override
+  void initState() {
+    super.initState();
+    searchItems();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -372,58 +800,72 @@ class _AdminMyPageState extends State<AdminMyPage> {
           ),
           Padding(
             padding: const EdgeInsets.only(top: 16),
-            child: ListView.builder(
-              itemCount: 5,
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.only(bottom: 8),
-                  child: InkWell(
-                    onTap: () {},
-                    child: Container(
-                      width: widgetSize(context),
-                      height: c6BoxSize(context),
-                      padding: EdgeInsets.only(
-                        left: 8,
-                        right: 8,
-                      ),
-                      decoration: BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                            color: blackColor,
-                            width: 2,
+            child: 1 == 2
+                ? ListView.builder(
+                    itemCount: 5,
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 8),
+                        child: InkWell(
+                          onTap: () {},
+                          child: Container(
+                            width: widgetSize(context),
+                            padding: EdgeInsets.only(
+                              left: 8,
+                              top: 20,
+                              right: 8,
+                              bottom: 20,
+                            ),
+                            // padding: EdgeInsets.only(bottom: 4),
+                            decoration: BoxDecoration(
+                              border: Border(
+                                bottom: BorderSide(
+                                  color: greyColor,
+                                  width: 2,
+                                ),
+                              ),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  '[주제] 문의제목 삽입',
+                                  maxLines: 1,
+                                  style: TextStyle(
+                                    fontSize: h5FontSize(context),
+                                    fontWeight: FontWeight.bold,
+                                    color: blackColor,
+                                  ),
+                                ),
+                                Text(
+                                  '23.06.06',
+                                  style: TextStyle(
+                                    fontSize: h7FontSize(context),
+                                    color: blackColor,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      // padding: EdgeInsets.only(bottom: 4),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(
-                            '[주제] 문의제목 삽입',
-                            maxLines: 1,
-                            style: TextStyle(
-                              fontSize: h5FontSize(context),
-                              fontWeight: FontWeight.bold,
-                              color: blackColor,
-                            ),
-                          ),
-                          Text(
-                            '23.06.06',
-                            style: TextStyle(
-                              fontSize: h7FontSize(context),
-                              color: blackColor,
-                            ),
-                          ),
-                        ],
+                      );
+                    },
+                  )
+                : SizedBox(
+                    width: widgetSize(context),
+                    child: Center(
+                      child: Text(
+                        '답변할 문의정보가 없습니다',
+                        style: TextStyle(
+                          fontSize: h5FontSize(context),
+                          color: blackColor,
+                        ),
                       ),
                     ),
                   ),
-                );
-              },
-            ),
           ),
           Padding(
             padding: EdgeInsets.only(top: 60),
@@ -552,18 +994,27 @@ class _AdminMyPageState extends State<AdminMyPage> {
                       controller: _inputSearchName,
                       cursorColor: blackColor,
                       keyboardType: TextInputType.name,
-                      textInputAction: TextInputAction.go,
+                      textInputAction: TextInputAction.search,
                       onSubmitted: (value) {
                         setState(() {
                           _inputSearchName.text = value;
                         });
-                        adminUser(i);
+                        searchItems();
                       },
                       style: TextStyle(
                         fontSize: h4FontSize(context),
                         color: blackColor,
                       ),
                       decoration: InputDecoration(
+                        suffixIcon: InkWell(
+                          child: Icon(
+                            Icons.clear,
+                            color: greyColor,
+                          ),
+                          onTap: () {
+                            _inputSearchName.clear();
+                          },
+                        ),
                         border: OutlineInputBorder(
                           borderSide: BorderSide(
                             color: blackColor,
@@ -579,13 +1030,12 @@ class _AdminMyPageState extends State<AdminMyPage> {
                 ),
                 Padding(
                   padding: EdgeInsets.fromLTRB(8, 16, 8, 0),
-                  child: adminUserName == null
+                  child: _inputSearchName.text == ''
                       ? Container()
                       : ListView.builder(
                           shrinkWrap: true,
-                          itemCount: adminNameSearch.length,
+                          itemCount: searchAdminLength,
                           itemBuilder: (context, index) {
-                            adminUser(index);
                             return Padding(
                               padding: const EdgeInsets.only(bottom: 16),
                               child: InkWell(
@@ -596,7 +1046,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
                                     Row(
                                       children: [
                                         Text(
-                                          '$adminUserName',
+                                          searchAdmin[index]['name'],
                                           style: TextStyle(
                                             fontSize: h4FontSize(context),
                                             fontWeight: FontWeight.bold,
@@ -606,7 +1056,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
                                         Padding(
                                           padding: EdgeInsets.only(left: 16),
                                           child: Text(
-                                            '$adminUserBirth',
+                                            searchAdmin[index]['birth'],
                                             style: TextStyle(
                                               fontSize: h4FontSize(context),
                                               color: blackColor,
@@ -616,7 +1066,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
                                         Padding(
                                           padding: EdgeInsets.only(left: 16),
                                           child: Text(
-                                            '$adminUserGrade',
+                                            searchAdmin[index]['grade'],
                                             style: TextStyle(
                                               fontSize: h4FontSize(context),
                                               color: blackColor,
@@ -628,7 +1078,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
                                     Padding(
                                       padding: EdgeInsets.only(top: 8),
                                       child: Text(
-                                        '$adminUserId',
+                                        searchAdmin[index]['id'],
                                         style: TextStyle(
                                           fontSize: h4FontSize(context),
                                           color: blackColor,
@@ -638,7 +1088,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
                                     Padding(
                                       padding: EdgeInsets.only(top: 8),
                                       child: Text(
-                                        '$adminUserPhone',
+                                        searchAdmin[index]['phone'],
                                         style: TextStyle(
                                           fontSize: h4FontSize(context),
                                           fontWeight: FontWeight.bold,
@@ -646,6 +1096,11 @@ class _AdminMyPageState extends State<AdminMyPage> {
                                         ),
                                       ),
                                     ),
+                                    Container(
+                                      width: widgetSize(context),
+                                      height: 2,
+                                      color: greyColor,
+                                    )
                                   ],
                                 ),
                               ),
