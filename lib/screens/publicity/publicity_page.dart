@@ -303,6 +303,7 @@ class _MagazineScreenState extends State<MagazineScreen> {
                   print(magazineNum);
                 },
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Expanded(
                       flex: 1,
@@ -316,7 +317,7 @@ class _MagazineScreenState extends State<MagazineScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            '주제 $magazineNum',
+                            '날짜 $magazineNum',
                             style: TextStyle(
                               fontSize: h7FontSize(context),
                               color: blackColor,
@@ -325,7 +326,6 @@ class _MagazineScreenState extends State<MagazineScreen> {
                           Padding(
                             padding: const EdgeInsets.only(
                               top: 4,
-                              bottom: 8,
                             ),
                             child: Text(
                               '컨텐츠 관련 제목 삽입 $magazineNum',
@@ -335,13 +335,13 @@ class _MagazineScreenState extends State<MagazineScreen> {
                               ),
                             ),
                           ),
-                          Text(
-                            'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ',
-                            style: TextStyle(
-                              fontSize: h7FontSize(context),
-                              color: blackColor,
-                            ),
-                          ),
+                          // Text(
+                          //   'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ',
+                          //   style: TextStyle(
+                          //     fontSize: h7FontSize(context),
+                          //     color: blackColor,
+                          //   ),
+                          // ),
                         ],
                       ),
                     )
@@ -409,13 +409,13 @@ class _NewsScreenState extends State<NewsScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            '주제 $newsNum',
-                            style: TextStyle(
-                              fontSize: h7FontSize(context),
-                              color: blackColor,
-                            ),
-                          ),
+                          // Text(
+                          //   '주제 $newsNum',
+                          //   style: TextStyle(
+                          //     fontSize: h7FontSize(context),
+                          //     color: blackColor,
+                          //   ),
+                          // ),
                           Padding(
                             padding: const EdgeInsets.only(
                               top: 8,

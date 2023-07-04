@@ -290,7 +290,9 @@ class CeoMessageScreen extends StatelessWidget {
             width: MediaQuery.of(context).size.width < 800
                 ? widgetSize(context)
                 : widgetSize(context) / 2 - 10,
-            child: Image.asset('assets/images/ceoMessage_bg.png'),
+            child: Image.asset(
+              'assets/images/ceoMessage_bg.png',
+            ),
           ),
           SizedBox(
             width: MediaQuery.of(context).size.width < 800

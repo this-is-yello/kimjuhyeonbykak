@@ -17,6 +17,7 @@ int newsNum = 0;
 int magazineNum = 0;
 int notificationNum = 0;
 int eventNum = 0;
+int inquiryAdminNum = 0;
 
 bool topState = true;
 bool inMypage = false;

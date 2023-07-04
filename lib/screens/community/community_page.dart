@@ -305,6 +305,61 @@ class _InquiryScreenState extends State<InquiryScreen> {
     '기타'
   ];
   String _selectedValue = '주제를 선택하세요.';
+
+  var _inputInquiryName = TextEditingController();
+  var _inputInquiryPhone = TextEditingController();
+  var _inputInquiryMail = TextEditingController();
+  var _inputInquiry = TextEditingController();
+
+  goInquiry() async {
+    if (_inputInquiryName.text == '' ||
+        _inputInquiryPhone.text == '' ||
+        _inputInquiryMail.text == '' ||
+        _inputInquiry.text == '') {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Center(child: Text('입력되지 않은 정보가 있습니다.')),
+        backgroundColor: bykakColor,
+      ));
+    } else {
+      try {
+        var inquiryData = await firestore.collection('inquiry').doc().set({
+          'name': _inputInquiryName.text,
+          'title': '${_inputInquiryName.text}님의 문의입니다.',
+          'date': DateTime.now().toString().substring(0, 10),
+          'phone': _inputInquiryPhone.text,
+          'mail': _inputInquiryMail.text,
+          'value': _selectedValue,
+          'inquiry': _inputInquiry.text,
+        });
+        return showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            content: Text('문의가 등록되었습니다.'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text(
+                  '확인',
+                  style: TextStyle(
+                    color: blackColor,
+                  ),
+                ),
+              )
+            ],
+          ),
+        );
+      } catch (e) {
+        print(e);
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Center(child: Text('잘못된 입력 방법입니다. 다시 입력해주세요.')),
+          backgroundColor: bykakColor,
+        ));
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -345,7 +400,7 @@ class _InquiryScreenState extends State<InquiryScreen> {
                 Expanded(
                   flex: 1,
                   child: TextField(
-                    // controller: _inputName,
+                    controller: _inputInquiryName,
                     style: TextStyle(
                       fontSize: h4FontSize(context),
                       color: blackColor,
@@ -394,7 +449,7 @@ class _InquiryScreenState extends State<InquiryScreen> {
                 Expanded(
                   flex: 1,
                   child: TextField(
-                    // controller: _inputPhone,
+                    controller: _inputInquiryPhone,
                     style: TextStyle(
                       fontSize: h4FontSize(context),
                       color: blackColor,
@@ -443,7 +498,7 @@ class _InquiryScreenState extends State<InquiryScreen> {
                 Expanded(
                   flex: 1,
                   child: TextField(
-                    // controller: _inputMail,
+                    controller: _inputInquiryMail,
                     style: TextStyle(
                       fontSize: h4FontSize(context),
                       color: blackColor,
@@ -497,7 +552,7 @@ class _InquiryScreenState extends State<InquiryScreen> {
             width: 800,
             height: c1BoxSize(context) + 200,
             child: TextField(
-              // controller: _inputSub,
+              controller: _inputInquiry,
               cursorColor: blackColor,
               maxLines: 18,
               style: TextStyle(
@@ -520,7 +575,9 @@ class _InquiryScreenState extends State<InquiryScreen> {
           Padding(
             padding: const EdgeInsets.only(top: 40),
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                goInquiry();
+              },
               child: Container(
                 width: 300,
                 height: 56,
@@ -667,13 +724,13 @@ class _EventScreenState extends State<EventScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        '주제 $eventNum',
-                        style: TextStyle(
-                          fontSize: h7FontSize(context),
-                          color: blackColor,
-                        ),
-                      ),
+                      // Text(
+                      //   '주제 $eventNum',
+                      //   style: TextStyle(
+                      //     fontSize: h7FontSize(context),
+                      //     color: blackColor,
+                      //   ),
+                      // ),
                       Padding(
                         padding: const EdgeInsets.only(
                           top: 4,

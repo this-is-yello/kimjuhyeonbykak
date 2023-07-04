@@ -880,7 +880,7 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
                       Padding(
                         padding: const EdgeInsets.only(bottom: 8),
                         child: Text(
-                          '이메일 주소',
+                          '참고 사이트 주소',
                           style: TextStyle(
                             fontSize: h5FontSize(context),
                             fontWeight: FontWeight.bold,
@@ -899,7 +899,7 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
                           ),
                         ),
                         child: TextField(
-                          // controller: _inputMail,
+                          // controller: _inputWeb,
                           cursorColor: blackColor,
                           keyboardType: TextInputType.emailAddress,
                           style: TextStyle(
@@ -907,7 +907,7 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
                             color: blackColor,
                           ),
                           decoration: InputDecoration(
-                            hintText: '예시 : designercom@naver.com',
+                            hintText: '예시 : https://www.bykak.com/html/',
                             border: InputBorder.none,
                           ),
                         ),
@@ -938,7 +938,7 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
                       Padding(
                         padding: const EdgeInsets.only(bottom: 8),
                         child: Text(
-                          '참고 사이트 주소',
+                          '이메일 주소',
                           style: TextStyle(
                             fontSize: h5FontSize(context),
                             fontWeight: FontWeight.bold,
@@ -957,7 +957,7 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
                           ),
                         ),
                         child: TextField(
-                          // controller: _inputWeb,
+                          // controller: _inputMail,
                           cursorColor: blackColor,
                           keyboardType: TextInputType.url,
                           style: TextStyle(
@@ -965,7 +965,7 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
                             color: blackColor,
                           ),
                           decoration: InputDecoration(
-                            hintText: '예시 : https://www.bykak.com/html/',
+                            hintText: '예시 : designercom@naver.com',
                             border: InputBorder.none,
                           ),
                         ),
@@ -1138,7 +1138,7 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
             height: c1BoxSize(context) + 200,
             padding: EdgeInsets.only(top: 40),
             child: TextField(
-              // controller: _inputSub,
+              // controller: _inputQ,
               cursorColor: blackColor,
               maxLines: 18,
               keyboardType: TextInputType.multiline,

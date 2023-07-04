@@ -43,7 +43,6 @@ dependencies:
   # flutter_admin_scaffold: ^1.2.0
   side_sheet: ^1.0.4
   zoom_widget: ^2.0.1
-  # intl: ^0.18.1
 
   firebase_core: ^2.14.0
   firebase_auth: ^4.6.3
