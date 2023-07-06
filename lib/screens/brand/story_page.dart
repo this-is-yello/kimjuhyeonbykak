@@ -283,6 +283,7 @@ class CeoMessageScreen extends StatelessWidget {
       child: Wrap(
         direction: Axis.horizontal,
         alignment: WrapAlignment.spaceBetween,
+        crossAxisAlignment: WrapCrossAlignment.center,
         spacing: 20,
         runSpacing: 20,
         children: [

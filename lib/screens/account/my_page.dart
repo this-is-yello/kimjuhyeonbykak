@@ -1220,7 +1220,9 @@ class _AdminMyPageState extends State<AdminMyPage> {
           ),
           inquiryAdminNum == 0 && communityInquiryLength != 0
               ? ListView.builder(
-                  itemCount: communityInquiryLength.hashCode,
+                  itemCount: communityInquiryLength.hashCode > 5
+                      ? 5
+                      : communityInquiryLength.hashCode,
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
@@ -1292,7 +1294,9 @@ class _AdminMyPageState extends State<AdminMyPage> {
                     )
                   : inquiryAdminNum == 1 && businessInquiryLength != 0
                       ? ListView.builder(
-                          itemCount: businessInquiryLength.hashCode,
+                          itemCount: businessInquiryLength.hashCode > 5
+                              ? 5
+                              : businessInquiryLength.hashCode,
                           shrinkWrap: true,
                           physics: NeverScrollableScrollPhysics(),
                           itemBuilder: (context, index) {
@@ -1363,6 +1367,34 @@ class _AdminMyPageState extends State<AdminMyPage> {
                             ),
                           ),
                         ),
+          Padding(
+            padding: EdgeInsets.only(top: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    '〈 이전 페이지',
+                    style: TextStyle(
+                      fontSize: h4FontSize(context),
+                      color: blackColor,
+                    ),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    '다음 페이지 〉',
+                    style: TextStyle(
+                      fontSize: h4FontSize(context),
+                      color: blackColor,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
           Padding(
             padding: EdgeInsets.only(top: 60),
             child: Column(
