@@ -1,9 +1,9 @@
-import 'dart:ui';
-
-import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'dart:ui';
+import 'package:kimjuhyeonbykak/main.dart';
 import 'package:kimjuhyeonbykak/style.dart';
 
+import 'package:animate_do/animate_do.dart';
 import 'package:kimjuhyeonbykak/navigation.dart';
 
 class BusinessPage extends StatefulWidget {
@@ -695,6 +695,72 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
   bool _checkCoperation = false;
   bool _checkUniform = false;
 
+  var _inputInquiryCompany = TextEditingController();
+  var _inputInquiryName = TextEditingController();
+  var _inputInquiryWeb = TextEditingController();
+  var _inputInquiryMail = TextEditingController();
+  var _inputInquiryPhone = TextEditingController();
+  var _inputInquiry = TextEditingController();
+
+  goInquiry() async {
+    if (_inputInquiryCompany.text == '' ||
+        _inputInquiryName.text == '' ||
+        _inputInquiryPhone.text == '' ||
+        _inputInquiryMail.text == '' ||
+        _inputInquiry.text == '') {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Center(child: Text('입력되지 않은 정보가 있습니다.')),
+        backgroundColor: bykakColor,
+      ));
+    } else {
+      try {
+        var inquiryData =
+            await firestore.collection('businessInquiry').doc().set({
+          'company': _inputInquiryCompany.text,
+          'name': _inputInquiryName.text,
+          'web': _inputInquiryWeb.text,
+          'title': '${_inputInquiryName.text}님의 문의입니다.',
+          'date': DateTime.now().toString().substring(0, 10),
+          'phone': _inputInquiryPhone.text,
+          'mail': _inputInquiryMail.text,
+          'value': _checkSponsorship
+              ? '협찬'
+              : _checkCoperation
+                  ? '협업'
+                  : _checkUniform
+                      ? '단체복'
+                      : '비즈니스',
+          'inquiry': _inputInquiry.text,
+        });
+        return showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            content: Text('문의가 등록되었습니다.'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text(
+                  '확인',
+                  style: TextStyle(
+                    color: blackColor,
+                  ),
+                ),
+              )
+            ],
+          ),
+        );
+      } catch (e) {
+        print(e);
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Center(child: Text('잘못된 입력 방법입니다. 다시 입력해주세요.')),
+          backgroundColor: bykakColor,
+        ));
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -714,105 +780,48 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
           ),
           Padding(
             padding: const EdgeInsets.only(top: 20),
-            child: Wrap(
-              direction: Axis.horizontal,
-              crossAxisAlignment: WrapCrossAlignment.center,
-              runAlignment: WrapAlignment.spaceBetween,
-              alignment: WrapAlignment.start,
-              spacing: 20,
-              runSpacing: 20,
-              children: [
-                SizedBox(
-                  width: MediaQuery.of(context).size.width < 800
-                      ? widgetSize(context)
-                      : widgetSize(context) / 2 - 10,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 8),
-                        child: Text(
-                          '회사명',
-                          style: TextStyle(
-                            fontSize: h5FontSize(context),
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
+            child: SizedBox(
+              width: widgetSize(context),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 8),
+                    child: Text(
+                      '회사명',
+                      style: TextStyle(
+                        fontSize: h5FontSize(context),
+                        fontWeight: FontWeight.bold,
                       ),
-                      Container(
-                        width: widgetSize(context),
-                        height: c6BoxSize(context),
-                        decoration: BoxDecoration(
-                          border: Border(
-                            bottom: BorderSide(
-                              color: blackColor,
-                              width: 2,
-                            ),
-                          ),
-                        ),
-                        child: TextField(
-                          // controller: _inputCompany,
-                          cursorColor: blackColor,
-                          keyboardType: TextInputType.name,
-                          style: TextStyle(
-                            fontSize: h4FontSize(context),
-                            color: blackColor,
-                          ),
-                          decoration: InputDecoration(
-                            hintText: '예시 : 김주현바이각',
-                            border: InputBorder.none,
-                          ),
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
-                ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width < 800
-                      ? widgetSize(context)
-                      : widgetSize(context) / 2 - 10,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 8),
-                        child: Text(
-                          '브랜드명',
-                          style: TextStyle(
-                            fontSize: h5FontSize(context),
-                            fontWeight: FontWeight.bold,
-                          ),
+                  Container(
+                    width: widgetSize(context),
+                    height: c6BoxSize(context),
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(
+                          color: blackColor,
+                          width: 2,
                         ),
                       ),
-                      Container(
-                        width: widgetSize(context),
-                        height: c6BoxSize(context),
-                        decoration: BoxDecoration(
-                          border: Border(
-                            bottom: BorderSide(
-                              color: blackColor,
-                              width: 2,
-                            ),
-                          ),
-                        ),
-                        child: TextField(
-                          // controller: _inputBrand,
-                          cursorColor: blackColor,
-                          keyboardType: TextInputType.name,
-                          style: TextStyle(
-                            fontSize: h4FontSize(context),
-                            color: blackColor,
-                          ),
-                          decoration: InputDecoration(
-                            hintText: '예시 : 데시그너',
-                            border: InputBorder.none,
-                          ),
-                        ),
+                    ),
+                    child: TextField(
+                      controller: _inputInquiryCompany,
+                      cursorColor: blackColor,
+                      keyboardType: TextInputType.name,
+                      style: TextStyle(
+                        fontSize: h4FontSize(context),
+                        color: blackColor,
                       ),
-                    ],
+                      decoration: InputDecoration(
+                        hintText: '예시 : 김주현바이각',
+                        border: InputBorder.none,
+                      ),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
           Padding(
@@ -854,7 +863,7 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
                           ),
                         ),
                         child: TextField(
-                          // controller: _inputName,
+                          controller: _inputInquiryName,
                           cursorColor: blackColor,
                           keyboardType: TextInputType.name,
                           style: TextStyle(
@@ -899,7 +908,7 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
                           ),
                         ),
                         child: TextField(
-                          // controller: _inputWeb,
+                          controller: _inputInquiryWeb,
                           cursorColor: blackColor,
                           keyboardType: TextInputType.emailAddress,
                           style: TextStyle(
@@ -957,7 +966,7 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
                           ),
                         ),
                         child: TextField(
-                          // controller: _inputMail,
+                          controller: _inputInquiryMail,
                           cursorColor: blackColor,
                           keyboardType: TextInputType.url,
                           style: TextStyle(
@@ -1002,7 +1011,7 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
                           ),
                         ),
                         child: TextField(
-                          // controller: _inputContact,
+                          controller: _inputInquiryPhone,
                           cursorColor: blackColor,
                           keyboardType: TextInputType.phone,
                           style: TextStyle(
@@ -1138,7 +1147,7 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
             height: c1BoxSize(context) + 200,
             padding: EdgeInsets.only(top: 40),
             child: TextField(
-              // controller: _inputQ,
+              controller: _inputInquiry,
               cursorColor: blackColor,
               maxLines: 18,
               keyboardType: TextInputType.multiline,
@@ -1162,7 +1171,9 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
           Padding(
             padding: const EdgeInsets.only(top: 40),
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                goInquiry();
+              },
               child: Container(
                 width: 300,
                 height: 56,

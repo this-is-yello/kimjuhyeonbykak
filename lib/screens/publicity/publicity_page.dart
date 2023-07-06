@@ -46,6 +46,7 @@ class _PublicityPageState extends State<PublicityPage> {
   void initState() {
     super.initState();
     topState = true;
+    inMypage = false;
     scrollState();
   }
 

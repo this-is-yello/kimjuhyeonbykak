@@ -91,12 +91,12 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: LINE_seed
+    - family: Pretendard
       fonts:
-        - asset: assets/fonts/LINESeedKR-Rg.ttf
-        - asset: assets/fonts/LINESeedKR-Bd.ttf
+        - asset: assets/fonts/Pretendard-Regular.ttf
+        - asset: assets/fonts/Pretendard-Bold.ttf
           weight: 700
-        - asset: assets/fonts/LINESeedKR-Th.ttf
+        - asset: assets/fonts/Pretendard-Light.ttf
           weight: 100
     - family: Cafe_24
       fonts:

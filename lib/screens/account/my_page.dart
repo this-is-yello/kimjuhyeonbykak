@@ -1,10 +1,10 @@
-import 'dart:js_interop';
-
 import 'package:flutter/material.dart';
 import 'package:kimjuhyeonbykak/style.dart';
 import 'package:kimjuhyeonbykak/main.dart';
 import 'package:kimjuhyeonbykak/navigation.dart';
+import 'package:kimjuhyeonbykak/screens/account/board_upload_Modal.dart';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
 class MyPage extends StatefulWidget {
@@ -597,55 +597,70 @@ class UserMyPage extends StatefulWidget {
 
 class _UserMyPageState extends State<UserMyPage> {
   var currentUserId = auth.currentUser?.email;
-  var currentUserSearch;
   var currentUserGrade;
 
-  searchUser() async {
-    currentUserSearch =
+  currentUser() async {
+    var currentUserSearch =
         await firestore.collection('account').doc('$currentUserId').get();
     setState(() {
       currentUserGrade = currentUserSearch.get('grade');
     });
+    currentUserSearch.data()!.containsKey('ambassador');
+    var addAmbassador =
+        await firestore.collection('account').doc('$currentUserId');
+    addAmbassador.get().then((DocumentSnapshot doc) {
+      if (doc.exists) {
+        if (currentUserGrade == '엠버서더') {
+          if (currentUserSearch.data()!.containsKey('ambassador')) {
+            print('본 회원은 엠버서더며, 필드가 존재합니다.');
+          } else {
+            print('본 회원은 엠버서더며, 필드가 존재하지 않아서 추가합니다.');
+            addAmbassador.update({
+              'ambassador': [
+                'assets/images/default_profile.png',
+                auth.currentUser?.displayName,
+                '소개합니다.',
+                'www.blog.blog',
+                'www.insta.inasta',
+              ]
+            });
+            print('추가완료');
+          }
+        } else {
+          print('본 회원은 엠버서더가 아닙니다.');
+        }
+      } else {
+        print('문서가 존재하지 않습니다.');
+      }
+    });
   }
 
   var currentUserUid = auth.currentUser?.uid;
-  var ambassadorDoc;
   var ambassadorPic;
   var ambassadorName;
   var ambassadorIntroduce;
   var ambassadorBlog;
   var ambassadorInsta;
 
-  ambassadorUser() async {
+  ambassadorInfo() async {
     var profileStateSearch =
         await firestore.collection('account').doc('$currentUserId').get();
     var snapshot = profileStateSearch.get('ambassador');
-    if (currentUserGrade == '엠버서더') {
-      await profileStateSearch;
-      // await profileStateSearch.doc('ambassador').set({
-      //   'photo': 'assets/images/story_bg.jpg',
-      //   'nickname': '엠버서더1',
-      //   'introduce': '소개합니다.',
-      //   'bloglink': 'www.blog.blog',
-      //   'instalink': 'www.insta.inasta',
-      // });
-    }
     setState(() {
-      var ambassadorDoc = snapshot.doc;
-      ambassadorPic = ambassadorDoc;
-      ambassadorName = ambassadorDoc.get('nickname');
-      ambassadorIntroduce = ambassadorDoc.get('introduce');
-      ambassadorBlog = ambassadorDoc.get('bloglink');
-      ambassadorInsta = ambassadorDoc.get('instalink');
+      ambassadorPic = snapshot[0];
+      ambassadorName = snapshot[1];
+      ambassadorIntroduce = snapshot[2];
+      ambassadorBlog = snapshot[3];
+      ambassadorInsta = snapshot[4];
     });
+    print(ambassadorName);
   }
 
   @override
   void initState() {
     super.initState();
-    searchUser();
-    ambassadorUser();
-    print(ambassadorDoc);
+    currentUser();
+    ambassadorInfo();
   }
 
   @override
@@ -668,15 +683,16 @@ class _UserMyPageState extends State<UserMyPage> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 16),
+                  padding: EdgeInsets.only(top: 40),
                   child: SizedBox(
                     width: widgetSize(context),
-                    child: currentUserGrade == '엠버서더'
+                    child: ambassadorName != null
                         ? Container(
                             width: widgetSize(context),
                             child: Wrap(
                               direction: Axis.horizontal,
                               alignment: WrapAlignment.spaceBetween,
+                              crossAxisAlignment: WrapCrossAlignment.center,
                               spacing: 20,
                               runSpacing: 20,
                               children: [
@@ -684,9 +700,10 @@ class _UserMyPageState extends State<UserMyPage> {
                                   width: MediaQuery.of(context).size.width < 800
                                       ? widgetSize(context)
                                       : widgetSize(context) / 2 - 10,
+                                  height: c1BoxSize(context) + 100,
                                   child: Image.asset(
-                                    ambassadorPic.toString(),
-                                    fit: BoxFit.cover,
+                                    ambassadorPic,
+                                    fit: BoxFit.fitHeight,
                                   ),
                                 ),
                                 SizedBox(
@@ -698,13 +715,28 @@ class _UserMyPageState extends State<UserMyPage> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text(
-                                        ambassadorName,
-                                        style: TextStyle(
-                                          fontSize: h2FontSize(context),
-                                          fontWeight: FontWeight.bold,
-                                          color: blackColor,
-                                        ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            ambassadorName,
+                                            style: TextStyle(
+                                              fontSize: h2FontSize(context),
+                                              fontWeight: FontWeight.bold,
+                                              color: blackColor,
+                                            ),
+                                          ),
+                                          TextButton(
+                                            onPressed: () {},
+                                            child: Text(
+                                              '프로필 편집',
+                                              style: TextStyle(
+                                                color: blackColor,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                       Padding(
                                         padding: const EdgeInsets.only(
@@ -722,11 +754,14 @@ class _UserMyPageState extends State<UserMyPage> {
                                         padding: const EdgeInsets.only(
                                           top: 16,
                                         ),
-                                        child: Text(
-                                          ambassadorBlog,
-                                          style: TextStyle(
-                                            fontSize: h4FontSize(context),
-                                            color: blackColor,
+                                        child: TextButton(
+                                          onPressed: () {},
+                                          child: Text(
+                                            ambassadorBlog,
+                                            style: TextStyle(
+                                              fontSize: h4FontSize(context),
+                                              color: blackColor,
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -734,11 +769,14 @@ class _UserMyPageState extends State<UserMyPage> {
                                         padding: const EdgeInsets.only(
                                           top: 16,
                                         ),
-                                        child: Text(
-                                          ambassadorInsta,
-                                          style: TextStyle(
-                                            fontSize: h4FontSize(context),
-                                            color: blackColor,
+                                        child: TextButton(
+                                          onPressed: () {},
+                                          child: Text(
+                                            ambassadorInsta,
+                                            style: TextStyle(
+                                              fontSize: h4FontSize(context),
+                                              color: blackColor,
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -746,11 +784,14 @@ class _UserMyPageState extends State<UserMyPage> {
                                         padding: const EdgeInsets.only(
                                           top: 16,
                                         ),
-                                        child: Text(
-                                          '엠버서더 링크',
-                                          style: TextStyle(
-                                            fontSize: h4FontSize(context),
-                                            color: blackColor,
+                                        child: TextButton(
+                                          onPressed: () {},
+                                          child: Text(
+                                            '엠버서더 링크',
+                                            style: TextStyle(
+                                              fontSize: h4FontSize(context),
+                                              color: blackColor,
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -828,34 +869,29 @@ class _AdminMyPageState extends State<AdminMyPage> {
     });
   }
 
-  var inquiryDataLength;
-  var inquiryDataDocs;
-  var inquiryDataValue;
-  var inquiryDataTitle;
-  var inquiryDataDate;
-  var inquiryDataDate2;
-  var inquiryDataName;
-  var inquiryDataMail;
-  var inquiryDataPhone;
-  var inquiryDataInquiry;
+  var communityInquiryLength;
+  var communityInquiryDocs;
+  var businessInquiryLength;
+  var businessInquiryDocs;
 
-  inquiryData(i) async {
-    var inquiryData = await firestore.collection('inquiry').get();
+  communityInquiry(i) async {
+    var communityInquiry = await firestore
+        .collection('communityInquiry')
+        .orderBy('date', descending: true)
+        .get();
+    var businessInquiry = await firestore
+        .collection('businessInquiry')
+        .orderBy('date', descending: true)
+        .get();
     setState(() {
-      inquiryDataDocs = inquiryData.docs;
-      inquiryDataLength = inquiryDataDocs.length;
-      inquiryDataValue = inquiryDataDocs[i]['value'];
-      inquiryDataTitle = inquiryDataDocs[i]['title'];
-      inquiryDataDate = inquiryDataDocs[i]['date'];
-      inquiryDataName = inquiryDataDocs[i]['name'];
-      inquiryDataMail = inquiryDataDocs[i]['mail'];
-      inquiryDataPhone = inquiryDataDocs[i]['phone'];
-      inquiryDataInquiry = inquiryDataDocs[i]['inquiry'];
+      communityInquiryDocs = communityInquiry.docs;
+      communityInquiryLength = communityInquiry.docs.length;
+      businessInquiryDocs = businessInquiry.docs;
+      businessInquiryLength = businessInquiry.docs.length;
     });
-    print(inquiryDataDate);
   }
 
-  inquiryAdmin(i) async {
+  inquiryCommunity(i) async {
     return showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
@@ -863,7 +899,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              '[${inquiryDataDocs[i]['value']}] ${inquiryDataDocs[i]['title']}',
+              '[${communityInquiryDocs[i]['value']}] ${communityInquiryDocs[i]['title']}',
               style: TextStyle(
                 fontSize: h3FontSize(context),
                 color: blackColor,
@@ -874,37 +910,58 @@ class _AdminMyPageState extends State<AdminMyPage> {
               child: Row(
                 children: [
                   Text(
-                    inquiryDataDocs[i]['name'],
+                    communityInquiryDocs[i]['name'],
                     style: TextStyle(
                       fontSize: h5FontSize(context),
                       color: blackColor,
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 16),
-                    child: Text(
-                      inquiryDataDocs[i]['phone'],
-                      style: TextStyle(
-                        fontSize: h5FontSize(context),
-                        color: blackColor,
+                    padding: const EdgeInsets.only(left: 4),
+                    child: TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        communityInquiryDocs[i]['phone'],
+                        style: TextStyle(
+                          fontSize: h5FontSize(context),
+                          decoration: TextDecoration.underline,
+                          color: blackColor,
+                        ),
                       ),
                     ),
                   ),
                 ],
               ),
             ),
-            Text(
-              inquiryDataDocs[i]['mail'],
-              style: TextStyle(
-                fontSize: h5FontSize(context),
-                color: blackColor,
-              ),
+            Row(
+              children: [
+                Text(
+                  '이메일',
+                  style: TextStyle(
+                    fontSize: h5FontSize(context),
+                    color: blackColor,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 4),
+                  child: TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      communityInquiryDocs[i]['mail'],
+                      style: TextStyle(
+                        fontSize: h5FontSize(context),
+                        decoration: TextDecoration.underline,
+                        color: blackColor,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
         ),
         content: SizedBox(
           width: 400,
-          // height: 200,
           child: ListView.builder(
             shrinkWrap: true,
             itemCount: 1,
@@ -914,7 +971,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
                 child: Padding(
                   padding: const EdgeInsets.only(top: 20),
                   child: Text(
-                    inquiryDataDocs[i]['inquiry'],
+                    communityInquiryDocs[i]['inquiry'],
                     style: TextStyle(
                       height: 1.5,
                       fontSize: h5FontSize(context),
@@ -930,29 +987,144 @@ class _AdminMyPageState extends State<AdminMyPage> {
           Padding(
             padding: const EdgeInsets.only(bottom: 16),
             child: TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pop(context);
+              },
               child: Text(
-                '전화걸기',
+                '닫기',
                 style: TextStyle(
-                  // fontSize: 18,
+                  fontSize: 18,
                   color: blackColor,
                 ),
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 16),
-            child: TextButton(
-              onPressed: () {},
-              child: Text(
-                '메일 보내기',
-                style: TextStyle(
-                  // fontSize: 18,
-                  color: blackColor,
-                ),
+        ],
+      ),
+    );
+  }
+
+  businessCommunity(i) async {
+    return showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              '[${businessInquiryDocs[i]['value']}] ${businessInquiryDocs[i]['title']}',
+              style: TextStyle(
+                fontSize: h3FontSize(context),
+                color: blackColor,
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              child: Row(
+                children: [
+                  Text(
+                    businessInquiryDocs[i]['company'],
+                    style: TextStyle(
+                      fontSize: h5FontSize(context),
+                      color: blackColor,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 4),
+                    child: TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        businessInquiryDocs[i]['phone'],
+                        style: TextStyle(
+                          fontSize: h5FontSize(context),
+                          decoration: TextDecoration.underline,
+                          color: blackColor,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Row(
+              children: [
+                Text(
+                  '이메일',
+                  style: TextStyle(
+                    fontSize: h5FontSize(context),
+                    color: blackColor,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 4),
+                  child: TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      businessInquiryDocs[i]['mail'],
+                      style: TextStyle(
+                        fontSize: h5FontSize(context),
+                        decoration: TextDecoration.underline,
+                        color: blackColor,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 8),
+              child: Row(
+                children: [
+                  Text(
+                    '홈페이지',
+                    style: TextStyle(
+                      fontSize: h5FontSize(context),
+                      color: blackColor,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 4),
+                    child: TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        businessInquiryDocs[i]['web'],
+                        style: TextStyle(
+                          fontSize: h5FontSize(context),
+                          decoration: TextDecoration.underline,
+                          color: blackColor,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+        content: SizedBox(
+          width: 400,
+          child: ListView.builder(
+            shrinkWrap: true,
+            itemCount: 1,
+            itemBuilder: (context, index) {
+              return SizedBox(
+                width: 360,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 20),
+                  child: Text(
+                    businessInquiryDocs[i]['inquiry'],
+                    style: TextStyle(
+                      height: 1.5,
+                      fontSize: h5FontSize(context),
+                      color: blackColor,
+                    ),
+                  ),
+                ),
+              );
+            },
           ),
+        ),
+        actions: [
           Padding(
             padding: const EdgeInsets.only(bottom: 16),
             child: TextButton(
@@ -962,7 +1134,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
               child: Text(
                 '닫기',
                 style: TextStyle(
-                  // fontSize: 18,
+                  fontSize: 18,
                   color: blackColor,
                 ),
               ),
@@ -977,7 +1149,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
   void initState() {
     super.initState();
     searchItems();
-    inquiryData(i);
+    communityInquiry(i);
   }
 
   @override
@@ -1046,9 +1218,9 @@ class _AdminMyPageState extends State<AdminMyPage> {
               ),
             ),
           ),
-          inquiryAdminNum == 0
+          inquiryAdminNum == 0 && communityInquiryLength != 0
               ? ListView.builder(
-                  itemCount: inquiryDataLength.hashCode,
+                  itemCount: communityInquiryLength.hashCode,
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
@@ -1056,7 +1228,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
                       padding: const EdgeInsets.only(bottom: 8),
                       child: InkWell(
                         onTap: () {
-                          inquiryAdmin(index);
+                          inquiryCommunity(index);
                         },
                         child: Container(
                           width: widgetSize(context),
@@ -1080,7 +1252,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Text(
-                                '[${inquiryDataDocs[index]['value']}] ${inquiryDataDocs[index]['title']}',
+                                '[${communityInquiryDocs[index]['value']}] ${communityInquiryDocs[index]['title']}',
                                 maxLines: 1,
                                 style: TextStyle(
                                   fontSize: h5FontSize(context),
@@ -1089,7 +1261,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
                                 ),
                               ),
                               Text(
-                                inquiryDataDocs[index]['date'],
+                                communityInquiryDocs[index]['date'],
                                 style: TextStyle(
                                   fontSize: h7FontSize(context),
                                   color: blackColor,
@@ -1102,18 +1274,95 @@ class _AdminMyPageState extends State<AdminMyPage> {
                     );
                   },
                 )
-              : SizedBox(
-                  width: widgetSize(context),
-                  child: Center(
-                    child: Text(
-                      '답변할 문의정보가 없습니다',
-                      style: TextStyle(
-                        fontSize: h5FontSize(context),
-                        color: blackColor,
+              : inquiryAdminNum == 0 && communityInquiryLength == 0
+                  ? Padding(
+                      padding: const EdgeInsets.only(top: 60),
+                      child: SizedBox(
+                        width: widgetSize(context),
+                        child: Center(
+                          child: Text(
+                            '답변할 문의정보가 없습니다',
+                            style: TextStyle(
+                              fontSize: h5FontSize(context),
+                              color: blackColor,
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                ),
+                    )
+                  : inquiryAdminNum == 1 && businessInquiryLength != 0
+                      ? ListView.builder(
+                          itemCount: businessInquiryLength.hashCode,
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: const EdgeInsets.only(bottom: 8),
+                              child: InkWell(
+                                onTap: () {
+                                  businessCommunity(index);
+                                },
+                                child: Container(
+                                  width: widgetSize(context),
+                                  padding: EdgeInsets.only(
+                                    left: 8,
+                                    top: 20,
+                                    right: 8,
+                                    bottom: 20,
+                                  ),
+                                  // padding: EdgeInsets.only(bottom: 4),
+                                  decoration: BoxDecoration(
+                                    border: Border(
+                                      bottom: BorderSide(
+                                        color: greyColor,
+                                        width: 2,
+                                      ),
+                                    ),
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        '[${businessInquiryDocs[index]['value']}] ${businessInquiryDocs[index]['title']}',
+                                        maxLines: 1,
+                                        style: TextStyle(
+                                          fontSize: h5FontSize(context),
+                                          fontWeight: FontWeight.bold,
+                                          color: blackColor,
+                                        ),
+                                      ),
+                                      Text(
+                                        businessInquiryDocs[index]['date'],
+                                        style: TextStyle(
+                                          fontSize: h7FontSize(context),
+                                          color: blackColor,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                        )
+                      : Padding(
+                          padding: const EdgeInsets.only(top: 60),
+                          child: SizedBox(
+                            width: widgetSize(context),
+                            child: Center(
+                              child: Text(
+                                '답변할 문의정보가 없습니다',
+                                style: TextStyle(
+                                  fontSize: h5FontSize(context),
+                                  color: blackColor,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
           Padding(
             padding: EdgeInsets.only(top: 60),
             child: Column(
@@ -1139,7 +1388,9 @@ class _AdminMyPageState extends State<AdminMyPage> {
                         SizedBox(
                           height: 40,
                           child: TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              megazineUpload(context);
+                            },
                             child: Text(
                               '매거진 업로드',
                               style: TextStyle(
@@ -1152,7 +1403,9 @@ class _AdminMyPageState extends State<AdminMyPage> {
                         SizedBox(
                           height: 40,
                           child: TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              newsUpload(context);
+                            },
                             child: Text(
                               '보도자료 업로드',
                               style: TextStyle(
@@ -1165,7 +1418,9 @@ class _AdminMyPageState extends State<AdminMyPage> {
                         SizedBox(
                           height: 40,
                           child: TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              notificationUpload(context);
+                            },
                             child: Text(
                               '공지사항 업로드',
                               style: TextStyle(
@@ -1178,7 +1433,9 @@ class _AdminMyPageState extends State<AdminMyPage> {
                         SizedBox(
                           height: 40,
                           child: TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              eventUpload(context);
+                            },
                             child: Text(
                               '이벤트 업로드',
                               style: TextStyle(
@@ -1191,7 +1448,9 @@ class _AdminMyPageState extends State<AdminMyPage> {
                         SizedBox(
                           height: 40,
                           child: TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              mediaUpload(context);
+                            },
                             child: Text(
                               '미디어 업로드',
                               style: TextStyle(
@@ -1204,7 +1463,9 @@ class _AdminMyPageState extends State<AdminMyPage> {
                         SizedBox(
                           height: 40,
                           child: TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              productUpload(context);
+                            },
                             child: Text(
                               '제품 업로드',
                               style: TextStyle(

@@ -321,41 +321,49 @@ class _InquiryScreenState extends State<InquiryScreen> {
         backgroundColor: bykakColor,
       ));
     } else {
-      try {
-        var inquiryData = await firestore.collection('inquiry').doc().set({
-          'name': _inputInquiryName.text,
-          'title': '${_inputInquiryName.text}님의 문의입니다.',
-          'date': DateTime.now().toString().substring(0, 10),
-          'phone': _inputInquiryPhone.text,
-          'mail': _inputInquiryMail.text,
-          'value': _selectedValue,
-          'inquiry': _inputInquiry.text,
-        });
-        return showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-            content: Text('문의가 등록되었습니다.'),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: Text(
-                  '확인',
-                  style: TextStyle(
-                    color: blackColor,
-                  ),
-                ),
-              )
-            ],
-          ),
-        );
-      } catch (e) {
-        print(e);
+      if (_selectedValue == inquiryDropDown[0]) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Center(child: Text('잘못된 입력 방법입니다. 다시 입력해주세요.')),
+          content: Center(child: Text('문의의 주제를 선택하세요.')),
           backgroundColor: bykakColor,
         ));
+      } else {
+        try {
+          var inquiryData =
+              await firestore.collection('communityInquiry').doc().set({
+            'name': _inputInquiryName.text,
+            'title': '${_inputInquiryName.text}님의 문의입니다.',
+            'date': DateTime.now().toString().substring(0, 10),
+            'phone': _inputInquiryPhone.text,
+            'mail': _inputInquiryMail.text,
+            'value': _selectedValue,
+            'inquiry': _inputInquiry.text,
+          });
+          return showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              content: Text('문의가 등록되었습니다.'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text(
+                    '확인',
+                    style: TextStyle(
+                      color: blackColor,
+                    ),
+                  ),
+                )
+              ],
+            ),
+          );
+        } catch (e) {
+          print(e);
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Center(child: Text('잘못된 입력 방법입니다. 다시 입력해주세요.')),
+            backgroundColor: bykakColor,
+          ));
+        }
       }
     }
   }
