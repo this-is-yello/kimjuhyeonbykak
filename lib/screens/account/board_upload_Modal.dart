@@ -29,45 +29,48 @@ void megazineUpload(BuildContext context) {
                     ),
                   ),
                   Container(
-                    height: c4BoxSize(context),
                     padding: EdgeInsets.only(top: 20),
-                    decoration: BoxDecoration(
-                      border: Border(
-                        bottom: BorderSide(
-                          color: blackColor,
-                          width: 2,
-                        ),
-                      ),
-                    ),
-                    child: Row(
+                    child: Column(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(right: 16),
-                          child: SizedBox(
-                            width: c4BoxSize(context),
-                            child: Text(
-                              '제목',
-                              style: TextStyle(
-                                fontSize: h3FontSize(context),
-                                fontWeight: FontWeight.bold,
-                                color: blackColor,
+                        Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(right: 16),
+                              child: SizedBox(
+                                width: c4BoxSize(context),
+                                child: Text(
+                                  '제목',
+                                  style: TextStyle(
+                                    fontSize: h3FontSize(context),
+                                    fontWeight: FontWeight.bold,
+                                    color: blackColor,
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
+                            Expanded(
+                              flex: 1,
+                              child: TextField(
+                                // controller: _inputMagazineTitle,
+                                style: TextStyle(
+                                  fontSize: h4FontSize(context),
+                                  color: blackColor,
+                                ),
+                                keyboardType: TextInputType.name,
+                                decoration: InputDecoration(
+                                  hintText: '제목을 입력하세요.',
+                                  border: InputBorder.none,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                        Expanded(
-                          flex: 1,
-                          child: TextField(
-                            // controller: _inputMagazineTitle,
-                            style: TextStyle(
-                              fontSize: h4FontSize(context),
-                              color: blackColor,
-                            ),
-                            keyboardType: TextInputType.name,
-                            decoration: InputDecoration(
-                              hintText: '제목을 입력하세요.',
-                              border: InputBorder.none,
-                            ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 4),
+                          child: Container(
+                            width: double.infinity,
+                            height: 2,
+                            color: blackColor,
                           ),
                         ),
                       ],
@@ -239,45 +242,48 @@ void newsUpload(BuildContext context) {
                     ),
                   ),
                   Container(
-                    height: c4BoxSize(context),
                     padding: EdgeInsets.only(top: 20),
-                    decoration: BoxDecoration(
-                      border: Border(
-                        bottom: BorderSide(
-                          color: blackColor,
-                          width: 2,
-                        ),
-                      ),
-                    ),
-                    child: Row(
+                    child: Column(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(right: 16),
-                          child: SizedBox(
-                            width: c4BoxSize(context),
-                            child: Text(
-                              '제목',
-                              style: TextStyle(
-                                fontSize: h3FontSize(context),
-                                fontWeight: FontWeight.bold,
-                                color: blackColor,
+                        Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(right: 16),
+                              child: SizedBox(
+                                width: c4BoxSize(context),
+                                child: Text(
+                                  '제목',
+                                  style: TextStyle(
+                                    fontSize: h3FontSize(context),
+                                    fontWeight: FontWeight.bold,
+                                    color: blackColor,
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
+                            Expanded(
+                              flex: 1,
+                              child: TextField(
+                                // controller: _inputNewsTitle,
+                                style: TextStyle(
+                                  fontSize: h4FontSize(context),
+                                  color: blackColor,
+                                ),
+                                keyboardType: TextInputType.name,
+                                decoration: InputDecoration(
+                                  hintText: '제목을 입력하세요.',
+                                  border: InputBorder.none,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                        Expanded(
-                          flex: 1,
-                          child: TextField(
-                            // controller: _inputNewsTitle,
-                            style: TextStyle(
-                              fontSize: h4FontSize(context),
-                              color: blackColor,
-                            ),
-                            keyboardType: TextInputType.name,
-                            decoration: InputDecoration(
-                              hintText: '제목을 입력하세요.',
-                              border: InputBorder.none,
-                            ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 4),
+                          child: Container(
+                            width: double.infinity,
+                            height: 2,
+                            color: blackColor,
                           ),
                         ),
                       ],
@@ -449,45 +455,48 @@ void notificationUpload(BuildContext context) {
                     ),
                   ),
                   Container(
-                    height: c4BoxSize(context),
                     padding: EdgeInsets.only(top: 20),
-                    decoration: BoxDecoration(
-                      border: Border(
-                        bottom: BorderSide(
-                          color: blackColor,
-                          width: 2,
-                        ),
-                      ),
-                    ),
-                    child: Row(
+                    child: Column(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(right: 16),
-                          child: SizedBox(
-                            width: c4BoxSize(context),
-                            child: Text(
-                              '제목',
-                              style: TextStyle(
-                                fontSize: h3FontSize(context),
-                                fontWeight: FontWeight.bold,
-                                color: blackColor,
+                        Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(right: 16),
+                              child: SizedBox(
+                                width: c4BoxSize(context),
+                                child: Text(
+                                  '제목',
+                                  style: TextStyle(
+                                    fontSize: h3FontSize(context),
+                                    fontWeight: FontWeight.bold,
+                                    color: blackColor,
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
+                            Expanded(
+                              flex: 1,
+                              child: TextField(
+                                // controller: _inputNotificationTitle,
+                                style: TextStyle(
+                                  fontSize: h4FontSize(context),
+                                  color: blackColor,
+                                ),
+                                keyboardType: TextInputType.name,
+                                decoration: InputDecoration(
+                                  hintText: '제목을 입력하세요.',
+                                  border: InputBorder.none,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                        Expanded(
-                          flex: 1,
-                          child: TextField(
-                            // controller: _inputNotificationTitle,
-                            style: TextStyle(
-                              fontSize: h4FontSize(context),
-                              color: blackColor,
-                            ),
-                            keyboardType: TextInputType.name,
-                            decoration: InputDecoration(
-                              hintText: '제목을 입력하세요.',
-                              border: InputBorder.none,
-                            ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 4),
+                          child: Container(
+                            width: double.infinity,
+                            height: 2,
+                            color: blackColor,
                           ),
                         ),
                       ],
@@ -634,90 +643,96 @@ void eventUpload(BuildContext context) {
                     ),
                   ),
                   Container(
-                    height: c4BoxSize(context),
                     padding: EdgeInsets.only(top: 20),
-                    decoration: BoxDecoration(
-                      border: Border(
-                        bottom: BorderSide(
-                          color: blackColor,
-                          width: 2,
-                        ),
-                      ),
-                    ),
-                    child: Row(
+                    child: Column(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(right: 16),
-                          child: SizedBox(
-                            width: c4BoxSize(context),
-                            child: Text(
-                              '제목',
-                              style: TextStyle(
-                                fontSize: h3FontSize(context),
-                                fontWeight: FontWeight.bold,
-                                color: blackColor,
+                        Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(right: 16),
+                              child: SizedBox(
+                                width: c4BoxSize(context),
+                                child: Text(
+                                  '제목',
+                                  style: TextStyle(
+                                    fontSize: h3FontSize(context),
+                                    fontWeight: FontWeight.bold,
+                                    color: blackColor,
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
+                            Expanded(
+                              flex: 1,
+                              child: TextField(
+                                // controller: _inputEventTitle,
+                                style: TextStyle(
+                                  fontSize: h4FontSize(context),
+                                  color: blackColor,
+                                ),
+                                keyboardType: TextInputType.name,
+                                decoration: InputDecoration(
+                                  hintText: '제목을 입력하세요.',
+                                  border: InputBorder.none,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                        Expanded(
-                          flex: 1,
-                          child: TextField(
-                            // controller: _inputEventTitle,
-                            style: TextStyle(
-                              fontSize: h4FontSize(context),
-                              color: blackColor,
-                            ),
-                            keyboardType: TextInputType.name,
-                            decoration: InputDecoration(
-                              hintText: '제목을 입력하세요.',
-                              border: InputBorder.none,
-                            ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 4),
+                          child: Container(
+                            width: double.infinity,
+                            height: 2,
+                            color: blackColor,
                           ),
                         ),
                       ],
                     ),
                   ),
                   Container(
-                    height: c4BoxSize(context),
                     padding: EdgeInsets.only(top: 20),
-                    decoration: BoxDecoration(
-                      border: Border(
-                        bottom: BorderSide(
-                          color: blackColor,
-                          width: 2,
-                        ),
-                      ),
-                    ),
-                    child: Row(
+                    child: Column(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(right: 16),
-                          child: SizedBox(
-                            width: c4BoxSize(context),
-                            child: Text(
-                              '서브제목',
-                              style: TextStyle(
-                                fontSize: h3FontSize(context),
-                                fontWeight: FontWeight.bold,
-                                color: blackColor,
+                        Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(right: 16),
+                              child: SizedBox(
+                                width: c4BoxSize(context),
+                                child: Text(
+                                  '서브제목',
+                                  style: TextStyle(
+                                    fontSize: h4FontSize(context),
+                                    fontWeight: FontWeight.bold,
+                                    color: blackColor,
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
+                            Expanded(
+                              flex: 1,
+                              child: TextField(
+                                // controller: _inputEventSubTitle,
+                                style: TextStyle(
+                                  fontSize: h4FontSize(context),
+                                  color: blackColor,
+                                ),
+                                keyboardType: TextInputType.name,
+                                decoration: InputDecoration(
+                                  hintText: '제목을 입력하세요.',
+                                  border: InputBorder.none,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                        Expanded(
-                          flex: 1,
-                          child: TextField(
-                            // controller: _inputEventSubTitle,
-                            style: TextStyle(
-                              fontSize: h4FontSize(context),
-                              color: blackColor,
-                            ),
-                            keyboardType: TextInputType.name,
-                            decoration: InputDecoration(
-                              hintText: '제목을 입력하세요.',
-                              border: InputBorder.none,
-                            ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 4),
+                          child: Container(
+                            width: double.infinity,
+                            height: 2,
+                            color: blackColor,
                           ),
                         ),
                       ],
@@ -891,90 +906,96 @@ void mediaUpload(BuildContext context) {
                     ),
                   ),
                   Container(
-                    height: c4BoxSize(context),
                     padding: EdgeInsets.only(top: 20),
-                    decoration: BoxDecoration(
-                      border: Border(
-                        bottom: BorderSide(
-                          color: blackColor,
-                          width: 2,
-                        ),
-                      ),
-                    ),
-                    child: Row(
+                    child: Column(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(right: 16),
-                          child: SizedBox(
-                            width: c4BoxSize(context),
-                            child: Text(
-                              '제목',
-                              style: TextStyle(
-                                fontSize: h3FontSize(context),
-                                fontWeight: FontWeight.bold,
-                                color: blackColor,
+                        Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(right: 16),
+                              child: SizedBox(
+                                width: c4BoxSize(context),
+                                child: Text(
+                                  '제목',
+                                  style: TextStyle(
+                                    fontSize: h3FontSize(context),
+                                    fontWeight: FontWeight.bold,
+                                    color: blackColor,
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
+                            Expanded(
+                              flex: 1,
+                              child: TextField(
+                                // controller: _inputMediaTitle,
+                                style: TextStyle(
+                                  fontSize: h4FontSize(context),
+                                  color: blackColor,
+                                ),
+                                keyboardType: TextInputType.name,
+                                decoration: InputDecoration(
+                                  hintText: '제목을 입력하세요.',
+                                  border: InputBorder.none,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                        Expanded(
-                          flex: 1,
-                          child: TextField(
-                            // controller: _inputMediaTitle,
-                            style: TextStyle(
-                              fontSize: h4FontSize(context),
-                              color: blackColor,
-                            ),
-                            keyboardType: TextInputType.name,
-                            decoration: InputDecoration(
-                              hintText: '제목을 입력하세요.',
-                              border: InputBorder.none,
-                            ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 4),
+                          child: Container(
+                            width: double.infinity,
+                            height: 2,
+                            color: blackColor,
                           ),
                         ),
                       ],
                     ),
                   ),
                   Container(
-                    height: c4BoxSize(context),
                     padding: EdgeInsets.only(top: 20),
-                    decoration: BoxDecoration(
-                      border: Border(
-                        bottom: BorderSide(
-                          color: blackColor,
-                          width: 2,
-                        ),
-                      ),
-                    ),
-                    child: Row(
+                    child: Column(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(right: 16),
-                          child: SizedBox(
-                            width: c4BoxSize(context),
-                            child: Text(
-                              '링크',
-                              style: TextStyle(
-                                fontSize: h3FontSize(context),
-                                fontWeight: FontWeight.bold,
-                                color: blackColor,
+                        Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(right: 16),
+                              child: SizedBox(
+                                width: c4BoxSize(context),
+                                child: Text(
+                                  '링크',
+                                  style: TextStyle(
+                                    fontSize: h3FontSize(context),
+                                    fontWeight: FontWeight.bold,
+                                    color: blackColor,
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
+                            Expanded(
+                              flex: 1,
+                              child: TextField(
+                                // controller: _inputMediaLink,
+                                style: TextStyle(
+                                  fontSize: h4FontSize(context),
+                                  color: blackColor,
+                                ),
+                                keyboardType: TextInputType.name,
+                                decoration: InputDecoration(
+                                  hintText: '링크을 입력하세요.',
+                                  border: InputBorder.none,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                        Expanded(
-                          flex: 1,
-                          child: TextField(
-                            // controller: _inputMediaLink,
-                            style: TextStyle(
-                              fontSize: h4FontSize(context),
-                              color: blackColor,
-                            ),
-                            keyboardType: TextInputType.name,
-                            decoration: InputDecoration(
-                              hintText: '링크를 입력하세요.',
-                              border: InputBorder.none,
-                            ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 4),
+                          child: Container(
+                            width: double.infinity,
+                            height: 2,
+                            color: blackColor,
                           ),
                         ),
                       ],

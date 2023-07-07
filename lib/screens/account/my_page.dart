@@ -849,6 +849,12 @@ class _AdminMyPageState extends State<AdminMyPage> {
   var searchAdmin;
   var searchAdminLength;
 
+  var communityInquiryLength;
+  var communityInquiryDocs;
+  var businessInquiryLength;
+  var businessInquiryDocs;
+
+  // TextFormField의 텍스트를 지웁니다. ------------------------------
   emptyTextFormField() {
     _inputSearchName.addListener(() {
       _inputSearchName.clear();
@@ -869,12 +875,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
     });
   }
 
-  var communityInquiryLength;
-  var communityInquiryDocs;
-  var businessInquiryLength;
-  var businessInquiryDocs;
-
-  communityInquiry(i) async {
+  inquiryState(i) async {
     var communityInquiry = await firestore
         .collection('communityInquiry')
         .orderBy('date', descending: true)
@@ -891,6 +892,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
     });
   }
 
+  // 고객문의 다이얼로그 ------------------------------
   inquiryCommunity(i) async {
     return showDialog(
       context: context,
@@ -1004,7 +1006,8 @@ class _AdminMyPageState extends State<AdminMyPage> {
     );
   }
 
-  businessCommunity(i) async {
+  // 비즈니스 문의 다이얼로그 ------------------------------
+  inquiryBusiness(i) async {
     return showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
@@ -1145,11 +1148,46 @@ class _AdminMyPageState extends State<AdminMyPage> {
     );
   }
 
+  double plusIndex = 0;
+  int pageNum = 1;
+
+  // ListView의 itemCount를 변경합니다. ------------------------------
+  listCount() {
+    // 고객 문의 일 때
+    if (inquiryAdminNum == 0) {
+      if (communityInquiryLength.hashCode > 5) {
+        if (plusIndex <= 0) {
+          // 첫 페이지
+          return 5;
+        } else {
+          // 다음 페이지
+          return communityInquiryLength.hashCode - plusIndex;
+        }
+      } else if (communityInquiryLength.hashCode <= 5) {
+        return communityInquiryLength.hashCode;
+      }
+    }
+    // 비즈니스 문의 일 때
+    else if (inquiryAdminNum == 1) {
+      if (businessInquiryLength.hashCode > 5) {
+        if (plusIndex == 0) {
+          // 첫 페이지
+          return 5;
+        } else {
+          // 다음 페이지
+          return businessInquiryLength.hashCode - plusIndex;
+        }
+      } else if (businessInquiryLength.hashCode <= 5) {
+        return businessInquiryLength.hashCode;
+      }
+    }
+  }
+
   @override
   void initState() {
     super.initState();
     searchItems();
-    communityInquiry(i);
+    inquiryState(i);
   }
 
   @override
@@ -1183,6 +1221,8 @@ class _AdminMyPageState extends State<AdminMyPage> {
                     onPressed: () {
                       setState(() {
                         inquiryAdminNum = 0;
+                        plusIndex = 0;
+                        pageNum = 1;
                       });
                     },
                     child: Text(
@@ -1201,6 +1241,8 @@ class _AdminMyPageState extends State<AdminMyPage> {
                     onPressed: () {
                       setState(() {
                         inquiryAdminNum = 1;
+                        plusIndex = 0;
+                        pageNum = 1;
                       });
                     },
                     child: Text(
@@ -1220,9 +1262,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
           ),
           inquiryAdminNum == 0 && communityInquiryLength != 0
               ? ListView.builder(
-                  itemCount: communityInquiryLength.hashCode > 5
-                      ? 5
-                      : communityInquiryLength.hashCode,
+                  itemCount: listCount(),
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
@@ -1230,7 +1270,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
                       padding: const EdgeInsets.only(bottom: 8),
                       child: InkWell(
                         onTap: () {
-                          inquiryCommunity(index);
+                          inquiryCommunity(index + plusIndex);
                         },
                         child: Container(
                           width: widgetSize(context),
@@ -1254,7 +1294,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Text(
-                                '[${communityInquiryDocs[index]['value']}] ${communityInquiryDocs[index]['title']}',
+                                '[${communityInquiryDocs[index + plusIndex]['value']}] ${communityInquiryDocs[index + plusIndex]['title']}',
                                 maxLines: 1,
                                 style: TextStyle(
                                   fontSize: h5FontSize(context),
@@ -1263,7 +1303,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
                                 ),
                               ),
                               Text(
-                                communityInquiryDocs[index]['date'],
+                                communityInquiryDocs[index + plusIndex]['date'],
                                 style: TextStyle(
                                   fontSize: h7FontSize(context),
                                   color: blackColor,
@@ -1294,9 +1334,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
                     )
                   : inquiryAdminNum == 1 && businessInquiryLength != 0
                       ? ListView.builder(
-                          itemCount: businessInquiryLength.hashCode > 5
-                              ? 5
-                              : businessInquiryLength.hashCode,
+                          itemCount: listCount(),
                           shrinkWrap: true,
                           physics: NeverScrollableScrollPhysics(),
                           itemBuilder: (context, index) {
@@ -1304,7 +1342,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
                               padding: const EdgeInsets.only(bottom: 8),
                               child: InkWell(
                                 onTap: () {
-                                  businessCommunity(index);
+                                  inquiryBusiness(index + plusIndex);
                                 },
                                 child: Container(
                                   width: widgetSize(context),
@@ -1330,7 +1368,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
                                         CrossAxisAlignment.center,
                                     children: [
                                       Text(
-                                        '[${businessInquiryDocs[index]['value']}] ${businessInquiryDocs[index]['title']}',
+                                        '[${businessInquiryDocs[index + plusIndex]['value']}] ${businessInquiryDocs[index + plusIndex]['title']}',
                                         maxLines: 1,
                                         style: TextStyle(
                                           fontSize: h5FontSize(context),
@@ -1339,7 +1377,8 @@ class _AdminMyPageState extends State<AdminMyPage> {
                                         ),
                                       ),
                                       Text(
-                                        businessInquiryDocs[index]['date'],
+                                        businessInquiryDocs[index + plusIndex]
+                                            ['date'],
                                         style: TextStyle(
                                           fontSize: h7FontSize(context),
                                           color: blackColor,
@@ -1373,7 +1412,17 @@ class _AdminMyPageState extends State<AdminMyPage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    if (plusIndex <= 0) {
+                      plusIndex = 0;
+                      pageNum = 1;
+                    } else {
+                      setState(() {
+                        plusIndex = plusIndex - 5;
+                        pageNum--;
+                      });
+                    }
+                  },
                   child: Text(
                     '〈 이전 페이지',
                     style: TextStyle(
@@ -1383,7 +1432,41 @@ class _AdminMyPageState extends State<AdminMyPage> {
                   ),
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    if (inquiryAdminNum == 0) {
+                      double a1 = communityInquiryLength / 5;
+                      int b1 = a1.floor();
+                      if (b1 == pageNum - 1) {
+                        setState(() {
+                          plusIndex = plusIndex;
+                          b1 + 1;
+                        });
+                      } else {
+                        setState(() {
+                          plusIndex = plusIndex + 5;
+                          pageNum++;
+                        });
+                      }
+                      print(pageNum);
+                      print(b1);
+                    } else if (inquiryAdminNum == 1) {
+                      double a2 = businessInquiryLength / 5;
+                      int b2 = a2.floor();
+                      if (b2 == pageNum - 1) {
+                        setState(() {
+                          plusIndex = plusIndex;
+                          b2 + 1;
+                        });
+                      } else {
+                        setState(() {
+                          plusIndex = plusIndex + 5;
+                          pageNum++;
+                        });
+                      }
+                      print(pageNum);
+                      print(b2);
+                    }
+                  },
                   child: Text(
                     '다음 페이지 〉',
                     style: TextStyle(
@@ -1546,15 +1629,6 @@ class _AdminMyPageState extends State<AdminMyPage> {
                         color: blackColor,
                       ),
                       decoration: InputDecoration(
-                        // suffix: InkWell(
-                        //   child: Icon(
-                        //     Icons.clear,
-                        //     color: greyColor,
-                        //   ),
-                        //   onTap: () {
-                        //     _inputSearchName.clear();
-                        //   },
-                        // ),
                         suffixIcon: InkWell(
                           child: SizedBox(
                             width: 70,
@@ -1612,50 +1686,56 @@ class _AdminMyPageState extends State<AdminMyPage> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Row(
-                                        children: [
-                                          Text(
-                                            searchAdmin[index]['name'],
-                                            style: TextStyle(
-                                              fontSize: h4FontSize(context),
-                                              fontWeight: FontWeight.bold,
-                                              color: blackColor,
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.only(left: 16),
-                                            child: Text(
-                                              searchAdmin[index]['birth'],
-                                              style: TextStyle(
-                                                fontSize: h4FontSize(context),
-                                                color: blackColor,
-                                              ),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.only(left: 16),
-                                            child: Text(
-                                              searchAdmin[index]['grade'],
-                                              style: TextStyle(
-                                                fontSize: h4FontSize(context),
-                                                color: blackColor,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
                                       Padding(
-                                        padding: EdgeInsets.only(top: 8),
-                                        child: Text(
-                                          searchAdmin[index]['id'],
-                                          style: TextStyle(
-                                            fontSize: h4FontSize(context),
-                                            color: blackColor,
-                                          ),
+                                        padding: const EdgeInsets.symmetric(
+                                          vertical: 8,
+                                        ),
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                              searchAdmin[index]['name'],
+                                              style: TextStyle(
+                                                fontSize: h4FontSize(context),
+                                                fontWeight: FontWeight.bold,
+                                                color: blackColor,
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding:
+                                                  EdgeInsets.only(left: 16),
+                                              child: Text(
+                                                searchAdmin[index]['birth'],
+                                                style: TextStyle(
+                                                  fontSize: h4FontSize(context),
+                                                  color: blackColor,
+                                                ),
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding:
+                                                  EdgeInsets.only(left: 16),
+                                              child: Text(
+                                                searchAdmin[index]['grade'],
+                                                style: TextStyle(
+                                                  fontSize: h4FontSize(context),
+                                                  color: blackColor,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Text(
+                                        searchAdmin[index]['id'],
+                                        style: TextStyle(
+                                          fontSize: h4FontSize(context),
+                                          color: blackColor,
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsets.only(top: 8),
+                                        padding: EdgeInsets.symmetric(
+                                          vertical: 8,
+                                        ),
                                         child: Text(
                                           searchAdmin[index]['phone'],
                                           style: TextStyle(

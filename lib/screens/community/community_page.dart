@@ -374,148 +374,157 @@ class _InquiryScreenState extends State<InquiryScreen> {
       width: widgetSize(context),
       child: Column(
         children: [
-          Container(
+          SizedBox(
             width: 800,
-            height: c5BoxSize(context),
-            padding: EdgeInsets.only(
-              left: 8,
-              right: 8,
-            ),
-            decoration: BoxDecoration(
-              border: Border(
-                bottom: BorderSide(
-                  color: blackColor,
-                  width: 2,
-                ),
-              ),
-            ),
-            child: Row(
+            child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(right: 16),
-                  child: SizedBox(
-                    width: c4BoxSize(context),
-                    child: Text(
-                      '이름',
-                      style: TextStyle(
-                        fontSize: h4FontSize(context),
-                        fontWeight: FontWeight.bold,
-                        color: blackColor,
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(right: 8),
+                        child: SizedBox(
+                          width: c4BoxSize(context),
+                          child: Text(
+                            '이름',
+                            style: TextStyle(
+                              fontSize: h4FontSize(context),
+                              fontWeight: FontWeight.bold,
+                              color: blackColor,
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
+                      Expanded(
+                        flex: 1,
+                        child: TextField(
+                          controller: _inputInquiryName,
+                          style: TextStyle(
+                            fontSize: h4FontSize(context),
+                            color: blackColor,
+                          ),
+                          keyboardType: TextInputType.name,
+                          decoration: InputDecoration(
+                            hintText: '이름을 입력하세요.',
+                            border: InputBorder.none,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                Expanded(
-                  flex: 1,
-                  child: TextField(
-                    controller: _inputInquiryName,
-                    style: TextStyle(
-                      fontSize: h4FontSize(context),
-                      color: blackColor,
-                    ),
-                    keyboardType: TextInputType.name,
-                    decoration: InputDecoration(
-                      hintText: '이름을 입력하세요.',
-                      border: InputBorder.none,
-                    ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 4),
+                  child: Container(
+                    width: double.infinity,
+                    height: 2,
+                    color: blackColor,
                   ),
                 ),
               ],
             ),
           ),
-          Container(
-            width: 800,
-            height: c5BoxSize(context),
-            padding: EdgeInsets.only(
-              left: 8,
-              right: 8,
-            ),
-            decoration: BoxDecoration(
-              border: Border(
-                bottom: BorderSide(
-                  color: blackColor,
-                  width: 2,
-                ),
-              ),
-            ),
-            child: Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 16),
-                  child: SizedBox(
-                    width: c4BoxSize(context),
-                    child: Text(
-                      '전화번호',
-                      style: TextStyle(
-                        fontSize: h4FontSize(context),
-                        fontWeight: FontWeight.bold,
-                        color: blackColor,
-                      ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 12),
+            child: SizedBox(
+              width: 800,
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 8),
+                          child: SizedBox(
+                            width: c4BoxSize(context),
+                            child: Text(
+                              '전화번호',
+                              style: TextStyle(
+                                fontSize: h4FontSize(context),
+                                fontWeight: FontWeight.bold,
+                                color: blackColor,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: TextField(
+                            controller: _inputInquiryPhone,
+                            style: TextStyle(
+                              fontSize: h4FontSize(context),
+                              color: blackColor,
+                            ),
+                            keyboardType: TextInputType.phone,
+                            decoration: InputDecoration(
+                              hintText: '전화번호을 입력하세요.',
+                              border: InputBorder.none,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: TextField(
-                    controller: _inputInquiryPhone,
-                    style: TextStyle(
-                      fontSize: h4FontSize(context),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 4),
+                    child: Container(
+                      width: double.infinity,
+                      height: 2,
                       color: blackColor,
                     ),
-                    keyboardType: TextInputType.phone,
-                    decoration: InputDecoration(
-                      hintText: '전화번호을 입력하세요.',
-                      border: InputBorder.none,
-                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
-          Container(
+          SizedBox(
             width: 800,
-            height: c5BoxSize(context),
-            padding: EdgeInsets.only(
-              left: 8,
-              right: 8,
-            ),
-            decoration: BoxDecoration(
-              border: Border(
-                bottom: BorderSide(
-                  color: blackColor,
-                  width: 2,
-                ),
-              ),
-            ),
-            child: Row(
+            child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(right: 16),
-                  child: SizedBox(
-                    width: c4BoxSize(context),
-                    child: Text(
-                      '이메일',
-                      style: TextStyle(
-                        fontSize: h4FontSize(context),
-                        fontWeight: FontWeight.bold,
-                        color: blackColor,
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(right: 8),
+                        child: SizedBox(
+                          width: c4BoxSize(context),
+                          child: Text(
+                            '이메일',
+                            style: TextStyle(
+                              fontSize: h4FontSize(context),
+                              fontWeight: FontWeight.bold,
+                              color: blackColor,
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
+                      Expanded(
+                        flex: 1,
+                        child: TextField(
+                          controller: _inputInquiryMail,
+                          style: TextStyle(
+                            fontSize: h4FontSize(context),
+                            color: blackColor,
+                          ),
+                          keyboardType: TextInputType.emailAddress,
+                          decoration: InputDecoration(
+                            hintText: '이메일을 입력하세요.',
+                            border: InputBorder.none,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                Expanded(
-                  flex: 1,
-                  child: TextField(
-                    controller: _inputInquiryMail,
-                    style: TextStyle(
-                      fontSize: h4FontSize(context),
-                      color: blackColor,
-                    ),
-                    keyboardType: TextInputType.emailAddress,
-                    decoration: InputDecoration(
-                      hintText: '이메일을 입력하세요.',
-                      border: InputBorder.none,
-                    ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 4),
+                  child: Container(
+                    width: double.infinity,
+                    height: 2,
+                    color: blackColor,
                   ),
                 ),
               ],

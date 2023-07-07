@@ -786,7 +786,7 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(bottom: 8),
+                    padding: const EdgeInsets.only(bottom: 4),
                     child: Text(
                       '회사명',
                       style: TextStyle(
@@ -795,30 +795,23 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
                       ),
                     ),
                   ),
+                  TextField(
+                    controller: _inputInquiryCompany,
+                    cursorColor: blackColor,
+                    keyboardType: TextInputType.name,
+                    style: TextStyle(
+                      fontSize: h4FontSize(context),
+                      color: blackColor,
+                    ),
+                    decoration: InputDecoration(
+                      hintText: '예시 : 김주현바이각',
+                      border: InputBorder.none,
+                    ),
+                  ),
                   Container(
                     width: widgetSize(context),
-                    height: c6BoxSize(context),
-                    decoration: BoxDecoration(
-                      border: Border(
-                        bottom: BorderSide(
-                          color: blackColor,
-                          width: 2,
-                        ),
-                      ),
-                    ),
-                    child: TextField(
-                      controller: _inputInquiryCompany,
-                      cursorColor: blackColor,
-                      keyboardType: TextInputType.name,
-                      style: TextStyle(
-                        fontSize: h4FontSize(context),
-                        color: blackColor,
-                      ),
-                      decoration: InputDecoration(
-                        hintText: '예시 : 김주현바이각',
-                        border: InputBorder.none,
-                      ),
-                    ),
+                    height: 2,
+                    color: blackColor,
                   ),
                 ],
               ),
@@ -842,7 +835,7 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(bottom: 8),
+                        padding: const EdgeInsets.only(bottom: 4),
                         child: Text(
                           '담당자 이름 / 직급',
                           style: TextStyle(
@@ -851,30 +844,23 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
                           ),
                         ),
                       ),
+                      TextField(
+                        controller: _inputInquiryName,
+                        cursorColor: blackColor,
+                        keyboardType: TextInputType.name,
+                        style: TextStyle(
+                          fontSize: h4FontSize(context),
+                          color: blackColor,
+                        ),
+                        decoration: InputDecoration(
+                          hintText: '예시 : 홍길동 / 대리',
+                          border: InputBorder.none,
+                        ),
+                      ),
                       Container(
-                        width: widgetSize(context),
-                        height: c6BoxSize(context),
-                        decoration: BoxDecoration(
-                          border: Border(
-                            bottom: BorderSide(
-                              color: blackColor,
-                              width: 2,
-                            ),
-                          ),
-                        ),
-                        child: TextField(
-                          controller: _inputInquiryName,
-                          cursorColor: blackColor,
-                          keyboardType: TextInputType.name,
-                          style: TextStyle(
-                            fontSize: h4FontSize(context),
-                            color: blackColor,
-                          ),
-                          decoration: InputDecoration(
-                            hintText: '예시 : 홍길동 / 대리',
-                            border: InputBorder.none,
-                          ),
-                        ),
+                        width: double.infinity,
+                        height: 2,
+                        color: blackColor,
                       ),
                     ],
                   ),
@@ -887,7 +873,7 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(bottom: 8),
+                        padding: const EdgeInsets.only(bottom: 4),
                         child: Text(
                           '참고 사이트 주소',
                           style: TextStyle(
@@ -896,30 +882,23 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
                           ),
                         ),
                       ),
+                      TextField(
+                        controller: _inputInquiryWeb,
+                        cursorColor: blackColor,
+                        keyboardType: TextInputType.emailAddress,
+                        style: TextStyle(
+                          fontSize: h4FontSize(context),
+                          color: blackColor,
+                        ),
+                        decoration: InputDecoration(
+                          hintText: '예시 : https://www.bykak.com/html/',
+                          border: InputBorder.none,
+                        ),
+                      ),
                       Container(
-                        width: widgetSize(context),
-                        height: c6BoxSize(context),
-                        decoration: BoxDecoration(
-                          border: Border(
-                            bottom: BorderSide(
-                              color: blackColor,
-                              width: 2,
-                            ),
-                          ),
-                        ),
-                        child: TextField(
-                          controller: _inputInquiryWeb,
-                          cursorColor: blackColor,
-                          keyboardType: TextInputType.emailAddress,
-                          style: TextStyle(
-                            fontSize: h4FontSize(context),
-                            color: blackColor,
-                          ),
-                          decoration: InputDecoration(
-                            hintText: '예시 : https://www.bykak.com/html/',
-                            border: InputBorder.none,
-                          ),
-                        ),
+                        width: double.infinity,
+                        height: 2,
+                        color: blackColor,
                       ),
                     ],
                   ),
@@ -945,7 +924,7 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(bottom: 8),
+                        padding: const EdgeInsets.only(bottom: 4),
                         child: Text(
                           '이메일 주소',
                           style: TextStyle(
@@ -954,30 +933,23 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
                           ),
                         ),
                       ),
+                      TextField(
+                        controller: _inputInquiryMail,
+                        cursorColor: blackColor,
+                        keyboardType: TextInputType.url,
+                        style: TextStyle(
+                          fontSize: h4FontSize(context),
+                          color: blackColor,
+                        ),
+                        decoration: InputDecoration(
+                          hintText: '예시 : designercom@naver.com',
+                          border: InputBorder.none,
+                        ),
+                      ),
                       Container(
-                        width: widgetSize(context),
-                        height: c6BoxSize(context),
-                        decoration: BoxDecoration(
-                          border: Border(
-                            bottom: BorderSide(
-                              color: blackColor,
-                              width: 2,
-                            ),
-                          ),
-                        ),
-                        child: TextField(
-                          controller: _inputInquiryMail,
-                          cursorColor: blackColor,
-                          keyboardType: TextInputType.url,
-                          style: TextStyle(
-                            fontSize: h4FontSize(context),
-                            color: blackColor,
-                          ),
-                          decoration: InputDecoration(
-                            hintText: '예시 : designercom@naver.com',
-                            border: InputBorder.none,
-                          ),
-                        ),
+                        width: double.infinity,
+                        height: 2,
+                        color: blackColor,
                       ),
                     ],
                   ),
@@ -990,7 +962,7 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(bottom: 8),
+                        padding: const EdgeInsets.only(bottom: 4),
                         child: Text(
                           '연락처',
                           style: TextStyle(
@@ -999,30 +971,23 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
                           ),
                         ),
                       ),
+                      TextField(
+                        controller: _inputInquiryPhone,
+                        cursorColor: blackColor,
+                        keyboardType: TextInputType.phone,
+                        style: TextStyle(
+                          fontSize: h4FontSize(context),
+                          color: blackColor,
+                        ),
+                        decoration: InputDecoration(
+                          hintText: '예시 : 010-1234-1234 / 032-5678-5678',
+                          border: InputBorder.none,
+                        ),
+                      ),
                       Container(
-                        width: widgetSize(context),
-                        height: c6BoxSize(context),
-                        decoration: BoxDecoration(
-                          border: Border(
-                            bottom: BorderSide(
-                              color: blackColor,
-                              width: 2,
-                            ),
-                          ),
-                        ),
-                        child: TextField(
-                          controller: _inputInquiryPhone,
-                          cursorColor: blackColor,
-                          keyboardType: TextInputType.phone,
-                          style: TextStyle(
-                            fontSize: h4FontSize(context),
-                            color: blackColor,
-                          ),
-                          decoration: InputDecoration(
-                            hintText: '예시 : 010-1234-1234 / 032-5678-5678',
-                            border: InputBorder.none,
-                          ),
-                        ),
+                        width: double.infinity,
+                        height: 2,
+                        color: blackColor,
                       ),
                     ],
                   ),
