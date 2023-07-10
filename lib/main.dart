@@ -4,6 +4,7 @@ import 'package:kimjuhyeonbykak/style.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'firebase_options.dart';
 
 import 'package:kimjuhyeonbykak/screens/first_screen.dart';
@@ -36,6 +37,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 final auth = FirebaseAuth.instance;
 final firestore = FirebaseFirestore.instance;
+final firestorage = FirebaseStorage.instance;
 
 abstract class Routes {
   static const MAIN = '/';

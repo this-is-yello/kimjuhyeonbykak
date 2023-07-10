@@ -4,6 +4,8 @@ import 'package:kimjuhyeonbykak/main.dart';
 import 'package:kimjuhyeonbykak/navigation.dart';
 import 'package:kimjuhyeonbykak/screens/account/board_upload_Modal.dart';
 
+import 'package:image_picker/image_picker.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
@@ -522,6 +524,7 @@ class _ProfileState extends State<Profile> {
                     padding: EdgeInsets.only(top: 16),
                     child: ListView.builder(
                       itemCount: infoTitles.length,
+                      physics: NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       itemBuilder: (context, index) {
                         return Padding(
@@ -1149,19 +1152,19 @@ class _AdminMyPageState extends State<AdminMyPage> {
   }
 
   double plusIndex = 0;
-  int pageNum = 1;
+  int pageNum = 0;
 
   // ListView의 itemCount를 변경합니다. ------------------------------
   listCount() {
     // 고객 문의 일 때
     if (inquiryAdminNum == 0) {
       if (communityInquiryLength.hashCode > 5) {
-        if (plusIndex <= 0) {
+        if (plusIndex < communityInquiryLength.hashCode - 5) {
           // 첫 페이지
           return 5;
         } else {
           // 다음 페이지
-          return communityInquiryLength.hashCode - plusIndex;
+          return communityInquiryLength.hashCode % 5;
         }
       } else if (communityInquiryLength.hashCode <= 5) {
         return communityInquiryLength.hashCode;
@@ -1170,16 +1173,31 @@ class _AdminMyPageState extends State<AdminMyPage> {
     // 비즈니스 문의 일 때
     else if (inquiryAdminNum == 1) {
       if (businessInquiryLength.hashCode > 5) {
-        if (plusIndex == 0) {
+        if (plusIndex < businessInquiryLength.hashCode - 5) {
           // 첫 페이지
           return 5;
         } else {
           // 다음 페이지
-          return businessInquiryLength.hashCode - plusIndex;
+          return businessInquiryLength.hashCode % 5;
         }
       } else if (businessInquiryLength.hashCode <= 5) {
         return businessInquiryLength.hashCode;
       }
+    }
+  }
+
+  XFile? _image_1; //이미지를 담을 변수 선언
+  XFile? _image_2; //이미지를 담을 변수 선언
+  final ImagePicker picker = ImagePicker(); //ImagePicker 초기화
+  Future getImage(ImageSource imageSource) async {
+    //pickedFile에 ImagePicker로 가져온 이미지가 담긴다.
+    final XFile? pickedFile_1 = await picker.pickImage(source: imageSource);
+    final XFile? pickedFile_2 = await picker.pickImage(source: imageSource);
+    if (pickedFile_1 != null) {
+      _image_1 = XFile(pickedFile_1.path); //가져온 이미지를 _image에 저장
+    }
+    if (pickedFile_2 != null) {
+      _image_2 = XFile(pickedFile_2.path); //가져온 이미지를 _image에 저장
     }
   }
 
@@ -1222,7 +1240,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
                       setState(() {
                         inquiryAdminNum = 0;
                         plusIndex = 0;
-                        pageNum = 1;
+                        pageNum = 0;
                       });
                     },
                     child: Text(
@@ -1242,7 +1260,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
                       setState(() {
                         inquiryAdminNum = 1;
                         plusIndex = 0;
-                        pageNum = 1;
+                        pageNum = 0;
                       });
                     },
                     child: Text(
@@ -1260,152 +1278,93 @@ class _AdminMyPageState extends State<AdminMyPage> {
               ),
             ),
           ),
-          inquiryAdminNum == 0 && communityInquiryLength != 0
-              ? ListView.builder(
-                  itemCount: listCount(),
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.only(bottom: 8),
-                      child: InkWell(
-                        onTap: () {
-                          inquiryCommunity(index + plusIndex);
-                        },
-                        child: Container(
-                          width: widgetSize(context),
-                          padding: EdgeInsets.only(
-                            left: 8,
-                            top: 20,
-                            right: 8,
-                            bottom: 20,
-                          ),
-                          // padding: EdgeInsets.only(bottom: 4),
-                          decoration: BoxDecoration(
-                            border: Border(
-                              bottom: BorderSide(
-                                color: greyColor,
-                                width: 2,
-                              ),
-                            ),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                '[${communityInquiryDocs[index + plusIndex]['value']}] ${communityInquiryDocs[index + plusIndex]['title']}',
-                                maxLines: 1,
-                                style: TextStyle(
-                                  fontSize: h5FontSize(context),
-                                  fontWeight: FontWeight.bold,
-                                  color: blackColor,
-                                ),
-                              ),
-                              Text(
-                                communityInquiryDocs[index + plusIndex]['date'],
-                                style: TextStyle(
-                                  fontSize: h7FontSize(context),
-                                  color: blackColor,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    );
-                  },
-                )
-              : inquiryAdminNum == 0 && communityInquiryLength == 0
-                  ? Padding(
-                      padding: const EdgeInsets.only(top: 60),
-                      child: SizedBox(
-                        width: widgetSize(context),
-                        child: Center(
-                          child: Text(
-                            '답변할 문의정보가 없습니다',
-                            style: TextStyle(
-                              fontSize: h5FontSize(context),
-                              color: blackColor,
-                            ),
-                          ),
-                        ),
-                      ),
-                    )
-                  : inquiryAdminNum == 1 && businessInquiryLength != 0
-                      ? ListView.builder(
-                          itemCount: listCount(),
-                          shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              padding: const EdgeInsets.only(bottom: 8),
-                              child: InkWell(
-                                onTap: () {
-                                  inquiryBusiness(index + plusIndex);
-                                },
-                                child: Container(
-                                  width: widgetSize(context),
-                                  padding: EdgeInsets.only(
-                                    left: 8,
-                                    top: 20,
-                                    right: 8,
-                                    bottom: 20,
-                                  ),
-                                  // padding: EdgeInsets.only(bottom: 4),
-                                  decoration: BoxDecoration(
-                                    border: Border(
-                                      bottom: BorderSide(
-                                        color: greyColor,
-                                        width: 2,
-                                      ),
-                                    ),
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        '[${businessInquiryDocs[index + plusIndex]['value']}] ${businessInquiryDocs[index + plusIndex]['title']}',
-                                        maxLines: 1,
-                                        style: TextStyle(
-                                          fontSize: h5FontSize(context),
-                                          fontWeight: FontWeight.bold,
-                                          color: blackColor,
-                                        ),
-                                      ),
-                                      Text(
-                                        businessInquiryDocs[index + plusIndex]
-                                            ['date'],
-                                        style: TextStyle(
-                                          fontSize: h7FontSize(context),
-                                          color: blackColor,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            );
+          Container(
+            height: c4BoxSize(context) * 5,
+            child: businessInquiryLength != 0 && communityInquiryLength != 0
+                ? ListView.builder(
+                    itemCount: listCount(),
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 8),
+                        child: InkWell(
+                          onTap: () {
+                            inquiryAdminNum == 0
+                                ? inquiryCommunity(index + plusIndex)
+                                : inquiryBusiness(index + plusIndex);
                           },
-                        )
-                      : Padding(
-                          padding: const EdgeInsets.only(top: 60),
-                          child: SizedBox(
+                          child: Container(
                             width: widgetSize(context),
-                            child: Center(
-                              child: Text(
-                                '답변할 문의정보가 없습니다',
-                                style: TextStyle(
-                                  fontSize: h5FontSize(context),
-                                  color: blackColor,
+                            height: c4BoxSize(context) - 10,
+                            // padding: EdgeInsets.only(
+                            //   left: 8,
+                            //   top: 20,
+                            //   right: 8,
+                            //   bottom: 20,
+                            // ),
+                            // padding: EdgeInsets.only(bottom: 4),
+                            decoration: BoxDecoration(
+                              border: Border(
+                                bottom: BorderSide(
+                                  color: greyColor,
+                                  width: 2,
                                 ),
                               ),
                             ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  inquiryAdminNum == 0
+                                      ? '[${communityInquiryDocs[index + plusIndex]['value']}] ${communityInquiryDocs[index + plusIndex]['title']}'
+                                      : '[${businessInquiryDocs[index + plusIndex]['value']}] ${businessInquiryDocs[index + plusIndex]['title']}',
+                                  maxLines: 1,
+                                  style: TextStyle(
+                                    fontSize: h5FontSize(context),
+                                    fontWeight: FontWeight.bold,
+                                    color: blackColor,
+                                  ),
+                                ),
+                                Text(
+                                  inquiryAdminNum == 0
+                                      ? communityInquiryDocs[index + plusIndex]
+                                              ['date']
+                                          .toString()
+                                          .substring(0, 10)
+                                      : businessInquiryDocs[index + plusIndex]
+                                              ['date']
+                                          .toString()
+                                          .substring(0, 10),
+                                  style: TextStyle(
+                                    fontSize: h7FontSize(context),
+                                    color: blackColor,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
+                      );
+                    },
+                  )
+                : Padding(
+                    padding: const EdgeInsets.only(top: 60),
+                    child: SizedBox(
+                      width: widgetSize(context),
+                      child: Center(
+                        child: Text(
+                          '답변할 문의정보가 없습니다',
+                          style: TextStyle(
+                            fontSize: h5FontSize(context),
+                            color: blackColor,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+          ),
           Padding(
             padding: EdgeInsets.only(top: 20),
             child: Row(
@@ -1415,13 +1374,14 @@ class _AdminMyPageState extends State<AdminMyPage> {
                   onPressed: () {
                     if (plusIndex <= 0) {
                       plusIndex = 0;
-                      pageNum = 1;
+                      pageNum = 0;
                     } else {
                       setState(() {
                         plusIndex = plusIndex - 5;
                         pageNum--;
                       });
                     }
+                    print('${pageNum + 1}페이지');
                   },
                   child: Text(
                     '〈 이전 페이지',
@@ -1436,9 +1396,9 @@ class _AdminMyPageState extends State<AdminMyPage> {
                     if (inquiryAdminNum == 0) {
                       double a1 = communityInquiryLength / 5;
                       int b1 = a1.floor();
-                      if (b1 == pageNum - 1) {
+                      if (b1 == pageNum) {
                         setState(() {
-                          plusIndex = plusIndex;
+                          plusIndex = plusIndex + 0;
                           b1 + 1;
                         });
                       } else {
@@ -1447,14 +1407,13 @@ class _AdminMyPageState extends State<AdminMyPage> {
                           pageNum++;
                         });
                       }
-                      print(pageNum);
-                      print(b1);
+                      print('${pageNum + 1}페이지');
                     } else if (inquiryAdminNum == 1) {
                       double a2 = businessInquiryLength / 5;
                       int b2 = a2.floor();
-                      if (b2 == pageNum - 1) {
+                      if (b2 == pageNum) {
                         setState(() {
-                          plusIndex = plusIndex;
+                          plusIndex = plusIndex + 0;
                           b2 + 1;
                         });
                       } else {
@@ -1463,8 +1422,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
                           pageNum++;
                         });
                       }
-                      print(pageNum);
-                      print(b2);
+                      print('${pageNum + 1}페이지');
                     }
                   },
                   child: Text(
@@ -1504,7 +1462,14 @@ class _AdminMyPageState extends State<AdminMyPage> {
                           height: 40,
                           child: TextButton(
                             onPressed: () {
-                              megazineUpload(context);
+                              showModalBottomSheet(
+                                backgroundColor: whiteColor,
+                                isScrollControlled: true,
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return MagazineUpModal();
+                                },
+                              );
                             },
                             child: Text(
                               '매거진 업로드',

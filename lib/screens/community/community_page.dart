@@ -332,7 +332,7 @@ class _InquiryScreenState extends State<InquiryScreen> {
               await firestore.collection('communityInquiry').doc().set({
             'name': _inputInquiryName.text,
             'title': '${_inputInquiryName.text}님의 문의입니다.',
-            'date': DateTime.now().toString().substring(0, 10),
+            'date': DateTime.now().toString(),
             'phone': _inputInquiryPhone.text,
             'mail': _inputInquiryMail.text,
             'value': _selectedValue,

@@ -1,218 +1,281 @@
 import 'package:flutter/material.dart';
+import 'package:kimjuhyeonbykak/main.dart';
 import 'package:kimjuhyeonbykak/style.dart';
 // import 'package:kimjuhyeonbykak/main.dart';
 
+import 'package:firebase_storage/firebase_storage.dart';
+
+import 'package:image_picker/image_picker.dart';
+
 // ---------- Magazine_Upload_Modal -----------------------------------------------------------------------------------------------------
-void megazineUpload(BuildContext context) {
-  showModalBottomSheet(
-    backgroundColor: whiteColor,
-    isScrollControlled: true,
-    context: context,
-    builder: (BuildContext context) {
-      return Padding(
-        padding: const EdgeInsets.symmetric(vertical: 40),
-        child: SizedBox(
-          height: MediaQuery.of(context).size.height,
-          child: Center(
-            child: SizedBox(
-              width: widgetSize(context),
-              child: ListView(
-                children: [
-                  Center(
-                    child: Text(
-                      '매거진 업로드',
-                      style: TextStyle(
-                        fontSize: h2FontSize(context),
-                        fontWeight: FontWeight.bold,
-                        color: blackColor,
-                      ),
+class MagazineUpModal extends StatefulWidget {
+  const MagazineUpModal({super.key});
+
+  @override
+  State<MagazineUpModal> createState() => _MagazineUpModalState();
+}
+
+class _MagazineUpModalState extends State<MagazineUpModal> {
+  var _inputMagazineTitle = TextEditingController();
+
+  XFile? _image_1; //이미지를 담을 변수 선언
+  XFile? _image_2; //이미지를 담을 변수 선언
+  final ImagePicker picker = ImagePicker(); //ImagePicker 초기화
+
+  Future getImage_1(ImageSource imageSource) async {
+    //pickedFile에 ImagePicker로 가져온 이미지가 담긴다.
+    final XFile? pickedFile_1 = await picker.pickImage(source: imageSource);
+    if (pickedFile_1 != null) {
+      setState(() {
+        _image_1 = XFile(pickedFile_1.path); //가져온 이미지를 _image에 저장
+      });
+    }
+  }
+
+  Future getImage_2(ImageSource imageSource) async {
+    //pickedFile에 ImagePicker로 가져온 이미지가 담긴다.
+    final XFile? pickedFile_2 = await picker.pickImage(source: imageSource);
+    if (pickedFile_2 != null) {
+      setState(() {
+        _image_2 = XFile(pickedFile_2.path); //가져온 이미지를 _image에 저장
+      });
+    }
+  }
+
+  magazineUpload() {
+    Reference _ref = firestorage.ref().child('test').child('text');
+    try {
+      _ref.putString(_inputMagazineTitle.text);
+      print('업로드 했단다');
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 40),
+      child: SizedBox(
+        height: MediaQuery.of(context).size.height,
+        child: Center(
+          child: SizedBox(
+            width: widgetSize(context),
+            child: ListView(
+              children: [
+                Center(
+                  child: Text(
+                    '매거진 업로드',
+                    style: TextStyle(
+                      fontSize: h2FontSize(context),
+                      fontWeight: FontWeight.bold,
+                      color: blackColor,
                     ),
                   ),
-                  Container(
-                    padding: EdgeInsets.only(top: 20),
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(right: 16),
-                              child: SizedBox(
-                                width: c4BoxSize(context),
-                                child: Text(
-                                  '제목',
-                                  style: TextStyle(
-                                    fontSize: h3FontSize(context),
-                                    fontWeight: FontWeight.bold,
-                                    color: blackColor,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: TextField(
-                                // controller: _inputMagazineTitle,
+                ),
+                Container(
+                  padding: EdgeInsets.only(top: 20),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(right: 16),
+                            child: SizedBox(
+                              width: c4BoxSize(context),
+                              child: Text(
+                                '제목',
                                 style: TextStyle(
-                                  fontSize: h4FontSize(context),
+                                  fontSize: h3FontSize(context),
+                                  fontWeight: FontWeight.bold,
                                   color: blackColor,
                                 ),
-                                keyboardType: TextInputType.name,
-                                decoration: InputDecoration(
-                                  hintText: '제목을 입력하세요.',
-                                  border: InputBorder.none,
-                                ),
                               ),
                             ),
-                          ],
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 4),
-                          child: Container(
-                            width: double.infinity,
-                            height: 2,
-                            color: blackColor,
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: 20),
-                    child: Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              '썸네일',
+                          Expanded(
+                            flex: 1,
+                            child: TextField(
+                              controller: _inputMagazineTitle,
                               style: TextStyle(
-                                fontSize: h3FontSize(context),
-                                fontWeight: FontWeight.bold,
+                                fontSize: h4FontSize(context),
                                 color: blackColor,
                               ),
-                            ),
-                            TextButton(
-                              onPressed: () {},
-                              child: Text(
-                                '썸네일 업로드',
-                                style: TextStyle(
-                                  fontSize: h5FontSize(context),
-                                  color: blackColor,
-                                ),
+                              keyboardType: TextInputType.name,
+                              decoration: InputDecoration(
+                                hintText: '제목을 입력하세요.',
+                                border: InputBorder.none,
                               ),
                             ),
-                          ],
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(top: 20),
-                          child: Container(
-                            width: widgetSize(context),
-                            height: c1BoxSize(context) + 100,
-                            color: blackColor,
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        '컨텐츠',
-                        style: TextStyle(
-                          fontSize: h3FontSize(context),
-                          fontWeight: FontWeight.bold,
-                          color: blackColor,
-                        ),
+                        ],
                       ),
-                      TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          '컨텐츠 업로드',
-                          style: TextStyle(
-                            fontSize: h5FontSize(context),
-                            color: blackColor,
-                          ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 4),
+                        child: Container(
+                          width: double.infinity,
+                          height: 2,
+                          color: blackColor,
                         ),
                       ),
                     ],
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 20),
-                    child: Container(
-                      width: widgetSize(context),
-                      height: c1BoxSize(context) + 100,
-                      color: blackColor,
-                    ),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: 20),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            '썸네일',
+                            style: TextStyle(
+                              fontSize: h3FontSize(context),
+                              fontWeight: FontWeight.bold,
+                              color: blackColor,
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              //getImage 함수를 호출해서 갤러리에서 사진 가져오기
+                              getImage_1(ImageSource.gallery);
+                            },
+                            child: Text(
+                              '썸네일 업로드',
+                              style: TextStyle(
+                                fontSize: h5FontSize(context),
+                                color: blackColor,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(top: 20),
+                        child: Container(
+                          width: widgetSize(context),
+                          height: c1BoxSize(context) + 100,
+                          child: _image_1 != null
+                              ? Image.network(
+                                  _image_1!.path,
+                                  fit: BoxFit.fitHeight,
+                                )
+                              : SizedBox(),
+                          // color: blackColor,
+                        ),
+                      ),
+                    ],
                   ),
-                  Container(
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      '컨텐츠',
+                      style: TextStyle(
+                        fontSize: h3FontSize(context),
+                        fontWeight: FontWeight.bold,
+                        color: blackColor,
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        //getImage 함수를 호출해서 갤러리에서 사진 가져오기
+                        getImage_2(ImageSource.gallery);
+                      },
+                      child: Text(
+                        '컨텐츠 업로드',
+                        style: TextStyle(
+                          fontSize: h5FontSize(context),
+                          color: blackColor,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 20),
+                  child: Container(
                     width: widgetSize(context),
-                    padding: EdgeInsets.only(top: 40),
-                    child: Row(
-                      children: [
-                        Flexible(
-                          fit: FlexFit.tight,
+                    height: c1BoxSize(context) + 100,
+                    child: _image_2 != null
+                        ? Image.network(
+                            _image_2!.path,
+                            fit: BoxFit.fitHeight,
+                          )
+                        : SizedBox(),
+                    // color: blackColor,
+                  ),
+                ),
+                Container(
+                  width: widgetSize(context),
+                  padding: EdgeInsets.only(top: 40),
+                  child: Row(
+                    children: [
+                      Flexible(
+                        fit: FlexFit.tight,
+                        child: InkWell(
+                          onTap: () {
+                            magazineUpload();
+                          },
+                          child: Container(
+                            height: c5BoxSize(context),
+                            child: Center(
+                              child: Text(
+                                '업로드',
+                                style: TextStyle(
+                                  fontSize: h4FontSize(context),
+                                  color: whiteColor,
+                                ),
+                              ),
+                            ),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(color: blackColor, width: 2),
+                              color: blackColor,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Flexible(
+                        fit: FlexFit.tight,
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 12),
                           child: InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.pop(context);
+                            },
                             child: Container(
                               height: c5BoxSize(context),
                               child: Center(
                                 child: Text(
-                                  '업로드',
+                                  '닫기',
                                   style: TextStyle(
                                     fontSize: h4FontSize(context),
-                                    color: whiteColor,
+                                    color: blackColor,
                                   ),
                                 ),
                               ),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(8),
                                 border: Border.all(color: blackColor, width: 2),
-                                color: blackColor,
+                                color: whiteColor,
                               ),
                             ),
                           ),
                         ),
-                        Flexible(
-                          fit: FlexFit.tight,
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 12),
-                            child: InkWell(
-                              onTap: () {
-                                Navigator.pop(context);
-                              },
-                              child: Container(
-                                height: c5BoxSize(context),
-                                child: Center(
-                                  child: Text(
-                                    '닫기',
-                                    style: TextStyle(
-                                      fontSize: h4FontSize(context),
-                                      color: blackColor,
-                                    ),
-                                  ),
-                                ),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8),
-                                  border:
-                                      Border.all(color: blackColor, width: 2),
-                                  color: whiteColor,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
             ),
           ),
         ),
-      );
-    },
-  );
+      ),
+    );
+  }
 }
 
 // ---------- News_Upload_Modal -----------------------------------------------------------------------------------------------------
