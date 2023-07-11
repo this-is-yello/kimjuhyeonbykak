@@ -42,10 +42,12 @@ dependencies:
   get: ^4.6.5
   side_sheet: ^1.0.4
   image_picker: ^1.0.0
+  file_picker: ^5.3.2
+  permission_handler: ^10.4.2
   image_picker_web: ^3.0.0+1
 
-  firebase_core: ^2.14.0
   firebase_auth: ^4.6.3
+  firebase_core: ^2.14.0
   firebase_storage: ^11.2.3
   cloud_firestore: ^4.8.1
 

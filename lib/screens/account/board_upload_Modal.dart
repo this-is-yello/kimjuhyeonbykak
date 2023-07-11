@@ -1,11 +1,19 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:kimjuhyeonbykak/main.dart';
 import 'package:kimjuhyeonbykak/style.dart';
 // import 'package:kimjuhyeonbykak/main.dart';
 
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:permission_handler/permission_handler.dart';
+// import 'package:flutter/foundation.dart';
+// import 'package:path/path.dart';
 
 import 'package:image_picker/image_picker.dart';
+// import 'package:file_picker/file_picker.dart';
 
 // ---------- Magazine_Upload_Modal -----------------------------------------------------------------------------------------------------
 class MagazineUpModal extends StatefulWidget {
@@ -18,37 +26,73 @@ class MagazineUpModal extends StatefulWidget {
 class _MagazineUpModalState extends State<MagazineUpModal> {
   var _inputMagazineTitle = TextEditingController();
 
-  XFile? _image_1; //이미지를 담을 변수 선언
-  XFile? _image_2; //이미지를 담을 변수 선언
+  File? _image_1; //이미지를 담을 변수 선언
+  File? _image_2; //이미지를 담을 변수 선언
   final ImagePicker picker = ImagePicker(); //ImagePicker 초기화
 
   Future getImage_1(ImageSource imageSource) async {
     //pickedFile에 ImagePicker로 가져온 이미지가 담긴다.
-    final XFile? pickedFile_1 = await picker.pickImage(source: imageSource);
+    final pickedFile_1 = await picker.pickImage(source: imageSource);
     if (pickedFile_1 != null) {
       setState(() {
-        _image_1 = XFile(pickedFile_1.path); //가져온 이미지를 _image에 저장
+        _image_1 = File(pickedFile_1.path); //가져온 이미지를 _image에 저장
       });
+      // Reference _magazinthumbnail =
+      //     firestorage.ref().child('magazine/post_1/thumnail.png');
     }
   }
 
   Future getImage_2(ImageSource imageSource) async {
     //pickedFile에 ImagePicker로 가져온 이미지가 담긴다.
-    final XFile? pickedFile_2 = await picker.pickImage(source: imageSource);
+    final pickedFile_2 = await picker.pickImage(source: imageSource);
     if (pickedFile_2 != null) {
       setState(() {
-        _image_2 = XFile(pickedFile_2.path); //가져온 이미지를 _image에 저장
+        _image_2 = File(pickedFile_2.path); //가져온 이미지를 _image에 저장
       });
     }
   }
 
-  magazineUpload() {
-    Reference _ref = firestorage.ref().child('test').child('text');
+  magazineUpload() async {
+    Reference _magazinTitle =
+        firestorage.ref().child('magazine/post_1/title.text');
+    // final destination = 'magazine/post_1/$fileName';
     try {
-      _ref.putString(_inputMagazineTitle.text);
-      print('업로드 했단다');
+      // final _magazinthumbnail =
+      // firestorage.ref(destination).child('magazine/post_1/');
+      // await _magazinthumbnail.putFile(_image_1!);
+      _magazinTitle.putString(_inputMagazineTitle.text);
+      print('타이틀 업로드');
     } catch (e) {
       print(e);
+    }
+  }
+
+  uploadImage() async {
+    final _firebaseStorage = FirebaseStorage.instance;
+    final ImagePicker _imagePicker = ImagePicker();
+    PickedFile image;
+    //Check Permissions
+    await Permission.photos.request();
+    var permissionStatus = await Permission.photos.status;
+    if (permissionStatus.isGranted) {
+      //Select Image
+      final image = await _imagePicker.pickImage(source: ImageSource.gallery);
+      var file = File(image!.path);
+      if (image != null) {
+        //Upload to Firebase
+        var snapshot = await _firebaseStorage
+            .ref()
+            .child('images/imageName')
+            .putFile(file);
+        var downloadUrl = await snapshot.ref.getDownloadURL();
+        setState(() {
+          var imageUrl = downloadUrl;
+        });
+      } else {
+        print('No Image Path Received');
+      }
+    } else {
+      print('Permission not granted. Try Again with permission access');
     }
   }
 

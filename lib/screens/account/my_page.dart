@@ -1186,21 +1186,6 @@ class _AdminMyPageState extends State<AdminMyPage> {
     }
   }
 
-  XFile? _image_1; //이미지를 담을 변수 선언
-  XFile? _image_2; //이미지를 담을 변수 선언
-  final ImagePicker picker = ImagePicker(); //ImagePicker 초기화
-  Future getImage(ImageSource imageSource) async {
-    //pickedFile에 ImagePicker로 가져온 이미지가 담긴다.
-    final XFile? pickedFile_1 = await picker.pickImage(source: imageSource);
-    final XFile? pickedFile_2 = await picker.pickImage(source: imageSource);
-    if (pickedFile_1 != null) {
-      _image_1 = XFile(pickedFile_1.path); //가져온 이미지를 _image에 저장
-    }
-    if (pickedFile_2 != null) {
-      _image_2 = XFile(pickedFile_2.path); //가져온 이미지를 _image에 저장
-    }
-  }
-
   @override
   void initState() {
     super.initState();
