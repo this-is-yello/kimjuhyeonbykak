@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -13,7 +15,7 @@ import 'package:permission_handler/permission_handler.dart';
 // import 'package:path/path.dart';
 
 import 'package:image_picker/image_picker.dart';
-// import 'package:file_picker/file_picker.dart';
+import 'package:file_picker/file_picker.dart';
 
 // ---------- Magazine_Upload_Modal -----------------------------------------------------------------------------------------------------
 class MagazineUpModal extends StatefulWidget {
@@ -25,74 +27,50 @@ class MagazineUpModal extends StatefulWidget {
 
 class _MagazineUpModalState extends State<MagazineUpModal> {
   var _inputMagazineTitle = TextEditingController();
-
-  File? _image_1; //이미지를 담을 변수 선언
-  File? _image_2; //이미지를 담을 변수 선언
-  final ImagePicker picker = ImagePicker(); //ImagePicker 초기화
+  File? thumbnail;
+  File? _image_2;
+  final ImagePicker picker = ImagePicker();
 
   Future getImage_1(ImageSource imageSource) async {
-    //pickedFile에 ImagePicker로 가져온 이미지가 담긴다.
-    final pickedFile_1 = await picker.pickImage(source: imageSource);
-    if (pickedFile_1 != null) {
+    final _picker_1 = await picker.pickImage(source: imageSource);
+    Reference _magazinthumbnail =
+        firestorage.ref().child('magazine/post_1/thumnail.png');
+    if (_picker_1 != null) {
       setState(() {
-        _image_1 = File(pickedFile_1.path); //가져온 이미지를 _image에 저장
+        thumbnail = File(_picker_1.path);
       });
-      // Reference _magazinthumbnail =
-      //     firestorage.ref().child('magazine/post_1/thumnail.png');
+      if (kIsWeb) {
+        await _magazinthumbnail.putFile(File(thumbnail!.path));
+      }
     }
+  }
+
+  PlatformFile? pickFile;
+  Future selectThumbnail() async {
+    final result = await FilePicker.platform.pickFiles();
+    if (result == null) {
+      print('nnuullll');
+    } else {
+      setState(() {
+        pickFile = result.files.first;
+      });
+    }
+  }
+
+  Future uploadThumbnail() async {
+    final gg = 'files/testimg.png';
+    final file = File(pickFile!.path!);
+
+    final ref = firestorage.ref().child(gg);
+    ref.putFile(file);
   }
 
   Future getImage_2(ImageSource imageSource) async {
-    //pickedFile에 ImagePicker로 가져온 이미지가 담긴다.
     final pickedFile_2 = await picker.pickImage(source: imageSource);
     if (pickedFile_2 != null) {
       setState(() {
-        _image_2 = File(pickedFile_2.path); //가져온 이미지를 _image에 저장
+        _image_2 = File(pickedFile_2.path);
       });
-    }
-  }
-
-  magazineUpload() async {
-    Reference _magazinTitle =
-        firestorage.ref().child('magazine/post_1/title.text');
-    // final destination = 'magazine/post_1/$fileName';
-    try {
-      // final _magazinthumbnail =
-      // firestorage.ref(destination).child('magazine/post_1/');
-      // await _magazinthumbnail.putFile(_image_1!);
-      _magazinTitle.putString(_inputMagazineTitle.text);
-      print('타이틀 업로드');
-    } catch (e) {
-      print(e);
-    }
-  }
-
-  uploadImage() async {
-    final _firebaseStorage = FirebaseStorage.instance;
-    final ImagePicker _imagePicker = ImagePicker();
-    PickedFile image;
-    //Check Permissions
-    await Permission.photos.request();
-    var permissionStatus = await Permission.photos.status;
-    if (permissionStatus.isGranted) {
-      //Select Image
-      final image = await _imagePicker.pickImage(source: ImageSource.gallery);
-      var file = File(image!.path);
-      if (image != null) {
-        //Upload to Firebase
-        var snapshot = await _firebaseStorage
-            .ref()
-            .child('images/imageName')
-            .putFile(file);
-        var downloadUrl = await snapshot.ref.getDownloadURL();
-        setState(() {
-          var imageUrl = downloadUrl;
-        });
-      } else {
-        print('No Image Path Received');
-      }
-    } else {
-      print('Permission not granted. Try Again with permission access');
     }
   }
 
@@ -183,7 +161,8 @@ class _MagazineUpModalState extends State<MagazineUpModal> {
                           TextButton(
                             onPressed: () {
                               //getImage 함수를 호출해서 갤러리에서 사진 가져오기
-                              getImage_1(ImageSource.gallery);
+                              // getImage_1(ImageSource.gallery);
+                              selectThumbnail();
                             },
                             child: Text(
                               '썸네일 업로드',
@@ -200,9 +179,9 @@ class _MagazineUpModalState extends State<MagazineUpModal> {
                         child: Container(
                           width: widgetSize(context),
                           height: c1BoxSize(context) + 100,
-                          child: _image_1 != null
-                              ? Image.network(
-                                  _image_1!.path,
+                          child: pickFile != null
+                              ? Image.file(
+                                  File(pickFile!.path!),
                                   fit: BoxFit.fitHeight,
                                 )
                               : SizedBox(),
@@ -227,6 +206,7 @@ class _MagazineUpModalState extends State<MagazineUpModal> {
                       onPressed: () {
                         //getImage 함수를 호출해서 갤러리에서 사진 가져오기
                         getImage_2(ImageSource.gallery);
+                        // uploadImage();
                       },
                       child: Text(
                         '컨텐츠 업로드',
@@ -261,7 +241,7 @@ class _MagazineUpModalState extends State<MagazineUpModal> {
                         fit: FlexFit.tight,
                         child: InkWell(
                           onTap: () {
-                            magazineUpload();
+                            uploadThumbnail();
                           },
                           child: Container(
                             height: c5BoxSize(context),
