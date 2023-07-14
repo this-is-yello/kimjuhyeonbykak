@@ -720,7 +720,7 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
           'name': _inputInquiryName.text,
           'web': _inputInquiryWeb.text,
           'title': '${_inputInquiryName.text}님의 문의입니다.',
-          'date': DateTime.now().toString().substring(0, 10),
+          'date': DateTime.now().toString(),
           'phone': _inputInquiryPhone.text,
           'mail': _inputInquiryMail.text,
           'value': _checkSponsorship

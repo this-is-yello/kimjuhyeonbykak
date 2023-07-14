@@ -1447,11 +1447,9 @@ class _AdminMyPageState extends State<AdminMyPage> {
                           height: 40,
                           child: TextButton(
                             onPressed: () {
-                              showModalBottomSheet(
-                                backgroundColor: whiteColor,
-                                isScrollControlled: true,
+                              showDialog(
                                 context: context,
-                                builder: (BuildContext context) {
+                                builder: (context) {
                                   return MagazineUpModal();
                                 },
                               );
@@ -1469,7 +1467,12 @@ class _AdminMyPageState extends State<AdminMyPage> {
                           height: 40,
                           child: TextButton(
                             onPressed: () {
-                              newsUpload(context);
+                              showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return NewsUpModal();
+                                },
+                              );
                             },
                             child: Text(
                               '보도자료 업로드',

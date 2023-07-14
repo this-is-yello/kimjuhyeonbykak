@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kimjuhyeonbykak/style.dart';
 
 import 'package:kimjuhyeonbykak/main.dart';
+import 'package:kimjuhyeonbykak/screens/publicity/publicity_page.dart';
 import 'package:kimjuhyeonbykak/navigation.dart';
 
 import 'package:get/get.dart';
@@ -101,6 +102,21 @@ class MagazineViewContent extends StatefulWidget {
 }
 
 class _MagazineViewContentState extends State<MagazineViewContent> {
+  var magazineDocs;
+
+  searchMagazine() async {
+    var searchResult = await firestore.collection('magazine').get();
+    setState(() {
+      magazineDocs = searchResult.docs;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    searchMagazine();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -217,8 +233,8 @@ class _MagazineViewContentState extends State<MagazineViewContent> {
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
-                    return Image.asset(
-                      'assets/images/magazine_0.png',
+                    return Image.network(
+                      magazineDocs[magazineNum]['content'],
                       fit: BoxFit.fitWidth,
                     );
                   },

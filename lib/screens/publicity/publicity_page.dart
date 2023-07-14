@@ -277,6 +277,24 @@ class MagazineScreen extends StatefulWidget {
 }
 
 class _MagazineScreenState extends State<MagazineScreen> {
+  var magazineDocs;
+  var magazineDocsLength;
+
+  searchMagazine() async {
+    var searchResult = await firestore.collection('magazine').get();
+    setState(() {
+      magazineDocs = searchResult.docs;
+      magazineDocsLength = searchResult.docs.length;
+    });
+    print(magazineDocsLength);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    searchMagazine();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -284,7 +302,7 @@ class _MagazineScreenState extends State<MagazineScreen> {
       child: Column(
         children: [
           GridView.builder(
-            itemCount: 8,
+            itemCount: magazineDocsLength.hashCode,
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -309,7 +327,10 @@ class _MagazineScreenState extends State<MagazineScreen> {
                     Expanded(
                       flex: 1,
                       child: Container(
-                        color: blackColor,
+                        child: Image.network(
+                          magazineDocs[index]['thumbnail'],
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                     Padding(
@@ -318,7 +339,9 @@ class _MagazineScreenState extends State<MagazineScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            '날짜 $magazineNum',
+                            magazineDocs[index]['date']
+                                .toString()
+                                .substring(0, 10),
                             style: TextStyle(
                               fontSize: h7FontSize(context),
                               color: blackColor,
@@ -329,7 +352,7 @@ class _MagazineScreenState extends State<MagazineScreen> {
                               top: 4,
                             ),
                             child: Text(
-                              '컨텐츠 관련 제목 삽입 $magazineNum',
+                              magazineDocs[index]['title'],
                               style: TextStyle(
                                 fontSize: h3FontSize(context),
                                 color: blackColor,
@@ -366,16 +389,33 @@ class NewsScreen extends StatefulWidget {
 }
 
 class _NewsScreenState extends State<NewsScreen> {
+  var newsDocs;
+  var newsDocsLength;
+
+  searchNews() async {
+    var searchResult = await firestore.collection('news').get();
+    setState(() {
+      newsDocs = searchResult.docs;
+      newsDocsLength = searchResult.docs.length;
+    });
+    print(newsDocsLength);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    searchNews();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: widgetSize(context),
       child: ListView.builder(
-        itemCount: 20,
+        itemCount: newsDocsLength.hashCode,
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
-          // newsNum = index;
           return Padding(
             padding: const EdgeInsets.only(bottom: 16),
             child: InkWell(
@@ -389,7 +429,6 @@ class _NewsScreenState extends State<NewsScreen> {
               child: Container(
                 width: widgetSize(context),
                 decoration: BoxDecoration(
-                  // color: whiteColor,
                   border: Border(
                     bottom: BorderSide(
                       color: blackColor,
@@ -403,27 +442,23 @@ class _NewsScreenState extends State<NewsScreen> {
                     Container(
                       width: c1BoxSize(context),
                       height: c1BoxSize(context) - 40,
-                      color: blackColor,
+                      child: Image.network(
+                        newsDocs[index]['thumbnail'],
+                        fit: BoxFit.cover,
+                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 8, top: 8),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          // Text(
-                          //   '주제 $newsNum',
-                          //   style: TextStyle(
-                          //     fontSize: h7FontSize(context),
-                          //     color: blackColor,
-                          //   ),
-                          // ),
                           Padding(
                             padding: const EdgeInsets.only(
                               top: 8,
                               bottom: 8,
                             ),
                             child: Text(
-                              '보도자료 제목입니다. $newsNum',
+                              newsDocs[index]['title'],
                               maxLines: 1,
                               style: TextStyle(
                                 fontSize: h5FontSize(context),
@@ -433,7 +468,7 @@ class _NewsScreenState extends State<NewsScreen> {
                             ),
                           ),
                           Text(
-                            '23.06.06 $newsNum',
+                            newsDocs[index]['date'].toString().substring(0, 10),
                             style: TextStyle(
                               fontSize: h7FontSize(context),
                               color: blackColor,

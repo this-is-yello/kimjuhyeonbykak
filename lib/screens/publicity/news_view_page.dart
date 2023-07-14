@@ -101,6 +101,21 @@ class NewsViewContent extends StatefulWidget {
 }
 
 class _NewsViewContentState extends State<NewsViewContent> {
+  var newsDocs;
+
+  searchNews() async {
+    var searchResult = await firestore.collection('news').get();
+    setState(() {
+      newsDocs = searchResult.docs;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    searchNews();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -216,7 +231,7 @@ class _NewsViewContentState extends State<NewsViewContent> {
                     width: widgetSize(context),
                     child: Center(
                       child: Text(
-                        '신문사 이름 / $newsNum',
+                        newsDocs[newsNum]['company'],
                         style: TextStyle(
                           fontSize: h1FontSize(context),
                           fontWeight: FontWeight.bold,
@@ -238,7 +253,7 @@ class _NewsViewContentState extends State<NewsViewContent> {
                     child: SizedBox(
                       width: widgetSize(context),
                       child: Text(
-                        '[주제$newsNum] 보도자료 제목입니다. $newsNum',
+                        newsDocs[newsNum]['title'],
                         style: TextStyle(
                           fontSize: h2FontSize(context),
                           color: blackColor,
@@ -260,7 +275,9 @@ class _NewsViewContentState extends State<NewsViewContent> {
                         Padding(
                           padding: const EdgeInsets.only(left: 16),
                           child: Text(
-                            '23.06.20 $newsNum',
+                            newsDocs[newsNum]['date']
+                                .toString()
+                                .substring(0, 10),
                             style: TextStyle(
                               fontSize: h6FontSize(context),
                               color: blackColor,
@@ -287,8 +304,8 @@ class _NewsViewContentState extends State<NewsViewContent> {
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
-                    return Image.asset(
-                      'assets/images/news_0.png',
+                    return Image.network(
+                      newsDocs[newsNum]['content'],
                       fit: BoxFit.fitWidth,
                     );
                   },
