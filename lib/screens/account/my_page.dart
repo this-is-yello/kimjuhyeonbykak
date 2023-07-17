@@ -1282,13 +1282,6 @@ class _AdminMyPageState extends State<AdminMyPage> {
                           child: Container(
                             width: widgetSize(context),
                             height: c4BoxSize(context) - 10,
-                            // padding: EdgeInsets.only(
-                            //   left: 8,
-                            //   top: 20,
-                            //   right: 8,
-                            //   bottom: 20,
-                            // ),
-                            // padding: EdgeInsets.only(bottom: 4),
                             decoration: BoxDecoration(
                               border: Border(
                                 bottom: BorderSide(
@@ -1487,7 +1480,12 @@ class _AdminMyPageState extends State<AdminMyPage> {
                           height: 40,
                           child: TextButton(
                             onPressed: () {
-                              notificationUpload(context);
+                              showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return NotificationUpModal();
+                                },
+                              );
                             },
                             child: Text(
                               '공지사항 업로드',
@@ -1502,7 +1500,12 @@ class _AdminMyPageState extends State<AdminMyPage> {
                           height: 40,
                           child: TextButton(
                             onPressed: () {
-                              eventUpload(context);
+                              showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return EventUpModal();
+                                },
+                              );
                             },
                             child: Text(
                               '이벤트 업로드',
@@ -1517,7 +1520,12 @@ class _AdminMyPageState extends State<AdminMyPage> {
                           height: 40,
                           child: TextButton(
                             onPressed: () {
-                              mediaUpload(context);
+                              showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return MediaUpModal();
+                                },
+                              );
                             },
                             child: Text(
                               '미디어 업로드',
@@ -1532,7 +1540,12 @@ class _AdminMyPageState extends State<AdminMyPage> {
                           height: 40,
                           child: TextButton(
                             onPressed: () {
-                              productUpload(context);
+                              showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return ProductUpModal();
+                                },
+                              );
                             },
                             child: Text(
                               '제품 업로드',

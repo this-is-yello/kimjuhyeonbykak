@@ -46,6 +46,7 @@ dependencies:
   baseflow_plugin_template: ^2.1.2
   permission_handler: ^10.4.2
   image_picker_web: ^3.0.0+1
+  url_launcher: ^6.1.12
 
   firebase_auth: ^4.6.3
   firebase_core: ^2.14.0
@@ -82,6 +83,7 @@ flutter:
   assets:
     - assets/images/
     - assets/images/logos/
+    - assets/images/sponsorship/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

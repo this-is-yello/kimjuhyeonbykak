@@ -103,6 +103,24 @@ class NotificationViewContent extends StatefulWidget {
 }
 
 class _NotificationViewContentState extends State<NotificationViewContent> {
+  var notificationDocs;
+
+  searchNotification() async {
+    var searchResult = await firestore
+        .collection('notification')
+        .orderBy('date', descending: true)
+        .get();
+    setState(() {
+      notificationDocs = searchResult.docs;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    searchNotification();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -219,7 +237,7 @@ class _NotificationViewContentState extends State<NotificationViewContent> {
                     child: SizedBox(
                       width: widgetSize(context),
                       child: Text(
-                        '[공지사항$notificationNum] 공지사항 타이틀 삽입 $notificationNum',
+                        '[${notificationDocs[notificationNum]['value']}] ${notificationDocs[notificationNum]['title']}',
                         style: TextStyle(
                           fontSize: h2FontSize(context),
                           color: blackColor,
@@ -232,7 +250,7 @@ class _NotificationViewContentState extends State<NotificationViewContent> {
                     child: Row(
                       children: [
                         Text(
-                          '작성자 $notificationNum',
+                          notificationDocs[notificationNum]['name'],
                           style: TextStyle(
                             fontSize: h6FontSize(context),
                             color: blackColor,
@@ -241,7 +259,9 @@ class _NotificationViewContentState extends State<NotificationViewContent> {
                         Padding(
                           padding: const EdgeInsets.only(left: 16),
                           child: Text(
-                            '23.06.20 $notificationNum',
+                            notificationDocs[notificationNum]['date']
+                                .toString()
+                                .substring(0, 10),
                             style: TextStyle(
                               fontSize: h6FontSize(context),
                               color: blackColor,
@@ -259,21 +279,25 @@ class _NotificationViewContentState extends State<NotificationViewContent> {
                       color: greyColor,
                     ),
                   ),
-                  SizedBox(
-                    width: widgetSize(context),
-                    child: ListView.builder(
-                      itemCount: 1,
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      itemBuilder: (context, index) {
-                        return Image.asset(
-                          'assets/images/notification_0.png',
-                          fit: BoxFit.fitWidth,
-                        );
-                      },
-                    ),
-                  ),
                 ],
+              ),
+              SizedBox(
+                width: widgetSize(context),
+                child: ListView.builder(
+                  itemCount: 1,
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    return Container(
+                      width: widgetSize(context),
+                      child: Text(
+                        notificationDocs[notificationNum]['content'],
+                        style: TextStyle(
+                            fontSize: h3FontSize(context), color: blackColor),
+                      ),
+                    );
+                  },
+                ),
               ),
             ],
           ),

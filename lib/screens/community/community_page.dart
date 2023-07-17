@@ -7,6 +7,7 @@ import 'package:kimjuhyeonbykak/navigation.dart';
 import 'dart:ui';
 import 'package:get/get.dart';
 import 'package:animate_do/animate_do.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CommunityPage extends StatefulWidget {
   const CommunityPage({super.key});
@@ -629,69 +630,191 @@ class NotificationScreen extends StatefulWidget {
 }
 
 class _NotificationScreenState extends State<NotificationScreen> {
+  var notificationDocs;
+  var notificationLength;
+
+  searchNotification() async {
+    var searchResult = await firestore
+        .collection('notification')
+        .orderBy('date', descending: true)
+        .get();
+    setState(() {
+      notificationDocs = searchResult.docs;
+      notificationLength = searchResult.docs.length;
+    });
+  }
+
+  double plusIndex = 0;
+  int pageNum = 0;
+
+  // ListView의 itemCount를 변경합니다. ------------------------------
+  listCount() {
+    if (notificationAdminNum == 0) {
+      if (notificationLength.hashCode > 5) {
+        if (plusIndex < notificationLength.hashCode - 5) {
+          // 첫 페이지
+          return 5;
+        } else {
+          // 다음 페이지
+          return notificationLength.hashCode % 5;
+        }
+      } else if (notificationLength.hashCode <= 5) {
+        return notificationLength.hashCode;
+      }
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    searchNotification();
+    listCount();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: widgetSize(context),
-      child: ListView.builder(
-        itemCount: 20,
-        shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.only(bottom: 16),
-            child: InkWell(
-              onTap: () {
-                setState(() {
-                  notificationNum = index;
-                });
-                Get.rootDelegate
-                    .toNamed('${Routes.NOTIFICATIONVIEW}/$notificationNum');
-                print(notificationNum);
-              },
-              child: Container(
-                width: widgetSize(context),
-                height: c5BoxSize(context),
-                padding: EdgeInsets.only(
-                  left: 8,
-                  right: 8,
-                ),
-                decoration: BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(
-                      color: blackColor,
-                      width: 2,
+    return Column(
+      children: [
+        SizedBox(
+          width: widgetSize(context),
+          height: c4BoxSize(context) * 5,
+          child: ListView.builder(
+            itemCount: notificationLength.hashCode,
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 16),
+                child: InkWell(
+                  onTap: () {
+                    setState(() {
+                      notificationNum = index;
+                    });
+                    Get.rootDelegate
+                        .toNamed('${Routes.NOTIFICATIONVIEW}/$notificationNum');
+                    print(notificationNum);
+                  },
+                  child: Container(
+                    width: widgetSize(context),
+                    height: c4BoxSize(context) - 10,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 8,
+                    ),
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(
+                          color: blackColor,
+                          width: 2,
+                        ),
+                      ),
+                    ),
+                    // padding: EdgeInsets.only(bottom: 4),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          '[${notificationDocs[index]['value']}] ${notificationDocs[index]['title']}',
+                          maxLines: 1,
+                          style: TextStyle(
+                            fontSize: h5FontSize(context),
+                            fontWeight: FontWeight.bold,
+                            color: blackColor,
+                          ),
+                        ),
+                        Text(
+                          notificationDocs[index]['date']
+                              .toString()
+                              .substring(0, 10),
+                          style: TextStyle(
+                            fontSize: h7FontSize(context),
+                            color: blackColor,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
-                // padding: EdgeInsets.only(bottom: 4),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      '[공지사항] 공지사항 타이틀 삽입 $notificationNum',
-                      maxLines: 1,
-                      style: TextStyle(
-                        fontSize: h5FontSize(context),
-                        fontWeight: FontWeight.bold,
-                        color: blackColor,
-                      ),
+              );
+            },
+          ),
+        ),
+        SizedBox(
+          width: widgetSize(context),
+          child: Padding(
+            padding: EdgeInsets.only(top: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                TextButton(
+                  onPressed: () {
+                    if (plusIndex <= 0) {
+                      plusIndex = 0;
+                      pageNum = 0;
+                    } else {
+                      setState(() {
+                        plusIndex = plusIndex - 5;
+                        pageNum--;
+                      });
+                    }
+                    print('${pageNum + 1}페이지');
+                  },
+                  child: Text(
+                    '〈 이전 페이지',
+                    style: TextStyle(
+                      fontSize: h4FontSize(context),
+                      color: blackColor,
                     ),
-                    Text(
-                      '23.06.06 $notificationNum',
-                      style: TextStyle(
-                        fontSize: h7FontSize(context),
-                        color: blackColor,
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
-              ),
+                TextButton(
+                  onPressed: () {
+                    if (notificationAdminNum == 0) {
+                      double a1 = notificationLength / 5;
+                      int b1 = a1.floor();
+                      if (b1 == pageNum) {
+                        setState(() {
+                          plusIndex = plusIndex + 0;
+                          b1 + 1;
+                        });
+                      } else {
+                        setState(() {
+                          plusIndex = plusIndex + 5;
+                          pageNum++;
+                        });
+                      }
+                      print('${pageNum + 1}페이지');
+                    } else if (notificationAdminNum == 1) {
+                      // double a2 = businessInquiryLength / 5;
+                      // int b2 = a2.floor();
+                      // if (b2 == pageNum) {
+                      //   setState(() {
+                      //     plusIndex = plusIndex + 0;
+                      //     b2 + 1;
+                      //   });
+                      // } else {
+                      //   setState(() {
+                      //     plusIndex = plusIndex + 5;
+                      //     pageNum++;
+                      //   });
+                      // }
+                      // print('${pageNum + 1}페이지');
+                    }
+                  },
+                  child: Text(
+                    '다음 페이지 〉',
+                    style: TextStyle(
+                      fontSize: h4FontSize(context),
+                      color: blackColor,
+                    ),
+                  ),
+                ),
+              ],
             ),
-          );
-        },
-      ),
+          ),
+        ),
+      ],
     );
   }
 }
@@ -705,12 +828,33 @@ class EventScreen extends StatefulWidget {
 }
 
 class _EventScreenState extends State<EventScreen> {
+  var eventDocs;
+  var eventDocsLength;
+
+  searchEvent() async {
+    var searchResult = await firestore
+        .collection('event')
+        .orderBy('date', descending: true)
+        .get();
+    setState(() {
+      eventDocs = searchResult.docs;
+      eventDocsLength = searchResult.docs.length;
+    });
+    print(eventDocsLength);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    searchEvent();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: widgetSize(context),
       child: GridView.builder(
-        itemCount: 8,
+        itemCount: eventDocsLength.hashCode,
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -733,7 +877,10 @@ class _EventScreenState extends State<EventScreen> {
                 Expanded(
                   flex: 1,
                   child: Container(
-                    color: blackColor,
+                    child: Image.network(
+                      eventDocs[index]['thumbnail'],
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
                 Padding(
@@ -741,31 +888,27 @@ class _EventScreenState extends State<EventScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // Text(
-                      //   '주제 $eventNum',
-                      //   style: TextStyle(
-                      //     fontSize: h7FontSize(context),
-                      //     color: blackColor,
-                      //   ),
-                      // ),
                       Padding(
                         padding: const EdgeInsets.only(
                           top: 4,
                           bottom: 8,
                         ),
                         child: Text(
-                          '컨텐츠 관련 제목 삽입 $eventNum',
+                          eventDocs[index]['title'],
                           style: TextStyle(
                             fontSize: h3FontSize(context),
                             color: blackColor,
                           ),
                         ),
                       ),
-                      Text(
-                        'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ',
-                        style: TextStyle(
-                          fontSize: h7FontSize(context),
-                          color: blackColor,
+                      SizedBox(
+                        width: double.infinity,
+                        child: Text(
+                          eventDocs[index]['subtitle'],
+                          style: TextStyle(
+                            fontSize: h7FontSize(context),
+                            color: blackColor,
+                          ),
                         ),
                       ),
                     ],
@@ -781,8 +924,36 @@ class _EventScreenState extends State<EventScreen> {
 }
 
 // ---------- Media -----------------------------------------------------------------------------------------------------
-class MediaScreen extends StatelessWidget {
+class MediaScreen extends StatefulWidget {
   const MediaScreen({super.key});
+
+  @override
+  State<MediaScreen> createState() => _MediaScreenState();
+}
+
+class _MediaScreenState extends State<MediaScreen> {
+  var mediaDocs;
+  var mediaDocsLength;
+
+  int i = 0;
+
+  searchMedia() async {
+    var searchResult = await firestore
+        .collection('media')
+        .orderBy('date', descending: true)
+        .get();
+    setState(() {
+      mediaDocs = searchResult.docs;
+      mediaDocsLength = searchResult.docs.length;
+    });
+    print(mediaDocsLength);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    searchMedia();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -791,7 +962,12 @@ class MediaScreen extends StatelessWidget {
         SizedBox(
           width: widgetSize(context),
           child: InkWell(
-            onTap: () {},
+            onTap: () async {
+              final url = Uri.parse(mediaDocs[i]['link']);
+              if (await canLaunchUrl(url)) {
+                launchUrl(url, mode: LaunchMode.externalApplication);
+              }
+            },
             child: Wrap(
               direction: Axis.horizontal,
               crossAxisAlignment: WrapCrossAlignment.center,
@@ -805,7 +981,10 @@ class MediaScreen extends StatelessWidget {
                       ? widgetSize(context)
                       : widgetSize(context) / 2 - 10,
                   height: c1BoxSize(context) + 100,
-                  color: blackColor,
+                  child: Image.network(
+                    mediaDocs[i]['thumbnail'],
+                    fit: BoxFit.cover,
+                  ),
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width < 800
@@ -815,7 +994,7 @@ class MediaScreen extends StatelessWidget {
                     left: MediaQuery.of(context).size.width < 800 ? 0 : 16,
                   ),
                   child: Text(
-                    '바이각 유튜브 영상 타이틀',
+                    mediaDocs[i]['title'],
                     style: TextStyle(
                       fontSize: h2FontSize(context),
                       color: blackColor,
@@ -841,13 +1020,23 @@ class MediaScreen extends StatelessWidget {
               ),
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                // itemCount: ,
+                itemCount: mediaDocsLength,
                 itemBuilder: (context, index) {
-                  return Container(
-                    width: c1BoxSize(context) + 60,
-                    height: c1BoxSize(context),
-                    margin: EdgeInsets.only(right: 16),
-                    color: blackColor,
+                  return InkWell(
+                    onTap: () {
+                      setState(() {
+                        i = index;
+                      });
+                    },
+                    child: Container(
+                      width: c1BoxSize(context) + 60,
+                      height: c1BoxSize(context),
+                      margin: EdgeInsets.only(right: 16),
+                      child: Image.network(
+                        mediaDocs[index]['thumbnail'],
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                   );
                 },
               ),

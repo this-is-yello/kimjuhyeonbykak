@@ -281,7 +281,10 @@ class _MagazineScreenState extends State<MagazineScreen> {
   var magazineDocsLength;
 
   searchMagazine() async {
-    var searchResult = await firestore.collection('magazine').get();
+    var searchResult = await firestore
+        .collection('magazine')
+        .orderBy('date', descending: true)
+        .get();
     setState(() {
       magazineDocs = searchResult.docs;
       magazineDocsLength = searchResult.docs.length;
@@ -393,7 +396,10 @@ class _NewsScreenState extends State<NewsScreen> {
   var newsDocsLength;
 
   searchNews() async {
-    var searchResult = await firestore.collection('news').get();
+    var searchResult = await firestore
+        .collection('news')
+        .orderBy('date', descending: true)
+        .get();
     setState(() {
       newsDocs = searchResult.docs;
       newsDocsLength = searchResult.docs.length;
@@ -489,8 +495,25 @@ class _NewsScreenState extends State<NewsScreen> {
 }
 
 // ---------- Sponsorship -----------------------------------------------------------------------------------------------------
-class SponsorShipScreen extends StatelessWidget {
+class SponsorShipScreen extends StatefulWidget {
   const SponsorShipScreen({super.key});
+
+  @override
+  State<SponsorShipScreen> createState() => _SponsorShipScreenState();
+}
+
+class _SponsorShipScreenState extends State<SponsorShipScreen> {
+  List celebrity = [
+    'assets/images/sponsorship/sponsorship_1.jpg',
+    'assets/images/sponsorship/sponsorship_2.jpg',
+    'assets/images/sponsorship/sponsorship_3.jpg',
+    'assets/images/sponsorship/sponsorship_4.jpg',
+    'assets/images/sponsorship/sponsorship_5.jpg',
+    'assets/images/sponsorship/sponsorship_6.jpg',
+    'assets/images/sponsorship/sponsorship_7.jpg',
+    'assets/images/sponsorship/sponsorship_8.jpg',
+    'assets/images/sponsorship/sponsorship_9.jpg',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -518,10 +541,15 @@ class SponsorShipScreen extends StatelessWidget {
                     childAspectRatio: 1.2 / 1,
                     mainAxisSpacing: 20,
                   ),
-                  itemCount: 20,
+                  itemCount: celebrity.length,
                   itemBuilder: (context, index) {
                     return Container(
-                      color: blackColor,
+                      child: Image.asset(
+                        celebrity[index],
+                        colorBlendMode: BlendMode.color,
+                        color: blackColor,
+                        fit: BoxFit.cover,
+                      ),
                     );
                   },
                 ),

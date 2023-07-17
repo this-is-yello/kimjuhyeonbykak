@@ -102,6 +102,24 @@ class EventViewContent extends StatefulWidget {
 }
 
 class _EventViewContentState extends State<EventViewContent> {
+  var eventDocs;
+
+  searchEvent() async {
+    var searchResult = await firestore
+        .collection('event')
+        .orderBy('date', descending: true)
+        .get();
+    setState(() {
+      eventDocs = searchResult.docs;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    searchEvent();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -184,7 +202,7 @@ class _EventViewContentState extends State<EventViewContent> {
                 child: InkWell(
                   onTap: () {
                     setState(() {
-                      communityNum = 1;
+                      communityNum = 2;
                     });
                     Get.rootDelegate.toNamed(Routes.COMMUNITY);
                   },
@@ -218,7 +236,7 @@ class _EventViewContentState extends State<EventViewContent> {
                     child: SizedBox(
                       width: widgetSize(context),
                       child: Text(
-                        '[이벤트$eventNum] 바이각 프로모션 $eventNum',
+                        '[${eventDocs[eventNum]['value']}] ${eventDocs[eventNum]['title']}',
                         style: TextStyle(
                           fontSize: h2FontSize(context),
                           color: blackColor,
@@ -231,7 +249,7 @@ class _EventViewContentState extends State<EventViewContent> {
                     child: Row(
                       children: [
                         Text(
-                          '작성자 $eventNum',
+                          eventDocs[eventNum]['name'],
                           style: TextStyle(
                             fontSize: h6FontSize(context),
                             color: blackColor,
@@ -240,7 +258,7 @@ class _EventViewContentState extends State<EventViewContent> {
                         Padding(
                           padding: const EdgeInsets.only(left: 16),
                           child: Text(
-                            '23.06.20 - 23.07.20 $eventNum',
+                            eventDocs[eventNum]['date'],
                             style: TextStyle(
                               fontSize: h6FontSize(context),
                               color: blackColor,
@@ -265,8 +283,8 @@ class _EventViewContentState extends State<EventViewContent> {
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
                       itemBuilder: (context, index) {
-                        return Image.asset(
-                          'assets/images/event_0.png',
+                        return Image.network(
+                          eventDocs[eventNum]['content'],
                           fit: BoxFit.fitWidth,
                         );
                       },
