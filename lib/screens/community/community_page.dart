@@ -329,8 +329,10 @@ class _InquiryScreenState extends State<InquiryScreen> {
         ));
       } else {
         try {
-          var inquiryData =
-              await firestore.collection('communityInquiry').doc().set({
+          var inquiryData = await firestore
+              .collection('communityInquiry')
+              .doc(DateTime.now().toString())
+              .set({
             'name': _inputInquiryName.text,
             'title': '${_inputInquiryName.text}님의 문의입니다.',
             'date': DateTime.now().toString(),
@@ -338,6 +340,7 @@ class _InquiryScreenState extends State<InquiryScreen> {
             'mail': _inputInquiryMail.text,
             'value': _selectedValue,
             'inquiry': _inputInquiry.text,
+            'aState': '답변 대기중',
           });
           return showDialog(
             context: context,
@@ -840,7 +843,6 @@ class _EventScreenState extends State<EventScreen> {
       eventDocs = searchResult.docs;
       eventDocsLength = searchResult.docs.length;
     });
-    print(eventDocsLength);
   }
 
   @override
@@ -934,6 +936,7 @@ class MediaScreen extends StatefulWidget {
 class _MediaScreenState extends State<MediaScreen> {
   var mediaDocs;
   var mediaDocsLength;
+  var mediaDocsThumbnail;
 
   int i = 0;
 
@@ -946,7 +949,6 @@ class _MediaScreenState extends State<MediaScreen> {
       mediaDocs = searchResult.docs;
       mediaDocsLength = searchResult.docs.length;
     });
-    print(mediaDocsLength);
   }
 
   @override
@@ -957,93 +959,201 @@ class _MediaScreenState extends State<MediaScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(
-          width: widgetSize(context),
-          child: InkWell(
-            onTap: () async {
-              final url = Uri.parse(mediaDocs[i]['link']);
-              if (await canLaunchUrl(url)) {
-                launchUrl(url, mode: LaunchMode.externalApplication);
-              }
-            },
-            child: Wrap(
-              direction: Axis.horizontal,
-              crossAxisAlignment: WrapCrossAlignment.center,
-              runAlignment: WrapAlignment.spaceBetween,
-              alignment: WrapAlignment.start,
-              spacing: 10,
-              runSpacing: 20,
-              children: [
-                Container(
-                  width: MediaQuery.of(context).size.width < 800
-                      ? widgetSize(context)
-                      : widgetSize(context) / 2 - 10,
-                  height: c1BoxSize(context) + 100,
-                  child: Image.network(
-                    mediaDocs[i]['thumbnail'],
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                Container(
-                  width: MediaQuery.of(context).size.width < 800
-                      ? widgetSize(context)
-                      : widgetSize(context) / 2,
-                  padding: EdgeInsets.only(
-                    left: MediaQuery.of(context).size.width < 800 ? 0 : 16,
-                  ),
-                  child: Text(
-                    mediaDocs[i]['title'],
-                    style: TextStyle(
-                      fontSize: h2FontSize(context),
-                      color: blackColor,
+    try {
+      return Column(
+        children: [
+          SizedBox(
+            width: widgetSize(context),
+            child: InkWell(
+              onTap: () async {
+                final url = Uri.parse(mediaDocs[i]['link']);
+                if (await canLaunchUrl(url)) {
+                  launchUrl(url, mode: LaunchMode.externalApplication);
+                }
+              },
+              child: Wrap(
+                direction: Axis.horizontal,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                runAlignment: WrapAlignment.spaceBetween,
+                alignment: WrapAlignment.start,
+                spacing: 10,
+                runSpacing: 20,
+                children: [
+                  Container(
+                    width: MediaQuery.of(context).size.width < 800
+                        ? widgetSize(context)
+                        : widgetSize(context) / 2 - 10,
+                    height: c1BoxSize(context) + 100,
+                    child: Image.network(
+                      mediaDocs[i]['thumbnail'],
+                      fit: BoxFit.cover,
                     ),
                   ),
-                ),
-              ],
-            ),
-          ),
-        ),
-        Padding(
-          padding: EdgeInsets.only(top: 20),
-          child: SizedBox(
-            width: widgetSize(context),
-            height: c1BoxSize(context),
-            child: ScrollConfiguration(
-              behavior: ScrollConfiguration.of(context).copyWith(
-                dragDevices: {
-                  PointerDeviceKind.mouse,
-                  PointerDeviceKind.touch,
-                  PointerDeviceKind.trackpad,
-                },
-              ),
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: mediaDocsLength,
-                itemBuilder: (context, index) {
-                  return InkWell(
-                    onTap: () {
-                      setState(() {
-                        i = index;
-                      });
-                    },
-                    child: Container(
-                      width: c1BoxSize(context) + 60,
-                      height: c1BoxSize(context),
-                      margin: EdgeInsets.only(right: 16),
-                      child: Image.network(
-                        mediaDocs[index]['thumbnail'],
-                        fit: BoxFit.cover,
+                  Container(
+                    width: MediaQuery.of(context).size.width < 800
+                        ? widgetSize(context)
+                        : widgetSize(context) / 2,
+                    padding: EdgeInsets.only(
+                      left: MediaQuery.of(context).size.width < 800 ? 0 : 16,
+                    ),
+                    child: Text(
+                      mediaDocs[i]['title'],
+                      style: TextStyle(
+                        fontSize: h2FontSize(context),
+                        color: blackColor,
                       ),
                     ),
-                  );
-                },
+                  ),
+                ],
               ),
             ),
           ),
+          Padding(
+            padding: EdgeInsets.only(top: 20),
+            child: SizedBox(
+              width: widgetSize(context),
+              height: c1BoxSize(context),
+              child: ScrollConfiguration(
+                behavior: ScrollConfiguration.of(context).copyWith(
+                  dragDevices: {
+                    PointerDeviceKind.mouse,
+                    PointerDeviceKind.touch,
+                    PointerDeviceKind.trackpad,
+                  },
+                ),
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: mediaDocsLength,
+                  itemBuilder: (context, index) {
+                    return InkWell(
+                      onTap: () {
+                        setState(() {
+                          i = index;
+                        });
+                      },
+                      child: Container(
+                        width: c1BoxSize(context) + 60,
+                        height: c1BoxSize(context),
+                        margin: EdgeInsets.only(right: 16),
+                        child: Image.network(
+                          mediaDocs[index]['thumbnail'],
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ),
+          ),
+        ],
+      );
+    } catch (e) {
+      print(e);
+      return SizedBox(
+        width: widgetSize(context),
+        height: 400,
+        child: Center(
+          child: CircularProgressIndicator(color: blackColor),
         ),
-      ],
-    );
+      );
+    }
+    // return mediaDocs[i]['title'] == null
+    //     ? SizedBox(
+    //         width: widgetSize(context),
+    //         height: 400,
+    //         child: Center(
+    //           child: CircularProgressIndicator(color: blackColor),
+    //         ),
+    //       )
+    //     : Column(
+    //         children: [
+    //           SizedBox(
+    //             width: widgetSize(context),
+    //             child: InkWell(
+    //               onTap: () async {
+    //                 final url = Uri.parse(mediaDocs[i]['link']);
+    //                 if (await canLaunchUrl(url)) {
+    //                   launchUrl(url, mode: LaunchMode.externalApplication);
+    //                 }
+    //               },
+    //               child: Wrap(
+    //                 direction: Axis.horizontal,
+    //                 crossAxisAlignment: WrapCrossAlignment.center,
+    //                 runAlignment: WrapAlignment.spaceBetween,
+    //                 alignment: WrapAlignment.start,
+    //                 spacing: 10,
+    //                 runSpacing: 20,
+    //                 children: [
+    //                   Container(
+    //                     width: MediaQuery.of(context).size.width < 800
+    //                         ? widgetSize(context)
+    //                         : widgetSize(context) / 2 - 10,
+    //                     height: c1BoxSize(context) + 100,
+    //                     child: Image.network(
+    //                       mediaDocs[i]['thumbnail'],
+    //                       fit: BoxFit.cover,
+    //                     ),
+    //                   ),
+    //                   Container(
+    //                     width: MediaQuery.of(context).size.width < 800
+    //                         ? widgetSize(context)
+    //                         : widgetSize(context) / 2,
+    //                     padding: EdgeInsets.only(
+    //                       left:
+    //                           MediaQuery.of(context).size.width < 800 ? 0 : 16,
+    //                     ),
+    //                     child: Text(
+    //                       mediaDocs[i]['title'],
+    //                       style: TextStyle(
+    //                         fontSize: h2FontSize(context),
+    //                         color: blackColor,
+    //                       ),
+    //                     ),
+    //                   ),
+    //                 ],
+    //               ),
+    //             ),
+    //           ),
+    //           Padding(
+    //             padding: EdgeInsets.only(top: 20),
+    //             child: SizedBox(
+    //               width: widgetSize(context),
+    //               height: c1BoxSize(context),
+    //               child: ScrollConfiguration(
+    //                 behavior: ScrollConfiguration.of(context).copyWith(
+    //                   dragDevices: {
+    //                     PointerDeviceKind.mouse,
+    //                     PointerDeviceKind.touch,
+    //                     PointerDeviceKind.trackpad,
+    //                   },
+    //                 ),
+    //                 child: ListView.builder(
+    //                   scrollDirection: Axis.horizontal,
+    //                   itemCount: mediaDocsLength,
+    //                   itemBuilder: (context, index) {
+    //                     return InkWell(
+    //                       onTap: () {
+    //                         setState(() {
+    //                           i = index;
+    //                         });
+    //                       },
+    //                       child: Container(
+    //                         width: c1BoxSize(context) + 60,
+    //                         height: c1BoxSize(context),
+    //                         margin: EdgeInsets.only(right: 16),
+    //                         child: Image.network(
+    //                           mediaDocs[index]['thumbnail'],
+    //                           fit: BoxFit.cover,
+    //                         ),
+    //                       ),
+    //                     );
+    //                   },
+    //                 ),
+    //               ),
+    //             ),
+    //           ),
+    //         ],
+    //       );
   }
 }

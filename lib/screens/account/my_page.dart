@@ -4,7 +4,7 @@ import 'package:kimjuhyeonbykak/main.dart';
 import 'package:kimjuhyeonbykak/navigation.dart';
 import 'package:kimjuhyeonbykak/screens/account/board_upload_Modal.dart';
 
-import 'package:image_picker/image_picker.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
@@ -856,6 +856,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
   var communityInquiryDocs;
   var businessInquiryLength;
   var businessInquiryDocs;
+  bool? aStste;
 
   // TextFormField의 텍스트를 지웁니다. ------------------------------
   emptyTextFormField() {
@@ -893,6 +894,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
       businessInquiryDocs = businessInquiry.docs;
       businessInquiryLength = businessInquiry.docs.length;
     });
+    print(communityInquiryDocs);
   }
 
   // 고객문의 다이얼로그 ------------------------------
