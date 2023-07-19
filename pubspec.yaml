@@ -48,6 +48,7 @@ dependencies:
   image_picker_web: ^3.0.0+1
   url_launcher: ^6.1.12
   flutter_spinkit: ^5.2.0
+  flutter_native_splash: ^2.3.1
 
   firebase_auth: ^4.6.3
   firebase_core: ^2.14.0

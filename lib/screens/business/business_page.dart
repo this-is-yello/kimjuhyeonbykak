@@ -714,8 +714,10 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
       ));
     } else {
       try {
-        var inquiryData =
-            await firestore.collection('businessInquiry').doc().set({
+        var inquiryData = await firestore
+            .collection('businessInquiry')
+            .doc(DateTime.now().toString())
+            .set({
           'company': _inputInquiryCompany.text,
           'name': _inputInquiryName.text,
           'web': _inputInquiryWeb.text,
@@ -731,6 +733,7 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
                       ? '단체복'
                       : '비즈니스',
           'inquiry': _inputInquiry.text,
+          'aState': '답변 대기중',
         });
         return showDialog(
           context: context,

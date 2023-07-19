@@ -300,86 +300,90 @@ class _MagazineScreenState extends State<MagazineScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: widgetSize(context),
-      child: Column(
-        children: [
-          GridView.builder(
-            itemCount: magazineDocsLength.hashCode,
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: MediaQuery.of(context).size.width < 800 ? 1 : 2,
-              childAspectRatio: 3 / 2.3,
-              mainAxisSpacing: 40,
-              crossAxisSpacing: 10,
-            ),
-            itemBuilder: (context, index) {
-              return InkWell(
-                onTap: () {
-                  setState(() {
-                    magazineNum = index;
-                  });
-                  Get.rootDelegate
-                      .toNamed('${Routes.MAGAZINEVIEW}/$magazineNum');
-                  print(magazineNum);
-                },
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      flex: 1,
-                      child: Container(
-                        child: Image.network(
-                          magazineDocs[index]['thumbnail'],
-                          fit: BoxFit.cover,
+    try {
+      return SizedBox(
+        width: widgetSize(context),
+        child: Column(
+          children: [
+            GridView.builder(
+              itemCount: magazineDocsLength.hashCode,
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: MediaQuery.of(context).size.width < 800 ? 1 : 2,
+                childAspectRatio: 3 / 2.3,
+                mainAxisSpacing: 40,
+                crossAxisSpacing: 10,
+              ),
+              itemBuilder: (context, index) {
+                return InkWell(
+                  onTap: () {
+                    setState(() {
+                      magazineNum = index;
+                    });
+                    Get.rootDelegate
+                        .toNamed('${Routes.MAGAZINEVIEW}/$magazineNum');
+                    print(magazineNum);
+                  },
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        flex: 1,
+                        child: Container(
+                          child: Image.network(
+                            magazineDocs[index]['thumbnail'],
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            magazineDocs[index]['date']
-                                .toString()
-                                .substring(0, 10),
-                            style: TextStyle(
-                              fontSize: h7FontSize(context),
-                              color: blackColor,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                              top: 4,
-                            ),
-                            child: Text(
-                              magazineDocs[index]['title'],
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              magazineDocs[index]['date']
+                                  .toString()
+                                  .substring(0, 10),
                               style: TextStyle(
-                                fontSize: h3FontSize(context),
+                                fontSize: h7FontSize(context),
                                 color: blackColor,
                               ),
                             ),
-                          ),
-                          // Text(
-                          //   'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ',
-                          //   style: TextStyle(
-                          //     fontSize: h7FontSize(context),
-                          //     color: blackColor,
-                          //   ),
-                          // ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              );
-            },
-          ),
-        ],
-      ),
-    );
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                top: 4,
+                              ),
+                              child: Text(
+                                magazineDocs[index]['title'],
+                                style: TextStyle(
+                                  fontSize: h3FontSize(context),
+                                  color: blackColor,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                );
+              },
+            ),
+          ],
+        ),
+      );
+    } catch (e) {
+      print(e);
+      return Container(
+        width: widgetSize(context),
+        height: MediaQuery.of(context).size.height,
+        child: Center(
+          child: CircularProgressIndicator(color: blackColor),
+        ),
+      );
+    }
   }
 }
 
@@ -546,8 +550,8 @@ class _SponsorShipScreenState extends State<SponsorShipScreen> {
                     return Container(
                       child: Image.asset(
                         celebrity[index],
-                        colorBlendMode: BlendMode.color,
-                        color: blackColor,
+                        // colorBlendMode: BlendMode.color,
+                        // color: blackColor,
                         fit: BoxFit.cover,
                       ),
                     );

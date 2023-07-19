@@ -244,19 +244,23 @@ class _CarouselScreenState extends State<CarouselScreen> {
                                 Get.rootDelegate.toNamed(mainViewLinks[index]);
                               },
                               child: Container(
-                                width: c4BoxSize(context) - 10,
-                                height: c4BoxSize(context) - 10,
+                                width: c4BoxSize(context),
+                                padding: EdgeInsets.only(bottom: 4),
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(500),
-                                  color: whiteColor,
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    'view',
-                                    style: TextStyle(
-                                      fontSize: h7FontSize(context),
-                                      fontFamily: 'Cafe_24',
+                                  border: Border(
+                                    bottom: BorderSide(
+                                      color: whiteColor,
+                                      width: 2,
                                     ),
+                                  ),
+                                ),
+                                child: Text(
+                                  'view',
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                    fontSize: h5FontSize(context),
+                                    fontFamily: 'Cafe_24',
+                                    color: whiteColor,
                                   ),
                                 ),
                               ),

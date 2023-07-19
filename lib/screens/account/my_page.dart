@@ -428,165 +428,176 @@ class _ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 160),
-      child: Column(
-        children: [
-          SizedBox(
-            width: widgetSize(context),
-            child: Row(
-              children: [
-                Text(
-                  currentUserName.toString(),
-                  style: TextStyle(
-                    color: blackColor,
-                    fontSize: h1FontSize(context),
-                  ),
-                ),
-                Text(
-                  ' 님 안녕하세요!',
-                  style: TextStyle(
-                    color: blackColor,
-                    fontSize: h4FontSize(context),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(
-            width: widgetSize(context),
-            child: Row(
-              children: [
-                Text(
-                  '회원님은 바이각의 ',
-                  style: TextStyle(
-                    color: blackColor,
-                    fontSize: h4FontSize(context),
-                  ),
-                ),
-                Text(
-                  '$currentUserGrade',
-                  style: TextStyle(
-                    fontSize: h3FontSize(context),
-                    fontWeight: FontWeight.bold,
-                    color: blackColor,
-                  ),
-                ),
-                Text(
-                  ' 입니다.',
-                  style: TextStyle(
-                    color: blackColor,
-                    fontSize: h4FontSize(context),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 8),
-            child: Container(
+    if (currentUserGrade != null) {
+      return Padding(
+        padding: const EdgeInsets.only(top: 160),
+        child: Column(
+          children: [
+            SizedBox(
               width: widgetSize(context),
-              height: 3,
-              color: blackColor,
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 40),
-            child: SizedBox(
-              width: widgetSize(context),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              child: Row(
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        '내 정보',
-                        style: TextStyle(
-                          fontSize: h2FontSize(context),
-                          color: blackColor,
-                        ),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          modifyAc();
-                        },
-                        child: Text(
-                          '정보변경',
-                          style: TextStyle(
-                            color: blackColor,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 16),
-                    child: ListView.builder(
-                      itemCount: infoTitles.length,
-                      physics: NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.only(bottom: 8),
-                          child: Row(
-                            children: [
-                              Text(
-                                infoTitles[index],
-                                style: TextStyle(
-                                  fontSize: h4FontSize(context),
-                                  fontWeight: FontWeight.bold,
-                                  color: blackColor,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 16),
-                                child: Text(
-                                  currentUserInfo[index],
-                                  style: TextStyle(
-                                    fontSize: h4FontSize(context),
-                                    color: blackColor,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        );
-                      },
+                  Text(
+                    currentUserName.toString(),
+                    style: TextStyle(
+                      color: blackColor,
+                      fontSize: h1FontSize(context),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 16),
-                    child: TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        '마일리지 조회 및 신청 >',
-                        style: TextStyle(
-                          fontSize: h4FontSize(context),
-                          color: blackColor,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8),
-                    child: Container(
-                      width: widgetSize(context),
-                      height: 2,
-                      color: greyColor,
+                  Text(
+                    ' 님 안녕하세요!',
+                    style: TextStyle(
+                      color: blackColor,
+                      fontSize: h4FontSize(context),
                     ),
                   ),
                 ],
               ),
             ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 60),
-            child: currentUserGrade == '관리자' ? AdminMyPage() : UserMyPage(),
-          ),
-        ],
-      ),
-    );
+            SizedBox(
+              width: widgetSize(context),
+              child: Row(
+                children: [
+                  Text(
+                    '회원님은 바이각의 ',
+                    style: TextStyle(
+                      color: blackColor,
+                      fontSize: h4FontSize(context),
+                    ),
+                  ),
+                  Text(
+                    '$currentUserGrade',
+                    style: TextStyle(
+                      fontSize: h3FontSize(context),
+                      fontWeight: FontWeight.bold,
+                      color: blackColor,
+                    ),
+                  ),
+                  Text(
+                    ' 입니다.',
+                    style: TextStyle(
+                      color: blackColor,
+                      fontSize: h4FontSize(context),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 8),
+              child: Container(
+                width: widgetSize(context),
+                height: 3,
+                color: blackColor,
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 40),
+              child: SizedBox(
+                width: widgetSize(context),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          '내 정보',
+                          style: TextStyle(
+                            fontSize: h2FontSize(context),
+                            color: blackColor,
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            modifyAc();
+                          },
+                          child: Text(
+                            '정보변경',
+                            style: TextStyle(
+                              color: blackColor,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 16),
+                      child: ListView.builder(
+                        itemCount: infoTitles.length,
+                        physics: NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.only(bottom: 8),
+                            child: Row(
+                              children: [
+                                Text(
+                                  infoTitles[index],
+                                  style: TextStyle(
+                                    fontSize: h4FontSize(context),
+                                    fontWeight: FontWeight.bold,
+                                    color: blackColor,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 16),
+                                  child: Text(
+                                    currentUserInfo[index],
+                                    style: TextStyle(
+                                      fontSize: h4FontSize(context),
+                                      color: blackColor,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 16),
+                      child: TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          '마일리지 조회 및 신청 >',
+                          style: TextStyle(
+                            fontSize: h4FontSize(context),
+                            color: blackColor,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8),
+                      child: Container(
+                        width: widgetSize(context),
+                        height: 2,
+                        color: greyColor,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 60),
+              child: currentUserGrade == '관리자' ? AdminMyPage() : UserMyPage(),
+            ),
+          ],
+        ),
+      );
+    } else {
+      // print(e);
+      return Container(
+        width: widgetSize(context),
+        height: MediaQuery.of(context).size.height,
+        child: Center(
+          child: CircularProgressIndicator(color: blackColor),
+        ),
+      );
+    }
   }
 }
 
@@ -879,7 +890,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
     });
   }
 
-  inquiryState(i) async {
+  inquiryState() async {
     var communityInquiry = await firestore
         .collection('communityInquiry')
         .orderBy('date', descending: true)
@@ -894,7 +905,6 @@ class _AdminMyPageState extends State<AdminMyPage> {
       businessInquiryDocs = businessInquiry.docs;
       businessInquiryLength = businessInquiry.docs.length;
     });
-    print(communityInquiryDocs);
   }
 
   // 고객문의 다이얼로그 ------------------------------
@@ -991,6 +1001,47 @@ class _AdminMyPageState extends State<AdminMyPage> {
           ),
         ),
         actions: [
+          Padding(
+            padding: const EdgeInsets.only(bottom: 16),
+            child: TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+                try {
+                  if (communityInquiryDocs[i]['aState'] == '답변 대기중') {
+                    firestore
+                        .collection('communityInquiry')
+                        .doc(communityInquiryDocs[i]['date'])
+                        .update({
+                      'aState': '답변완료',
+                    });
+                  } else if (communityInquiryDocs[i]['aState'] == '답변완료') {
+                    firestore
+                        .collection('communityInquiry')
+                        .doc(communityInquiryDocs[i]['date'])
+                        .update({
+                      'aState': '답변 대기중',
+                    });
+                  }
+                  inquiryState();
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Center(
+                      child: Text('답변 상태를 변경하였습니다.'),
+                    ),
+                    backgroundColor: bykakColor,
+                  ));
+                } catch (e) {
+                  print(e);
+                }
+              },
+              child: Text(
+                communityInquiryDocs[i]['aState'],
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.red,
+                ),
+              ),
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.only(bottom: 16),
             child: TextButton(
@@ -1138,6 +1189,47 @@ class _AdminMyPageState extends State<AdminMyPage> {
             child: TextButton(
               onPressed: () {
                 Navigator.pop(context);
+                try {
+                  if (businessInquiryDocs[i]['aState'] == '답변 대기중') {
+                    firestore
+                        .collection('businessInquiry')
+                        .doc(businessInquiryDocs[i]['date'])
+                        .update({
+                      'aState': '답변완료',
+                    });
+                  } else if (businessInquiryDocs[i]['aState'] == '답변완료') {
+                    firestore
+                        .collection('businessInquiry')
+                        .doc(businessInquiryDocs[i]['date'])
+                        .update({
+                      'aState': '답변 대기중',
+                    });
+                  }
+                  inquiryState();
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Center(
+                      child: Text('답변 상태를 변경하였습니다.'),
+                    ),
+                    backgroundColor: bykakColor,
+                  ));
+                } catch (e) {
+                  print(e);
+                }
+              },
+              child: Text(
+                businessInquiryDocs[i]['aState'],
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.red,
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 16),
+            child: TextButton(
+              onPressed: () {
+                Navigator.pop(context);
               },
               child: Text(
                 '닫기',
@@ -1192,7 +1284,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
   void initState() {
     super.initState();
     searchItems();
-    inquiryState(i);
+    inquiryState();
   }
 
   @override

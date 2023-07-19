@@ -233,10 +233,20 @@ class _MagazineViewContentState extends State<MagazineViewContent> {
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
-                    return Image.network(
-                      magazineDocs[magazineNum]['content'],
-                      fit: BoxFit.fitWidth,
-                    );
+                    try {
+                      return Image.network(
+                        magazineDocs[magazineNum]['content'],
+                        fit: BoxFit.fitWidth,
+                      );
+                    } catch (e) {
+                      return Container(
+                        width: widgetSize(context),
+                        height: 500,
+                        child: Center(
+                          child: CircularProgressIndicator(color: blackColor),
+                        ),
+                      );
+                    }
                   },
                 ),
               ),
