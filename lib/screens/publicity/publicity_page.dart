@@ -301,84 +301,95 @@ class _MagazineScreenState extends State<MagazineScreen> {
   @override
   Widget build(BuildContext context) {
     try {
-      return SizedBox(
-        width: widgetSize(context),
-        child: Column(
-          children: [
-            GridView.builder(
-              itemCount: magazineDocsLength.hashCode,
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: MediaQuery.of(context).size.width < 800 ? 1 : 2,
-                childAspectRatio: 3 / 2.3,
-                mainAxisSpacing: 40,
-                crossAxisSpacing: 10,
-              ),
-              itemBuilder: (context, index) {
-                return InkWell(
-                  onTap: () {
-                    setState(() {
-                      magazineNum = index;
-                    });
-                    Get.rootDelegate
-                        .toNamed('${Routes.MAGAZINEVIEW}/$magazineNum');
-                    print(magazineNum);
-                  },
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        flex: 1,
-                        child: Container(
-                          child: Image.network(
-                            magazineDocs[index]['thumbnail'],
-                            fit: BoxFit.cover,
+      if (magazineDocs[i]['thumbnail'] != null) {
+        return SizedBox(
+          width: widgetSize(context),
+          child: Column(
+            children: [
+              GridView.builder(
+                itemCount: magazineDocsLength.hashCode,
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount:
+                      MediaQuery.of(context).size.width < 800 ? 1 : 2,
+                  childAspectRatio: 3 / 2.3,
+                  mainAxisSpacing: 40,
+                  crossAxisSpacing: 10,
+                ),
+                itemBuilder: (context, index) {
+                  return InkWell(
+                    onTap: () {
+                      setState(() {
+                        magazineNum = index;
+                      });
+                      Get.rootDelegate
+                          .toNamed('${Routes.MAGAZINEVIEW}/$magazineNum');
+                      print(magazineNum);
+                    },
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            child: Image.network(
+                              magazineDocs[index]['thumbnail'],
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 8),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              magazineDocs[index]['date']
-                                  .toString()
-                                  .substring(0, 10),
-                              style: TextStyle(
-                                fontSize: h7FontSize(context),
-                                color: blackColor,
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                top: 4,
-                              ),
-                              child: Text(
-                                magazineDocs[index]['title'],
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                magazineDocs[index]['date']
+                                    .toString()
+                                    .substring(0, 10),
                                 style: TextStyle(
-                                  fontSize: h3FontSize(context),
+                                  fontSize: h7FontSize(context),
                                   color: blackColor,
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                );
-              },
-            ),
-          ],
-        ),
-      );
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  top: 4,
+                                ),
+                                child: Text(
+                                  magazineDocs[index]['title'],
+                                  style: TextStyle(
+                                    fontSize: h3FontSize(context),
+                                    color: blackColor,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ],
+          ),
+        );
+      } else {
+        return Container(
+          width: widgetSize(context),
+          height: 300,
+          child: Center(
+            child: CircularProgressIndicator(color: blackColor),
+          ),
+        );
+      }
     } catch (e) {
       print(e);
       return Container(
         width: widgetSize(context),
-        height: MediaQuery.of(context).size.height,
+        height: 300,
         child: Center(
           child: CircularProgressIndicator(color: blackColor),
         ),
@@ -419,82 +430,104 @@ class _NewsScreenState extends State<NewsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: widgetSize(context),
-      child: ListView.builder(
-        itemCount: newsDocsLength.hashCode,
-        shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.only(bottom: 16),
-            child: InkWell(
-              onTap: () {
-                setState(() {
-                  newsNum = index;
-                });
-                Get.rootDelegate.toNamed('${Routes.NEWSVIEW}/$newsNum');
-                print(newsNum);
-              },
-              child: Container(
-                width: widgetSize(context),
-                decoration: BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(
-                      color: blackColor,
-                      width: 2,
+    try {
+      if (newsDocs[i]['thumbnail'] != null) {
+        return SizedBox(
+          width: widgetSize(context),
+          child: ListView.builder(
+            itemCount: newsDocsLength.hashCode,
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 16),
+                child: InkWell(
+                  onTap: () {
+                    setState(() {
+                      newsNum = index;
+                    });
+                    Get.rootDelegate.toNamed('${Routes.NEWSVIEW}/$newsNum');
+                    print(newsNum);
+                  },
+                  child: Container(
+                    width: widgetSize(context),
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(
+                          color: blackColor,
+                          width: 2,
+                        ),
+                      ),
+                    ),
+                    padding: EdgeInsets.only(bottom: 4),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: c1BoxSize(context),
+                          height: c1BoxSize(context) - 40,
+                          child: Image.network(
+                            newsDocs[index]['thumbnail'],
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8, top: 8),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  top: 8,
+                                  bottom: 8,
+                                ),
+                                child: Text(
+                                  newsDocs[index]['title'],
+                                  maxLines: 1,
+                                  style: TextStyle(
+                                    fontSize: h5FontSize(context),
+                                    fontWeight: FontWeight.bold,
+                                    color: blackColor,
+                                  ),
+                                ),
+                              ),
+                              Text(
+                                newsDocs[index]['date']
+                                    .toString()
+                                    .substring(0, 10),
+                                style: TextStyle(
+                                  fontSize: h7FontSize(context),
+                                  color: blackColor,
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
                     ),
                   ),
                 ),
-                padding: EdgeInsets.only(bottom: 4),
-                child: Row(
-                  children: [
-                    Container(
-                      width: c1BoxSize(context),
-                      height: c1BoxSize(context) - 40,
-                      child: Image.network(
-                        newsDocs[index]['thumbnail'],
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8, top: 8),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(
-                              top: 8,
-                              bottom: 8,
-                            ),
-                            child: Text(
-                              newsDocs[index]['title'],
-                              maxLines: 1,
-                              style: TextStyle(
-                                fontSize: h5FontSize(context),
-                                fontWeight: FontWeight.bold,
-                                color: blackColor,
-                              ),
-                            ),
-                          ),
-                          Text(
-                            newsDocs[index]['date'].toString().substring(0, 10),
-                            style: TextStyle(
-                              fontSize: h7FontSize(context),
-                              color: blackColor,
-                            ),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-          );
-        },
-      ),
-    );
+              );
+            },
+          ),
+        );
+      } else {
+        return Container(
+          width: widgetSize(context),
+          height: 300,
+          child: Center(
+            child: CircularProgressIndicator(color: blackColor),
+          ),
+        );
+      }
+    } catch (e) {
+      return Container(
+        width: widgetSize(context),
+        height: 300,
+        child: Center(
+          child: CircularProgressIndicator(color: blackColor),
+        ),
+      );
+    }
   }
 }
 

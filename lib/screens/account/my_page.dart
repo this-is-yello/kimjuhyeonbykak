@@ -1741,7 +1741,189 @@ class _AdminMyPageState extends State<AdminMyPage> {
                               return Padding(
                                 padding: const EdgeInsets.only(bottom: 16),
                                 child: InkWell(
-                                  onTap: () {},
+                                  onTap: () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return AlertDialog(
+                                          title: Text(
+                                            '회원정보',
+                                            style: TextStyle(
+                                              fontSize: h3FontSize(context),
+                                              color: blackColor,
+                                            ),
+                                          ),
+                                          content: SizedBox(
+                                            width: 320,
+                                            height: 200,
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Row(
+                                                  children: [
+                                                    Padding(
+                                                      padding: EdgeInsets.only(
+                                                        bottom: 8,
+                                                      ),
+                                                      child: Text(
+                                                        '${searchAdmin[index]['name']}  /  ${searchAdmin[index]['birth']}  /  ${searchAdmin[index]['gender']}',
+                                                        style: TextStyle(
+                                                          fontSize: h5FontSize(
+                                                              context),
+                                                          color: blackColor,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsets.only(
+                                                    bottom: 4,
+                                                  ),
+                                                  child: Row(
+                                                    children: [
+                                                      Text(
+                                                        '전화번호',
+                                                        style: TextStyle(
+                                                          fontSize: h5FontSize(
+                                                              context),
+                                                          color: blackColor,
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                          left: 4,
+                                                        ),
+                                                        child: TextButton(
+                                                          onPressed: () {},
+                                                          child: Text(
+                                                            searchAdmin[index]
+                                                                ['phone'],
+                                                            style: TextStyle(
+                                                              fontSize:
+                                                                  h5FontSize(
+                                                                      context),
+                                                              decoration:
+                                                                  TextDecoration
+                                                                      .underline,
+                                                              color: blackColor,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    Text(
+                                                      '이메일',
+                                                      style: TextStyle(
+                                                        fontSize:
+                                                            h5FontSize(context),
+                                                        color: blackColor,
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 4),
+                                                      child: TextButton(
+                                                        onPressed: () {},
+                                                        child: Text(
+                                                          searchAdmin[index]
+                                                              ['id'],
+                                                          style: TextStyle(
+                                                            fontSize:
+                                                                h5FontSize(
+                                                                    context),
+                                                            decoration:
+                                                                TextDecoration
+                                                                    .underline,
+                                                            color: blackColor,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsets.symmetric(
+                                                    vertical: 16,
+                                                  ),
+                                                  child: Row(
+                                                    children: [
+                                                      Text(
+                                                        '등급',
+                                                        style: TextStyle(
+                                                          fontSize: h5FontSize(
+                                                              context),
+                                                          color: blackColor,
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                          left: 16,
+                                                        ),
+                                                        child: Text(
+                                                          searchAdmin[index]
+                                                              ['grade'],
+                                                          style: TextStyle(
+                                                            fontSize:
+                                                                h5FontSize(
+                                                                    context),
+                                                            color: bykakColor,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                                ElevatedButton(
+                                                  onPressed: () {},
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    fixedSize: Size(320, 40),
+                                                    backgroundColor: blackColor,
+                                                  ),
+                                                  child: Text(
+                                                    '등급변경',
+                                                    style: TextStyle(
+                                                      fontSize:
+                                                          h5FontSize(context),
+                                                      color: whiteColor,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          actions: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                bottom: 16,
+                                              ),
+                                              child: TextButton(
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                },
+                                                child: Text(
+                                                  '닫기',
+                                                  style: TextStyle(
+                                                    fontSize: 18,
+                                                    color: blackColor,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
+                                  },
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,

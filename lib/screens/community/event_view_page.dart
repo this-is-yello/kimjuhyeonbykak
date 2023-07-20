@@ -302,7 +302,7 @@ class _EventViewContentState extends State<EventViewContent> {
       print(e);
       return Container(
         width: widgetSize(context),
-        height: 500,
+        height: MediaQuery.of(context).size.height,
         child: Center(
           child: CircularProgressIndicator(color: blackColor),
         ),

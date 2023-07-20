@@ -676,149 +676,169 @@ class _NotificationScreenState extends State<NotificationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(
-          width: widgetSize(context),
-          height: c4BoxSize(context) * 5,
-          child: ListView.builder(
-            itemCount: notificationLength.hashCode,
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.only(bottom: 16),
-                child: InkWell(
-                  onTap: () {
-                    setState(() {
-                      notificationNum = index;
-                    });
-                    Get.rootDelegate
-                        .toNamed('${Routes.NOTIFICATIONVIEW}/$notificationNum');
-                    print(notificationNum);
-                  },
-                  child: Container(
-                    width: widgetSize(context),
-                    height: c4BoxSize(context) - 10,
-                    padding: EdgeInsets.only(
-                      left: 8,
-                      right: 8,
-                    ),
-                    decoration: BoxDecoration(
-                      border: Border(
-                        bottom: BorderSide(
-                          color: blackColor,
-                          width: 2,
+    try {
+      if (notificationDocs[i]['title'] != null) {
+        return Column(
+          children: [
+            SizedBox(
+              width: widgetSize(context),
+              height: c4BoxSize(context) * 5,
+              child: ListView.builder(
+                itemCount: notificationLength.hashCode,
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 16),
+                    child: InkWell(
+                      onTap: () {
+                        setState(() {
+                          notificationNum = index;
+                        });
+                        Get.rootDelegate.toNamed(
+                            '${Routes.NOTIFICATIONVIEW}/$notificationNum');
+                        print(notificationNum);
+                      },
+                      child: Container(
+                        width: widgetSize(context),
+                        height: c4BoxSize(context) - 10,
+                        padding: EdgeInsets.only(
+                          left: 8,
+                          right: 8,
+                        ),
+                        decoration: BoxDecoration(
+                          border: Border(
+                            bottom: BorderSide(
+                              color: blackColor,
+                              width: 2,
+                            ),
+                          ),
+                        ),
+                        // padding: EdgeInsets.only(bottom: 4),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              '[${notificationDocs[index]['value']}] ${notificationDocs[index]['title']}',
+                              maxLines: 1,
+                              style: TextStyle(
+                                fontSize: h5FontSize(context),
+                                fontWeight: FontWeight.bold,
+                                color: blackColor,
+                              ),
+                            ),
+                            Text(
+                              notificationDocs[index]['date']
+                                  .toString()
+                                  .substring(0, 10),
+                              style: TextStyle(
+                                fontSize: h7FontSize(context),
+                                color: blackColor,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
-                    // padding: EdgeInsets.only(bottom: 4),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          '[${notificationDocs[index]['value']}] ${notificationDocs[index]['title']}',
-                          maxLines: 1,
-                          style: TextStyle(
-                            fontSize: h5FontSize(context),
-                            fontWeight: FontWeight.bold,
-                            color: blackColor,
-                          ),
-                        ),
-                        Text(
-                          notificationDocs[index]['date']
-                              .toString()
-                              .substring(0, 10),
-                          style: TextStyle(
-                            fontSize: h7FontSize(context),
-                            color: blackColor,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              );
-            },
-          ),
-        ),
-        SizedBox(
-          width: widgetSize(context),
-          child: Padding(
-            padding: EdgeInsets.only(top: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                TextButton(
-                  onPressed: () {
-                    if (plusIndex <= 0) {
-                      plusIndex = 0;
-                      pageNum = 0;
-                    } else {
-                      setState(() {
-                        plusIndex = plusIndex - 5;
-                        pageNum--;
-                      });
-                    }
-                    print('${pageNum + 1}페이지');
-                  },
-                  child: Text(
-                    '〈 이전 페이지',
-                    style: TextStyle(
-                      fontSize: h4FontSize(context),
-                      color: blackColor,
-                    ),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    if (notificationAdminNum == 0) {
-                      double a1 = notificationLength / 5;
-                      int b1 = a1.floor();
-                      if (b1 == pageNum) {
-                        setState(() {
-                          plusIndex = plusIndex + 0;
-                          b1 + 1;
-                        });
-                      } else {
-                        setState(() {
-                          plusIndex = plusIndex + 5;
-                          pageNum++;
-                        });
-                      }
-                      print('${pageNum + 1}페이지');
-                    } else if (notificationAdminNum == 1) {
-                      // double a2 = businessInquiryLength / 5;
-                      // int b2 = a2.floor();
-                      // if (b2 == pageNum) {
-                      //   setState(() {
-                      //     plusIndex = plusIndex + 0;
-                      //     b2 + 1;
-                      //   });
-                      // } else {
-                      //   setState(() {
-                      //     plusIndex = plusIndex + 5;
-                      //     pageNum++;
-                      //   });
-                      // }
-                      // print('${pageNum + 1}페이지');
-                    }
-                  },
-                  child: Text(
-                    '다음 페이지 〉',
-                    style: TextStyle(
-                      fontSize: h4FontSize(context),
-                      color: blackColor,
-                    ),
-                  ),
-                ),
-              ],
+                  );
+                },
+              ),
             ),
+            SizedBox(
+              width: widgetSize(context),
+              child: Padding(
+                padding: EdgeInsets.only(top: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        if (plusIndex <= 0) {
+                          plusIndex = 0;
+                          pageNum = 0;
+                        } else {
+                          setState(() {
+                            plusIndex = plusIndex - 5;
+                            pageNum--;
+                          });
+                        }
+                        print('${pageNum + 1}페이지');
+                      },
+                      child: Text(
+                        '〈 이전 페이지',
+                        style: TextStyle(
+                          fontSize: h4FontSize(context),
+                          color: blackColor,
+                        ),
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        if (notificationAdminNum == 0) {
+                          double a1 = notificationLength / 5;
+                          int b1 = a1.floor();
+                          if (b1 == pageNum) {
+                            setState(() {
+                              plusIndex = plusIndex + 0;
+                              b1 + 1;
+                            });
+                          } else {
+                            setState(() {
+                              plusIndex = plusIndex + 5;
+                              pageNum++;
+                            });
+                          }
+                          print('${pageNum + 1}페이지');
+                        } else if (notificationAdminNum == 1) {
+                          // double a2 = businessInquiryLength / 5;
+                          // int b2 = a2.floor();
+                          // if (b2 == pageNum) {
+                          //   setState(() {
+                          //     plusIndex = plusIndex + 0;
+                          //     b2 + 1;
+                          //   });
+                          // } else {
+                          //   setState(() {
+                          //     plusIndex = plusIndex + 5;
+                          //     pageNum++;
+                          //   });
+                          // }
+                          // print('${pageNum + 1}페이지');
+                        }
+                      },
+                      child: Text(
+                        '다음 페이지 〉',
+                        style: TextStyle(
+                          fontSize: h4FontSize(context),
+                          color: blackColor,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        );
+      } else {
+        return SizedBox(
+          width: widgetSize(context),
+          height: 300,
+          child: Center(
+            child: CircularProgressIndicator(color: blackColor),
           ),
+        );
+      }
+    } catch (e) {
+      return SizedBox(
+        width: widgetSize(context),
+        height: 300,
+        child: Center(
+          child: CircularProgressIndicator(color: blackColor),
         ),
-      ],
-    );
+      );
+    }
   }
 }
 
@@ -853,75 +873,96 @@ class _EventScreenState extends State<EventScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: widgetSize(context),
-      child: GridView.builder(
-        itemCount: eventDocsLength.hashCode,
-        shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: MediaQuery.of(context).size.width < 800 ? 1 : 2,
-          childAspectRatio: 3 / 2.3,
-          mainAxisSpacing: 40,
-          crossAxisSpacing: 10,
-        ),
-        itemBuilder: (context, index) {
-          return InkWell(
-            onTap: () {
-              setState(() {
-                eventNum = index;
-              });
-              Get.rootDelegate.toNamed('${Routes.EVENTVIEW}/$eventNum');
-              print(notificationNum);
-            },
-            child: Column(
-              children: [
-                Expanded(
-                  flex: 1,
-                  child: Container(
-                    child: Image.network(
-                      eventDocs[index]['thumbnail'],
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 8),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          top: 4,
-                          bottom: 8,
-                        ),
-                        child: Text(
-                          eventDocs[index]['title'],
-                          style: TextStyle(
-                            fontSize: h3FontSize(context),
-                            color: blackColor,
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: double.infinity,
-                        child: Text(
-                          eventDocs[index]['subtitle'],
-                          style: TextStyle(
-                            fontSize: h7FontSize(context),
-                            color: blackColor,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                )
-              ],
+    try {
+      if (eventDocs[i]['thumbnail'] != null) {
+        return SizedBox(
+          width: widgetSize(context),
+          child: GridView.builder(
+            itemCount: eventDocsLength.hashCode,
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: MediaQuery.of(context).size.width < 800 ? 1 : 2,
+              childAspectRatio: 3 / 2.3,
+              mainAxisSpacing: 40,
+              crossAxisSpacing: 10,
             ),
-          );
-        },
-      ),
-    );
+            itemBuilder: (context, index) {
+              return InkWell(
+                onTap: () {
+                  setState(() {
+                    eventNum = index;
+                  });
+                  Get.rootDelegate.toNamed('${Routes.EVENTVIEW}/$eventNum');
+                  print(notificationNum);
+                },
+                child: Column(
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                        child: Image.network(
+                          eventDocs[index]['thumbnail'],
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              top: 4,
+                              bottom: 8,
+                            ),
+                            child: Text(
+                              eventDocs[index]['title'],
+                              style: TextStyle(
+                                fontSize: h3FontSize(context),
+                                color: blackColor,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: double.infinity,
+                            child: Text(
+                              eventDocs[index]['subtitle'],
+                              style: TextStyle(
+                                fontSize: h7FontSize(context),
+                                color: blackColor,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              );
+            },
+          ),
+        );
+      } else {
+        return SizedBox(
+          width: widgetSize(context),
+          height: 300,
+          child: Center(
+            child: CircularProgressIndicator(color: blackColor),
+          ),
+        );
+      }
+    } catch (e) {
+      print(e);
+      return SizedBox(
+        width: widgetSize(context),
+        height: 300,
+        child: Center(
+          child: CircularProgressIndicator(color: blackColor),
+        ),
+      );
+    }
   }
 }
 
@@ -1052,7 +1093,7 @@ class _MediaScreenState extends State<MediaScreen> {
       print(e);
       return SizedBox(
         width: widgetSize(context),
-        height: 400,
+        height: 300,
         child: Center(
           child: CircularProgressIndicator(color: blackColor),
         ),

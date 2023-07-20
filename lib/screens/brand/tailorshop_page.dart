@@ -206,53 +206,59 @@ class TailorShopMain extends StatelessWidget {
 
 // ---------- Video_&_Shops -----------------------------------------------------------------------------------------------------
 jemulpoShop() {
-  return SizedBox(
-    child: Stack(
-      alignment: Alignment.bottomCenter,
-      children: [
-        Image.asset(
-          'assets/images/shop_jemulpo.jpg',
-          fit: BoxFit.fitWidth,
-        ),
-        Padding(
-          padding: const EdgeInsets.only(bottom: 80),
-          child: Center(
-            child: Text(
-              '제물포 본점',
-              style: TextStyle(
-                fontSize: 20,
-                color: whiteColor,
+  return InkWell(
+    onTap: () {},
+    child: SizedBox(
+      child: Stack(
+        alignment: Alignment.bottomCenter,
+        children: [
+          Image.asset(
+            'assets/images/shop_jemulpo.jpg',
+            fit: BoxFit.fitWidth,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 80),
+            child: Center(
+              child: Text(
+                '제물포 본점',
+                style: TextStyle(
+                  fontSize: 20,
+                  color: whiteColor,
+                ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     ),
   );
 }
 
 songdoShop() {
-  return SizedBox(
-    child: Stack(
-      alignment: Alignment.bottomCenter,
-      children: [
-        Image.asset(
-          'assets/images/shop_songdo.jpg',
-          fit: BoxFit.fitWidth,
-        ),
-        Padding(
-          padding: const EdgeInsets.only(bottom: 80),
-          child: Center(
-            child: Text(
-              '인천 송도점',
-              style: TextStyle(
-                fontSize: 20,
-                color: whiteColor,
+  return InkWell(
+    onTap: () {},
+    child: SizedBox(
+      child: Stack(
+        alignment: Alignment.bottomCenter,
+        children: [
+          Image.asset(
+            'assets/images/shop_songdo.jpg',
+            fit: BoxFit.fitWidth,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 80),
+            child: Center(
+              child: Text(
+                '인천 송도점',
+                style: TextStyle(
+                  fontSize: 20,
+                  color: whiteColor,
+                ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     ),
   );
 }
@@ -358,6 +364,22 @@ class _LabelState extends State<Label> {
     '김주현바이각의 매스티지 브랜드 White label은 고유의 비스포크 방식은 유지, 트렌디하고 컴포터블한 세퍼레잇 컬렉션을 전개합니다.\n스웨이드, 레더, 니트웨어 등 다양한 제품군을 선보이며 공정과정을 간략화 함으로써 부담없이 즐기실 수 있는 브랜드입니다.\n\n김주현바이각 White label은 여타 공장에서 제작되어진 브랜드 수트와 격이 다른 품위와 편안함을 느껴보실 수 있습니다.',
     '"Suit In Wity"',
     '각박한 빌딩 숲, 똑같은 비즈니스 수트, 그 안에서 우리의 위트를 찾습니다.\n“입어서 즐거운 옷”  이것이 바로 White label의 철학입니다. Wity는 Wit와 City의 합성어입니다.',
+  ];
+
+  List fabrics = [
+    'assets/images/fabrics/fabric_1.jpg',
+    'assets/images/fabrics/fabric_2.jpg',
+    'assets/images/fabrics/fabric_3.jpg',
+    'assets/images/fabrics/fabric_4.jpg',
+    'assets/images/fabrics/fabric_5.jpg',
+    'assets/images/fabrics/fabric_6.jpg',
+    'assets/images/fabrics/fabric_7.jpg',
+    'assets/images/fabrics/fabric_8.jpg',
+    'assets/images/fabrics/fabric_9.jpg',
+    'assets/images/fabrics/fabric_10.jpg',
+    'assets/images/fabrics/fabric_11.jpg',
+    'assets/images/fabrics/fabric_12.jpg',
+    'assets/images/fabrics/fabric_13.jpg',
   ];
 
   @override
@@ -536,13 +558,22 @@ class _LabelState extends State<Label> {
                 ),
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  // itemCount: ,
+                  itemCount: fabrics.length,
                   itemBuilder: (context, index) {
                     return Container(
                       width: c1BoxSize(context),
                       height: c1BoxSize(context),
-                      margin: EdgeInsets.all(8),
-                      color: blackColor,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          width: 4,
+                          color: blackColor,
+                        ),
+                      ),
+                      margin: EdgeInsets.symmetric(horizontal: 12),
+                      child: Image.asset(
+                        fabrics[index],
+                        fit: BoxFit.cover,
+                      ),
                     );
                   },
                 ),
@@ -707,11 +738,21 @@ class _MakingProcessState extends State<MakingProcess> {
     '우리가 생각하는 진정한 수트는 장인의\n정성스러운 손바느질을 거쳐 개인의 개성과\n스타일을 구현한 수트라고 생각합니다.\n이러한 과정 속에서 만들어진 우리의 수트를\n경험한다면 분명 말보단 몸이 먼저 느낄 것 입니다.',
   ];
 
+  List makingProcess = [
+    'assets/images/making_process/make_process_2.jpg',
+    'assets/images/making_process/make_process_3.jpg',
+    'assets/images/making_process/make_process_4.jpg',
+    'assets/images/making_process/make_process_5.jpg',
+  ];
+
   makingPic(context, i) {
     return Container(
       width: c1BoxSize(context) + 160,
       height: c1BoxSize(context) + 160,
-      color: blackColor,
+      child: Image.asset(
+        makingProcess[i],
+        fit: BoxFit.cover,
+      ),
     );
   }
 
@@ -742,7 +783,7 @@ class _MakingProcessState extends State<MakingProcess> {
         Text(
           makingSub[i],
           style: TextStyle(
-            fontSize: h7FontSize(context),
+            fontSize: h6FontSize(context),
             color: blackColor,
           ),
         ),
@@ -940,9 +981,9 @@ serviceText(context) {
           ),
         ),
         child: Padding(
-          padding: EdgeInsets.only(bottom: 4),
+          padding: EdgeInsets.only(bottom: 6),
           child: Text(
-            '1. Lorem Ipsum is simply dummy text',
+            '1. 보타이를 웨딩촬영이나 예식날 대여해 드립니다.',
             style: TextStyle(
               fontSize: h6FontSize(context),
               color: blackColor,
@@ -962,9 +1003,9 @@ serviceText(context) {
           ),
         ),
         child: Padding(
-          padding: EdgeInsets.only(bottom: 4),
+          padding: EdgeInsets.only(bottom: 6),
           child: Text(
-            '2. Lorem Ipsum is simply dummy text',
+            '2. 예식 후 평상복으로 입으실 수 있도록 라펠을 교체해드립니다.',
             style: TextStyle(
               fontSize: h6FontSize(context),
               color: blackColor,
@@ -984,9 +1025,9 @@ serviceText(context) {
           ),
         ),
         child: Padding(
-          padding: EdgeInsets.only(bottom: 4),
+          padding: EdgeInsets.only(bottom: 6),
           child: Text(
-            '3. Lorem Ipsum is simply dummy text',
+            '3. 예식 후 원하시면 단추를 교체해드립니다.',
             style: TextStyle(
               fontSize: h6FontSize(context),
               color: blackColor,
@@ -1006,9 +1047,9 @@ serviceText(context) {
           ),
         ),
         child: Padding(
-          padding: EdgeInsets.only(bottom: 4),
+          padding: EdgeInsets.only(bottom: 6),
           child: Text(
-            '4. Lorem Ipsum is simply dummy text',
+            '4. 김주현바이각 예복 진행시 고급맞춤셔츠를 제작해드립니다.',
             style: TextStyle(
               fontSize: h6FontSize(context),
               color: blackColor,
@@ -1027,7 +1068,7 @@ serviceText(context) {
           ),
         ),
         child: Padding(
-          padding: EdgeInsets.only(bottom: 4),
+          padding: EdgeInsets.only(bottom: 6),
           child: Text(
             '5. Lorem Ipsum is simply dummy text',
             style: TextStyle(

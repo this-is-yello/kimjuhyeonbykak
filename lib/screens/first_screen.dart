@@ -144,7 +144,9 @@ class _CarouselScreenState extends State<CarouselScreen> {
     Routes.NEWJUMULPOCLUB,
     Routes.RENTALCENTER
   ];
+  List view = ['view', '자세히 보기'];
 
+  int viewNum = 0;
   int picNum = 0;
   moveSel() {
     _carouselController.animateToPage(
@@ -210,7 +212,6 @@ class _CarouselScreenState extends State<CarouselScreen> {
                     child: FadeIn(
                       animate: true,
                       duration: const Duration(milliseconds: 2000),
-                      // delay: const Duration(milliseconds: 300),
                       child: SizedBox(
                         width: widgetSize(context),
                         child: Column(
@@ -242,9 +243,15 @@ class _CarouselScreenState extends State<CarouselScreen> {
                             InkWell(
                               onTap: () {
                                 Get.rootDelegate.toNamed(mainViewLinks[index]);
+                                setState(() {});
+                              },
+                              onHover: (value) {
+                                setState(() {
+                                  value == true ? viewNum = 1 : viewNum = 0;
+                                });
                               },
                               child: Container(
-                                width: c4BoxSize(context),
+                                width: c3BoxSize(context),
                                 padding: EdgeInsets.only(bottom: 4),
                                 decoration: BoxDecoration(
                                   border: Border(
@@ -255,7 +262,7 @@ class _CarouselScreenState extends State<CarouselScreen> {
                                   ),
                                 ),
                                 child: Text(
-                                  'view',
+                                  view[viewNum],
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
                                     fontSize: h5FontSize(context),
