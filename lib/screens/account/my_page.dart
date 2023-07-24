@@ -4,10 +4,7 @@ import 'package:kimjuhyeonbykak/main.dart';
 import 'package:kimjuhyeonbykak/navigation.dart';
 import 'package:kimjuhyeonbykak/screens/account/board_upload_Modal.dart';
 
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:get/get.dart';
 
 class MyPage extends StatefulWidget {
   const MyPage({super.key});
@@ -1280,6 +1277,372 @@ class _AdminMyPageState extends State<AdminMyPage> {
     }
   }
 
+  bool _checkAdmin = false;
+  bool _checkAmbassador = false;
+  bool _checkKakin = false;
+
+  userInfo(index) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(
+            '회원정보',
+            style: TextStyle(
+              fontSize: h3FontSize(context),
+              color: blackColor,
+            ),
+          ),
+          content: SizedBox(
+            width: 320,
+            height: 200,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(
+                        bottom: 8,
+                      ),
+                      child: Text(
+                        '${searchAdmin[index]['name']}  /  ${searchAdmin[index]['birth']}  /  ${searchAdmin[index]['gender']}',
+                        style: TextStyle(
+                          fontSize: h5FontSize(context),
+                          color: blackColor,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: EdgeInsets.only(
+                    bottom: 4,
+                  ),
+                  child: Row(
+                    children: [
+                      Text(
+                        '전화번호',
+                        style: TextStyle(
+                          fontSize: h5FontSize(context),
+                          color: blackColor,
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                          left: 4,
+                        ),
+                        child: TextButton(
+                          onPressed: () {
+                            // 전화걸기
+                          },
+                          child: Text(
+                            searchAdmin[index]['phone'],
+                            style: TextStyle(
+                              fontSize: h5FontSize(context),
+                              decoration: TextDecoration.underline,
+                              color: blackColor,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Row(
+                  children: [
+                    Text(
+                      '이메일',
+                      style: TextStyle(
+                        fontSize: h5FontSize(context),
+                        color: blackColor,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 4),
+                      child: TextButton(
+                        onPressed: () {
+                          // 메일 보내기
+                        },
+                        child: Text(
+                          searchAdmin[index]['id'],
+                          style: TextStyle(
+                            fontSize: h5FontSize(context),
+                            decoration: TextDecoration.underline,
+                            color: blackColor,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    vertical: 16,
+                  ),
+                  child: Row(
+                    children: [
+                      Text(
+                        '등급',
+                        style: TextStyle(
+                          fontSize: h5FontSize(context),
+                          color: blackColor,
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                          left: 16,
+                        ),
+                        child: Text(
+                          searchAdmin[index]['grade'],
+                          style: TextStyle(
+                            fontSize: h5FontSize(context),
+                            color: bykakColor,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                    gradeDialog(index);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    fixedSize: Size(320, 40),
+                    backgroundColor: blackColor,
+                  ),
+                  child: Text(
+                    '등급변경',
+                    style: TextStyle(
+                      fontSize: h5FontSize(context),
+                      color: whiteColor,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(
+                bottom: 16,
+              ),
+              child: TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text(
+                  '닫기',
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: blackColor,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  gradeState(index) {
+    if (searchAdmin[index]['grade'] == '관리자') {
+      setState(() {
+        _checkAdmin = true;
+        _checkAmbassador = false;
+        _checkKakin = false;
+      });
+    } else if (searchAdmin[index]['grade'] == '엠버서더') {
+      setState(() {
+        _checkAdmin = false;
+        _checkAmbassador = true;
+        _checkKakin = false;
+      });
+    } else {
+      _checkAdmin = false;
+      _checkAmbassador = false;
+      _checkKakin = true;
+    }
+  }
+
+  gradeDialog(index) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(
+            '등급변경',
+            style: TextStyle(
+              fontSize: h3FontSize(context),
+              color: blackColor,
+            ),
+          ),
+          content: SizedBox(
+            width: 320,
+            height: 200,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      '관리자',
+                      style: TextStyle(
+                        fontSize: h6FontSize(context),
+                        color: blackColor,
+                      ),
+                    ),
+                    Checkbox(
+                      activeColor: blackColor,
+                      checkColor: whiteColor,
+                      value: _checkAdmin,
+                      onChanged: (bool? value) {
+                        if (_checkAmbassador == true || _checkKakin == true) {
+                          setState(() {
+                            _checkAmbassador = false;
+                            _checkKakin = false;
+                            _checkAdmin = value!;
+                          });
+                        } else {
+                          setState(() {
+                            _checkAdmin = value!;
+                          });
+                        }
+                        try {
+                          firestore
+                              .collection('account')
+                              .doc(searchAdmin[index]['id'])
+                              .update({
+                            'grade': '관리자',
+                          });
+                          searchItems();
+                        } catch (e) {
+                          print(e);
+                        }
+                        Navigator.pop(context);
+                        print('관리자');
+                      },
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        '엠버서더',
+                        style: TextStyle(
+                          fontSize: h6FontSize(context),
+                          color: blackColor,
+                        ),
+                      ),
+                      Checkbox(
+                        activeColor: blackColor,
+                        checkColor: whiteColor,
+                        value: _checkAmbassador,
+                        onChanged: (bool? value) {
+                          if (_checkAdmin == true || _checkKakin == true) {
+                            setState(() {
+                              _checkAdmin = false;
+                              _checkKakin = false;
+                              _checkAmbassador = value!;
+                            });
+                          } else {
+                            setState(() {
+                              _checkAmbassador = value!;
+                            });
+                          }
+                          try {
+                            firestore
+                                .collection('account')
+                                .doc(searchAdmin[index]['id'])
+                                .update({
+                              'grade': '엠버서더',
+                            });
+                            searchItems();
+                          } catch (e) {
+                            print(e);
+                          }
+                          Navigator.pop(context);
+                          print('엠버서더');
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      '각인',
+                      style: TextStyle(
+                        fontSize: h6FontSize(context),
+                        color: blackColor,
+                      ),
+                    ),
+                    Checkbox(
+                      activeColor: blackColor,
+                      checkColor: whiteColor,
+                      value: _checkKakin,
+                      onChanged: (bool? value) {
+                        if (_checkAdmin == true || _checkAmbassador == true) {
+                          setState(() {
+                            _checkAdmin = false;
+                            _checkAmbassador = false;
+                            _checkKakin = value!;
+                          });
+                        } else {
+                          setState(() {
+                            _checkKakin = value!;
+                          });
+                        }
+                        try {
+                          firestore
+                              .collection('account')
+                              .doc(searchAdmin[index]['id'])
+                              .update({
+                            'grade': '각인',
+                          });
+                          searchItems();
+                        } catch (e) {
+                          print(e);
+                        }
+                        Navigator.pop(context);
+                        print('각인');
+                      },
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(bottom: 16),
+              child: TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text(
+                  '닫기',
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: blackColor,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   void initState() {
     super.initState();
@@ -1742,187 +2105,8 @@ class _AdminMyPageState extends State<AdminMyPage> {
                                 padding: const EdgeInsets.only(bottom: 16),
                                 child: InkWell(
                                   onTap: () {
-                                    showDialog(
-                                      context: context,
-                                      builder: (context) {
-                                        return AlertDialog(
-                                          title: Text(
-                                            '회원정보',
-                                            style: TextStyle(
-                                              fontSize: h3FontSize(context),
-                                              color: blackColor,
-                                            ),
-                                          ),
-                                          content: SizedBox(
-                                            width: 320,
-                                            height: 200,
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Row(
-                                                  children: [
-                                                    Padding(
-                                                      padding: EdgeInsets.only(
-                                                        bottom: 8,
-                                                      ),
-                                                      child: Text(
-                                                        '${searchAdmin[index]['name']}  /  ${searchAdmin[index]['birth']}  /  ${searchAdmin[index]['gender']}',
-                                                        style: TextStyle(
-                                                          fontSize: h5FontSize(
-                                                              context),
-                                                          color: blackColor,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsets.only(
-                                                    bottom: 4,
-                                                  ),
-                                                  child: Row(
-                                                    children: [
-                                                      Text(
-                                                        '전화번호',
-                                                        style: TextStyle(
-                                                          fontSize: h5FontSize(
-                                                              context),
-                                                          color: blackColor,
-                                                        ),
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsets.only(
-                                                          left: 4,
-                                                        ),
-                                                        child: TextButton(
-                                                          onPressed: () {},
-                                                          child: Text(
-                                                            searchAdmin[index]
-                                                                ['phone'],
-                                                            style: TextStyle(
-                                                              fontSize:
-                                                                  h5FontSize(
-                                                                      context),
-                                                              decoration:
-                                                                  TextDecoration
-                                                                      .underline,
-                                                              color: blackColor,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                                Row(
-                                                  children: [
-                                                    Text(
-                                                      '이메일',
-                                                      style: TextStyle(
-                                                        fontSize:
-                                                            h5FontSize(context),
-                                                        color: blackColor,
-                                                      ),
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              left: 4),
-                                                      child: TextButton(
-                                                        onPressed: () {},
-                                                        child: Text(
-                                                          searchAdmin[index]
-                                                              ['id'],
-                                                          style: TextStyle(
-                                                            fontSize:
-                                                                h5FontSize(
-                                                                    context),
-                                                            decoration:
-                                                                TextDecoration
-                                                                    .underline,
-                                                            color: blackColor,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsets.symmetric(
-                                                    vertical: 16,
-                                                  ),
-                                                  child: Row(
-                                                    children: [
-                                                      Text(
-                                                        '등급',
-                                                        style: TextStyle(
-                                                          fontSize: h5FontSize(
-                                                              context),
-                                                          color: blackColor,
-                                                        ),
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsets.only(
-                                                          left: 16,
-                                                        ),
-                                                        child: Text(
-                                                          searchAdmin[index]
-                                                              ['grade'],
-                                                          style: TextStyle(
-                                                            fontSize:
-                                                                h5FontSize(
-                                                                    context),
-                                                            color: bykakColor,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                                ElevatedButton(
-                                                  onPressed: () {},
-                                                  style:
-                                                      ElevatedButton.styleFrom(
-                                                    fixedSize: Size(320, 40),
-                                                    backgroundColor: blackColor,
-                                                  ),
-                                                  child: Text(
-                                                    '등급변경',
-                                                    style: TextStyle(
-                                                      fontSize:
-                                                          h5FontSize(context),
-                                                      color: whiteColor,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          actions: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                bottom: 16,
-                                              ),
-                                              child: TextButton(
-                                                onPressed: () {
-                                                  Navigator.pop(context);
-                                                },
-                                                child: Text(
-                                                  '닫기',
-                                                  style: TextStyle(
-                                                    fontSize: 18,
-                                                    color: blackColor,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        );
-                                      },
-                                    );
+                                    gradeState(index);
+                                    userInfo(index);
                                   },
                                   child: Column(
                                     crossAxisAlignment:

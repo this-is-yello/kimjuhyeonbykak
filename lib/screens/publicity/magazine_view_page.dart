@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:kimjuhyeonbykak/style.dart';
 
 import 'package:kimjuhyeonbykak/main.dart';
-import 'package:kimjuhyeonbykak/screens/publicity/publicity_page.dart';
 import 'package:kimjuhyeonbykak/navigation.dart';
 
 import 'package:get/get.dart';

@@ -320,8 +320,10 @@ class Curriculum extends StatelessWidget {
                   children: [
                     Container(
                       width: widgetSize(context),
-                      height: c1BoxSize(context),
-                      color: blackColor,
+                      child: Image.asset(
+                        'assets/images/curriculum.png',
+                        fit: BoxFit.fitWidth,
+                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 40),

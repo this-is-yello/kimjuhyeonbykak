@@ -5,6 +5,8 @@ import 'package:kimjuhyeonbykak/navigation.dart';
 
 import 'package:countup/countup.dart';
 import 'package:widget_and_text_animator/widget_and_text_animator.dart';
+import 'package:video_player/video_player.dart';
+import 'package:video_player_web_hls/video_player_web_hls.dart';
 
 class TailorShopPage extends StatefulWidget {
   const TailorShopPage({super.key});
@@ -263,8 +265,39 @@ songdoShop() {
   );
 }
 
-class Shops extends StatelessWidget {
+class Shops extends StatefulWidget {
   const Shops({super.key});
+
+  @override
+  State<Shops> createState() => _ShopsState();
+}
+
+class _ShopsState extends State<Shops> {
+  late VideoPlayerController _videoController;
+
+  @override
+  void initState() {
+    super.initState();
+    _videoController = VideoPlayerController.asset(
+      'assets/videos/atelier_video.mp4',
+    )..initialize().then(
+        (_) {
+          // if (this.mounted) {
+          setState(
+            () {
+              WidgetsBinding.instance.addPersistentFrameCallback(
+                (_) {
+                  _videoController.setVolume(0);
+                  _videoController.play();
+                  _videoController.setLooping(true);
+                },
+              );
+            },
+          );
+          //   }
+        },
+      );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -277,10 +310,39 @@ class Shops extends StatelessWidget {
         children: [
           SizedBox(
             width: widgetSize(context),
-            child: Image.asset(
-              'assets/images/tailorShop_bg.png',
-              fit: BoxFit.fitWidth,
-            ),
+            height: widgetSize(context) - 300,
+            child: _videoController.value.isInitialized
+                ? Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height,
+                    child: Opacity(
+                      opacity: 0.8,
+                      child: FittedBox(
+                        fit: BoxFit.cover,
+                        child: SizedBox(
+                          width: _videoController.value.size?.width ??
+                              widgetSize(context),
+                          height: _videoController.value.size?.height ?? 300,
+                          child: AspectRatio(
+                            aspectRatio: _videoController.value.aspectRatio,
+                            child: VideoPlayer(_videoController),
+                          ),
+                        ),
+                      ),
+                    ),
+                  )
+                : Container(
+                    child: Center(
+                      child: SizedBox(
+                        width: 40,
+                        height: 40,
+                        child: CircularProgressIndicator(
+                          color: blackColor,
+                          strokeWidth: 2,
+                        ),
+                      ),
+                    ),
+                  ),
           ),
           Padding(
             padding: EdgeInsets.only(top: 20),
@@ -1005,7 +1067,7 @@ serviceText(context) {
         child: Padding(
           padding: EdgeInsets.only(bottom: 6),
           child: Text(
-            '2. 예식 후 평상복으로 입으실 수 있도록 라펠을 교체해드립니다.',
+            '2. 예식 후 평상복으로 입으실 수 있게 라펠을 교체해드립니다.',
             style: TextStyle(
               fontSize: h6FontSize(context),
               color: blackColor,

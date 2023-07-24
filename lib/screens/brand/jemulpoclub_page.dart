@@ -210,8 +210,10 @@ class JemulpoClubStudio extends StatelessWidget {
                   children: [
                     Container(
                       width: widgetSize(context),
-                      height: c1BoxSize(context) + 200,
-                      color: blackColor,
+                      child: Image.asset(
+                        'assets/images/jemulpoclub/jemulpoclub_1.jpg',
+                        fit: BoxFit.fitWidth,
+                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 20),
@@ -238,8 +240,10 @@ class JemulpoClubStudio extends StatelessWidget {
                     children: [
                       Container(
                         width: widgetSize(context),
-                        height: c1BoxSize(context) + 200,
-                        color: blackColor,
+                        child: Image.asset(
+                          'assets/images/jemulpoclub/jemulpoclub_2.jpg',
+                          fit: BoxFit.fitWidth,
+                        ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 20),
@@ -267,8 +271,10 @@ class JemulpoClubStudio extends StatelessWidget {
                     children: [
                       Container(
                         width: widgetSize(context),
-                        height: c1BoxSize(context) + 200,
-                        color: blackColor,
+                        child: Image.asset(
+                          'assets/images/jemulpoclub/jemulpoclub_3.jpg',
+                          fit: BoxFit.fitWidth,
+                        ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 20),
@@ -348,15 +354,19 @@ class JemulpoClubStudio extends StatelessWidget {
                   children: [
                     Container(
                       width: widgetSize(context),
-                      height: c1BoxSize(context) + 80,
-                      color: blackColor,
+                      child: Image.asset(
+                        'assets/images/jemulpoclub/jemulpoclub_4.jpg',
+                        fit: BoxFit.fitWidth,
+                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 20),
                       child: Container(
                         width: widgetSize(context),
-                        height: c1BoxSize(context) + 80,
-                        color: blackColor,
+                        child: Image.asset(
+                          'assets/images/jemulpoclub/jemulpoclub_5.jpg',
+                          fit: BoxFit.fitWidth,
+                        ),
                       ),
                     ),
                   ],
