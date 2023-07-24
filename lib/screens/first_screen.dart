@@ -9,6 +9,7 @@ import 'package:kimjuhyeonbykak/navigation.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:widget_and_text_animator/widget_and_text_animator.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:video_player/video_player.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:countup/countup.dart';
 import 'package:get/get.dart';
@@ -566,13 +567,6 @@ class _BykakStoryState extends State<BykakStory> {
 }
 
 // ---------- TailorShop -----------------------------------------------------------------------------------------------------
-makingFilm() {
-  return Image.asset(
-    'assets/images/tailorShop_bg.png',
-    fit: BoxFit.contain,
-  );
-}
-
 countingText(context) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
@@ -586,7 +580,7 @@ countingText(context) {
             ),
           ),
           SizedBox(
-            width: c1BoxSize(context) + 40,
+            width: c1BoxSize(context) + 48,
             child: Countup(
               begin: 0,
               end: 5981,
@@ -620,7 +614,7 @@ countingText(context) {
               ),
             ),
             SizedBox(
-              width: c1BoxSize(context) + 40,
+              width: c1BoxSize(context) + 48,
               child: Countup(
                 begin: 0,
                 end: 59804019,
@@ -650,7 +644,7 @@ countingText(context) {
             ),
           ),
           SizedBox(
-            width: c1BoxSize(context) + 40,
+            width: c1BoxSize(context) + 48,
             child: Countup(
               begin: 0,
               end: 592119,
@@ -682,6 +676,65 @@ class TailorShopScreen extends StatefulWidget {
 }
 
 class _TailorShopScreenState extends State<TailorShopScreen> {
+  late VideoPlayerController _videoController;
+
+  @override
+  void initState() {
+    super.initState();
+    _videoController = VideoPlayerController.networkUrl(
+      Uri.parse(
+        'https://www.dropbox.com/scl/fi/1kbrnreieqydx7xqw0n1p/atelier_video.mp4?rlkey=xkf4u5o0a4d5o89lsrbnbsbrl&dl=0',
+      ),
+    )..initialize().then(
+        (_) {
+          // if (this.mounted) {
+          setState(
+            () {
+              WidgetsBinding.instance.addPersistentFrameCallback(
+                (_) {
+                  _videoController.setVolume(0);
+                  _videoController.play();
+                  _videoController.setLooping(true);
+                },
+              );
+            },
+          );
+          //   }
+        },
+      );
+  }
+
+  makingFilm() {
+    return SizedBox(
+      width: double.infinity,
+      child: _videoController.value.isInitialized
+          ? FittedBox(
+              fit: BoxFit.fitWidth,
+              child: SizedBox(
+                width:
+                    _videoController.value.size?.width ?? widgetSize(context),
+                height: _videoController.value.size?.height ?? 300,
+                child: AspectRatio(
+                  aspectRatio: _videoController.value.aspectRatio,
+                  child: VideoPlayer(_videoController),
+                ),
+              ),
+            )
+          : Container(
+              child: Center(
+                child: SizedBox(
+                  width: 40,
+                  height: 40,
+                  child: CircularProgressIndicator(
+                    color: blackColor,
+                    strokeWidth: 2,
+                  ),
+                ),
+              ),
+            ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -744,10 +797,7 @@ class _TailorShopScreenState extends State<TailorShopScreen> {
                     ? Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          SizedBox(
-                            width: double.infinity,
-                            child: makingFilm(),
-                          ),
+                          makingFilm(),
                           Padding(
                             padding: EdgeInsets.only(top: 20),
                             child: countingText(context),

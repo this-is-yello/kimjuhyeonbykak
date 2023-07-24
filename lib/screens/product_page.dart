@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:kimjuhyeonbykak/style.dart';
+import 'package:kimjuhyeonbykak/main.dart';
 
 import 'package:kimjuhyeonbykak/navigation.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -174,8 +175,28 @@ class ProductTitle extends StatelessWidget {
 }
 
 // ---------- Products_Grid -----------------------------------------------------------------------------------------------------
-class ProductsGrid extends StatelessWidget {
+class ProductsGrid extends StatefulWidget {
   const ProductsGrid({super.key});
+
+  @override
+  State<ProductsGrid> createState() => _ProductsGridState();
+}
+
+class _ProductsGridState extends State<ProductsGrid> {
+  var productsDocs;
+
+  searchProducts() async {
+    var searchResult = await firestore.collection('product').get();
+    setState(() {
+      productsDocs = searchResult.docs;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    searchProducts();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -194,8 +215,11 @@ class ProductsGrid extends StatelessWidget {
                 StaggeredGridTile.count(
                   crossAxisCellCount: 2,
                   mainAxisCellCount: 2,
-                  child: Container(
-                    color: blackColor,
+                  child: SizedBox(
+                    child: Image.network(
+                      productsDocs[0]['thumbnail'],
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
                 StaggeredGridTile.count(

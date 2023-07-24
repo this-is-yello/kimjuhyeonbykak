@@ -410,7 +410,7 @@ class WhoTeaching extends StatelessWidget {
                             return Container(
                               width: c1BoxSize(context) + 20,
                               height: c1BoxSize(context) + 100,
-                              margin: EdgeInsets.all(10),
+                              margin: EdgeInsets.only(right: 16),
                               color: blackColor,
                             );
                           },

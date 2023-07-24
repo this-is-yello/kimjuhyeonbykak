@@ -6,7 +6,6 @@ import 'package:kimjuhyeonbykak/navigation.dart';
 import 'package:countup/countup.dart';
 import 'package:widget_and_text_animator/widget_and_text_animator.dart';
 import 'package:video_player/video_player.dart';
-import 'package:video_player_web_hls/video_player_web_hls.dart';
 
 class TailorShopPage extends StatefulWidget {
   const TailorShopPage({super.key});
@@ -278,8 +277,10 @@ class _ShopsState extends State<Shops> {
   @override
   void initState() {
     super.initState();
-    _videoController = VideoPlayerController.asset(
-      'assets/videos/atelier_video.mp4',
+    _videoController = VideoPlayerController.networkUrl(
+      Uri.parse(
+        'https://www.dropbox.com/scl/fi/1kbrnreieqydx7xqw0n1p/atelier_video.mp4?rlkey=xkf4u5o0a4d5o89lsrbnbsbrl&dl=0',
+      ),
     )..initialize().then(
         (_) {
           // if (this.mounted) {
@@ -313,20 +314,16 @@ class _ShopsState extends State<Shops> {
             height: widgetSize(context) - 300,
             child: _videoController.value.isInitialized
                 ? Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height,
-                    child: Opacity(
-                      opacity: 0.8,
-                      child: FittedBox(
-                        fit: BoxFit.cover,
-                        child: SizedBox(
-                          width: _videoController.value.size?.width ??
-                              widgetSize(context),
-                          height: _videoController.value.size?.height ?? 300,
-                          child: AspectRatio(
-                            aspectRatio: _videoController.value.aspectRatio,
-                            child: VideoPlayer(_videoController),
-                          ),
+                    width: widgetSize(context),
+                    child: FittedBox(
+                      fit: BoxFit.fitWidth,
+                      child: SizedBox(
+                        width: _videoController.value.size?.width ??
+                            widgetSize(context),
+                        height: _videoController.value.size?.height ?? 300,
+                        child: AspectRatio(
+                          aspectRatio: _videoController.value.aspectRatio,
+                          child: VideoPlayer(_videoController),
                         ),
                       ),
                     ),
@@ -710,7 +707,7 @@ class CountUpText extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  width: c1BoxSize(context) + 40,
+                  width: c1BoxSize(context) + 48,
                   child: Countup(
                     begin: 0,
                     end: 59804019,
@@ -1001,9 +998,9 @@ class _MakingProcessState extends State<MakingProcess> {
 
 // ---------- Service -----------------------------------------------------------------------------------------------------
 servicePic(context) {
-  return Container(
-    height: c1BoxSize(context) + 100,
-    color: blackColor,
+  return Image.asset(
+    'assets/images/service_2.png',
+    fit: BoxFit.fitWidth,
   );
 }
 
@@ -1014,6 +1011,7 @@ serviceText(context) {
         padding: const EdgeInsets.only(bottom: 16),
         child: Container(
           width: double.infinity,
+          padding: EdgeInsets.only(bottom: 8),
           decoration: BoxDecoration(
             border: Border(
               bottom: BorderSide(
@@ -1025,7 +1023,7 @@ serviceText(context) {
           child: Text(
             '김주현바이각 기본 서비스',
             style: TextStyle(
-              fontSize: h2FontSize(context),
+              fontSize: h1FontSize(context),
               color: blackColor,
             ),
           ),

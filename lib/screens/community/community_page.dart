@@ -894,7 +894,7 @@ class _EventScreenState extends State<EventScreen> {
                     eventNum = index;
                   });
                   Get.rootDelegate.toNamed('${Routes.EVENTVIEW}/$eventNum');
-                  print(notificationNum);
+                  print(eventNum);
                 },
                 child: Column(
                   children: [
