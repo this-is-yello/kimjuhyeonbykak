@@ -1147,7 +1147,7 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
                 height: 56,
                 decoration: BoxDecoration(
                   color: blackColor,
-                  borderRadius: BorderRadius.circular(500),
+                  borderRadius: BorderRadius.circular(8),
                 ),
                 child: Center(
                   child: Text(

@@ -604,7 +604,7 @@ class _InquiryScreenState extends State<InquiryScreen> {
                 height: 56,
                 decoration: BoxDecoration(
                   color: blackColor,
-                  borderRadius: BorderRadius.circular(500),
+                  borderRadius: BorderRadius.circular(8),
                 ),
                 child: Center(
                   child: Text(
@@ -949,7 +949,19 @@ class _EventScreenState extends State<EventScreen> {
           width: widgetSize(context),
           height: 300,
           child: Center(
-            child: CircularProgressIndicator(color: blackColor),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircularProgressIndicator(color: blackColor),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20),
+                  child: Text(
+                    '로딩이 오래 걸리면 새로고침(F5) 한 번만 눌러주세요.',
+                    style: TextStyle(color: blackColor),
+                  ),
+                ),
+              ],
+            ),
           ),
         );
       }
@@ -959,7 +971,19 @@ class _EventScreenState extends State<EventScreen> {
         width: widgetSize(context),
         height: 300,
         child: Center(
-          child: CircularProgressIndicator(color: blackColor),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CircularProgressIndicator(color: blackColor),
+              Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: Text(
+                  '로딩이 오래 걸리면 새로고침(F5) 한 번만 눌러주세요.',
+                  style: TextStyle(color: blackColor),
+                ),
+              ),
+            ],
+          ),
         ),
       );
     }

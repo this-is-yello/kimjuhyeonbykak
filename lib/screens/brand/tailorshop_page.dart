@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:kimjuhyeonbykak/style.dart';
 import 'package:kimjuhyeonbykak/navigation.dart';
@@ -206,64 +207,6 @@ class TailorShopMain extends StatelessWidget {
 }
 
 // ---------- Video_&_Shops -----------------------------------------------------------------------------------------------------
-jemulpoShop() {
-  return InkWell(
-    onTap: () {},
-    child: SizedBox(
-      child: Stack(
-        alignment: Alignment.bottomCenter,
-        children: [
-          Image.asset(
-            'assets/images/shop_jemulpo.jpg',
-            fit: BoxFit.fitWidth,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 80),
-            child: Center(
-              child: Text(
-                '제물포 본점',
-                style: TextStyle(
-                  fontSize: 20,
-                  color: whiteColor,
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    ),
-  );
-}
-
-songdoShop() {
-  return InkWell(
-    onTap: () {},
-    child: SizedBox(
-      child: Stack(
-        alignment: Alignment.bottomCenter,
-        children: [
-          Image.asset(
-            'assets/images/shop_songdo.jpg',
-            fit: BoxFit.fitWidth,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 80),
-            child: Center(
-              child: Text(
-                '인천 송도점',
-                style: TextStyle(
-                  fontSize: 20,
-                  color: whiteColor,
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    ),
-  );
-}
-
 class Shops extends StatefulWidget {
   const Shops({super.key});
 
@@ -273,6 +216,210 @@ class Shops extends StatefulWidget {
 
 class _ShopsState extends State<Shops> {
   late VideoPlayerController _videoController;
+
+  jemulpoShop() {
+    return Column(
+      children: [
+        SizedBox(
+          child: Stack(
+            alignment: Alignment.bottomCenter,
+            children: [
+              Image.asset(
+                'assets/images/shop_jemulpo.png',
+                fit: BoxFit.fitWidth,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 40),
+                child: Center(
+                  child: Column(
+                    children: [
+                      Text(
+                        '제물포 본점',
+                        style: TextStyle(
+                          fontSize: 24,
+                          color: whiteColor,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        Container(
+          padding: EdgeInsets.all(16),
+          color: whiteColor,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 8, bottom: 20),
+                child: Container(
+                  width: double.infinity,
+                  height: c1BoxSize(context) + 40,
+                  color: blackColor,
+                ),
+              ),
+              SizedBox(
+                child: Text(
+                  '김주현바이각 제물포 본점',
+                  style: TextStyle(
+                    fontSize: h4FontSize(context),
+                    color: blackColor,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                child: SizedBox(
+                  child: Text(
+                    '인천시 미추홀구 석정로 200 1층',
+                    style: TextStyle(
+                      fontSize: h5FontSize(context),
+                      color: blackColor,
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                child: Text(
+                  '제물포 본점은 마스터테일러와 재단팀들이 상주해 있으며,\n지하에 작업하는 아뜰리에가 존재하고 있습니다.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: h6FontSize(context),
+                    color: blackColor,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: InkWell(
+                  onTap: () {},
+                  child: Container(
+                    padding: EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: blackColor,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Center(
+                      child: Text(
+                        '예약하기',
+                        style: TextStyle(
+                          fontSize: h5FontSize(context),
+                          color: whiteColor,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  songdoShop() {
+    return Column(
+      children: [
+        SizedBox(
+          child: Stack(
+            alignment: Alignment.bottomCenter,
+            children: [
+              Image.asset(
+                'assets/images/shop_songdo.png',
+                fit: BoxFit.fitWidth,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 40),
+                child: Center(
+                  child: Text(
+                    '인천 송도점',
+                    style: TextStyle(
+                      fontSize: 24,
+                      color: whiteColor,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        Container(
+          padding: EdgeInsets.all(16),
+          color: whiteColor,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 8, bottom: 20),
+                child: Container(
+                  width: double.infinity,
+                  height: c1BoxSize(context) + 40,
+                  color: blackColor,
+                ),
+              ),
+              SizedBox(
+                child: Text(
+                  '김주현바이각 송도점',
+                  style: TextStyle(
+                    fontSize: h4FontSize(context),
+                    color: blackColor,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                child: SizedBox(
+                  child: Text(
+                    '인천시 연수구 송도동 20-22 푸르지오월드마크 1단지',
+                    style: TextStyle(
+                      fontSize: h5FontSize(context),
+                      color: blackColor,
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                child: Text(
+                  '인천송도점은 스타일링 서비스와 화려하고 트렌디한\n김주현바이각만의 색을 입힌 퍼포먼스 스토어입니다.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: h6FontSize(context),
+                    color: blackColor,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: InkWell(
+                  onTap: () {},
+                  child: Container(
+                    padding: EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: blackColor,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Center(
+                      child: Text(
+                        '예약하기',
+                        style: TextStyle(
+                          fontSize: h5FontSize(context),
+                          color: whiteColor,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
+      ],
+    );
+  }
 
   @override
   void initState() {
