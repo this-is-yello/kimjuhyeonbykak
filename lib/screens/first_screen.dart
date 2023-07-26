@@ -680,27 +680,25 @@ class _TailorShopScreenState extends State<TailorShopScreen> {
   @override
   void initState() {
     super.initState();
-    _videoController = VideoPlayerController.networkUrl(
-      Uri.parse(
-        'https://www.dropbox.com/scl/fi/1kbrnreieqydx7xqw0n1p/atelier_video.mp4?rlkey=xkf4u5o0a4d5o89lsrbnbsbrl&dl=0',
-      ),
-    )..initialize().then(
-        (_) {
-          // if (this.mounted) {
-          setState(
-            () {
-              WidgetsBinding.instance.addPersistentFrameCallback(
-                (_) {
-                  _videoController.setVolume(0);
-                  _videoController.play();
-                  _videoController.setLooping(true);
+    _videoController =
+        VideoPlayerController.asset('assets/videos/atelier_video.mp4')
+          ..initialize().then(
+            (_) {
+              // if (this.mounted) {
+              setState(
+                () {
+                  WidgetsBinding.instance.addPersistentFrameCallback(
+                    (_) {
+                      _videoController.setVolume(0);
+                      _videoController.play();
+                      _videoController.setLooping(true);
+                    },
+                  );
                 },
               );
+              //   }
             },
           );
-          //   }
-        },
-      );
   }
 
   makingFilm() {
