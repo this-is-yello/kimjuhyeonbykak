@@ -418,10 +418,8 @@ class _ShopsState extends State<Shops> {
   @override
   void initState() {
     super.initState();
-    _videoController = VideoPlayerController.networkUrl(
-      Uri.parse(
-        'https://www.dropbox.com/scl/fi/1kbrnreieqydx7xqw0n1p/atelier_video.mp4?rlkey=xkf4u5o0a4d5o89lsrbnbsbrl&dl=0',
-      ),
+    _videoController = VideoPlayerController.asset(
+      'assets/videos/atelier_video.mp4',
     )..initialize().then(
         (_) {
           // if (this.mounted) {
