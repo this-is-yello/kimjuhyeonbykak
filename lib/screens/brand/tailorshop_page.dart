@@ -224,10 +224,7 @@ class _ShopsState extends State<Shops> {
           child: Stack(
             alignment: Alignment.bottomCenter,
             children: [
-              Image.asset(
-                'assets/images/shop_jemulpo.png',
-                fit: BoxFit.fitWidth,
-              ),
+              fadeImage('assets/images/shop_jemulpo.png'),
               Padding(
                 padding: const EdgeInsets.only(bottom: 40),
                 child: Center(
@@ -328,10 +325,7 @@ class _ShopsState extends State<Shops> {
           child: Stack(
             alignment: Alignment.bottomCenter,
             children: [
-              Image.asset(
-                'assets/images/shop_songdo.png',
-                fit: BoxFit.fitWidth,
-              ),
+              fadeImage('assets/images/shop_songdo.png'),
               Padding(
                 padding: const EdgeInsets.only(bottom: 40),
                 child: Center(
@@ -776,10 +770,7 @@ class _LabelState extends State<Label> {
                         ),
                       ),
                       margin: EdgeInsets.symmetric(horizontal: 12),
-                      child: Image.asset(
-                        fabrics[index],
-                        fit: BoxFit.cover,
-                      ),
+                      child: fadeImage(fabrics[index]),
                     );
                   },
                 ),
@@ -955,10 +946,7 @@ class _MakingProcessState extends State<MakingProcess> {
     return Container(
       width: c1BoxSize(context) + 160,
       height: c1BoxSize(context) + 160,
-      child: Image.asset(
-        makingProcess[i],
-        fit: BoxFit.cover,
-      ),
+      child: fadeImage(makingProcess[i]),
     );
   }
 
@@ -1145,10 +1133,7 @@ class _MakingProcessState extends State<MakingProcess> {
 
 // ---------- Service -----------------------------------------------------------------------------------------------------
 servicePic(context) {
-  return Image.asset(
-    'assets/images/service_2.png',
-    fit: BoxFit.fitWidth,
-  );
+  return fadeImage('assets/images/service_2.png');
 }
 
 serviceText(context) {

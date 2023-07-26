@@ -5,6 +5,7 @@ import 'package:kimjuhyeonbykak/screens/first_screen.dart';
 import 'package:kimjuhyeonbykak/navigation.dart';
 
 import 'package:widget_and_text_animator/widget_and_text_animator.dart';
+import 'package:image_fade/image_fade.dart';
 
 class JemulpoClubPage extends StatefulWidget {
   const JemulpoClubPage({super.key});
@@ -193,9 +194,27 @@ class JemulpoClubMain extends StatelessWidget {
 }
 
 // ---------- JemulpoClub_Studio -----------------------------------------------------------------------------------------------------
-class JemulpoClubStudio extends StatelessWidget {
+class JemulpoClubStudio extends StatefulWidget {
   const JemulpoClubStudio({super.key});
 
+  @override
+  State<JemulpoClubStudio> createState() => _JemulpoClubStudioState();
+}
+
+class _JemulpoClubStudioState extends State<JemulpoClubStudio> {
+  List imageList = [
+    'assets/images/jemulpoclub/jemulpoclub_1.jpg',
+    'assets/images/jemulpoclub/jemulpoclub_2.jpg',
+    'assets/images/jemulpoclub/jemulpoclub_3.jpg',
+    'assets/images/jemulpoclub/jemulpoclub_4.jpg',
+    'assets/images/jemulpoclub/jemulpoclub_5.jpg',
+    'assets/images/jemulpoclub/jemulpoclub_6.jpg',
+    'assets/images/jemulpoclub/jemulpoclub_7.jpg',
+    'assets/images/jemulpoclub/jemulpoclub_8.jpg',
+    'assets/images/jemulpoclub/jemulpoclub_9.jpg',
+    'assets/images/jemulpoclub/jemulpoclub_10.jpg',
+    'assets/images/jemulpoclub/jemulpoclub_11.jpg',
+  ];
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -210,10 +229,7 @@ class JemulpoClubStudio extends StatelessWidget {
                   children: [
                     Container(
                       width: widgetSize(context),
-                      child: Image.asset(
-                        'assets/images/jemulpoclub/jemulpoclub_1.jpg',
-                        fit: BoxFit.fitWidth,
-                      ),
+                      child: fadeImage(imageList[0]),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 20),
@@ -240,10 +256,7 @@ class JemulpoClubStudio extends StatelessWidget {
                     children: [
                       Container(
                         width: widgetSize(context),
-                        child: Image.asset(
-                          'assets/images/jemulpoclub/jemulpoclub_2.jpg',
-                          fit: BoxFit.fitWidth,
-                        ),
+                        child: fadeImage(imageList[1]),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 20),
@@ -271,10 +284,7 @@ class JemulpoClubStudio extends StatelessWidget {
                     children: [
                       Container(
                         width: widgetSize(context),
-                        child: Image.asset(
-                          'assets/images/jemulpoclub/jemulpoclub_3.jpg',
-                          fit: BoxFit.fitWidth,
-                        ),
+                        child: fadeImage(imageList[2]),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 20),
@@ -310,17 +320,11 @@ class JemulpoClubStudio extends StatelessWidget {
                     children: [
                       SizedBox(
                         width: MediaQuery.of(context).size.width,
-                        child: Image.asset(
-                          'assets/images/panorama.png',
-                          fit: BoxFit.fitWidth,
-                        ),
+                        child: fadeImage('assets/images/panorama.png'),
                       ),
                       SizedBox(
                         width: MediaQuery.of(context).size.width,
-                        child: Image.asset(
-                          'assets/images/panorama.png',
-                          fit: BoxFit.fitWidth,
-                        ),
+                        child: fadeImage('assets/images/panorama.png'),
                       ),
                     ],
                   ),
@@ -352,21 +356,15 @@ class JemulpoClubStudio extends StatelessWidget {
               children: [
                 Column(
                   children: [
-                    Container(
+                    SizedBox(
                       width: widgetSize(context),
-                      child: Image.asset(
-                        'assets/images/jemulpoclub/jemulpoclub_4.jpg',
-                        fit: BoxFit.fitWidth,
-                      ),
+                      child: fadeImage(imageList[3]),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 20),
-                      child: Container(
+                      child: SizedBox(
                         width: widgetSize(context),
-                        child: Image.asset(
-                          'assets/images/jemulpoclub/jemulpoclub_5.jpg',
-                          fit: BoxFit.fitWidth,
-                        ),
+                        child: fadeImage(imageList[4]),
                       ),
                     ),
                   ],
@@ -386,13 +384,13 @@ class JemulpoClubStudio extends StatelessWidget {
                       ),
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
-                        itemCount: 4,
+                        itemCount: imageList.length - 6,
                         itemBuilder: (context, index) {
                           return Container(
-                            width: c1BoxSize(context) + 100,
-                            height: c1BoxSize(context) + 300,
+                            width: c1BoxSize(context) + 200,
+                            // height: c1BoxSize(context) + 300,
                             margin: EdgeInsets.only(right: 20),
-                            color: blackColor,
+                            child: fadeImage(imageList[index + 5]),
                           );
                         },
                       ),
@@ -460,12 +458,13 @@ class JemulpoClubFilming extends StatelessWidget {
                       children: [
                         Column(
                           children: [
-                            Container(
+                            SizedBox(
                               width: MediaQuery.of(context).size.width < 800
                                   ? widgetSize(context)
                                   : widgetSize(context) / 2 - 10,
                               height: c1BoxSize(context) + 100,
-                              color: blackColor,
+                              child: fadeImage(
+                                  'assets/images/jemulpoclub/filming_2.png'),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(top: 20),
@@ -474,7 +473,7 @@ class JemulpoClubFilming extends StatelessWidget {
                                     ? widgetSize(context)
                                     : widgetSize(context) / 2 - 10,
                                 child: Text(
-                                  'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
+                                  '2019년부터 방영되었으며, 성황리에 종영된 tvN의 "사랑의 불시착" 촬영지로 알려지게 되었습니다.',
                                   style: TextStyle(
                                     fontSize: h6FontSize(context),
                                     color: blackColor,
@@ -486,12 +485,13 @@ class JemulpoClubFilming extends StatelessWidget {
                         ),
                         Column(
                           children: [
-                            Container(
+                            SizedBox(
                               width: MediaQuery.of(context).size.width < 800
                                   ? widgetSize(context)
                                   : widgetSize(context) / 2 - 10,
                               height: c1BoxSize(context) + 100,
-                              color: blackColor,
+                              child: fadeImage(
+                                  'assets/images/jemulpoclub/filming_2.png'),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(top: 20),
@@ -500,59 +500,7 @@ class JemulpoClubFilming extends StatelessWidget {
                                     ? widgetSize(context)
                                     : widgetSize(context) / 2 - 10,
                                 child: Text(
-                                  'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
-                                  style: TextStyle(
-                                    fontSize: h6FontSize(context),
-                                    color: blackColor,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        Column(
-                          children: [
-                            Container(
-                              width: MediaQuery.of(context).size.width < 800
-                                  ? widgetSize(context)
-                                  : widgetSize(context) / 2 - 10,
-                              height: c1BoxSize(context) + 100,
-                              color: blackColor,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 20),
-                              child: SizedBox(
-                                width: MediaQuery.of(context).size.width < 800
-                                    ? widgetSize(context)
-                                    : widgetSize(context) / 2 - 10,
-                                child: Text(
-                                  'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
-                                  style: TextStyle(
-                                    fontSize: h6FontSize(context),
-                                    color: blackColor,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        Column(
-                          children: [
-                            Container(
-                              width: MediaQuery.of(context).size.width < 800
-                                  ? widgetSize(context)
-                                  : widgetSize(context) / 2 - 10,
-                              height: c1BoxSize(context) + 100,
-                              color: blackColor,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 20),
-                              child: SizedBox(
-                                width: MediaQuery.of(context).size.width < 800
-                                    ? widgetSize(context)
-                                    : widgetSize(context) / 2 - 10,
-                                child: Text(
-                                  'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
+                                  '모든 촬영과 의상이 김주현 바이 각과 신제물포구락부와 함께한 가수 황인욱의 "이별주"의 뮤직비디오에 함께하였습니다.',
                                   style: TextStyle(
                                     fontSize: h6FontSize(context),
                                     color: blackColor,

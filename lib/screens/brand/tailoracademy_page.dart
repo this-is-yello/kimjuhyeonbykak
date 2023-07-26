@@ -138,8 +138,6 @@ class TailorAcademyMain extends StatelessWidget {
         alignment: Alignment.bottomCenter,
         children: [
           Image.asset(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
             'assets/images/tailorAcademy_bg.png',
             fit: BoxFit.cover,
           ),
@@ -210,10 +208,7 @@ academyLogo(context) {
     width: MediaQuery.of(context).size.width < 800
         ? widgetSize(context)
         : c1BoxSize(context) + 100,
-    child: Image.asset(
-      'assets/images/logos/academyLogo.png',
-      fit: BoxFit.fitWidth,
-    ),
+    child: fadeImage('assets/images/logos/academyLogo.png'),
   );
 }
 
@@ -320,10 +315,7 @@ class Curriculum extends StatelessWidget {
                   children: [
                     Container(
                       width: widgetSize(context),
-                      child: Image.asset(
-                        'assets/images/curriculum.png',
-                        fit: BoxFit.fitWidth,
-                      ),
+                      child: fadeImage('assets/images/curriculum.png'),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 40),
@@ -480,12 +472,9 @@ class WhyLearning extends StatelessWidget {
               ),
               child: SizedBox(
                 width: widgetSize(context),
-                child: Image.asset(
-                  MediaQuery.of(context).size.width < 800
-                      ? 'assets/images/why_column.png'
-                      : 'assets/images/why_row.png',
-                  fit: BoxFit.fitWidth,
-                ),
+                child: fadeImage(MediaQuery.of(context).size.width < 800
+                    ? 'assets/images/why_column.png'
+                    : 'assets/images/why_row.png'),
               ),
             ),
             Padding(

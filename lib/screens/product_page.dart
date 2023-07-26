@@ -111,11 +111,10 @@ class ProductTitle extends StatelessWidget {
         children: [
           Stack(
             children: [
-              Image.asset(
+              SizedBox(
                 width: MediaQuery.of(context).size.width,
                 height: c1BoxSize(context) + 200,
-                'assets/images/rentalCenter_bg.png',
-                fit: BoxFit.cover,
+                child: fadeImage('assets/images/rentalCenter_bg.png'),
               ),
               Container(
                 height: c1BoxSize(context) + 200,

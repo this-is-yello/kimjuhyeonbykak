@@ -315,7 +315,19 @@ class _NewsViewContentState extends State<NewsViewContent> {
                           width: widgetSize(context),
                           height: 500,
                           child: Center(
-                            child: CircularProgressIndicator(color: blackColor),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                CircularProgressIndicator(color: blackColor),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 20),
+                                  child: Text(
+                                    '로딩이 오래 걸리면 새로고침(F5) 한 번만 눌러주세요.',
+                                    style: TextStyle(color: blackColor),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         );
                       }
@@ -332,7 +344,19 @@ class _NewsViewContentState extends State<NewsViewContent> {
         width: widgetSize(context),
         height: 500,
         child: Center(
-          child: CircularProgressIndicator(color: blackColor),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CircularProgressIndicator(color: blackColor),
+              Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: Text(
+                  '로딩이 오래 걸리면 새로고침(F5) 한 번만 눌러주세요.',
+                  style: TextStyle(color: blackColor),
+                ),
+              ),
+            ],
+          ),
         ),
       );
     }

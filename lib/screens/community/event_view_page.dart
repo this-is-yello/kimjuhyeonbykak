@@ -304,7 +304,19 @@ class _EventViewContentState extends State<EventViewContent> {
         width: widgetSize(context),
         height: MediaQuery.of(context).size.height,
         child: Center(
-          child: CircularProgressIndicator(color: blackColor),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CircularProgressIndicator(color: blackColor),
+              Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: Text(
+                  '로딩이 오래 걸리면 새로고침(F5) 한 번만 눌러주세요.',
+                  style: TextStyle(color: blackColor),
+                ),
+              ),
+            ],
+          ),
         ),
       );
     }

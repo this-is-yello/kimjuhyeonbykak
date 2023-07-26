@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:image_fade/image_fade.dart';
 import 'package:kimjuhyeonbykak/style.dart';
 
 import 'package:kimjuhyeonbykak/main.dart';
@@ -826,7 +827,19 @@ class _NotificationScreenState extends State<NotificationScreen> {
           width: widgetSize(context),
           height: 300,
           child: Center(
-            child: CircularProgressIndicator(color: blackColor),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircularProgressIndicator(color: blackColor),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20),
+                  child: Text(
+                    '로딩이 오래 걸리면 새로고침(F5) 한 번만 눌러주세요.',
+                    style: TextStyle(color: blackColor),
+                  ),
+                ),
+              ],
+            ),
           ),
         );
       }
@@ -835,7 +848,19 @@ class _NotificationScreenState extends State<NotificationScreen> {
         width: widgetSize(context),
         height: 300,
         child: Center(
-          child: CircularProgressIndicator(color: blackColor),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CircularProgressIndicator(color: blackColor),
+              Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: Text(
+                  '로딩이 오래 걸리면 새로고침(F5) 한 번만 눌러주세요.',
+                  style: TextStyle(color: blackColor),
+                ),
+              ),
+            ],
+          ),
         ),
       );
     }
@@ -901,9 +926,30 @@ class _EventScreenState extends State<EventScreen> {
                     Expanded(
                       flex: 1,
                       child: Container(
-                        child: Image.network(
-                          eventDocs[index]['thumbnail'],
+                        child: ImageFade(
+                          image: NetworkImage(
+                            eventDocs[index]['thumbnail'],
+                          ),
                           fit: BoxFit.cover,
+                          duration: const Duration(milliseconds: 900),
+                          syncDuration: const Duration(milliseconds: 150),
+                          placeholder: Padding(
+                            padding: const EdgeInsets.all(20),
+                            child: Center(
+                              child: CircularProgressIndicator(
+                                color: blackColor,
+                              ),
+                            ),
+                          ),
+                          errorBuilder: (context, error) => Container(
+                            color: const Color(0xFFFFFFFF),
+                            alignment: Alignment.center,
+                            child: const Icon(
+                              Icons.warning,
+                              color: Color(0xFF1E1E1E),
+                              size: 128.0,
+                            ),
+                          ),
                         ),
                       ),
                     ),
@@ -1049,9 +1095,30 @@ class _MediaScreenState extends State<MediaScreen> {
                         ? widgetSize(context)
                         : widgetSize(context) / 2 - 10,
                     height: c1BoxSize(context) + 100,
-                    child: Image.network(
-                      mediaDocs[i]['thumbnail'],
+                    child: ImageFade(
+                      image: NetworkImage(
+                        mediaDocs[i]['thumbnail'],
+                      ),
                       fit: BoxFit.cover,
+                      duration: const Duration(milliseconds: 900),
+                      syncDuration: const Duration(milliseconds: 150),
+                      placeholder: Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: Center(
+                          child: CircularProgressIndicator(
+                            color: blackColor,
+                          ),
+                        ),
+                      ),
+                      errorBuilder: (context, error) => Container(
+                        color: const Color(0xFFFFFFFF),
+                        alignment: Alignment.center,
+                        child: const Icon(
+                          Icons.warning,
+                          color: Color(0xFF1E1E1E),
+                          size: 128.0,
+                        ),
+                      ),
                     ),
                   ),
                   Container(
@@ -1100,9 +1167,30 @@ class _MediaScreenState extends State<MediaScreen> {
                         width: c1BoxSize(context) + 60,
                         height: c1BoxSize(context),
                         margin: EdgeInsets.only(right: 16),
-                        child: Image.network(
-                          mediaDocs[index]['thumbnail'],
+                        child: ImageFade(
+                          image: NetworkImage(
+                            mediaDocs[index]['thumbnail'],
+                          ),
                           fit: BoxFit.cover,
+                          duration: const Duration(milliseconds: 900),
+                          syncDuration: const Duration(milliseconds: 150),
+                          placeholder: Padding(
+                            padding: const EdgeInsets.all(20),
+                            child: Center(
+                              child: CircularProgressIndicator(
+                                color: blackColor,
+                              ),
+                            ),
+                          ),
+                          errorBuilder: (context, error) => Container(
+                            color: const Color(0xFFFFFFFF),
+                            alignment: Alignment.center,
+                            child: const Icon(
+                              Icons.warning,
+                              color: Color(0xFF1E1E1E),
+                              size: 128.0,
+                            ),
+                          ),
                         ),
                       ),
                     );
@@ -1119,7 +1207,19 @@ class _MediaScreenState extends State<MediaScreen> {
         width: widgetSize(context),
         height: 300,
         child: Center(
-          child: CircularProgressIndicator(color: blackColor),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CircularProgressIndicator(color: blackColor),
+              Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: Text(
+                  '로딩이 오래 걸리면 새로고침(F5) 한 번만 눌러주세요.',
+                  style: TextStyle(color: blackColor),
+                ),
+              ),
+            ],
+          ),
         ),
       );
     }

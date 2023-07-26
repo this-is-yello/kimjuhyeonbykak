@@ -488,7 +488,6 @@ class _BykakStoryState extends State<BykakStory> {
                     child: SizedBox(
                       width: c1BoxSize(context),
                       height: c1BoxSize(context),
-                      // color: blackColor,
                       child: Image.asset(
                         'assets/images/logos/bykakScissorLogo_b.png',
                         fit: BoxFit.fitWidth,
@@ -1094,17 +1093,11 @@ class _NewJemulpoClubScreenState extends State<NewJemulpoClubScreen> {
                   children: [
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
-                      child: Image.asset(
-                        'assets/images/panorama.png',
-                        fit: BoxFit.fitWidth,
-                      ),
+                      child: fadeImage('assets/images/panorama.png'),
                     ),
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
-                      child: Image.asset(
-                        'assets/images/panorama.png',
-                        fit: BoxFit.fitWidth,
-                      ),
+                      child: fadeImage('assets/images/panorama.png'),
                     ),
                   ],
                 ),

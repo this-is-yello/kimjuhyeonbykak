@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:image_fade/image_fade.dart';
 
 // ---------- Color -----------------------------------------------------------------------------------------------------
 var bykakColor = const Color(0xFF205B48);
@@ -28,6 +29,34 @@ var elevatedBtnTheme = ElevatedButton.styleFrom(
   shadowColor: whiteColor.withOpacity(0),
   elevation: 0,
 );
+
+fadeImage(img) {
+  return ImageFade(
+    image: AssetImage(
+      img,
+    ),
+    fit: BoxFit.cover,
+    duration: const Duration(milliseconds: 900),
+    syncDuration: const Duration(milliseconds: 150),
+    placeholder: Padding(
+      padding: const EdgeInsets.all(20),
+      child: Center(
+        child: CircularProgressIndicator(
+          color: blackColor,
+        ),
+      ),
+    ),
+    errorBuilder: (context, error) => Container(
+      color: const Color(0xFFFFFFFF),
+      alignment: Alignment.center,
+      child: const Icon(
+        Icons.warning,
+        color: Color(0xFF1E1E1E),
+        size: 128.0,
+      ),
+    ),
+  );
+}
 
 bottomToTop(context, moveTop()) {
   return Container(

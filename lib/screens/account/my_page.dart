@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:image_fade/image_fade.dart';
 import 'package:kimjuhyeonbykak/style.dart';
 import 'package:kimjuhyeonbykak/main.dart';
 import 'package:kimjuhyeonbykak/navigation.dart';
@@ -586,12 +587,23 @@ class _ProfileState extends State<Profile> {
         ),
       );
     } else {
-      // print(e);
       return Container(
         width: widgetSize(context),
         height: MediaQuery.of(context).size.height,
         child: Center(
-          child: CircularProgressIndicator(color: blackColor),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CircularProgressIndicator(color: blackColor),
+              Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: Text(
+                  '로딩이 오래 걸리면 새로고침(F5) 한 번만 눌러주세요.',
+                  style: TextStyle(color: blackColor),
+                ),
+              ),
+            ],
+          ),
         ),
       );
     }
@@ -712,10 +724,7 @@ class _UserMyPageState extends State<UserMyPage> {
                                       ? widgetSize(context)
                                       : widgetSize(context) / 2 - 10,
                                   height: c1BoxSize(context) + 100,
-                                  child: Image.asset(
-                                    ambassadorPic,
-                                    fit: BoxFit.fitHeight,
-                                  ),
+                                  child: fadeImage(ambassadorPic),
                                 ),
                                 SizedBox(
                                   width: MediaQuery.of(context).size.width < 800
