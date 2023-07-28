@@ -1,2 +1,0 @@
-*.mp4 filter=lfs diff=lfs merge=lfs -tex
-assets/videos/atelier_video.mp4 filter=lfs diff=lfs merge=lfs -textt
