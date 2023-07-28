@@ -682,7 +682,7 @@ class _TailorShopScreenState extends State<TailorShopScreen> {
     super.initState();
     _videoController = VideoPlayerController.networkUrl(
       Uri.parse(
-        'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4',
+        'https://github.com/this-is-yello/kimjuhyeonbykak/blob/main/assets/videos/atelier_video.mp4',
       ),
     )..initialize().then(
         (_) {
