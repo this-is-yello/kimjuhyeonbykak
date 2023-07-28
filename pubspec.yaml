@@ -85,10 +85,12 @@ flutter:
   assets:
     - assets/images/
     - assets/images/logos/
-    - assets/images/sponsorship/
+    - assets/images/sponsorShip/
     - assets/images/fabrics/
-    - assets/images/making_process/
-    - assets/images/jemulpoclub/
+    - assets/images/makingProcess/
+    - assets/images/jemulpoClub/
+    - assets/images/rentalProducts/
+    - assets/images/rentalCenter/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
