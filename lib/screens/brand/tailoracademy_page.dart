@@ -138,7 +138,9 @@ class TailorAcademyMain extends StatelessWidget {
         alignment: Alignment.bottomCenter,
         children: [
           Image.asset(
-            'assets/images/tailorAcademy_bg.png',
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            'assets/images/background/tailor_academy_bg.png',
             fit: BoxFit.cover,
           ),
           Center(

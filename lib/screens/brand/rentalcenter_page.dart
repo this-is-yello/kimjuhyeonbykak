@@ -126,7 +126,7 @@ class RentalCenterMain extends StatelessWidget {
           Image.asset(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
-            'assets/images/rentalCenter_bg.png',
+            'assets/images/background/rental_center_bg.png',
             fit: BoxFit.cover,
           ),
           Center(
@@ -199,6 +199,11 @@ class RentalIntroduce extends StatefulWidget {
 }
 
 class _RentalIntroduceState extends State<RentalIntroduce> {
+  List rentalImage = [
+    'assets/images/rentalCenter/rental_center_1.png',
+    'assets/images/rentalCenter/rental_center_2.png',
+    'assets/images/rentalCenter/rental_center_3.png'
+  ];
   List rentalText = [
     'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
     'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
@@ -225,13 +230,13 @@ class _RentalIntroduceState extends State<RentalIntroduce> {
                 runAlignment: WrapAlignment.spaceBetween,
                 verticalDirection: VerticalDirection.up,
                 alignment: WrapAlignment.start,
-                spacing: 10,
+                spacing: 20,
                 runSpacing: 20,
                 children: [
                   Container(
                     width: MediaQuery.of(context).size.width < 800
                         ? widgetSize(context)
-                        : widgetSize(context) / 2 - 10,
+                        : widgetSize(context) / 2 - 20,
                     alignment: Alignment.centerRight,
                     child: Text(
                       rentalText[0],
@@ -246,7 +251,7 @@ class _RentalIntroduceState extends State<RentalIntroduce> {
                         ? widgetSize(context)
                         : widgetSize(context) / 2,
                     height: c1BoxSize(context) + 100,
-                    color: blackColor,
+                    child: fadeImage(rentalImage[0]),
                   ),
                 ],
               ),
@@ -261,7 +266,7 @@ class _RentalIntroduceState extends State<RentalIntroduce> {
                   runAlignment: WrapAlignment.spaceBetween,
                   verticalDirection: VerticalDirection.down,
                   alignment: WrapAlignment.start,
-                  spacing: 10,
+                  spacing: 20,
                   runSpacing: 20,
                   children: [
                     Container(
@@ -269,12 +274,12 @@ class _RentalIntroduceState extends State<RentalIntroduce> {
                           ? widgetSize(context)
                           : widgetSize(context) / 2,
                       height: c1BoxSize(context) + 100,
-                      color: blackColor,
+                      child: fadeImage(rentalImage[1]),
                     ),
                     Container(
                       width: MediaQuery.of(context).size.width < 800
                           ? widgetSize(context)
-                          : widgetSize(context) / 2 - 10,
+                          : widgetSize(context) / 2 - 20,
                       alignment: Alignment.centerRight,
                       child: Text(
                         rentalText[1],
@@ -298,13 +303,13 @@ class _RentalIntroduceState extends State<RentalIntroduce> {
                   runAlignment: WrapAlignment.spaceBetween,
                   verticalDirection: VerticalDirection.up,
                   alignment: WrapAlignment.start,
-                  spacing: 10,
+                  spacing: 20,
                   runSpacing: 20,
                   children: [
                     Container(
                       width: MediaQuery.of(context).size.width < 800
                           ? widgetSize(context)
-                          : widgetSize(context) / 2 - 10,
+                          : widgetSize(context) / 2 - 20,
                       alignment: Alignment.centerRight,
                       child: Text(
                         rentalText[2],
@@ -319,7 +324,7 @@ class _RentalIntroduceState extends State<RentalIntroduce> {
                           ? widgetSize(context)
                           : widgetSize(context) / 2,
                       height: c1BoxSize(context) + 100,
-                      color: blackColor,
+                      child: fadeImage(rentalImage[2]),
                     ),
                   ],
                 ),
@@ -346,9 +351,38 @@ class _RentalIntroduceState extends State<RentalIntroduce> {
 }
 
 // ---------- RentalCenter_Product -----------------------------------------------------------------------------------------------------
-class RentalProduct extends StatelessWidget {
+class RentalProduct extends StatefulWidget {
   const RentalProduct({super.key});
 
+  @override
+  State<RentalProduct> createState() => _RentalProductState();
+}
+
+class _RentalProductState extends State<RentalProduct> {
+  List rentalProducts = [
+    'assets/images/rentalProducts/product_1.png',
+    'assets/images/rentalProducts/product_2.png',
+    'assets/images/rentalProducts/product_3.png',
+    'assets/images/rentalProducts/product_4.png',
+    'assets/images/rentalProducts/product_5.png',
+    'assets/images/rentalProducts/product_6.png',
+    'assets/images/rentalProducts/product_7.png',
+    'assets/images/rentalProducts/product_8.png',
+    'assets/images/rentalProducts/product_9.png',
+    'assets/images/rentalProducts/product_10.png',
+    'assets/images/rentalProducts/product_11.png',
+    'assets/images/rentalProducts/product_12.png',
+    'assets/images/rentalProducts/product_13.png',
+    'assets/images/rentalProducts/product_14.png',
+    'assets/images/rentalProducts/product_15.png',
+    'assets/images/rentalProducts/product_16.png',
+    'assets/images/rentalProducts/product_17.png',
+    'assets/images/rentalProducts/product_18.png',
+    'assets/images/rentalProducts/product_19.png',
+    'assets/images/rentalProducts/product_20.png',
+    'assets/images/rentalProducts/product_21.png',
+    'assets/images/rentalProducts/product_22.png'
+  ];
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -372,7 +406,7 @@ class RentalProduct extends StatelessWidget {
               child: SizedBox(
                 width: widgetSize(context),
                 child: GridView.builder(
-                  itemCount: 20,
+                  itemCount: rentalProducts.length,
                   shrinkWrap: true,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: MediaQuery.of(context).size.width < 800
@@ -385,8 +419,8 @@ class RentalProduct extends StatelessWidget {
                     crossAxisSpacing: 10,
                   ),
                   itemBuilder: (context, index) {
-                    return Container(
-                      color: blackColor,
+                    return SizedBox(
+                      child: fadeImage(rentalProducts[index]),
                     );
                   },
                 ),

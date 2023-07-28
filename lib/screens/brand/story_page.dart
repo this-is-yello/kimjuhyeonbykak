@@ -111,7 +111,7 @@ class StoryMain extends StatelessWidget {
           Image.asset(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
-            'assets/images/story_bg.png',
+            'assets/images/background/story_bg.png',
             fit: BoxFit.cover,
           ),
           Center(
@@ -291,7 +291,7 @@ class CeoMessageScreen extends StatelessWidget {
             width: MediaQuery.of(context).size.width < 800
                 ? widgetSize(context)
                 : widgetSize(context) / 2 - 10,
-            child: fadeImage('assets/images/ceoMessage_bg.png'),
+            child: fadeImage('assets/images/ceo_message.png'),
           ),
           SizedBox(
             width: MediaQuery.of(context).size.width < 800

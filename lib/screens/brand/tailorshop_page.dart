@@ -142,7 +142,7 @@ class TailorShopMain extends StatelessWidget {
           Image.asset(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
-            'assets/images/tailorShop_bg.png',
+            'assets/images/background/tailor_shop_bg.png',
             fit: BoxFit.cover,
           ),
           Center(
@@ -418,8 +418,10 @@ class _ShopsState extends State<Shops> {
   @override
   void initState() {
     super.initState();
-    _videoController = VideoPlayerController.asset(
-      'assets/videos/atelier_video.mp4',
+    _videoController = VideoPlayerController.networkUrl(
+      Uri.parse(
+        'https://github.com/this-is-yello/kimjuhyeonbykak/raw/main/assets/videos/atelier_video.mp4',
+      ),
     )..initialize().then(
         (_) {
           // if (this.mounted) {
@@ -609,7 +611,7 @@ class _LabelState extends State<Label> {
                 image: DecorationImage(
                   fit: BoxFit.cover,
                   image: AssetImage(
-                    'assets/images/blacklabel_bg.png',
+                    'assets/images/black_label.png',
                   ),
                 ),
               ),
@@ -678,7 +680,7 @@ class _LabelState extends State<Label> {
                 image: DecorationImage(
                   fit: BoxFit.cover,
                   image: AssetImage(
-                    'assets/images/whitelabel_bg.png',
+                    'assets/images/white_label.png',
                   ),
                 ),
               ),
@@ -934,10 +936,10 @@ class _MakingProcessState extends State<MakingProcess> {
   ];
 
   List makingProcess = [
-    'assets/images/making_process/make_process_2.jpg',
-    'assets/images/making_process/make_process_3.jpg',
-    'assets/images/making_process/make_process_4.jpg',
-    'assets/images/making_process/make_process_5.jpg',
+    'assets/images/makingProcess/make_process_2.jpg',
+    'assets/images/makingProcess/make_process_3.jpg',
+    'assets/images/makingProcess/make_process_4.jpg',
+    'assets/images/makingProcess/make_process_5.jpg',
   ];
 
   makingPic(context, i) {

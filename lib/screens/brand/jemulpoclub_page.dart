@@ -129,7 +129,7 @@ class JemulpoClubMain extends StatelessWidget {
           Image.asset(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
-            'assets/images/jemulpoClub_bg.png',
+            'assets/images/background/jemulpo_club_bg.png',
             fit: BoxFit.cover,
           ),
           Center(
@@ -203,17 +203,17 @@ class JemulpoClubStudio extends StatefulWidget {
 
 class _JemulpoClubStudioState extends State<JemulpoClubStudio> {
   List imageList = [
-    'assets/images/jemulpoclub/jemulpoclub_1.jpg',
-    'assets/images/jemulpoclub/jemulpoclub_2.jpg',
-    'assets/images/jemulpoclub/jemulpoclub_3.jpg',
-    'assets/images/jemulpoclub/jemulpoclub_4.jpg',
-    'assets/images/jemulpoclub/jemulpoclub_5.jpg',
-    'assets/images/jemulpoclub/jemulpoclub_6.jpg',
-    'assets/images/jemulpoclub/jemulpoclub_7.jpg',
-    'assets/images/jemulpoclub/jemulpoclub_8.jpg',
-    'assets/images/jemulpoclub/jemulpoclub_9.jpg',
-    'assets/images/jemulpoclub/jemulpoclub_10.jpg',
-    'assets/images/jemulpoclub/jemulpoclub_11.jpg',
+    'assets/images/jemulpoClub/jemulpo_club_1.jpg',
+    'assets/images/jemulpoClub/jemulpo_club_2.jpg',
+    'assets/images/jemulpoClub/jemulpo_club_3.jpg',
+    'assets/images/jemulpoClub/jemulpo_club_4.jpg',
+    'assets/images/jemulpoClub/jemulpo_club_5.jpg',
+    'assets/images/jemulpoClub/jemulpo_club_6.jpg',
+    'assets/images/jemulpoClub/jemulpo_club_7.jpg',
+    'assets/images/jemulpoClub/jemulpo_club_8.jpg',
+    'assets/images/jemulpoClub/jemulpo_club_9.jpg',
+    'assets/images/jemulpoClub/jemulpo_club_10.jpg',
+    'assets/images/jemulpoClub/jemulpo_club_11.jpg',
   ];
   @override
   Widget build(BuildContext context) {
@@ -464,7 +464,7 @@ class JemulpoClubFilming extends StatelessWidget {
                                   : widgetSize(context) / 2 - 10,
                               height: c1BoxSize(context) + 100,
                               child: fadeImage(
-                                  'assets/images/jemulpoclub/filming_2.png'),
+                                  'assets/images/jemulpoClub/filming_2.png'),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(top: 20),
@@ -491,7 +491,7 @@ class JemulpoClubFilming extends StatelessWidget {
                                   : widgetSize(context) / 2 - 10,
                               height: c1BoxSize(context) + 100,
                               child: fadeImage(
-                                  'assets/images/jemulpoclub/filming_2.png'),
+                                  'assets/images/jemulpoClub/filming_1.png'),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(top: 20),

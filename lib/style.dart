@@ -52,7 +52,7 @@ fadeImage(img) {
       child: const Icon(
         Icons.warning,
         color: Color(0xFF1E1E1E),
-        size: 128.0,
+        size: 60.0,
       ),
     ),
   );

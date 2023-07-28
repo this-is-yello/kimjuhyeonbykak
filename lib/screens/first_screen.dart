@@ -120,10 +120,10 @@ class _CarouselScreenState extends State<CarouselScreen> {
   final CarouselController _carouselController = CarouselController();
 
   List<String> mainBackgrounds = [
-    'assets/images/tailorShop_bg.png',
-    'assets/images/tailorAcademy_bg.png',
-    'assets/images/jemulpoClub_bg.png',
-    'assets/images/rentalCenter_bg.png',
+    'assets/images/background/tailor_shop_bg.png',
+    'assets/images/background/tailor_academy_bg.png',
+    'assets/images/background/jemulpo_club_bg.png',
+    'assets/images/background/rental_center_bg.png',
   ];
   List<String> mainTitles = [
     'k!mjuhyeon by 覺',
@@ -682,7 +682,7 @@ class _TailorShopScreenState extends State<TailorShopScreen> {
     super.initState();
     _videoController = VideoPlayerController.networkUrl(
       Uri.parse(
-        'https://github.com/this-is-yello/kimjuhyeonbykak/blob/main/assets/videos/atelier_video.mp4',
+        'https://github.com/this-is-yello/kimjuhyeonbykak/raw/main/assets/videos/atelier_video.mp4',
       ),
     )..initialize().then(
         (_) {
@@ -897,7 +897,7 @@ doWhat(context) {
 
 academyVideo() {
   return Image.asset(
-    'assets/images/tailorAcademy_bg.png',
+    'assets/images/background/tailor_academy_bg.png',
     fit: BoxFit.contain,
   );
 }

@@ -139,7 +139,7 @@ class _NotificationViewContentState extends State<NotificationViewContent> {
                       Image.asset(
                         width: MediaQuery.of(context).size.width,
                         height: c1BoxSize(context) + 200,
-                        'assets/images/jemulpoClub_bg.png',
+                        'assets/images/background/jemulpo_club_bg.png',
                         fit: BoxFit.cover,
                       ),
                       Container(

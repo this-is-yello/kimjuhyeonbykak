@@ -119,7 +119,7 @@ class _BusinessContentState extends State<BusinessContent> {
                     Image.asset(
                       width: MediaQuery.of(context).size.width,
                       height: c1BoxSize(context) + 200,
-                      'assets/images/tailorShop_bg.png',
+                      'assets/images/background/tailor_shop_bg.png',
                       fit: BoxFit.cover,
                     ),
                     Container(

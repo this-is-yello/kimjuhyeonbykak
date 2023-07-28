@@ -124,7 +124,7 @@ class _CommunityContentState extends State<CommunityContent> {
                     Image.asset(
                       width: MediaQuery.of(context).size.width,
                       height: c1BoxSize(context) + 200,
-                      'assets/images/jemulpoClub_bg.png',
+                      'assets/images/background/jemulpo_club_bg.png',
                       fit: BoxFit.cover,
                     ),
                     Container(
@@ -644,12 +644,13 @@ class _NotificationScreenState extends State<NotificationScreen> {
         .get();
     setState(() {
       notificationDocs = searchResult.docs;
-      notificationLength = searchResult.docs.length;
+      notificationLength = searchResult.docs.length.hashCode;
     });
   }
 
   double plusIndex = 0;
   int pageNum = 0;
+  int i = 0;
 
   // ListView의 itemCount를 변경합니다. ------------------------------
   listCount() {
@@ -685,7 +686,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
               width: widgetSize(context),
               height: c4BoxSize(context) * 5,
               child: ListView.builder(
-                itemCount: notificationLength.hashCode,
+                itemCount: notificationLength,
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
@@ -695,6 +696,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                       onTap: () {
                         setState(() {
                           notificationNum = index;
+                          i = index;
                         });
                         Get.rootDelegate.toNamed(
                             '${Routes.NOTIFICATIONVIEW}/$notificationNum');
@@ -879,6 +881,8 @@ class _EventScreenState extends State<EventScreen> {
   var eventDocs;
   var eventDocsLength;
 
+  int i = 0;
+
   searchEvent() async {
     var searchResult = await firestore
         .collection('event')
@@ -917,6 +921,7 @@ class _EventScreenState extends State<EventScreen> {
                 onTap: () {
                   setState(() {
                     eventNum = index;
+                    i = index;
                   });
                   Get.rootDelegate.toNamed('${Routes.EVENTVIEW}/$eventNum');
                   print(eventNum);

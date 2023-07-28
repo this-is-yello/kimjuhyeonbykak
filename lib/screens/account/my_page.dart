@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:image_fade/image_fade.dart';
 import 'package:kimjuhyeonbykak/style.dart';
 import 'package:kimjuhyeonbykak/main.dart';
 import 'package:kimjuhyeonbykak/navigation.dart';
 import 'package:kimjuhyeonbykak/screens/account/board_upload_Modal.dart';
+
+import 'package:image_fade/image_fade.dart';
+import 'package:file_picker/file_picker.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -154,13 +156,12 @@ class _ProfileState extends State<Profile> {
     );
   }
 
-  modifyAc() async {
+  modifyAccount() async {
     return showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
         content: SizedBox(
           width: 600,
-          // height: 800,
           child: Center(
             child: SizedBox(
               width: 360,
@@ -508,7 +509,7 @@ class _ProfileState extends State<Profile> {
                         ),
                         TextButton(
                           onPressed: () {
-                            modifyAc();
+                            modifyAccount();
                           },
                           child: Text(
                             '정보변경',
@@ -622,6 +623,7 @@ class _UserMyPageState extends State<UserMyPage> {
   var currentUserId = auth.currentUser?.email;
   var currentUserGrade;
 
+  // ------------------------------ Search_Ambassador ------------------------------
   currentUser() async {
     var currentUserSearch =
         await firestore.collection('account').doc('$currentUserId').get();
@@ -635,16 +637,16 @@ class _UserMyPageState extends State<UserMyPage> {
       if (doc.exists) {
         if (currentUserGrade == '엠버서더') {
           if (currentUserSearch.data()!.containsKey('ambassador')) {
-            print('본 회원은 엠버서더며, 필드가 존재합니다.');
+            print('본 회원은 엠버서더이며, 필드가 존재합니다.');
           } else {
-            print('본 회원은 엠버서더며, 필드가 존재하지 않아서 추가합니다.');
+            print('본 회원은 엠버서더이며, 필드가 존재하지 않아서 추가합니다.');
             addAmbassador.update({
               'ambassador': [
-                'assets/images/default_profile.png',
+                'https://firebasestorage.googleapis.com/v0/b/kimjuhyeonbykak.appspot.com/o/ambassadorPic%2Fdefault_profile.png?alt=media&token=0f747b27-d254-44eb-82ff-603b979ca8a3',
                 auth.currentUser?.displayName,
                 '소개합니다.',
-                'www.blog.blog',
-                'www.insta.inasta',
+                '블로그를 추가하세요.',
+                '인스타를 추가하세요.',
               ]
             });
             print('추가완료');
@@ -679,6 +681,7 @@ class _UserMyPageState extends State<UserMyPage> {
     print(ambassadorName);
   }
 
+  // ------------------------------ Modify_Ambassador_Profile ------------------------------
   @override
   void initState() {
     super.initState();
@@ -724,7 +727,32 @@ class _UserMyPageState extends State<UserMyPage> {
                                       ? widgetSize(context)
                                       : widgetSize(context) / 2 - 10,
                                   height: c1BoxSize(context) + 100,
-                                  child: fadeImage(ambassadorPic),
+                                  child: ImageFade(
+                                    image: NetworkImage(
+                                      ambassadorPic,
+                                    ),
+                                    fit: BoxFit.contain,
+                                    duration: const Duration(milliseconds: 900),
+                                    syncDuration:
+                                        const Duration(milliseconds: 150),
+                                    placeholder: Padding(
+                                      padding: const EdgeInsets.all(20),
+                                      child: Center(
+                                        child: CircularProgressIndicator(
+                                          color: blackColor,
+                                        ),
+                                      ),
+                                    ),
+                                    errorBuilder: (context, error) => Container(
+                                      color: const Color(0xFFFFFFFF),
+                                      alignment: Alignment.center,
+                                      child: const Icon(
+                                        Icons.warning,
+                                        color: Color(0xFF1E1E1E),
+                                        size: 60.0,
+                                      ),
+                                    ),
+                                  ),
                                 ),
                                 SizedBox(
                                   width: MediaQuery.of(context).size.width < 800
@@ -748,7 +776,14 @@ class _UserMyPageState extends State<UserMyPage> {
                                             ),
                                           ),
                                           TextButton(
-                                            onPressed: () {},
+                                            onPressed: () {
+                                              showDialog(
+                                                context: context,
+                                                builder: (context) {
+                                                  return ModifyAmbassador();
+                                                },
+                                              );
+                                            },
                                             child: Text(
                                               '프로필 편집',
                                               style: TextStyle(

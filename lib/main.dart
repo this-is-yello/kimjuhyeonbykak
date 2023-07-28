@@ -19,7 +19,7 @@ import 'package:kimjuhyeonbykak/screens/publicity/publicity_page.dart';
 import 'package:kimjuhyeonbykak/screens/publicity/magazine_view_page.dart';
 import 'package:kimjuhyeonbykak/screens/publicity/news_view_page.dart';
 
-import 'package:kimjuhyeonbykak/screens/product_page.dart';
+import 'package:kimjuhyeonbykak/screens/product/product_page.dart';
 
 import 'package:kimjuhyeonbykak/screens/community/community_page.dart';
 import 'package:kimjuhyeonbykak/screens/community/notification_view_page.dart';

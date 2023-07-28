@@ -123,7 +123,7 @@ class _PublicityContentState extends State<PublicityContent> {
                     Image.asset(
                       width: MediaQuery.of(context).size.width,
                       height: c1BoxSize(context) + 200,
-                      'assets/images/tailorAcademy_bg.png',
+                      'assets/images/background/tailor_academy_bg.png',
                       fit: BoxFit.cover,
                     ),
                     Container(
@@ -632,15 +632,15 @@ class SponsorShipScreen extends StatefulWidget {
 
 class _SponsorShipScreenState extends State<SponsorShipScreen> {
   List celebrity = [
-    'assets/images/sponsorship/sponsorship_1.jpg',
-    'assets/images/sponsorship/sponsorship_2.jpg',
-    'assets/images/sponsorship/sponsorship_3.jpg',
-    'assets/images/sponsorship/sponsorship_4.jpg',
-    'assets/images/sponsorship/sponsorship_5.jpg',
-    'assets/images/sponsorship/sponsorship_6.jpg',
-    'assets/images/sponsorship/sponsorship_7.jpg',
-    'assets/images/sponsorship/sponsorship_8.jpg',
-    'assets/images/sponsorship/sponsorship_9.jpg',
+    'assets/images/sponsorShip/sponsor_ship_1.jpg',
+    'assets/images/sponsorShip/sponsor_ship_2.jpg',
+    'assets/images/sponsorShip/sponsor_ship_3.jpg',
+    'assets/images/sponsorShip/sponsor_ship_4.jpg',
+    'assets/images/sponsorShip/sponsor_ship_5.jpg',
+    'assets/images/sponsorShip/sponsor_ship_6.jpg',
+    'assets/images/sponsorShip/sponsor_ship_7.jpg',
+    'assets/images/sponsorShip/sponsor_ship_8.jpg',
+    'assets/images/sponsorShip/sponsor_ship_9.jpg',
   ];
 
   @override

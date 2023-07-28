@@ -114,7 +114,8 @@ class ProductTitle extends StatelessWidget {
               SizedBox(
                 width: MediaQuery.of(context).size.width,
                 height: c1BoxSize(context) + 200,
-                child: fadeImage('assets/images/rentalCenter_bg.png'),
+                child:
+                    fadeImage('assets/images/background/rental_center_bg.png'),
               ),
               Container(
                 height: c1BoxSize(context) + 200,
@@ -199,96 +200,118 @@ class _ProductsGridState extends State<ProductsGrid> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.fromLTRB(20, 40, 20, 0),
-      child: SizedBox(
-        width: MediaQuery.of(context).size.width,
-        child: Center(
-          child: SizedBox(
-            width: widgetSize(context),
-            child: StaggeredGrid.count(
-              crossAxisCount: 4,
-              mainAxisSpacing: 10,
-              crossAxisSpacing: 10,
-              children: [
-                StaggeredGridTile.count(
-                  crossAxisCellCount: 2,
-                  mainAxisCellCount: 2,
-                  child: SizedBox(
-                    child: Image.network(
-                      productsDocs[0]['thumbnail'],
-                      fit: BoxFit.cover,
+    try {
+      return Padding(
+        padding: EdgeInsets.fromLTRB(20, 40, 20, 0),
+        child: SizedBox(
+          width: MediaQuery.of(context).size.width,
+          child: Center(
+            child: SizedBox(
+              width: widgetSize(context),
+              child: StaggeredGrid.count(
+                crossAxisCount: 4,
+                mainAxisSpacing: 10,
+                crossAxisSpacing: 10,
+                children: [
+                  StaggeredGridTile.count(
+                    crossAxisCellCount: 2,
+                    mainAxisCellCount: 2,
+                    child: SizedBox(
+                      child: Image.network(
+                        productsDocs[0]['thumbnail'],
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
-                ),
-                StaggeredGridTile.count(
-                  crossAxisCellCount: 2,
-                  mainAxisCellCount: 1,
-                  child: Container(
-                    color: blackColor,
+                  StaggeredGridTile.count(
+                    crossAxisCellCount: 2,
+                    mainAxisCellCount: 1,
+                    child: Container(
+                      color: blackColor,
+                    ),
                   ),
-                ),
-                StaggeredGridTile.count(
-                  crossAxisCellCount: 1,
-                  mainAxisCellCount: 1,
-                  child: Container(
-                    color: blackColor,
+                  StaggeredGridTile.count(
+                    crossAxisCellCount: 1,
+                    mainAxisCellCount: 1,
+                    child: Container(
+                      color: blackColor,
+                    ),
                   ),
-                ),
-                StaggeredGridTile.count(
-                  crossAxisCellCount: 1,
-                  mainAxisCellCount: 1,
-                  child: Container(
-                    color: blackColor,
+                  StaggeredGridTile.count(
+                    crossAxisCellCount: 1,
+                    mainAxisCellCount: 1,
+                    child: Container(
+                      color: blackColor,
+                    ),
                   ),
-                ),
-                StaggeredGridTile.count(
-                  crossAxisCellCount: 4,
-                  mainAxisCellCount: 2,
-                  child: Container(
-                    color: blackColor,
+                  StaggeredGridTile.count(
+                    crossAxisCellCount: 4,
+                    mainAxisCellCount: 2,
+                    child: Container(
+                      color: blackColor,
+                    ),
                   ),
-                ),
-                StaggeredGridTile.count(
-                  crossAxisCellCount: 2,
-                  mainAxisCellCount: 1,
-                  child: Container(
-                    color: blackColor,
+                  StaggeredGridTile.count(
+                    crossAxisCellCount: 2,
+                    mainAxisCellCount: 1,
+                    child: Container(
+                      color: blackColor,
+                    ),
                   ),
-                ),
-                StaggeredGridTile.count(
-                  crossAxisCellCount: 1,
-                  mainAxisCellCount: 1,
-                  child: Container(
-                    color: blackColor,
+                  StaggeredGridTile.count(
+                    crossAxisCellCount: 1,
+                    mainAxisCellCount: 1,
+                    child: Container(
+                      color: blackColor,
+                    ),
                   ),
-                ),
-                StaggeredGridTile.count(
-                  crossAxisCellCount: 1,
-                  mainAxisCellCount: 1,
-                  child: Container(
-                    color: blackColor,
+                  StaggeredGridTile.count(
+                    crossAxisCellCount: 1,
+                    mainAxisCellCount: 1,
+                    child: Container(
+                      color: blackColor,
+                    ),
                   ),
-                ),
-                StaggeredGridTile.count(
-                  crossAxisCellCount: 2,
-                  mainAxisCellCount: 2,
-                  child: Container(
-                    color: blackColor,
+                  StaggeredGridTile.count(
+                    crossAxisCellCount: 2,
+                    mainAxisCellCount: 2,
+                    child: Container(
+                      color: blackColor,
+                    ),
                   ),
-                ),
-                StaggeredGridTile.count(
-                  crossAxisCellCount: 2,
-                  mainAxisCellCount: 2,
-                  child: Container(
-                    color: blackColor,
+                  StaggeredGridTile.count(
+                    crossAxisCellCount: 2,
+                    mainAxisCellCount: 2,
+                    child: Container(
+                      color: blackColor,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
-      ),
-    );
+      );
+    } catch (e) {
+      return SizedBox(
+        width: widgetSize(context),
+        height: 300,
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CircularProgressIndicator(color: blackColor),
+              Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: Text(
+                  '로딩이 오래 걸리면 새로고침(F5) 한 번만 눌러주세요.',
+                  style: TextStyle(color: blackColor),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
   }
 }

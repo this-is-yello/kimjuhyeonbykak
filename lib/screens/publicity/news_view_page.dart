@@ -134,7 +134,7 @@ class _NewsViewContentState extends State<NewsViewContent> {
                       Image.asset(
                         width: MediaQuery.of(context).size.width,
                         height: c1BoxSize(context) + 200,
-                        'assets/images/tailorAcademy_bg.png',
+                        'assets/images/background/tailor_academy_bg.png',
                         fit: BoxFit.cover,
                       ),
                       Container(
