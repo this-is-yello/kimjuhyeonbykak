@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:kimjuhyeonbykak/style.dart';
 import 'package:kimjuhyeonbykak/main.dart';
 import 'package:kimjuhyeonbykak/navigation.dart';
-import 'package:kimjuhyeonbykak/screens/account/board_upload_Modal.dart';
+import 'package:kimjuhyeonbykak/screens/account/board_upload_modal.dart';
 
 import 'package:image_fade/image_fade.dart';
-import 'package:file_picker/file_picker.dart';
+// import 'package:file_picker/file_picker.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -116,13 +117,6 @@ class _ProfileState extends State<Profile> {
   var currentUserBirth;
   var currentUserGender;
 
-  var _inputCurrentPassword;
-  var _inputModifyPassword;
-  var _inputModifyPasswordCheck;
-  var _inputmodifyName;
-  var _inputModifyPhone;
-  var _inputModifyBirth;
-
   List infoTitles = [];
   List currentUserInfo = [];
   searchUser() async {
@@ -142,281 +136,6 @@ class _ProfileState extends State<Profile> {
         currentUserGender
       ];
     });
-    _inputCurrentPassword = TextEditingController();
-    _inputModifyPassword = TextEditingController();
-    _inputModifyPasswordCheck = TextEditingController();
-    _inputmodifyName = TextEditingController(
-      text: auth.currentUser?.displayName,
-    );
-    _inputModifyPhone = TextEditingController(
-      text: currentUserPhone,
-    );
-    _inputModifyBirth = TextEditingController(
-      text: currentUserBirth,
-    );
-  }
-
-  modifyAccount() async {
-    return showDialog(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        content: SizedBox(
-          width: 600,
-          child: Center(
-            child: SizedBox(
-              width: 360,
-              child: ListView(
-                shrinkWrap: true,
-                children: [
-                  Text(
-                    '계정정보 변경',
-                    style: TextStyle(
-                      fontSize: h3FontSize(context),
-                      color: blackColor,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20, bottom: 8),
-                    child: SizedBox(
-                      width: 360,
-                      child: Row(
-                        children: [
-                          Text('이메일: '),
-                          Text('$currentUserId'),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 360,
-                    child: TextField(
-                      controller: _inputCurrentPassword,
-                      keyboardType: TextInputType.visiblePassword,
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        hintText: '현재 비밀번호',
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(width: 1),
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(8),
-                            topRight: Radius.circular(8),
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            width: 2,
-                            color: blackColor,
-                          ),
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(8),
-                            topRight: Radius.circular(8),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 360,
-                    child: TextField(
-                      controller: _inputModifyPassword,
-                      keyboardType: TextInputType.visiblePassword,
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        hintText: '새 비밀번호',
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(width: 1),
-                          borderRadius: BorderRadius.circular(0),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            width: 2,
-                            color: blackColor,
-                          ),
-                          borderRadius: BorderRadius.circular(0),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 360,
-                    child: TextField(
-                      controller: _inputModifyPasswordCheck,
-                      keyboardType: TextInputType.visiblePassword,
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        hintText: '새 비밀번호 확인',
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(width: 1),
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(8),
-                            bottomRight: Radius.circular(8),
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            width: 2,
-                            color: blackColor,
-                          ),
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(8),
-                            bottomRight: Radius.circular(8),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20),
-                    child: InkWell(
-                      onTap: () {},
-                      child: Container(
-                        width: 300,
-                        height: 56,
-                        decoration: BoxDecoration(
-                          color: blackColor,
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: Center(
-                          child: Text(
-                            '비밀번호 변경',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: whiteColor,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 40),
-                    child: Text(
-                      '개인정보 변경',
-                      style: TextStyle(
-                        fontSize: h3FontSize(context),
-                        color: blackColor,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20),
-                    child: SizedBox(
-                      width: 360,
-                      child: TextField(
-                        controller: _inputmodifyName,
-                        decoration: InputDecoration(
-                          hintText: '이름',
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide(width: 1),
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(8),
-                              topRight: Radius.circular(8),
-                            ),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              width: 2,
-                              color: blackColor,
-                            ),
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(8),
-                              topRight: Radius.circular(8),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 360,
-                    child: TextField(
-                      controller: _inputModifyPhone,
-                      decoration: InputDecoration(
-                        hintText: '전화번호',
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(width: 1),
-                          borderRadius: BorderRadius.circular(0),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            width: 2,
-                            color: blackColor,
-                          ),
-                          borderRadius: BorderRadius.circular(0),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 360,
-                    child: TextField(
-                      controller: _inputModifyBirth,
-                      decoration: InputDecoration(
-                        hintText: '생년월일',
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(width: 1),
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(8),
-                            bottomRight: Radius.circular(8),
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            width: 2,
-                            color: blackColor,
-                          ),
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(8),
-                            bottomRight: Radius.circular(8),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20),
-                    child: InkWell(
-                      onTap: () {},
-                      child: Container(
-                        width: 300,
-                        height: 56,
-                        decoration: BoxDecoration(
-                          color: blackColor,
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: Center(
-                          child: Text(
-                            '개인정보 변경',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: whiteColor,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: Text(
-              '닫기',
-              style: TextStyle(
-                fontSize: 20,
-                color: blackColor,
-              ),
-            ),
-          )
-        ],
-      ),
-    );
   }
 
   @override
@@ -509,7 +228,7 @@ class _ProfileState extends State<Profile> {
                         ),
                         TextButton(
                           onPressed: () {
-                            modifyAccount();
+                            Get.rootDelegate.toNamed(Routes.MODIFYACCOUNT);
                           },
                           child: Text(
                             '정보변경',
@@ -702,7 +421,7 @@ class _UserMyPageState extends State<UserMyPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '엠버서더 프로필',
+                  '엠버서더 프로필 편집',
                   style: TextStyle(
                     fontSize: h2FontSize(context),
                     color: blackColor,
@@ -777,12 +496,8 @@ class _UserMyPageState extends State<UserMyPage> {
                                           ),
                                           TextButton(
                                             onPressed: () {
-                                              showDialog(
-                                                context: context,
-                                                builder: (context) {
-                                                  return ModifyAmbassador();
-                                                },
-                                              );
+                                              Get.rootDelegate.toNamed(
+                                                  Routes.MODIFYAMBASSADOR);
                                             },
                                             child: Text(
                                               '프로필 편집',
@@ -797,58 +512,78 @@ class _UserMyPageState extends State<UserMyPage> {
                                         padding: const EdgeInsets.only(
                                           top: 20,
                                         ),
-                                        child: Text(
-                                          ambassadorIntroduce,
-                                          style: TextStyle(
-                                            fontSize: h4FontSize(context),
-                                            color: blackColor,
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                          top: 16,
-                                        ),
-                                        child: TextButton(
-                                          onPressed: () {},
+                                        child: Container(
+                                          width: double.infinity,
+                                          padding: EdgeInsets.all(8),
                                           child: Text(
-                                            ambassadorBlog,
+                                            ambassadorIntroduce,
                                             style: TextStyle(
                                               fontSize: h4FontSize(context),
                                               color: blackColor,
                                             ),
                                           ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                          top: 16,
-                                        ),
-                                        child: TextButton(
-                                          onPressed: () {},
-                                          child: Text(
-                                            ambassadorInsta,
-                                            style: TextStyle(
-                                              fontSize: h4FontSize(context),
-                                              color: blackColor,
+                                          decoration: BoxDecoration(
+                                            border: Border(
+                                              bottom: BorderSide(
+                                                color: greyColor,
+                                                width: 2,
+                                              ),
                                             ),
                                           ),
                                         ),
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                          top: 16,
-                                        ),
-                                        child: TextButton(
-                                          onPressed: () {},
-                                          child: Text(
-                                            '엠버서더 링크',
-                                            style: TextStyle(
-                                              fontSize: h4FontSize(context),
-                                              color: blackColor,
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                              top: 16,
+                                            ),
+                                            child: TextButton(
+                                              onPressed: () {},
+                                              child: Text(
+                                                '인스타그램',
+                                                // ambassadorBlog,
+                                                style: TextStyle(
+                                                  fontSize: h4FontSize(context),
+                                                  color: blackColor,
+                                                ),
+                                              ),
                                             ),
                                           ),
-                                        ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                              top: 16,
+                                            ),
+                                            child: TextButton(
+                                              onPressed: () {},
+                                              child: Text(
+                                                '블로그',
+                                                // ambassadorInsta,
+                                                style: TextStyle(
+                                                  fontSize: h4FontSize(context),
+                                                  color: blackColor,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                              top: 16,
+                                            ),
+                                            child: TextButton(
+                                              onPressed: () {},
+                                              child: Text(
+                                                '엠버서더 링크',
+                                                style: TextStyle(
+                                                  fontSize: h4FontSize(context),
+                                                  color: blackColor,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ],
                                   ),

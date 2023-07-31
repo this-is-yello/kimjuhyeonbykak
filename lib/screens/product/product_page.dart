@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:image_fade/image_fade.dart';
 import 'package:kimjuhyeonbykak/style.dart';
 import 'package:kimjuhyeonbykak/main.dart';
 
@@ -184,11 +185,16 @@ class ProductsGrid extends StatefulWidget {
 
 class _ProductsGridState extends State<ProductsGrid> {
   var productsDocs;
+  var productsDocsLength;
 
   searchProducts() async {
-    var searchResult = await firestore.collection('product').get();
+    var searchResult = await firestore
+        .collection('product')
+        .orderBy('date', descending: true)
+        .get();
     setState(() {
       productsDocs = searchResult.docs;
+      productsDocsLength = searchResult.docs.length;
     });
   }
 
@@ -208,85 +214,49 @@ class _ProductsGridState extends State<ProductsGrid> {
           child: Center(
             child: SizedBox(
               width: widgetSize(context),
-              child: StaggeredGrid.count(
-                crossAxisCount: 4,
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 10,
-                children: [
-                  StaggeredGridTile.count(
-                    crossAxisCellCount: 2,
-                    mainAxisCellCount: 2,
-                    child: SizedBox(
-                      child: Image.network(
-                        productsDocs[0]['thumbnail'],
-                        fit: BoxFit.cover,
+              child: GridView.builder(
+                itemCount: productsDocsLength.hashCode,
+                shrinkWrap: true,
+                controller: ScrollController(),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: MediaQuery.of(context).size.width < 800
+                      ? 2
+                      : MediaQuery.of(context).size.width < 1240
+                          ? 3
+                          : 4,
+                  childAspectRatio: 1 / 1.2,
+                  mainAxisSpacing: 10,
+                  crossAxisSpacing: 10,
+                ),
+                itemBuilder: (context, index) {
+                  return SizedBox(
+                    child: ImageFade(
+                      image: NetworkImage(
+                        productsDocs[index]['thumbnail'],
+                      ),
+                      fit: BoxFit.cover,
+                      duration: const Duration(milliseconds: 900),
+                      syncDuration: const Duration(milliseconds: 150),
+                      placeholder: Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: Center(
+                          child: CircularProgressIndicator(
+                            color: blackColor,
+                          ),
+                        ),
+                      ),
+                      errorBuilder: (context, error) => Container(
+                        color: const Color(0xFFFFFFFF),
+                        alignment: Alignment.center,
+                        child: const Icon(
+                          Icons.warning,
+                          color: Color(0xFF1E1E1E),
+                          size: 60.0,
+                        ),
                       ),
                     ),
-                  ),
-                  StaggeredGridTile.count(
-                    crossAxisCellCount: 2,
-                    mainAxisCellCount: 1,
-                    child: Container(
-                      color: blackColor,
-                    ),
-                  ),
-                  StaggeredGridTile.count(
-                    crossAxisCellCount: 1,
-                    mainAxisCellCount: 1,
-                    child: Container(
-                      color: blackColor,
-                    ),
-                  ),
-                  StaggeredGridTile.count(
-                    crossAxisCellCount: 1,
-                    mainAxisCellCount: 1,
-                    child: Container(
-                      color: blackColor,
-                    ),
-                  ),
-                  StaggeredGridTile.count(
-                    crossAxisCellCount: 4,
-                    mainAxisCellCount: 2,
-                    child: Container(
-                      color: blackColor,
-                    ),
-                  ),
-                  StaggeredGridTile.count(
-                    crossAxisCellCount: 2,
-                    mainAxisCellCount: 1,
-                    child: Container(
-                      color: blackColor,
-                    ),
-                  ),
-                  StaggeredGridTile.count(
-                    crossAxisCellCount: 1,
-                    mainAxisCellCount: 1,
-                    child: Container(
-                      color: blackColor,
-                    ),
-                  ),
-                  StaggeredGridTile.count(
-                    crossAxisCellCount: 1,
-                    mainAxisCellCount: 1,
-                    child: Container(
-                      color: blackColor,
-                    ),
-                  ),
-                  StaggeredGridTile.count(
-                    crossAxisCellCount: 2,
-                    mainAxisCellCount: 2,
-                    child: Container(
-                      color: blackColor,
-                    ),
-                  ),
-                  StaggeredGridTile.count(
-                    crossAxisCellCount: 2,
-                    mainAxisCellCount: 2,
-                    child: Container(
-                      color: blackColor,
-                    ),
-                  ),
-                ],
+                  );
+                },
               ),
             ),
           ),

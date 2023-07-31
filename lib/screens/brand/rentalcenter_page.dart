@@ -351,38 +351,9 @@ class _RentalIntroduceState extends State<RentalIntroduce> {
 }
 
 // ---------- RentalCenter_Product -----------------------------------------------------------------------------------------------------
-class RentalProduct extends StatefulWidget {
+class RentalProduct extends StatelessWidget {
   const RentalProduct({super.key});
 
-  @override
-  State<RentalProduct> createState() => _RentalProductState();
-}
-
-class _RentalProductState extends State<RentalProduct> {
-  List rentalProducts = [
-    'assets/images/rentalProducts/product_1.png',
-    'assets/images/rentalProducts/product_2.png',
-    'assets/images/rentalProducts/product_3.png',
-    'assets/images/rentalProducts/product_4.png',
-    'assets/images/rentalProducts/product_5.png',
-    'assets/images/rentalProducts/product_6.png',
-    'assets/images/rentalProducts/product_7.png',
-    'assets/images/rentalProducts/product_8.png',
-    'assets/images/rentalProducts/product_9.png',
-    'assets/images/rentalProducts/product_10.png',
-    'assets/images/rentalProducts/product_11.png',
-    'assets/images/rentalProducts/product_12.png',
-    'assets/images/rentalProducts/product_13.png',
-    'assets/images/rentalProducts/product_14.png',
-    'assets/images/rentalProducts/product_15.png',
-    'assets/images/rentalProducts/product_16.png',
-    'assets/images/rentalProducts/product_17.png',
-    'assets/images/rentalProducts/product_18.png',
-    'assets/images/rentalProducts/product_19.png',
-    'assets/images/rentalProducts/product_20.png',
-    'assets/images/rentalProducts/product_21.png',
-    'assets/images/rentalProducts/product_22.png'
-  ];
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -406,7 +377,8 @@ class _RentalProductState extends State<RentalProduct> {
               child: SizedBox(
                 width: widgetSize(context),
                 child: GridView.builder(
-                  itemCount: rentalProducts.length,
+                  // 사진이 추가될 때 마다 숫자 바꿔야 함?
+                  itemCount: 22,
                   shrinkWrap: true,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: MediaQuery.of(context).size.width < 800
@@ -420,7 +392,8 @@ class _RentalProductState extends State<RentalProduct> {
                   ),
                   itemBuilder: (context, index) {
                     return SizedBox(
-                      child: fadeImage(rentalProducts[index]),
+                      child: fadeImage(
+                          'assets/images/rentalProducts/product_${index + 1}.png'),
                     );
                   },
                 ),

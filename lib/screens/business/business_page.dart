@@ -376,10 +376,12 @@ class SupportersKakIn extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 20),
-                child: Container(
+                child: SizedBox(
                   width: widgetSize(context),
-                  height: c1BoxSize(context) + 200,
-                  color: blackColor,
+                  child: Image.asset(
+                    'assets/images/kakin.png',
+                    fit: BoxFit.fitWidth,
+                  ),
                 ),
               ),
               Padding(

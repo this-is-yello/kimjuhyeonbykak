@@ -203,17 +203,17 @@ class JemulpoClubStudio extends StatefulWidget {
 
 class _JemulpoClubStudioState extends State<JemulpoClubStudio> {
   List imageList = [
-    'assets/images/jemulpoClub/jemulpo_club_1.jpg',
-    'assets/images/jemulpoClub/jemulpo_club_2.jpg',
-    'assets/images/jemulpoClub/jemulpo_club_3.jpg',
-    'assets/images/jemulpoClub/jemulpo_club_4.jpg',
-    'assets/images/jemulpoClub/jemulpo_club_5.jpg',
-    'assets/images/jemulpoClub/jemulpo_club_6.jpg',
-    'assets/images/jemulpoClub/jemulpo_club_7.jpg',
-    'assets/images/jemulpoClub/jemulpo_club_8.jpg',
-    'assets/images/jemulpoClub/jemulpo_club_9.jpg',
-    'assets/images/jemulpoClub/jemulpo_club_10.jpg',
-    'assets/images/jemulpoClub/jemulpo_club_11.jpg',
+    'assets/images/jemulpoClub/jemulpo_club_1.png',
+    'assets/images/jemulpoClub/jemulpo_club_2.png',
+    'assets/images/jemulpoClub/jemulpo_club_3.png',
+    'assets/images/jemulpoClub/jemulpo_club_4.png',
+    'assets/images/jemulpoClub/jemulpo_club_5.png',
+    'assets/images/jemulpoClub/jemulpo_club_6.png',
+    'assets/images/jemulpoClub/jemulpo_club_7.png',
+    'assets/images/jemulpoClub/jemulpo_club_8.png',
+    'assets/images/jemulpoClub/jemulpo_club_9.png',
+    'assets/images/jemulpoClub/jemulpo_club_10.png',
+    'assets/images/jemulpoClub/jemulpo_club_11.png',
   ];
   @override
   Widget build(BuildContext context) {
