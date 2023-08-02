@@ -163,13 +163,13 @@ class TailorAcademyMain extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(
-                        top: 20,
+                        top: 12,
                         bottom: 20,
                       ),
                       child: Text(
                         '바이각 테일러아카데미',
                         style: TextStyle(
-                          fontSize: h1FontSize(context),
+                          fontSize: h2FontSize(context),
                           fontWeight: FontWeight.bold,
                           color: whiteColor,
                         ),
@@ -178,7 +178,7 @@ class TailorAcademyMain extends StatelessWidget {
                     Text(
                       '어제보다 나은 작업물을 만드는 것이 이 시대의 장인정신입니다.',
                       style: TextStyle(
-                        fontSize: h6FontSize(context),
+                        fontSize: h5FontSize(context),
                         color: whiteColor,
                       ),
                     ),
@@ -221,7 +221,7 @@ academyText(context) {
       Text(
         '바이각 테일러아카데미는',
         style: TextStyle(
-          fontSize: h5FontSize(context),
+          fontSize: h4FontSize(context),
           fontWeight: FontWeight.bold,
           color: blackColor,
         ),
@@ -229,7 +229,7 @@ academyText(context) {
       Text(
         '장인들의 맞춤양복 기술이 후대에도\n이어나갈 수 있도록 후학양성을 위해',
         style: TextStyle(
-          fontSize: h2FontSize(context),
+          fontSize: h3FontSize(context),
           fontWeight: FontWeight.bold,
           color: bykakColor,
         ),
@@ -237,7 +237,7 @@ academyText(context) {
       Text(
         '설립되었습니다.',
         style: TextStyle(
-          fontSize: h5FontSize(context),
+          fontSize: h4FontSize(context),
           color: blackColor,
         ),
       ),
@@ -263,7 +263,7 @@ class WhatIsAcademy extends StatelessWidget {
                 children: [
                   academyLogo(context),
                   Padding(
-                    padding: EdgeInsets.only(top: 20),
+                    padding: EdgeInsets.only(top: 40),
                     child: academyText(context),
                   ),
                 ],
@@ -301,7 +301,7 @@ class Curriculum extends StatelessWidget {
             Text(
               'Curriculum',
               style: TextStyle(
-                fontSize: h1FontSize(context),
+                fontSize: h2FontSize(context),
                 fontFamily: 'Cafe_24',
                 fontWeight: FontWeight.bold,
                 color: blackColor,
@@ -325,7 +325,7 @@ class Curriculum extends StatelessWidget {
                         onTap: () {},
                         child: Container(
                           width: 240,
-                          height: 56,
+                          height: 40,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(200),
                             color: blackColor,
@@ -371,7 +371,7 @@ class WhoTeaching extends StatelessWidget {
             Text(
               'Instructor',
               style: TextStyle(
-                fontSize: h1FontSize(context),
+                fontSize: h2FontSize(context),
                 fontFamily: 'Cafe_24',
                 fontWeight: FontWeight.bold,
                 color: blackColor,
@@ -415,11 +415,11 @@ class WhoTeaching extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(top: 20),
+                          padding: const EdgeInsets.only(top: 20, bottom: 12),
                           child: Text(
                             '양복기능대회 은메달리스트 김회문 선생님',
                             style: TextStyle(
-                              fontSize: h2FontSize(context) - 2,
+                              fontSize: h3FontSize(context) - 2,
                               color: blackColor,
                             ),
                           ),
@@ -427,7 +427,7 @@ class WhoTeaching extends StatelessWidget {
                         Text(
                           '오랜시간을 맞춤양복 기술의 경력을 쌓아오신 분으로써\n여러 대회에서 수상을 하신 경력이 있으십니다.',
                           style: TextStyle(
-                            fontSize: h6FontSize(context),
+                            fontSize: h5FontSize(context),
                             color: blackColor,
                           ),
                         ),
@@ -462,7 +462,7 @@ class WhyLearning extends StatelessWidget {
             Text(
               'Reason',
               style: TextStyle(
-                fontSize: h1FontSize(context),
+                fontSize: h2FontSize(context),
                 fontFamily: 'Cafe_24',
                 fontWeight: FontWeight.bold,
                 color: blackColor,
@@ -491,7 +491,7 @@ class WhyLearning extends StatelessWidget {
                       Text(
                         '맞춤정장을 배워 무엇을 할 수 있을까?',
                         style: TextStyle(
-                          fontSize: h4FontSize(context),
+                          fontSize: h5FontSize(context),
                         ),
                       ),
                       Row(
@@ -500,11 +500,11 @@ class WhyLearning extends StatelessWidget {
                           Text(
                             '"테일러링을 배워서 ',
                             style: TextStyle(
-                              fontSize: h4FontSize(context),
+                              fontSize: h5FontSize(context),
                             ),
                           ),
                           Container(
-                            width: c2BoxSize(context),
+                            width: c1BoxSize(context),
                             height: MediaQuery.of(context).size.width < 800
                                 ? 32
                                 : 40,
@@ -522,21 +522,21 @@ class WhyLearning extends StatelessWidget {
                                 RotateAnimatedText(
                                   '나만의 수트제작',
                                   textStyle: TextStyle(
-                                    fontSize: h5FontSize(context),
+                                    fontSize: h4FontSize(context),
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
                                 RotateAnimatedText(
                                   '테일러샵 창업',
                                   textStyle: TextStyle(
-                                    fontSize: h5FontSize(context),
+                                    fontSize: h4FontSize(context),
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
                                 RotateAnimatedText(
                                   '쇼핑몰 오픈',
                                   textStyle: TextStyle(
-                                    fontSize: h5FontSize(context),
+                                    fontSize: h4FontSize(context),
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
@@ -546,7 +546,7 @@ class WhyLearning extends StatelessWidget {
                           Text(
                             ' 을 하고싶다"',
                             style: TextStyle(
-                              fontSize: h4FontSize(context),
+                              fontSize: h5FontSize(context),
                             ),
                           ),
                         ],
@@ -579,7 +579,7 @@ class AcademyLocation extends StatelessWidget {
             Text(
               'Location',
               style: TextStyle(
-                fontSize: h1FontSize(context),
+                fontSize: h2FontSize(context),
                 fontFamily: 'Cafe_24',
                 fontWeight: FontWeight.bold,
                 color: blackColor,
@@ -609,14 +609,14 @@ class AcademyLocation extends StatelessWidget {
                               Text(
                                 '바이각 테일러아카데미',
                                 style: TextStyle(
-                                  fontSize: h2FontSize(context) - 2,
+                                  fontSize: h3FontSize(context) - 2,
                                   color: blackColor,
                                 ),
                               ),
                               Text(
                                 '인천광역시 미추홀구 석정로200 3층',
                                 style: TextStyle(
-                                  fontSize: h6FontSize(context),
+                                  fontSize: h5FontSize(context),
                                   color: blackColor,
                                 ),
                               ),

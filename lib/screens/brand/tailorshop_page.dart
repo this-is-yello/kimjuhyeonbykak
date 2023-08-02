@@ -165,13 +165,13 @@ class TailorShopMain extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(
-                        top: 20,
+                        top: 12,
                         bottom: 20,
                       ),
                       child: Text(
                         '김주현바이각',
                         style: TextStyle(
-                          fontSize: h1FontSize(context),
+                          fontSize: h2FontSize(context),
                           fontWeight: FontWeight.bold,
                           color: whiteColor,
                         ),
@@ -180,7 +180,7 @@ class TailorShopMain extends StatelessWidget {
                     Text(
                       '전통과 정통을 바느질하다.',
                       style: TextStyle(
-                        fontSize: h6FontSize(context),
+                        fontSize: h5FontSize(context),
                         color: whiteColor,
                       ),
                     ),
@@ -262,7 +262,7 @@ class _ShopsState extends State<Shops> {
                 child: Text(
                   '김주현바이각 제물포 본점',
                   style: TextStyle(
-                    fontSize: h4FontSize(context),
+                    fontSize: h3FontSize(context),
                     color: blackColor,
                   ),
                 ),
@@ -273,7 +273,7 @@ class _ShopsState extends State<Shops> {
                   child: Text(
                     '인천시 미추홀구 석정로 200 1층',
                     style: TextStyle(
-                      fontSize: h5FontSize(context),
+                      fontSize: h4FontSize(context),
                       color: blackColor,
                     ),
                   ),
@@ -284,7 +284,7 @@ class _ShopsState extends State<Shops> {
                   '제물포 본점은 마스터테일러와 재단팀들이 상주해 있으며,\n지하에 작업하는 아뜰리에가 존재하고 있습니다.',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: h6FontSize(context),
+                    fontSize: h5FontSize(context),
                     color: blackColor,
                   ),
                 ),
@@ -359,7 +359,7 @@ class _ShopsState extends State<Shops> {
                 child: Text(
                   '김주현바이각 송도점',
                   style: TextStyle(
-                    fontSize: h4FontSize(context),
+                    fontSize: h3FontSize(context),
                     color: blackColor,
                   ),
                 ),
@@ -381,7 +381,7 @@ class _ShopsState extends State<Shops> {
                   '인천송도점은 스타일링 서비스와 화려하고 트렌디한\n김주현바이각만의 색을 입힌 퍼포먼스 스토어입니다.',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: h6FontSize(context),
+                    fontSize: h5FontSize(context),
                     color: blackColor,
                   ),
                 ),
@@ -452,7 +452,6 @@ class _ShopsState extends State<Shops> {
         children: [
           SizedBox(
             width: widgetSize(context),
-            height: widgetSize(context) - 300,
             child: _videoController.value.isInitialized
                 ? Container(
                     width: widgetSize(context),
@@ -489,7 +488,7 @@ class _ShopsState extends State<Shops> {
                 Text(
                   '직영 아뜰리에',
                   style: TextStyle(
-                    fontSize: h3FontSize(context),
+                    fontSize: h2FontSize(context),
                     fontWeight: FontWeight.bold,
                     color: blackColor,
                   ),
@@ -502,7 +501,7 @@ class _ShopsState extends State<Shops> {
                       '단추 하나, 깃 하나로도 고객을 감동시키는 수트를 만들기 위해 40년 이상의 경력을 가진 7명의 장인을 직접 모셨습니다. 김주현바이각은 인천에서 유일하게 매장 내 수제 공방을 운영하며 비스포크 맞춤 수트의 정석을 구현하고 있습니다.',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: h6FontSize(context),
+                        fontSize: h5FontSize(context),
                         color: blackColor,
                       ),
                     ),
@@ -566,22 +565,6 @@ class _LabelState extends State<Label> {
     '각박한 빌딩 숲, 똑같은 비즈니스 수트, 그 안에서 우리의 위트를 찾습니다.\n“입어서 즐거운 옷”  이것이 바로 White label의 철학입니다. Wity는 Wit와 City의 합성어입니다.',
   ];
 
-  List fabrics = [
-    'assets/images/fabrics/fabric_1.jpg',
-    'assets/images/fabrics/fabric_2.jpg',
-    'assets/images/fabrics/fabric_3.jpg',
-    'assets/images/fabrics/fabric_4.jpg',
-    'assets/images/fabrics/fabric_5.jpg',
-    'assets/images/fabrics/fabric_6.jpg',
-    'assets/images/fabrics/fabric_7.jpg',
-    'assets/images/fabrics/fabric_8.jpg',
-    'assets/images/fabrics/fabric_9.jpg',
-    'assets/images/fabrics/fabric_10.jpg',
-    'assets/images/fabrics/fabric_11.jpg',
-    'assets/images/fabrics/fabric_12.jpg',
-    'assets/images/fabrics/fabric_13.jpg',
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -594,7 +577,7 @@ class _LabelState extends State<Label> {
           Text(
             'Label',
             style: TextStyle(
-              fontSize: h1FontSize(context),
+              fontSize: h2FontSize(context),
               fontFamily: 'Cafe_24',
               fontWeight: FontWeight.bold,
               color: blackColor,
@@ -621,7 +604,7 @@ class _LabelState extends State<Label> {
                   Text(
                     blackLabelTexts[0],
                     style: TextStyle(
-                      fontSize: h2FontSize(context),
+                      fontSize: h3FontSize(context),
                       color: whiteColor,
                     ),
                   ),
@@ -633,7 +616,7 @@ class _LabelState extends State<Label> {
                     child: Text(
                       blackLabelTexts[1],
                       style: TextStyle(
-                        fontSize: h5FontSize(context),
+                        fontSize: h4FontSize(context),
                         color: whiteColor,
                       ),
                     ),
@@ -641,7 +624,7 @@ class _LabelState extends State<Label> {
                   Text(
                     blackLabelTexts[2],
                     style: TextStyle(
-                      fontSize: h7FontSize(context),
+                      fontSize: h5FontSize(context),
                       color: whiteColor,
                     ),
                   ),
@@ -666,7 +649,7 @@ class _LabelState extends State<Label> {
               blackLabelTexts[4],
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: h6FontSize(context),
+                fontSize: h5FontSize(context),
                 color: blackColor,
               ),
             ),
@@ -691,7 +674,7 @@ class _LabelState extends State<Label> {
                     whiteLabelTexts[0],
                     textAlign: TextAlign.end,
                     style: TextStyle(
-                      fontSize: h2FontSize(context),
+                      fontSize: h3FontSize(context),
                       color: whiteColor,
                     ),
                   ),
@@ -704,7 +687,7 @@ class _LabelState extends State<Label> {
                       whiteLabelTexts[1],
                       textAlign: TextAlign.end,
                       style: TextStyle(
-                        fontSize: h5FontSize(context),
+                        fontSize: h4FontSize(context),
                         color: whiteColor,
                       ),
                     ),
@@ -713,7 +696,7 @@ class _LabelState extends State<Label> {
                     whiteLabelTexts[2],
                     textAlign: TextAlign.end,
                     style: TextStyle(
-                      fontSize: h7FontSize(context),
+                      fontSize: h5FontSize(context),
                       color: whiteColor,
                     ),
                   ),
@@ -738,7 +721,7 @@ class _LabelState extends State<Label> {
               whiteLabelTexts[4],
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: h6FontSize(context),
+                fontSize: h5FontSize(context),
                 color: blackColor,
               ),
             ),
@@ -758,7 +741,7 @@ class _LabelState extends State<Label> {
                 ),
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: fabrics.length,
+                  itemCount: 13,
                   itemBuilder: (context, index) {
                     return Container(
                       width: c1BoxSize(context),
@@ -770,7 +753,8 @@ class _LabelState extends State<Label> {
                         ),
                       ),
                       margin: EdgeInsets.symmetric(horizontal: 12),
-                      child: fadeImage(fabrics[index]),
+                      child: fadeImage(
+                          'assets/images/fabrics/fabric_${index + 1}.jpg'),
                     );
                   },
                 ),
@@ -802,19 +786,19 @@ class CountUpText extends StatelessWidget {
               Text(
                 '총 ',
                 style: TextStyle(
-                  fontSize: h3FontSize(context),
+                  fontSize: h4FontSize(context),
                   color: blackColor,
                 ),
               ),
               SizedBox(
-                width: c3BoxSize(context) + 16,
+                width: c1BoxSize(context) + 24,
                 child: Countup(
                   begin: 0,
                   end: 5981,
                   duration: const Duration(milliseconds: 3000),
                   separator: ',',
                   style: TextStyle(
-                    fontSize: h1FontSize(context),
+                    fontSize: h2FontSize(context),
                     fontWeight: FontWeight.bold,
                     color: blackColor,
                   ),
@@ -823,7 +807,7 @@ class CountUpText extends StatelessWidget {
               Text(
                 '벌 제작',
                 style: TextStyle(
-                  fontSize: h3FontSize(context),
+                  fontSize: h4FontSize(context),
                   color: blackColor,
                 ),
               ),
@@ -840,19 +824,19 @@ class CountUpText extends StatelessWidget {
                 Text(
                   '총 ',
                   style: TextStyle(
-                    fontSize: h3FontSize(context),
+                    fontSize: h4FontSize(context),
                     color: blackColor,
                   ),
                 ),
                 SizedBox(
-                  width: c1BoxSize(context) + 48,
+                  width: c1BoxSize(context) + 24,
                   child: Countup(
                     begin: 0,
                     end: 59804019,
                     duration: const Duration(milliseconds: 4000),
                     separator: ',',
                     style: TextStyle(
-                      fontSize: h1FontSize(context),
+                      fontSize: h2FontSize(context),
                       fontWeight: FontWeight.bold,
                       color: blackColor,
                     ),
@@ -861,7 +845,7 @@ class CountUpText extends StatelessWidget {
                 Text(
                   '번의 바느질',
                   style: TextStyle(
-                    fontSize: h3FontSize(context),
+                    fontSize: h4FontSize(context),
                     color: blackColor,
                   ),
                 ),
@@ -874,19 +858,19 @@ class CountUpText extends StatelessWidget {
               Text(
                 '총 ',
                 style: TextStyle(
-                  fontSize: h3FontSize(context),
+                  fontSize: h4FontSize(context),
                   color: blackColor,
                 ),
               ),
               SizedBox(
-                width: c2BoxSize(context) + 20,
+                width: c1BoxSize(context) + 24,
                 child: Countup(
                   begin: 0,
                   end: 592119,
                   duration: const Duration(milliseconds: 3500),
                   separator: ',',
                   style: TextStyle(
-                    fontSize: h1FontSize(context),
+                    fontSize: h2FontSize(context),
                     fontWeight: FontWeight.bold,
                     color: blackColor,
                   ),
@@ -895,7 +879,7 @@ class CountUpText extends StatelessWidget {
               Text(
                 '의 제작시간',
                 style: TextStyle(
-                  fontSize: h3FontSize(context),
+                  fontSize: h4FontSize(context),
                   color: blackColor,
                 ),
               ),
@@ -936,10 +920,10 @@ class _MakingProcessState extends State<MakingProcess> {
   ];
 
   List makingProcess = [
+    'assets/images/makingProcess/make_process_1.jpg',
     'assets/images/makingProcess/make_process_2.jpg',
     'assets/images/makingProcess/make_process_3.jpg',
     'assets/images/makingProcess/make_process_4.jpg',
-    'assets/images/makingProcess/make_process_5.jpg',
   ];
 
   makingPic(context, i) {
@@ -957,13 +941,13 @@ class _MakingProcessState extends State<MakingProcess> {
         Text(
           makingEnTitle[i],
           style: TextStyle(
-            fontSize: h2FontSize(context),
+            fontSize: h3FontSize(context),
             color: blackColor,
           ),
         ),
         Padding(
           padding: const EdgeInsets.only(
-            top: 16,
+            top: 12,
             bottom: 16,
           ),
           child: Text(
@@ -977,7 +961,7 @@ class _MakingProcessState extends State<MakingProcess> {
         Text(
           makingSub[i],
           style: TextStyle(
-            fontSize: h6FontSize(context),
+            fontSize: h5FontSize(context),
             color: blackColor,
           ),
         ),
@@ -999,7 +983,7 @@ class _MakingProcessState extends State<MakingProcess> {
             Text(
               'Making Process',
               style: TextStyle(
-                fontSize: h1FontSize(context),
+                fontSize: h2FontSize(context),
                 fontFamily: 'Cafe_24',
                 fontWeight: FontWeight.bold,
                 color: blackColor,
@@ -1155,7 +1139,7 @@ serviceText(context) {
           child: Text(
             '김주현바이각 기본 서비스',
             style: TextStyle(
-              fontSize: h1FontSize(context),
+              fontSize: h3FontSize(context),
               color: blackColor,
             ),
           ),
@@ -1177,7 +1161,7 @@ serviceText(context) {
           child: Text(
             '1. 보타이를 웨딩촬영이나 예식날 대여해 드립니다.',
             style: TextStyle(
-              fontSize: h6FontSize(context),
+              fontSize: h5FontSize(context),
               color: blackColor,
             ),
           ),
@@ -1199,7 +1183,7 @@ serviceText(context) {
           child: Text(
             '2. 예식 후 평상복으로 입으실 수 있게 라펠을 교체해드립니다.',
             style: TextStyle(
-              fontSize: h6FontSize(context),
+              fontSize: h5FontSize(context),
               color: blackColor,
             ),
           ),
@@ -1221,7 +1205,7 @@ serviceText(context) {
           child: Text(
             '3. 예식 후 원하시면 단추를 교체해드립니다.',
             style: TextStyle(
-              fontSize: h6FontSize(context),
+              fontSize: h5FontSize(context),
               color: blackColor,
             ),
           ),
@@ -1243,7 +1227,7 @@ serviceText(context) {
           child: Text(
             '4. 김주현바이각 예복 진행시 고급맞춤셔츠를 제작해드립니다.',
             style: TextStyle(
-              fontSize: h6FontSize(context),
+              fontSize: h5FontSize(context),
               color: blackColor,
             ),
           ),
@@ -1262,9 +1246,9 @@ serviceText(context) {
         child: Padding(
           padding: EdgeInsets.only(bottom: 6),
           child: Text(
-            '5. Lorem Ipsum is simply dummy text',
+            '5. 평생 무상으로 수선해드립니다.',
             style: TextStyle(
-              fontSize: h6FontSize(context),
+              fontSize: h5FontSize(context),
               color: blackColor,
             ),
           ),
@@ -1291,7 +1275,7 @@ class Service extends StatelessWidget {
             Text(
               'Service',
               style: TextStyle(
-                fontSize: h1FontSize(context),
+                fontSize: h2FontSize(context),
                 fontFamily: 'Cafe_24',
                 fontWeight: FontWeight.bold,
                 color: blackColor,

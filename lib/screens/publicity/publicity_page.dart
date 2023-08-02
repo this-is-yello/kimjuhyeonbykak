@@ -168,7 +168,7 @@ class _PublicityContentState extends State<PublicityContent> {
                           Text(
                             '어제보다 나은 작업물을 만드는 것이 이 시대의 장인정신입니다.',
                             style: TextStyle(
-                              fontSize: h6FontSize(context),
+                              fontSize: h5FontSize(context),
                               color: blackColor,
                             ),
                           ),
@@ -371,7 +371,7 @@ class _MagazineScreenState extends State<MagazineScreen> {
                                     .toString()
                                     .substring(0, 10),
                                 style: TextStyle(
-                                  fontSize: h7FontSize(context),
+                                  fontSize: h5FontSize(context),
                                   color: blackColor,
                                 ),
                               ),
@@ -382,7 +382,8 @@ class _MagazineScreenState extends State<MagazineScreen> {
                                 child: Text(
                                   magazineDocs[index]['title'],
                                   style: TextStyle(
-                                    fontSize: h3FontSize(context),
+                                    fontSize: h4FontSize(context),
+                                    fontWeight: FontWeight.bold,
                                     color: blackColor,
                                   ),
                                 ),
@@ -545,7 +546,7 @@ class _NewsScreenState extends State<NewsScreen> {
                               Padding(
                                 padding: const EdgeInsets.only(
                                   top: 8,
-                                  bottom: 8,
+                                  bottom: 4,
                                 ),
                                 child: Text(
                                   newsDocs[index]['title'],
@@ -562,7 +563,7 @@ class _NewsScreenState extends State<NewsScreen> {
                                     .toString()
                                     .substring(0, 10),
                                 style: TextStyle(
-                                  fontSize: h7FontSize(context),
+                                  fontSize: h6FontSize(context),
                                   color: blackColor,
                                 ),
                               ),

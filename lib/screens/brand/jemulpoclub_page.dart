@@ -152,13 +152,13 @@ class JemulpoClubMain extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(
-                        top: 20,
+                        top: 16,
                         bottom: 20,
                       ),
                       child: Text(
                         '신제물포구락부',
                         style: TextStyle(
-                          fontSize: h1FontSize(context),
+                          fontSize: h2FontSize(context),
                           fontWeight: FontWeight.bold,
                           color: whiteColor,
                         ),
@@ -167,7 +167,7 @@ class JemulpoClubMain extends StatelessWidget {
                     Text(
                       '신제물포구락부 관련멘트 삽입',
                       style: TextStyle(
-                        fontSize: h6FontSize(context),
+                        fontSize: h5FontSize(context),
                         color: whiteColor,
                       ),
                     ),
@@ -387,7 +387,7 @@ class _JemulpoClubStudioState extends State<JemulpoClubStudio> {
                         itemCount: imageList.length - 6,
                         itemBuilder: (context, index) {
                           return Container(
-                            width: c1BoxSize(context) + 200,
+                            width: c1BoxSize(context) + 120,
                             // height: c1BoxSize(context) + 300,
                             margin: EdgeInsets.only(right: 20),
                             child: fadeImage(imageList[index + 5]),
@@ -436,7 +436,7 @@ class JemulpoClubFilming extends StatelessWidget {
             Text(
               'Filming',
               style: TextStyle(
-                fontSize: h1FontSize(context),
+                fontSize: h2FontSize(context),
                 fontFamily: 'Cafe_24',
                 fontWeight: FontWeight.bold,
                 color: blackColor,
@@ -475,7 +475,7 @@ class JemulpoClubFilming extends StatelessWidget {
                                 child: Text(
                                   '2019년부터 방영되었으며, 성황리에 종영된 tvN의 "사랑의 불시착" 촬영지로 알려지게 되었습니다.',
                                   style: TextStyle(
-                                    fontSize: h6FontSize(context),
+                                    fontSize: h5FontSize(context),
                                     color: blackColor,
                                   ),
                                 ),
@@ -502,7 +502,7 @@ class JemulpoClubFilming extends StatelessWidget {
                                 child: Text(
                                   '모든 촬영과 의상이 김주현 바이 각과 신제물포구락부와 함께한 가수 황인욱의 "이별주"의 뮤직비디오에 함께하였습니다.',
                                   style: TextStyle(
-                                    fontSize: h6FontSize(context),
+                                    fontSize: h5FontSize(context),
                                     color: blackColor,
                                   ),
                                 ),
@@ -541,7 +541,7 @@ class JemulpoClubLocation extends StatelessWidget {
             Text(
               'Location',
               style: TextStyle(
-                fontSize: h1FontSize(context),
+                fontSize: h2FontSize(context),
                 fontFamily: 'Cafe_24',
                 fontWeight: FontWeight.bold,
                 color: blackColor,
@@ -571,14 +571,14 @@ class JemulpoClubLocation extends StatelessWidget {
                               Text(
                                 '신제물포구락부',
                                 style: TextStyle(
-                                  fontSize: h2FontSize(context) - 2,
+                                  fontSize: h3FontSize(context),
                                   color: blackColor,
                                 ),
                               ),
                               Text(
                                 '인천광역시 미추홀구 석정로200 지하1층',
                                 style: TextStyle(
-                                  fontSize: h6FontSize(context),
+                                  fontSize: h5FontSize(context),
                                   color: blackColor,
                                 ),
                               ),

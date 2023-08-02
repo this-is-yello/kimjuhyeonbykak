@@ -183,7 +183,7 @@ class _EventViewContentState extends State<EventViewContent> {
                             Text(
                               '어제보다 나은 작업물을 만드는 것이 이 시대의 장인정신입니다.',
                               style: TextStyle(
-                                fontSize: h6FontSize(context),
+                                fontSize: h5FontSize(context),
                                 color: blackColor,
                               ),
                             ),
@@ -239,7 +239,7 @@ class _EventViewContentState extends State<EventViewContent> {
                         child: Text(
                           '[${eventDocs[eventNum]['value']}] ${eventDocs[eventNum]['title']}',
                           style: TextStyle(
-                            fontSize: h2FontSize(context),
+                            fontSize: h3FontSize(context),
                             color: blackColor,
                           ),
                         ),
@@ -252,7 +252,7 @@ class _EventViewContentState extends State<EventViewContent> {
                           Text(
                             eventDocs[eventNum]['name'],
                             style: TextStyle(
-                              fontSize: h6FontSize(context),
+                              fontSize: h5FontSize(context),
                               color: blackColor,
                             ),
                           ),
@@ -261,7 +261,7 @@ class _EventViewContentState extends State<EventViewContent> {
                             child: Text(
                               eventDocs[eventNum]['date'],
                               style: TextStyle(
-                                fontSize: h6FontSize(context),
+                                fontSize: h5FontSize(context),
                                 color: blackColor,
                               ),
                             ),

@@ -234,7 +234,7 @@ class _CarouselScreenState extends State<CarouselScreen> {
                               child: Text(
                                 mainSubTitles[index],
                                 style: TextStyle(
-                                  fontSize: h6FontSize(context),
+                                  fontSize: h5FontSize(context) + 1,
                                   color: whiteColor,
                                 ),
                               ),
@@ -264,7 +264,7 @@ class _CarouselScreenState extends State<CarouselScreen> {
                                   view[viewNum],
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
-                                    fontSize: h5FontSize(context),
+                                    fontSize: h4FontSize(context),
                                     fontFamily: 'Cafe_24',
                                     color: whiteColor,
                                   ),
@@ -285,7 +285,9 @@ class _CarouselScreenState extends State<CarouselScreen> {
           children: [
             MediaQuery.of(context).size.width < 800
                 ? Padding(
-                    padding: const EdgeInsets.only(bottom: 32),
+                    padding: EdgeInsets.only(
+                      bottom: MediaQuery.of(context).size.width < 800 ? 24 : 32,
+                    ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -296,12 +298,12 @@ class _CarouselScreenState extends State<CarouselScreen> {
                             moveSel();
                           },
                           child: Container(
-                            width: picNum == 0 ? 40 : 12,
-                            height: 12,
+                            width: 40,
+                            height: 8,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(100),
                               color: picNum == 0
-                                  ? greyColor.withAlpha(200)
+                                  ? blackColor.withAlpha(200)
                                   : whiteColor,
                             ),
                           ),
@@ -313,12 +315,12 @@ class _CarouselScreenState extends State<CarouselScreen> {
                             moveSel();
                           },
                           child: Container(
-                            width: picNum == 1 ? 40 : 12,
-                            height: 12,
+                            width: 40,
+                            height: 8,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(100),
                               color: picNum == 1
-                                  ? greyColor.withAlpha(200)
+                                  ? blackColor.withAlpha(200)
                                   : whiteColor,
                             ),
                           ),
@@ -330,12 +332,12 @@ class _CarouselScreenState extends State<CarouselScreen> {
                             moveSel();
                           },
                           child: Container(
-                            width: picNum == 2 ? 40 : 12,
-                            height: 12,
+                            width: 40,
+                            height: 8,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(100),
                               color: picNum == 2
-                                  ? greyColor.withAlpha(200)
+                                  ? blackColor.withAlpha(200)
                                   : whiteColor,
                             ),
                           ),
@@ -347,12 +349,12 @@ class _CarouselScreenState extends State<CarouselScreen> {
                             moveSel();
                           },
                           child: Container(
-                            width: picNum == 3 ? 40 : 12,
-                            height: 12,
+                            width: 40,
+                            height: 8,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(100),
                               color: picNum == 3
-                                  ? greyColor.withAlpha(200)
+                                  ? blackColor.withAlpha(200)
                                   : whiteColor,
                             ),
                           ),
@@ -518,7 +520,7 @@ class _BykakStoryState extends State<BykakStory> {
                     Text(
                       'By 覺 Story',
                       style: TextStyle(
-                        fontSize: h1FontSize(context),
+                        fontSize: h2FontSize(context),
                         fontFamily: 'Cafe_24',
                         fontWeight: FontWeight.bold,
                       ),
@@ -530,7 +532,7 @@ class _BykakStoryState extends State<BykakStory> {
                       child: Text(
                         '2014년 김주현바이각은 인천의 고급 수제양복을 알리기 위해,\n남성들을 위한 올바른 스타일링과 문화적 놀이터를 만들고자 설립되었습니다.',
                         style: TextStyle(
-                          fontSize: h6FontSize(context) + 2,
+                          fontSize: h5FontSize(context),
                         ),
                       ),
                     ),
@@ -552,7 +554,7 @@ class _BykakStoryState extends State<BykakStory> {
               child: Text(
                 '자세히보기',
                 style: TextStyle(
-                  fontSize: h5FontSize(context),
+                  fontSize: h4FontSize(context),
                   decoration: TextDecoration.underline,
                   color: blackColor,
                 ),
@@ -579,14 +581,14 @@ countingText(context) {
             ),
           ),
           SizedBox(
-            width: c1BoxSize(context) + 48,
+            width: c1BoxSize(context) + 24,
             child: Countup(
               begin: 0,
               end: 5981,
               duration: const Duration(milliseconds: 3000),
               separator: ',',
               style: TextStyle(
-                fontSize: h1FontSize(context),
+                fontSize: h2FontSize(context),
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -613,14 +615,14 @@ countingText(context) {
               ),
             ),
             SizedBox(
-              width: c1BoxSize(context) + 48,
+              width: c1BoxSize(context) + 24,
               child: Countup(
                 begin: 0,
                 end: 59804019,
                 duration: const Duration(milliseconds: 5000),
                 separator: ',',
                 style: TextStyle(
-                  fontSize: h1FontSize(context),
+                  fontSize: h2FontSize(context),
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -643,14 +645,14 @@ countingText(context) {
             ),
           ),
           SizedBox(
-            width: c1BoxSize(context) + 48,
+            width: c1BoxSize(context) + 24,
             child: Countup(
               begin: 0,
               end: 592119,
               duration: const Duration(milliseconds: 4000),
               separator: ',',
               style: TextStyle(
-                fontSize: h1FontSize(context),
+                fontSize: h2FontSize(context),
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -755,7 +757,7 @@ class _TailorShopScreenState extends State<TailorShopScreen> {
                 Text(
                   'k!mjuhyeon by 覺',
                   style: TextStyle(
-                    fontSize: h1FontSize(context),
+                    fontSize: h2FontSize(context),
                     fontFamily: 'Cafe_24',
                     fontWeight: FontWeight.bold,
                   ),
@@ -768,7 +770,7 @@ class _TailorShopScreenState extends State<TailorShopScreen> {
                   child: Text(
                     'Lorem Ipsum is simply dummy text of the printing and typesetting industry.\nLorem Ipsum has been the industrys standard dummy text ever since the 1500s',
                     style: TextStyle(
-                      fontSize: h6FontSize(context),
+                      fontSize: h5FontSize(context),
                     ),
                     textAlign: TextAlign.center,
                   ),
@@ -785,7 +787,7 @@ class _TailorShopScreenState extends State<TailorShopScreen> {
                     child: Text(
                       '자세히보기',
                       style: TextStyle(
-                        fontSize: h5FontSize(context),
+                        fontSize: h4FontSize(context),
                         decoration: TextDecoration.underline,
                         color: blackColor,
                       ),
@@ -833,7 +835,7 @@ doWhat(context) {
       Text(
         '맞춤정장을 배워 무엇을 할 수 있을까?',
         style: TextStyle(
-          fontSize: h4FontSize(context),
+          fontSize: h5FontSize(context),
         ),
       ),
       Row(
@@ -842,11 +844,11 @@ doWhat(context) {
           Text(
             '"테일러링을 배워서 ',
             style: TextStyle(
-              fontSize: h4FontSize(context),
+              fontSize: h5FontSize(context),
             ),
           ),
           Container(
-            width: c3BoxSize(context),
+            width: c1BoxSize(context),
             height: MediaQuery.of(context).size.width < 800 ? 32 : 40,
             decoration: BoxDecoration(
               border: Border(
@@ -862,21 +864,21 @@ doWhat(context) {
                 RotateAnimatedText(
                   '나만의 수트제작',
                   textStyle: TextStyle(
-                    fontSize: h6FontSize(context),
+                    fontSize: h4FontSize(context),
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 RotateAnimatedText(
                   '테일러샵 창업',
                   textStyle: TextStyle(
-                    fontSize: h6FontSize(context),
+                    fontSize: h4FontSize(context),
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 RotateAnimatedText(
                   '쇼핑몰 오픈',
                   textStyle: TextStyle(
-                    fontSize: h6FontSize(context),
+                    fontSize: h4FontSize(context),
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -886,7 +888,7 @@ doWhat(context) {
           Text(
             ' 을 하고싶다"',
             style: TextStyle(
-              fontSize: h4FontSize(context),
+              fontSize: h5FontSize(context),
             ),
           ),
         ],
@@ -932,7 +934,7 @@ class _TailorAcademyScreenState extends State<TailorAcademyScreen> {
                 Text(
                   'by 覺 Tailor Academy',
                   style: TextStyle(
-                    fontSize: h1FontSize(context),
+                    fontSize: h2FontSize(context),
                     fontFamily: 'Cafe_24',
                     fontWeight: FontWeight.bold,
                   ),
@@ -945,7 +947,7 @@ class _TailorAcademyScreenState extends State<TailorAcademyScreen> {
                   child: Text(
                     'Lorem Ipsum is simply dummy text of the printing and typesetting industry.\nLorem Ipsum has been the industrys standard dummy text ever since the 1500s',
                     style: TextStyle(
-                      fontSize: h6FontSize(context),
+                      fontSize: h5FontSize(context),
                     ),
                     textAlign: TextAlign.center,
                   ),
@@ -962,40 +964,41 @@ class _TailorAcademyScreenState extends State<TailorAcademyScreen> {
                     child: Text(
                       '자세히보기',
                       style: TextStyle(
-                        fontSize: h5FontSize(context),
+                        fontSize: h4FontSize(context),
                         decoration: TextDecoration.underline,
                         color: blackColor,
                       ),
                     ),
                   ),
                 ),
-                MediaQuery.of(context).size.width < 800
-                    ? Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(bottom: 20),
-                            child: doWhat(context),
-                          ),
-                          SizedBox(
-                            width: double.infinity,
-                            child: academyVideo(),
-                          ),
-                        ],
-                      )
-                    : Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(right: 40),
-                            child: doWhat(context),
-                          ),
-                          Flexible(
-                            fit: FlexFit.tight,
-                            child: academyVideo(),
-                          ),
-                        ],
-                      ),
+                doWhat(context),
+                // MediaQuery.of(context).size.width < 800
+                //     ? Column(
+                //         crossAxisAlignment: CrossAxisAlignment.center,
+                //         children: [
+                //           Padding(
+                //             padding: EdgeInsets.only(bottom: 20),
+                //             child: doWhat(context),
+                //           ),
+                //           SizedBox(
+                //             width: double.infinity,
+                //             child: academyVideo(),
+                //           ),
+                //         ],
+                //       )
+                //     : Row(
+                //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //         children: [
+                //           Padding(
+                //             padding: const EdgeInsets.only(right: 40),
+                //             child: doWhat(context),
+                //           ),
+                //           Flexible(
+                //             fit: FlexFit.tight,
+                //             child: academyVideo(),
+                //           ),
+                //         ],
+                //       ),
               ],
             ),
           ),
@@ -1045,7 +1048,7 @@ class _NewJemulpoClubScreenState extends State<NewJemulpoClubScreen> {
                   Text(
                     'New JemulpoClub',
                     style: TextStyle(
-                      fontSize: h1FontSize(context),
+                      fontSize: h2FontSize(context),
                       fontFamily: 'Cafe_24',
                       fontWeight: FontWeight.bold,
                     ),
@@ -1058,7 +1061,7 @@ class _NewJemulpoClubScreenState extends State<NewJemulpoClubScreen> {
                     child: Text(
                       'Lorem Ipsum is simply dummy text of the printing and typesetting industry.\nLorem Ipsum has been the industrys standard dummy text ever since the 1500s',
                       style: TextStyle(
-                        fontSize: h6FontSize(context),
+                        fontSize: h5FontSize(context),
                       ),
                       textAlign: TextAlign.center,
                     ),
@@ -1075,7 +1078,7 @@ class _NewJemulpoClubScreenState extends State<NewJemulpoClubScreen> {
                       child: Text(
                         '자세히보기',
                         style: TextStyle(
-                          fontSize: h5FontSize(context),
+                          fontSize: h4FontSize(context),
                           decoration: TextDecoration.underline,
                           color: blackColor,
                         ),
@@ -1132,7 +1135,7 @@ class _MainCommentState extends State<MainComment> {
             style: TextStyle(
               fontFamily: 'Cafe_24',
               fontSize: h3FontSize(context),
-              color: blackColor,
+              color: bykakColor,
             ),
           ),
         ),

@@ -169,7 +169,7 @@ class _CommunityContentState extends State<CommunityContent> {
                           Text(
                             '어제보다 나은 작업물을 만드는 것이 이 시대의 장인정신입니다.',
                             style: TextStyle(
-                              fontSize: h6FontSize(context),
+                              fontSize: h5FontSize(context),
                               color: blackColor,
                             ),
                           ),
@@ -602,16 +602,16 @@ class _InquiryScreenState extends State<InquiryScreen> {
               },
               child: Container(
                 width: 300,
-                height: 56,
+                height: 40,
                 decoration: BoxDecoration(
                   color: blackColor,
-                  borderRadius: BorderRadius.circular(8),
+                  borderRadius: BorderRadius.circular(500),
                 ),
                 child: Center(
                   child: Text(
                     '완료',
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: h5FontSize(context),
                       color: whiteColor,
                     ),
                   ),
@@ -736,7 +736,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                   .toString()
                                   .substring(0, 10),
                               style: TextStyle(
-                                fontSize: h7FontSize(context),
+                                fontSize: h6FontSize(context),
                                 color: blackColor,
                               ),
                             ),
@@ -971,7 +971,8 @@ class _EventScreenState extends State<EventScreen> {
                             child: Text(
                               eventDocs[index]['title'],
                               style: TextStyle(
-                                fontSize: h3FontSize(context),
+                                fontSize: h4FontSize(context),
+                                fontWeight: FontWeight.bold,
                                 color: blackColor,
                               ),
                             ),
@@ -981,7 +982,7 @@ class _EventScreenState extends State<EventScreen> {
                             child: Text(
                               eventDocs[index]['subtitle'],
                               style: TextStyle(
-                                fontSize: h7FontSize(context),
+                                fontSize: h5FontSize(context),
                                 color: blackColor,
                               ),
                             ),
@@ -1136,7 +1137,7 @@ class _MediaScreenState extends State<MediaScreen> {
                     child: Text(
                       mediaDocs[i]['title'],
                       style: TextStyle(
-                        fontSize: h2FontSize(context),
+                        fontSize: h4FontSize(context),
                         color: blackColor,
                       ),
                     ),

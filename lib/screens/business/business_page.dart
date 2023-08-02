@@ -164,7 +164,7 @@ class _BusinessContentState extends State<BusinessContent> {
                           Text(
                             '어제보다 나은 작업물을 만드는 것이 이 시대의 장인정신입니다.',
                             style: TextStyle(
-                              fontSize: h6FontSize(context),
+                              fontSize: h5FontSize(context),
                               color: blackColor,
                             ),
                           ),
@@ -271,7 +271,7 @@ class _SupportersScreenState extends State<SupportersScreen> {
                     });
                   },
                   child: Container(
-                    height: c5BoxSize(context),
+                    padding: EdgeInsets.all(12),
                     child: Center(
                       child: Text(
                         '각인(覺人)',
@@ -300,7 +300,7 @@ class _SupportersScreenState extends State<SupportersScreen> {
                       });
                     },
                     child: Container(
-                      height: c5BoxSize(context),
+                      padding: EdgeInsets.all(12),
                       child: Center(
                         child: Text(
                           '엠버서더',
@@ -340,25 +340,28 @@ class SupportersKakIn extends StatelessWidget {
           padding: EdgeInsets.only(
             top: 40,
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'by 覺 을 시작으로 옷에 대해 보고, 배우고,\n깨닫길 바라며',
-                style: TextStyle(
-                  fontSize: h3FontSize(context),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 20),
-                child: Text(
-                  'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text Lorem Ipsum is simply dummy text of the printing and 멤버쉽입니다.',
+          child: SizedBox(
+            width: widgetSize(context),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'by 覺을 시작으로 옷에 대해 보고, 배우고, 깨닫길 바라며',
                   style: TextStyle(
-                    fontSize: h6FontSize(context),
+                    fontSize: h4FontSize(context),
                   ),
                 ),
-              ),
-            ],
+                Padding(
+                  padding: const EdgeInsets.only(top: 20),
+                  child: Text(
+                    'Lorem Ipsum has been the industrys standard dummy text Lorem Ipsum is simply dummy text of the printing and 멤버쉽입니다.',
+                    style: TextStyle(
+                      fontSize: h5FontSize(context),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
         Padding(
@@ -371,7 +374,7 @@ class SupportersKakIn extends StatelessWidget {
               Text(
                 '각인(覺人)',
                 style: TextStyle(
-                  fontSize: h3FontSize(context),
+                  fontSize: h4FontSize(context),
                 ),
               ),
               Padding(
@@ -385,19 +388,13 @@ class SupportersKakIn extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 40),
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: whiteColor.withOpacity(0),
-                    shadowColor: whiteColor.withOpacity(0),
-                    elevation: 0,
-                    alignment: Alignment.centerLeft,
-                  ),
-                  onPressed: () {},
+                padding: const EdgeInsets.only(top: 20),
+                child: InkWell(
+                  onTap: () {},
                   child: Text(
                     '마일리지 신청 및 등급 조회하기 >',
                     style: TextStyle(
-                      fontSize: h5FontSize(context),
+                      fontSize: h4FontSize(context),
                       fontWeight: FontWeight.bold,
                       color: blackColor,
                     ),
@@ -424,25 +421,28 @@ class SupportersAmbassador extends StatelessWidget {
           padding: EdgeInsets.only(
             top: 40,
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                '엠버서더 관련 타이틀 삽입',
-                style: TextStyle(
-                  fontSize: h3FontSize(context),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 20),
-                child: Text(
-                  'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text Lorem Ipsum is simply dummy text of the printing and 엠버서더입니다.',
+          child: SizedBox(
+            width: widgetSize(context),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '엠버서더 관련 타이틀 삽입',
                   style: TextStyle(
-                    fontSize: h6FontSize(context),
+                    fontSize: h4FontSize(context),
                   ),
                 ),
-              ),
-            ],
+                Padding(
+                  padding: const EdgeInsets.only(top: 20),
+                  child: Text(
+                    'Lorem Ipsum has been the industrys standard dummy text Lorem Ipsum is simply dummy text of the printing and 엠버서더입니다.',
+                    style: TextStyle(
+                      fontSize: h5FontSize(context),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
         Padding(
@@ -455,7 +455,7 @@ class SupportersAmbassador extends StatelessWidget {
               Text(
                 '바이각 엠버서더',
                 style: TextStyle(
-                  fontSize: h3FontSize(context),
+                  fontSize: h4FontSize(context),
                 ),
               ),
               Padding(
@@ -535,7 +535,7 @@ class SupportersAmbassador extends StatelessWidget {
               Text(
                 '엠버서더 활동',
                 style: TextStyle(
-                  fontSize: h3FontSize(context),
+                  fontSize: h4FontSize(context),
                 ),
               ),
               Padding(
@@ -558,7 +558,7 @@ class SupportersAmbassador extends StatelessWidget {
                           Text(
                             '컨텐츠 제작',
                             style: TextStyle(
-                              fontSize: h5FontSize(context),
+                              fontSize: h4FontSize(context),
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -568,7 +568,7 @@ class SupportersAmbassador extends StatelessWidget {
                               '인스타그램, 유튜브 등에 게시될 사진,\n영상을 직접 제작하며 제품을 홍보',
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                fontSize: h6FontSize(context),
+                                fontSize: h5FontSize(context),
                               ),
                             ),
                           ),
@@ -585,7 +585,7 @@ class SupportersAmbassador extends StatelessWidget {
                           Text(
                             '유저 유입과 구입',
                             style: TextStyle(
-                              fontSize: h5FontSize(context),
+                              fontSize: h4FontSize(context),
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -595,7 +595,7 @@ class SupportersAmbassador extends StatelessWidget {
                               '컨텐츠를 접한 유저들이 직접\n인플루언서 추천코드로 아이템을 구매',
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                fontSize: h6FontSize(context),
+                                fontSize: h5FontSize(context),
                               ),
                             ),
                           ),
@@ -612,7 +612,7 @@ class SupportersAmbassador extends StatelessWidget {
                           Text(
                             '수수료 정산',
                             style: TextStyle(
-                              fontSize: h5FontSize(context),
+                              fontSize: h4FontSize(context),
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -622,7 +622,7 @@ class SupportersAmbassador extends StatelessWidget {
                               '구매확정이 완료되면, 판매 성과를\n기반으로 계약된 수수료 지급',
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                fontSize: h6FontSize(context),
+                                fontSize: h5FontSize(context),
                               ),
                             ),
                           ),
@@ -636,37 +636,25 @@ class SupportersAmbassador extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 40),
                 child: Row(
                   children: [
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: whiteColor.withOpacity(0),
-                        shadowColor: whiteColor.withOpacity(0),
-                        elevation: 0,
-                        alignment: Alignment.centerLeft,
-                      ),
-                      onPressed: () {},
+                    InkWell(
+                      onTap: () {},
                       child: Text(
                         '엠버서더 신청 >',
                         style: TextStyle(
-                          fontSize: h5FontSize(context),
+                          fontSize: h4FontSize(context),
                           fontWeight: FontWeight.bold,
                           color: blackColor,
                         ),
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 10),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: whiteColor.withOpacity(0),
-                          shadowColor: whiteColor.withOpacity(0),
-                          elevation: 0,
-                          alignment: Alignment.centerLeft,
-                        ),
-                        onPressed: () {},
+                      padding: const EdgeInsets.only(left: 20),
+                      child: InkWell(
+                        onTap: () {},
                         child: Text(
                           '엠버서더 페이지 >',
                           style: TextStyle(
-                            fontSize: h5FontSize(context),
+                            fontSize: h4FontSize(context),
                             fontWeight: FontWeight.bold,
                             color: blackColor,
                           ),
@@ -778,7 +766,7 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
             child: Text(
               '1. 기본정보',
               style: TextStyle(
-                fontSize: h1FontSize(context),
+                fontSize: h2FontSize(context),
                 color: blackColor,
               ),
             ),
@@ -795,7 +783,7 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
                     child: Text(
                       '회사명',
                       style: TextStyle(
-                        fontSize: h5FontSize(context),
+                        fontSize: h4FontSize(context),
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -844,7 +832,7 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
                         child: Text(
                           '담당자 이름 / 직급',
                           style: TextStyle(
-                            fontSize: h5FontSize(context),
+                            fontSize: h4FontSize(context),
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -882,7 +870,7 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
                         child: Text(
                           '참고 사이트 주소',
                           style: TextStyle(
-                            fontSize: h5FontSize(context),
+                            fontSize: h4FontSize(context),
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -933,7 +921,7 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
                         child: Text(
                           '이메일 주소',
                           style: TextStyle(
-                            fontSize: h5FontSize(context),
+                            fontSize: h4FontSize(context),
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -971,7 +959,7 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
                         child: Text(
                           '연락처',
                           style: TextStyle(
-                            fontSize: h5FontSize(context),
+                            fontSize: h4FontSize(context),
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -1007,7 +995,7 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
               child: Text(
                 '2. 카테고리',
                 style: TextStyle(
-                  fontSize: h1FontSize(context),
+                  fontSize: h2FontSize(context),
                   color: blackColor,
                 ),
               ),
@@ -1022,7 +1010,7 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
                   Text(
                     '협찬 문의',
                     style: TextStyle(
-                      fontSize: h6FontSize(context),
+                      fontSize: h5FontSize(context),
                       color: blackColor,
                     ),
                   ),
@@ -1053,7 +1041,7 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
                   Text(
                     '협업 문의',
                     style: TextStyle(
-                      fontSize: h6FontSize(context),
+                      fontSize: h5FontSize(context),
                       color: blackColor,
                     ),
                   ),
@@ -1084,7 +1072,7 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
                   Text(
                     '단체복 문의',
                     style: TextStyle(
-                      fontSize: h6FontSize(context),
+                      fontSize: h5FontSize(context),
                       color: blackColor,
                     ),
                   ),
@@ -1146,16 +1134,16 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
               },
               child: Container(
                 width: 300,
-                height: 56,
+                height: 40,
                 decoration: BoxDecoration(
                   color: blackColor,
-                  borderRadius: BorderRadius.circular(8),
+                  borderRadius: BorderRadius.circular(500),
                 ),
                 child: Center(
                   child: Text(
                     '완료',
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: h5FontSize(context),
                       color: whiteColor,
                     ),
                   ),

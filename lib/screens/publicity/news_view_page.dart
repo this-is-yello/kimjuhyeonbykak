@@ -179,7 +179,7 @@ class _NewsViewContentState extends State<NewsViewContent> {
                             Text(
                               '어제보다 나은 작업물을 만드는 것이 이 시대의 장인정신입니다.',
                               style: TextStyle(
-                                fontSize: h6FontSize(context),
+                                fontSize: h5FontSize(context),
                                 color: blackColor,
                               ),
                             ),
@@ -234,7 +234,7 @@ class _NewsViewContentState extends State<NewsViewContent> {
                         child: Text(
                           newsDocs[newsNum]['company'],
                           style: TextStyle(
-                            fontSize: h1FontSize(context),
+                            fontSize: h2FontSize(context),
                             fontWeight: FontWeight.bold,
                             color: blackColor,
                           ),
@@ -256,7 +256,7 @@ class _NewsViewContentState extends State<NewsViewContent> {
                         child: Text(
                           newsDocs[newsNum]['title'],
                           style: TextStyle(
-                            fontSize: h2FontSize(context),
+                            fontSize: h3FontSize(context),
                             color: blackColor,
                           ),
                         ),
@@ -269,7 +269,7 @@ class _NewsViewContentState extends State<NewsViewContent> {
                           Text(
                             '기자이름 $newsNum',
                             style: TextStyle(
-                              fontSize: h6FontSize(context),
+                              fontSize: h5FontSize(context),
                               color: blackColor,
                             ),
                           ),
@@ -280,7 +280,7 @@ class _NewsViewContentState extends State<NewsViewContent> {
                                   .toString()
                                   .substring(0, 10),
                               style: TextStyle(
-                                fontSize: h6FontSize(context),
+                                fontSize: h5FontSize(context),
                                 color: blackColor,
                               ),
                             ),

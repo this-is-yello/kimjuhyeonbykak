@@ -20,6 +20,37 @@ class _ModifyAmbassadorPageState extends State<ModifyAmbassadorPage> {
   String? profilePicName;
   String? profilePicUrl;
   var profilePicByte;
+  var currentUserSearch;
+  var currentUserAmbassador;
+  var profilePicNameNum;
+
+  var _inputModifyName = TextEditingController();
+  var _inputModifyIntroduce = TextEditingController();
+  var _inputModifyInsta = TextEditingController();
+  var _inputModifyBlog = TextEditingController();
+
+  searchUser() async {
+    currentUserSearch = await firestore
+        .collection('account')
+        .doc(auth.currentUser?.email)
+        .get();
+    setState(() {
+      currentUserAmbassador = currentUserSearch.get('ambassador');
+      profilePicNameNum = currentUserAmbassador[1];
+    });
+    _inputModifyName = TextEditingController(
+      text: currentUserAmbassador[2],
+    );
+    _inputModifyIntroduce = TextEditingController(
+      text: currentUserAmbassador[3],
+    );
+    _inputModifyInsta = TextEditingController(
+      text: currentUserAmbassador[4],
+    );
+    _inputModifyBlog = TextEditingController(
+      text: currentUserAmbassador[5],
+    );
+  }
 
   Future modifyProfile() async {
     final result = await FilePicker.platform.pickFiles(
@@ -57,19 +88,30 @@ class _ModifyAmbassadorPageState extends State<ModifyAmbassadorPage> {
           } else {
             profilePicUrl = value;
           }
-          if (profilePicUrl != null) {
-            var magazineData = firestore.collection('magazine').doc().set({
-              'name': auth.currentUser!.displayName,
-              'date': DateTime.now().toString(),
-              // 'title': _inputMagazineTitle.text,
-              // 'thumbnail': thumbnailUrl.toString(),
-              // 'content': contentUrl.toString(),
-            });
-            print('업로드 완료');
-          }
+          var ambassadorData = firestore
+              .collection('account')
+              .doc(auth.currentUser?.email)
+              .update({
+            'ambassador': [
+              profilePicUrl == null ? currentUserAmbassador[0] : profilePicUrl,
+              '${profilePicName}_$randomNumber',
+              _inputModifyName.text,
+              _inputModifyIntroduce.text,
+              _inputModifyInsta.text,
+              _inputModifyBlog.text
+            ],
+          });
+          print('업로드 완료');
         });
+        Get.rootDelegate.toNamed(Routes.MYPAGE);
       },
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    searchUser();
   }
 
   @override
@@ -132,7 +174,7 @@ class _ModifyAmbassadorPageState extends State<ModifyAmbassadorPage> {
                           width: widgetSize(context),
                           // height: c4BoxSize(context),
                           child: Text(
-                            profilePicName == null ? '파일없음' : '$profilePicName',
+                            profilePicName == null ? '' : '$profilePicName',
                             style: TextStyle(
                               color: blackColor,
                               fontSize: h5FontSize(context),
@@ -148,7 +190,7 @@ class _ModifyAmbassadorPageState extends State<ModifyAmbassadorPage> {
                   child: SizedBox(
                     width: 360,
                     child: TextField(
-                      // controller: _inputmodifyName,
+                      controller: _inputModifyName,
                       decoration: InputDecoration(
                         hintText: '엠버서더 이름',
                         border: OutlineInputBorder(
@@ -175,7 +217,7 @@ class _ModifyAmbassadorPageState extends State<ModifyAmbassadorPage> {
                 SizedBox(
                   width: 360,
                   child: TextField(
-                    // controller: _inputModifyBirth,
+                    controller: _inputModifyInsta,
                     decoration: InputDecoration(
                       hintText: '인스타그램 링크',
                       border: OutlineInputBorder(
@@ -195,7 +237,7 @@ class _ModifyAmbassadorPageState extends State<ModifyAmbassadorPage> {
                 SizedBox(
                   width: 360,
                   child: TextField(
-                    // controller: _inputModifyBirth,
+                    controller: _inputModifyBlog,
                     decoration: InputDecoration(
                       hintText: '블로그 링크',
                       border: OutlineInputBorder(
@@ -223,7 +265,7 @@ class _ModifyAmbassadorPageState extends State<ModifyAmbassadorPage> {
                   child: SizedBox(
                     width: 360,
                     child: TextField(
-                      // controller: _inputModifyPhone,
+                      controller: _inputModifyIntroduce,
                       maxLines: 4,
                       decoration: InputDecoration(
                         hintText: '엠버서더 소개',
@@ -249,7 +291,9 @@ class _ModifyAmbassadorPageState extends State<ModifyAmbassadorPage> {
                       Flexible(
                         fit: FlexFit.tight,
                         child: InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            uploadProfile();
+                          },
                           child: Container(
                             height: 56,
                             child: Center(

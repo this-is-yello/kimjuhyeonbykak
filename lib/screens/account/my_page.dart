@@ -158,15 +158,16 @@ class _ProfileState extends State<Profile> {
                   Text(
                     currentUserName.toString(),
                     style: TextStyle(
+                      fontSize: h2FontSize(context),
+                      fontWeight: FontWeight.bold,
                       color: blackColor,
-                      fontSize: h1FontSize(context),
                     ),
                   ),
                   Text(
                     ' 님 안녕하세요!',
                     style: TextStyle(
-                      color: blackColor,
                       fontSize: h4FontSize(context),
+                      color: blackColor,
                     ),
                   ),
                 ],
@@ -179,8 +180,8 @@ class _ProfileState extends State<Profile> {
                   Text(
                     '회원님은 바이각의 ',
                     style: TextStyle(
-                      color: blackColor,
                       fontSize: h4FontSize(context),
+                      color: blackColor,
                     ),
                   ),
                   Text(
@@ -276,8 +277,8 @@ class _ProfileState extends State<Profile> {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 16),
-                      child: TextButton(
-                        onPressed: () {},
+                      child: InkWell(
+                        onTap: () {},
                         child: Text(
                           '마일리지 조회 및 신청 >',
                           style: TextStyle(
@@ -288,7 +289,7 @@ class _ProfileState extends State<Profile> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 8),
+                      padding: const EdgeInsets.only(top: 12),
                       child: Container(
                         width: widgetSize(context),
                         height: 2,
@@ -307,7 +308,7 @@ class _ProfileState extends State<Profile> {
         ),
       );
     } else {
-      return Container(
+      return SizedBox(
         width: widgetSize(context),
         height: MediaQuery.of(context).size.height,
         child: Center(
@@ -362,6 +363,7 @@ class _UserMyPageState extends State<UserMyPage> {
             addAmbassador.update({
               'ambassador': [
                 'https://firebasestorage.googleapis.com/v0/b/kimjuhyeonbykak.appspot.com/o/ambassadorPic%2Fdefault_profile.png?alt=media&token=0f747b27-d254-44eb-82ff-603b979ca8a3',
+                'default_profile.png',
                 auth.currentUser?.displayName,
                 '소개합니다.',
                 '블로그를 추가하세요.',
@@ -392,10 +394,10 @@ class _UserMyPageState extends State<UserMyPage> {
     var snapshot = profileStateSearch.get('ambassador');
     setState(() {
       ambassadorPic = snapshot[0];
-      ambassadorName = snapshot[1];
-      ambassadorIntroduce = snapshot[2];
-      ambassadorBlog = snapshot[3];
-      ambassadorInsta = snapshot[4];
+      ambassadorName = snapshot[2];
+      ambassadorIntroduce = snapshot[3];
+      ambassadorBlog = snapshot[4];
+      ambassadorInsta = snapshot[5];
     });
     print(ambassadorName);
   }
@@ -514,7 +516,10 @@ class _UserMyPageState extends State<UserMyPage> {
                                         ),
                                         child: Container(
                                           width: double.infinity,
-                                          padding: EdgeInsets.all(8),
+                                          padding: EdgeInsets.only(
+                                            top: 8,
+                                            bottom: 12,
+                                          ),
                                           child: Text(
                                             ambassadorIntroduce,
                                             style: TextStyle(
@@ -1074,9 +1079,8 @@ class _AdminMyPageState extends State<AdminMyPage> {
           ),
           content: SizedBox(
             width: 320,
-            height: 200,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            child: ListView(
+              shrinkWrap: true,
               children: [
                 Row(
                   children: [
@@ -1087,7 +1091,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
                       child: Text(
                         '${searchAdmin[index]['name']}  /  ${searchAdmin[index]['birth']}  /  ${searchAdmin[index]['gender']}',
                         style: TextStyle(
-                          fontSize: h5FontSize(context),
+                          fontSize: h4FontSize(context),
                           color: blackColor,
                         ),
                       ),
@@ -1103,7 +1107,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
                       Text(
                         '전화번호',
                         style: TextStyle(
-                          fontSize: h5FontSize(context),
+                          fontSize: h4FontSize(context),
                           color: blackColor,
                         ),
                       ),
@@ -1118,7 +1122,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
                           child: Text(
                             searchAdmin[index]['phone'],
                             style: TextStyle(
-                              fontSize: h5FontSize(context),
+                              fontSize: h4FontSize(context),
                               decoration: TextDecoration.underline,
                               color: blackColor,
                             ),
@@ -1133,7 +1137,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
                     Text(
                       '이메일',
                       style: TextStyle(
-                        fontSize: h5FontSize(context),
+                        fontSize: h4FontSize(context),
                         color: blackColor,
                       ),
                     ),
@@ -1146,7 +1150,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
                         child: Text(
                           searchAdmin[index]['id'],
                           style: TextStyle(
-                            fontSize: h5FontSize(context),
+                            fontSize: h4FontSize(context),
                             decoration: TextDecoration.underline,
                             color: blackColor,
                           ),
@@ -1164,7 +1168,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
                       Text(
                         '등급',
                         style: TextStyle(
-                          fontSize: h5FontSize(context),
+                          fontSize: h4FontSize(context),
                           color: blackColor,
                         ),
                       ),
@@ -1175,7 +1179,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
                         child: Text(
                           searchAdmin[index]['grade'],
                           style: TextStyle(
-                            fontSize: h5FontSize(context),
+                            fontSize: h4FontSize(context),
                             color: bykakColor,
                           ),
                         ),
@@ -1200,28 +1204,34 @@ class _AdminMyPageState extends State<AdminMyPage> {
                     ),
                   ),
                 ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 12),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Container(
+                      height: 40,
+                      child: Center(
+                        child: Text(
+                          '닫기',
+                          style: TextStyle(
+                            fontSize: h5FontSize(context),
+                            color: blackColor,
+                          ),
+                        ),
+                      ),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(4),
+                        border: Border.all(color: blackColor, width: 2),
+                        color: whiteColor,
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(
-                bottom: 16,
-              ),
-              child: TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: Text(
-                  '닫기',
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: blackColor,
-                  ),
-                ),
-              ),
-            ),
-          ],
         );
       },
     );
@@ -1499,7 +1509,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
               ),
             ),
           ),
-          Container(
+          SizedBox(
             height: c4BoxSize(context) * 5,
             child: businessInquiryLength != 0 && communityInquiryLength != 0
                 ? ListView.builder(
@@ -1552,7 +1562,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
                                           .toString()
                                           .substring(0, 10),
                                   style: TextStyle(
-                                    fontSize: h7FontSize(context),
+                                    fontSize: h6FontSize(context),
                                     color: blackColor,
                                   ),
                                 ),
@@ -1669,10 +1679,10 @@ class _AdminMyPageState extends State<AdminMyPage> {
                     child: Wrap(
                       direction: Axis.horizontal,
                       crossAxisAlignment: WrapCrossAlignment.center,
-                      runAlignment: WrapAlignment.spaceBetween,
-                      alignment: WrapAlignment.spaceBetween,
+                      runAlignment: WrapAlignment.center,
+                      alignment: WrapAlignment.spaceEvenly,
                       children: [
-                        SizedBox(
+                        Container(
                           height: 40,
                           child: TextButton(
                             onPressed: () {
@@ -1692,7 +1702,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
                             ),
                           ),
                         ),
-                        SizedBox(
+                        Container(
                           height: 40,
                           child: TextButton(
                             onPressed: () {
@@ -1712,7 +1722,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
                             ),
                           ),
                         ),
-                        SizedBox(
+                        Container(
                           height: 40,
                           child: TextButton(
                             onPressed: () {
@@ -1732,7 +1742,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
                             ),
                           ),
                         ),
-                        SizedBox(
+                        Container(
                           height: 40,
                           child: TextButton(
                             onPressed: () {
@@ -1752,7 +1762,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
                             ),
                           ),
                         ),
-                        SizedBox(
+                        Container(
                           height: 40,
                           child: TextButton(
                             onPressed: () {
@@ -1772,7 +1782,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
                             ),
                           ),
                         ),
-                        SizedBox(
+                        Container(
                           height: 40,
                           child: TextButton(
                             onPressed: () {

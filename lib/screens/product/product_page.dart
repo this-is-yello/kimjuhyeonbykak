@@ -160,7 +160,7 @@ class ProductTitle extends StatelessWidget {
                     Text(
                       '어제보다 나은 작업물을 만드는 것이 이 시대의 장인정신입니다.',
                       style: TextStyle(
-                        fontSize: h6FontSize(context),
+                        fontSize: h5FontSize(context),
                         color: blackColor,
                       ),
                     ),
@@ -207,61 +207,83 @@ class _ProductsGridState extends State<ProductsGrid> {
   @override
   Widget build(BuildContext context) {
     try {
-      return Padding(
-        padding: EdgeInsets.fromLTRB(20, 40, 20, 0),
-        child: SizedBox(
-          width: MediaQuery.of(context).size.width,
-          child: Center(
-            child: SizedBox(
-              width: widgetSize(context),
-              child: GridView.builder(
-                itemCount: productsDocsLength.hashCode,
-                shrinkWrap: true,
-                controller: ScrollController(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: MediaQuery.of(context).size.width < 800
-                      ? 2
-                      : MediaQuery.of(context).size.width < 1240
-                          ? 3
-                          : 4,
-                  childAspectRatio: 1 / 1.2,
-                  mainAxisSpacing: 10,
-                  crossAxisSpacing: 10,
-                ),
-                itemBuilder: (context, index) {
-                  return SizedBox(
-                    child: ImageFade(
-                      image: NetworkImage(
-                        productsDocs[index]['thumbnail'],
-                      ),
-                      fit: BoxFit.cover,
-                      duration: const Duration(milliseconds: 900),
-                      syncDuration: const Duration(milliseconds: 150),
-                      placeholder: Padding(
-                        padding: const EdgeInsets.all(20),
-                        child: Center(
-                          child: CircularProgressIndicator(
-                            color: blackColor,
+      if (productsDocs[8]['thumbnail'] != null) {
+        return Padding(
+          padding: EdgeInsets.fromLTRB(20, 40, 20, 0),
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width,
+            child: Center(
+              child: SizedBox(
+                width: widgetSize(context),
+                child: GridView.builder(
+                  itemCount: productsDocsLength.hashCode,
+                  shrinkWrap: true,
+                  controller: ScrollController(),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: MediaQuery.of(context).size.width < 800
+                        ? 2
+                        : MediaQuery.of(context).size.width < 1240
+                            ? 3
+                            : 4,
+                    childAspectRatio: 1 / 1.2,
+                    mainAxisSpacing: 10,
+                    crossAxisSpacing: 10,
+                  ),
+                  itemBuilder: (context, index) {
+                    return SizedBox(
+                      child: ImageFade(
+                        image: NetworkImage(
+                          productsDocs[index]['thumbnail'],
+                        ),
+                        fit: BoxFit.cover,
+                        duration: const Duration(milliseconds: 900),
+                        syncDuration: const Duration(milliseconds: 150),
+                        placeholder: Padding(
+                          padding: const EdgeInsets.all(20),
+                          child: Center(
+                            child: CircularProgressIndicator(
+                              color: blackColor,
+                            ),
+                          ),
+                        ),
+                        errorBuilder: (context, error) => Container(
+                          color: const Color(0xFFFFFFFF),
+                          alignment: Alignment.center,
+                          child: const Icon(
+                            Icons.warning,
+                            color: Color(0xFF1E1E1E),
+                            size: 60.0,
                           ),
                         ),
                       ),
-                      errorBuilder: (context, error) => Container(
-                        color: const Color(0xFFFFFFFF),
-                        alignment: Alignment.center,
-                        child: const Icon(
-                          Icons.warning,
-                          color: Color(0xFF1E1E1E),
-                          size: 60.0,
-                        ),
-                      ),
-                    ),
-                  );
-                },
+                    );
+                  },
+                ),
               ),
             ),
           ),
-        ),
-      );
+        );
+      } else {
+        return SizedBox(
+          width: widgetSize(context),
+          height: 300,
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircularProgressIndicator(color: blackColor),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20),
+                  child: Text(
+                    '로딩이 오래 걸리면 새로고침(F5) 한 번만 눌러주세요.',
+                    style: TextStyle(color: blackColor),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      }
     } catch (e) {
       return SizedBox(
         width: widgetSize(context),

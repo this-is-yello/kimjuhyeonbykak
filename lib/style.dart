@@ -106,21 +106,21 @@ h1FontSize(context) {
 
 h2FontSize(context) {
   if (MediaQuery.of(context).size.width < 800) {
-    return 20;
-  } else if (MediaQuery.of(context).size.width < 1240) {
     return 24;
-  } else {
+  } else if (MediaQuery.of(context).size.width < 1240) {
     return 28;
+  } else {
+    return 32;
   }
 }
 
 h3FontSize(context) {
   if (MediaQuery.of(context).size.width < 800) {
-    return 18;
-  } else if (MediaQuery.of(context).size.width < 1240) {
     return 20;
-  } else {
+  } else if (MediaQuery.of(context).size.width < 1240) {
     return 24;
+  } else {
+    return 28;
   }
 }
 
@@ -136,27 +136,17 @@ h4FontSize(context) {
 
 h5FontSize(context) {
   if (MediaQuery.of(context).size.width < 800) {
-    return 14;
+    return 12;
   } else if (MediaQuery.of(context).size.width < 1240) {
-    return 16;
+    return 14;
   } else {
-    return 18;
+    return 16;
   }
 }
 
 h6FontSize(context) {
   if (MediaQuery.of(context).size.width < 800) {
-    return 12;
-  } else if (MediaQuery.of(context).size.width < 1240) {
-    return 14;
-  } else {
-    return 16;
-  }
-}
-
-h7FontSize(context) {
-  if (MediaQuery.of(context).size.width < 800) {
-    return 12;
+    return 10;
   } else if (MediaQuery.of(context).size.width < 1240) {
     return 12;
   } else {

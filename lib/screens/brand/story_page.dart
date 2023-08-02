@@ -134,13 +134,13 @@ class StoryMain extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(
-                        top: 20,
+                        top: 12,
                         bottom: 20,
                       ),
                       child: Text(
                         '바이각스토리',
                         style: TextStyle(
-                          fontSize: h1FontSize(context),
+                          fontSize: h2FontSize(context),
                           fontWeight: FontWeight.bold,
                           color: whiteColor,
                         ),
@@ -149,7 +149,7 @@ class StoryMain extends StatelessWidget {
                     Text(
                       '바이각스토리 관련 멘트삽입',
                       style: TextStyle(
-                        fontSize: h6FontSize(context),
+                        fontSize: h5FontSize(context),
                         color: whiteColor,
                       ),
                     ),
@@ -313,6 +313,7 @@ class CeoMessageScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(
                     top: 20,
+                    bottom: 12,
                   ),
                   child: Text(
                     '#전통과 정통을 바느질 하다.',
@@ -326,7 +327,7 @@ class CeoMessageScreen extends StatelessWidget {
                   '2014년 처음 문을 연 k!mjuhyeon by 覺(김주현바이각)은\n살아온 인천에 고급수제양복을 알리기 위해,\n남성들의 문화 공간이 될 수 있는 놀이터를 만들고자 설립되었습니다.\nby 覺(바이각)의 상위라벨인 Black Label(블랙라벨)은\n빠르게 만들어져 쉽게 소비되고, 버려지는 옷이 아닌\n입는 사람의 직업, 취향, 추억을 공유할 수 있는 인천 유일의\n맞춤 테일러링을 기반으로 하는 비스포크 테일러샵 입니다.',
                   style: TextStyle(
                     height: 2,
-                    fontSize: h7FontSize(context),
+                    fontSize: h5FontSize(context),
                     color: blackColor,
                   ),
                 ),
@@ -339,7 +340,7 @@ class CeoMessageScreen extends StatelessWidget {
                     '자신을 가꾸어 나가는 거, 그리고 유행을 따르지 않는 것,\n그것이 비스포크의 매력입니다.\n우리의 주 고객들은 자신을 사랑하고, 자신감이 넘치며\n성공적인 삶을 사는 남성분들입니다.\n올바른 옷 입기가 우리의 삶을 윤택하게 만들 것 입니다.\n좋은 인연으로 맺기를 기도합니다.',
                     style: TextStyle(
                       height: 2,
-                      fontSize: h7FontSize(context),
+                      fontSize: h5FontSize(context),
                       color: blackColor,
                     ),
                   ),
@@ -347,7 +348,7 @@ class CeoMessageScreen extends StatelessWidget {
                 Text(
                   '감사합니다.',
                   style: TextStyle(
-                    fontSize: h7FontSize(context),
+                    fontSize: h5FontSize(context),
                     color: blackColor,
                   ),
                 ),
@@ -400,7 +401,7 @@ class CiBiScreen extends StatelessWidget {
                   child: Text(
                     '1. 로고',
                     style: TextStyle(
-                      fontSize: h3FontSize(context),
+                      fontSize: h2FontSize(context),
                       color: blackColor,
                     ),
                   ),
@@ -408,7 +409,7 @@ class CiBiScreen extends StatelessWidget {
                 Text(
                   'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ',
                   style: TextStyle(
-                    fontSize: h7FontSize(context),
+                    fontSize: h5FontSize(context),
                     color: blackColor,
                   ),
                 ),
@@ -442,7 +443,7 @@ class CiBiScreen extends StatelessWidget {
                   child: Text(
                     '2. 심볼마크',
                     style: TextStyle(
-                      fontSize: h3FontSize(context),
+                      fontSize: h2FontSize(context),
                       color: blackColor,
                     ),
                   ),
@@ -450,7 +451,7 @@ class CiBiScreen extends StatelessWidget {
                 Text(
                   'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ',
                   style: TextStyle(
-                    fontSize: h7FontSize(context),
+                    fontSize: h5FontSize(context),
                     color: blackColor,
                   ),
                 ),
@@ -484,7 +485,7 @@ class CiBiScreen extends StatelessWidget {
                   child: Text(
                     '3. 전용색상',
                     style: TextStyle(
-                      fontSize: h3FontSize(context),
+                      fontSize: h2FontSize(context),
                       color: blackColor,
                     ),
                   ),
@@ -492,7 +493,7 @@ class CiBiScreen extends StatelessWidget {
                 Text(
                   'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ',
                   style: TextStyle(
-                    fontSize: h7FontSize(context),
+                    fontSize: h5FontSize(context),
                     color: blackColor,
                   ),
                 ),

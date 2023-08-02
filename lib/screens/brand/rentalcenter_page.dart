@@ -149,13 +149,13 @@ class RentalCenterMain extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(
-                        top: 20,
+                        top: 12,
                         bottom: 20,
                       ),
                       child: Text(
                         '바이각 수트렌탈센터',
                         style: TextStyle(
-                          fontSize: h1FontSize(context),
+                          fontSize: h2FontSize(context),
                           fontWeight: FontWeight.bold,
                           color: whiteColor,
                         ),
@@ -164,7 +164,7 @@ class RentalCenterMain extends StatelessWidget {
                     Text(
                       '그 날을 위한 자신감, 바이각',
                       style: TextStyle(
-                        fontSize: h6FontSize(context),
+                        fontSize: h5FontSize(context),
                         color: whiteColor,
                       ),
                     ),
@@ -241,7 +241,7 @@ class _RentalIntroduceState extends State<RentalIntroduce> {
                     child: Text(
                       rentalText[0],
                       style: TextStyle(
-                        fontSize: h6FontSize(context),
+                        fontSize: h5FontSize(context),
                         color: blackColor,
                       ),
                     ),
@@ -284,7 +284,7 @@ class _RentalIntroduceState extends State<RentalIntroduce> {
                       child: Text(
                         rentalText[1],
                         style: TextStyle(
-                          fontSize: h6FontSize(context),
+                          fontSize: h5FontSize(context),
                           color: blackColor,
                         ),
                       ),
@@ -314,7 +314,7 @@ class _RentalIntroduceState extends State<RentalIntroduce> {
                       child: Text(
                         rentalText[2],
                         style: TextStyle(
-                          fontSize: h6FontSize(context),
+                          fontSize: h5FontSize(context),
                           color: blackColor,
                         ),
                       ),
@@ -337,7 +337,7 @@ class _RentalIntroduceState extends State<RentalIntroduce> {
                 child: Text(
                   rentalText[3],
                   style: TextStyle(
-                    fontSize: h6FontSize(context),
+                    fontSize: h5FontSize(context),
                     color: blackColor,
                   ),
                 ),
@@ -366,7 +366,7 @@ class RentalProduct extends StatelessWidget {
             Text(
               'Product',
               style: TextStyle(
-                fontSize: h1FontSize(context),
+                fontSize: h2FontSize(context),
                 fontFamily: 'Cafe_24',
                 fontWeight: FontWeight.bold,
                 color: blackColor,
@@ -424,7 +424,7 @@ class RentalCenterLocation extends StatelessWidget {
             Text(
               'Location',
               style: TextStyle(
-                fontSize: h1FontSize(context),
+                fontSize: h2FontSize(context),
                 fontFamily: 'Cafe_24',
                 fontWeight: FontWeight.bold,
                 color: blackColor,
@@ -454,14 +454,14 @@ class RentalCenterLocation extends StatelessWidget {
                               Text(
                                 '바이각 수트렌탈센터',
                                 style: TextStyle(
-                                  fontSize: h2FontSize(context) - 2,
+                                  fontSize: h3FontSize(context),
                                   color: blackColor,
                                 ),
                               ),
                               Text(
                                 '인천광역시 미추홀구 숙골로43번길 158-19 3층',
                                 style: TextStyle(
-                                  fontSize: h6FontSize(context),
+                                  fontSize: h5FontSize(context),
                                   color: blackColor,
                                 ),
                               ),

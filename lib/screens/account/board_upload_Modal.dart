@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:kimjuhyeonbykak/main.dart';
 import 'package:kimjuhyeonbykak/style.dart';
 
@@ -151,6 +152,7 @@ class _MagazineUpModalState extends State<MagazineUpModal> {
           width: widgetSize(context),
           padding: EdgeInsets.symmetric(horizontal: 20),
           child: ListView(
+            shrinkWrap: true,
             children: [
               Center(
                 child: Text(
@@ -511,6 +513,7 @@ class _NewsUpModalState extends State<NewsUpModal> {
           width: widgetSize(context),
           padding: EdgeInsets.symmetric(horizontal: 20),
           child: ListView(
+            shrinkWrap: true,
             children: [
               Center(
                 child: Text(
@@ -808,6 +811,7 @@ class _NotificationUpModalState extends State<NotificationUpModal> {
           width: widgetSize(context),
           padding: EdgeInsets.symmetric(horizontal: 20),
           child: ListView(
+            shrinkWrap: true,
             children: [
               Center(
                 child: Text(
@@ -915,7 +919,7 @@ class _NotificationUpModalState extends State<NotificationUpModal> {
               ),
               Container(
                 width: widgetSize(context),
-                padding: EdgeInsets.only(top: 40),
+                padding: EdgeInsets.only(top: 20),
                 child: Row(
                   children: [
                     Flexible(
@@ -1133,6 +1137,7 @@ class _EventUpModalState extends State<EventUpModal> {
           width: widgetSize(context),
           padding: EdgeInsets.symmetric(horizontal: 20),
           child: ListView(
+            shrinkWrap: true,
             children: [
               Center(
                 child: Text(
@@ -1559,6 +1564,7 @@ class _MediaUpModalState extends State<MediaUpModal> {
           width: widgetSize(context),
           padding: EdgeInsets.symmetric(horizontal: 20),
           child: ListView(
+            shrinkWrap: true,
             children: [
               Center(
                 child: Text(
@@ -1888,6 +1894,7 @@ class _ProductUpModalState extends State<ProductUpModal> {
           width: widgetSize(context),
           padding: EdgeInsets.symmetric(horizontal: 20),
           child: ListView(
+            shrinkWrap: true,
             children: [
               Center(
                 child: Text(
