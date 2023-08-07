@@ -359,15 +359,15 @@ class _UserMyPageState extends State<UserMyPage> {
           if (currentUserSearch.data()!.containsKey('ambassador')) {
             print('본 회원은 엠버서더이며, 필드가 존재합니다.');
           } else {
-            print('본 회원은 엠버서더이며, 필드가 존재하지 않아서 추가합니다.');
+            print('본 회원은 엠버서더이며, 필드가 존재하지 않으므로 추가합니다.');
             addAmbassador.update({
               'ambassador': [
                 'https://firebasestorage.googleapis.com/v0/b/kimjuhyeonbykak.appspot.com/o/ambassadorPic%2Fdefault_profile.png?alt=media&token=0f747b27-d254-44eb-82ff-603b979ca8a3',
                 'default_profile.png',
                 auth.currentUser?.displayName,
-                '소개합니다.',
-                '블로그를 추가하세요.',
-                '인스타를 추가하세요.',
+                '엠버서더 소개말을 추가하세요.',
+                '',
+                '',
               ]
             });
             print('추가완료');

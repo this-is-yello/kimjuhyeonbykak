@@ -835,16 +835,16 @@ doWhat(context) {
       Text(
         '맞춤정장을 배워 무엇을 할 수 있을까?',
         style: TextStyle(
-          fontSize: h5FontSize(context),
+          fontSize: h4FontSize(context) - 2,
         ),
       ),
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            '"테일러링을 배워서 ',
+            '"나는 테일러링을 배워서 ',
             style: TextStyle(
-              fontSize: h5FontSize(context),
+              fontSize: h4FontSize(context) - 2,
             ),
           ),
           Container(
@@ -888,7 +888,7 @@ doWhat(context) {
           Text(
             ' 을 하고싶다"',
             style: TextStyle(
-              fontSize: h5FontSize(context),
+              fontSize: h4FontSize(context) - 2,
             ),
           ),
         ],
