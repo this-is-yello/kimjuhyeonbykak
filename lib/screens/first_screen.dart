@@ -1123,19 +1123,21 @@ class MainComment extends StatefulWidget {
 class _MainCommentState extends State<MainComment> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(left: 20, right: 20),
-      child: SizedBox(
-        width: MediaQuery.of(context).size.width,
+    return FadeInDown(
+      child: Padding(
+        padding: EdgeInsets.only(left: 20, right: 20),
         child: SizedBox(
-          width: widgetSize(context),
-          child: Text(
-            textAlign: TextAlign.center,
-            '바이각을 시작으로 옷에 대해\n보고, 배우고, 깨닫길 바라며..',
-            style: TextStyle(
-              fontFamily: 'Cafe_24',
-              fontSize: h3FontSize(context),
-              color: bykakColor,
+          width: MediaQuery.of(context).size.width,
+          child: SizedBox(
+            width: widgetSize(context),
+            child: Text(
+              textAlign: TextAlign.center,
+              '바이각을 시작으로 옷에 대해\n보고, 배우고, 깨닫길 바라며..',
+              style: TextStyle(
+                fontFamily: 'Cafe_24',
+                fontSize: h3FontSize(context),
+                color: bykakColor,
+              ),
             ),
           ),
         ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:kimjuhyeonbykak/style.dart';
 import 'package:kimjuhyeonbykak/navigation.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'package:widget_and_text_animator/widget_and_text_animator.dart';
 
@@ -470,17 +472,48 @@ class RentalCenterLocation extends StatelessWidget {
                         ),
                         Row(
                           children: [
-                            Icon(
-                              Icons.map_outlined,
-                              size: 32,
-                              color: blackColor,
+                            InkWell(
+                              onTap: () async {
+                                final url = Uri.parse(
+                                  'https://map.naver.com/v5/entry/place/1943136667?c=16,0,0,0,dh',
+                                );
+                                if (await canLaunchUrl(url)) {
+                                  launchUrl(
+                                    url,
+                                    mode: LaunchMode.externalApplication,
+                                  );
+                                }
+                              },
+                              child: Icon(
+                                Icons.map_outlined,
+                                size: 32,
+                                color: blackColor,
+                              ),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(left: 20),
-                              child: Icon(
-                                Icons.copy,
-                                size: 32,
-                                color: blackColor,
+                              child: InkWell(
+                                onTap: () {
+                                  Clipboard.setData(
+                                    ClipboardData(
+                                      text: '인천광역시 미추홀구 숙골로43번길 158-19 3층',
+                                    ),
+                                  );
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Center(
+                                        child: Text('주소가 복사되었습니다.'),
+                                      ),
+                                      backgroundColor: bykakColor,
+                                      duration: Duration(seconds: 2),
+                                    ),
+                                  );
+                                },
+                                child: Icon(
+                                  Icons.copy,
+                                  size: 32,
+                                  color: blackColor,
+                                ),
                               ),
                             ),
                           ],

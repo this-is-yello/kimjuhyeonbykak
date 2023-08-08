@@ -1,9 +1,11 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:kimjuhyeonbykak/style.dart';
 import 'package:kimjuhyeonbykak/navigation.dart';
 
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:widget_and_text_animator/widget_and_text_animator.dart';
 
 class TailorAcademyPage extends StatefulWidget {
@@ -625,17 +627,48 @@ class AcademyLocation extends StatelessWidget {
                         ),
                         Row(
                           children: [
-                            Icon(
-                              Icons.map_outlined,
-                              size: 32,
-                              color: blackColor,
+                            InkWell(
+                              onTap: () async {
+                                final url = Uri.parse(
+                                  'https://map.naver.com/v5/entry/place/1869541062?lng=126.6574898&lat=37.4676329&placePath=%2Fhome%3Fentry=plt&c=15,0,0,0,dh',
+                                );
+                                if (await canLaunchUrl(url)) {
+                                  launchUrl(
+                                    url,
+                                    mode: LaunchMode.externalApplication,
+                                  );
+                                }
+                              },
+                              child: Icon(
+                                Icons.map_outlined,
+                                size: 32,
+                                color: blackColor,
+                              ),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(left: 20),
-                              child: Icon(
-                                Icons.copy,
-                                size: 32,
-                                color: blackColor,
+                              child: InkWell(
+                                onTap: () {
+                                  Clipboard.setData(
+                                    ClipboardData(
+                                      text: '인천 미추홀구 석정로 200 3층',
+                                    ),
+                                  );
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Center(
+                                        child: Text('주소가 복사되었습니다.'),
+                                      ),
+                                      backgroundColor: bykakColor,
+                                      duration: Duration(seconds: 2),
+                                    ),
+                                  );
+                                },
+                                child: Icon(
+                                  Icons.copy,
+                                  size: 32,
+                                  color: blackColor,
+                                ),
                               ),
                             ),
                           ],

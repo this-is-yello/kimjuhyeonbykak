@@ -9,6 +9,7 @@ import 'package:image_fade/image_fade.dart';
 // import 'package:file_picker/file_picker.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MyPage extends StatefulWidget {
   const MyPage({super.key});
@@ -278,7 +279,17 @@ class _ProfileState extends State<Profile> {
                     Padding(
                       padding: const EdgeInsets.only(top: 16),
                       child: InkWell(
-                        onTap: () {},
+                        onTap: () async {
+                          final url = Uri.parse(
+                            'https://su-it.net/',
+                          );
+                          if (await canLaunchUrl(url)) {
+                            launchUrl(
+                              url,
+                              mode: LaunchMode.externalApplication,
+                            );
+                          }
+                        },
                         child: Text(
                           '마일리지 조회 및 신청 >',
                           style: TextStyle(
@@ -385,8 +396,8 @@ class _UserMyPageState extends State<UserMyPage> {
   var ambassadorPic;
   var ambassadorName;
   var ambassadorIntroduce;
-  var ambassadorBlog;
   var ambassadorInsta;
+  var ambassadorBlog;
 
   ambassadorInfo() async {
     var profileStateSearch =
@@ -396,8 +407,8 @@ class _UserMyPageState extends State<UserMyPage> {
       ambassadorPic = snapshot[0];
       ambassadorName = snapshot[2];
       ambassadorIntroduce = snapshot[3];
-      ambassadorBlog = snapshot[4];
-      ambassadorInsta = snapshot[5];
+      ambassadorInsta = snapshot[4];
+      ambassadorBlog = snapshot[5];
     });
     print(ambassadorName);
   }
@@ -546,7 +557,18 @@ class _UserMyPageState extends State<UserMyPage> {
                                               top: 16,
                                             ),
                                             child: TextButton(
-                                              onPressed: () {},
+                                              onPressed: () async {
+                                                final url = Uri.parse(
+                                                  ambassadorInsta,
+                                                );
+                                                if (await canLaunchUrl(url)) {
+                                                  launchUrl(
+                                                    url,
+                                                    mode: LaunchMode
+                                                        .externalApplication,
+                                                  );
+                                                }
+                                              },
                                               child: Text(
                                                 '인스타그램',
                                                 // ambassadorBlog,
@@ -562,7 +584,18 @@ class _UserMyPageState extends State<UserMyPage> {
                                               top: 16,
                                             ),
                                             child: TextButton(
-                                              onPressed: () {},
+                                              onPressed: () async {
+                                                final url = Uri.parse(
+                                                  ambassadorBlog,
+                                                );
+                                                if (await canLaunchUrl(url)) {
+                                                  launchUrl(
+                                                    url,
+                                                    mode: LaunchMode
+                                                        .externalApplication,
+                                                  );
+                                                }
+                                              },
                                               child: Text(
                                                 '블로그',
                                                 // ambassadorInsta,

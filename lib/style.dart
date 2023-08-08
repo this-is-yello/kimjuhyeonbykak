@@ -5,7 +5,7 @@ import 'package:image_fade/image_fade.dart';
 var bykakColor = const Color(0xFF205B48);
 var blackColor = const Color(0xFF1E1E1E);
 var greyColor = const Color(0xFF9E9E9E);
-var lightGreyColor = const Color(0xFFEEEEEE);
+var lightGreyColor = const Color(0xFFD9D9D9);
 var whiteColor = const Color(0xFFFFFFFF);
 
 // ---------- Variable -----------------------------------------------------------------------------------------------------

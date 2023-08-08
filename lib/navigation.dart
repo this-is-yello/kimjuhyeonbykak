@@ -7,6 +7,7 @@ import 'package:kimjuhyeonbykak/main.dart';
 import 'package:side_sheet/side_sheet.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 // ---------- App_Bar -----------------------------------------------------------------------------------------------------
 class MainAppBar extends StatefulWidget {
@@ -514,7 +515,17 @@ class _FooterState extends State<Footer> {
                     children: [
                       TextButton(
                         style: elevatedBtnTheme,
-                        onPressed: () {},
+                        onPressed: () async {
+                          final url = Uri.parse(
+                            'https://www.instagram.com/kimjuhyeon_by_kak/',
+                          );
+                          if (await canLaunchUrl(url)) {
+                            launchUrl(
+                              url,
+                              mode: LaunchMode.externalApplication,
+                            );
+                          }
+                        },
                         child: Text(
                           'Instagram',
                           style: TextStyle(
@@ -526,7 +537,17 @@ class _FooterState extends State<Footer> {
                       ),
                       TextButton(
                         style: elevatedBtnTheme,
-                        onPressed: () {},
+                        onPressed: () async {
+                          final url = Uri.parse(
+                            'https://blog.naver.com/kimjuhyeon_',
+                          );
+                          if (await canLaunchUrl(url)) {
+                            launchUrl(
+                              url,
+                              mode: LaunchMode.externalApplication,
+                            );
+                          }
+                        },
                         child: Text(
                           'Blog',
                           style: TextStyle(
@@ -538,7 +559,17 @@ class _FooterState extends State<Footer> {
                       ),
                       TextButton(
                         style: elevatedBtnTheme,
-                        onPressed: () {},
+                        onPressed: () async {
+                          final url = Uri.parse(
+                            'https://www.youtube.com/channel/UChLYML6MnztkeOYdtdAQqaw',
+                          );
+                          if (await canLaunchUrl(url)) {
+                            launchUrl(
+                              url,
+                              mode: LaunchMode.externalApplication,
+                            );
+                          }
+                        },
                         child: Text(
                           'Youtube',
                           style: TextStyle(

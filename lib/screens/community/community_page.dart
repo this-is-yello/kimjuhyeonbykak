@@ -1088,24 +1088,15 @@ class _MediaScreenState extends State<MediaScreen> {
                   launchUrl(url, mode: LaunchMode.externalApplication);
                 }
               },
-              child: Wrap(
-                direction: Axis.horizontal,
-                crossAxisAlignment: WrapCrossAlignment.center,
-                runAlignment: WrapAlignment.spaceBetween,
-                alignment: WrapAlignment.start,
-                spacing: 10,
-                runSpacing: 20,
+              child: Column(
                 children: [
                   Container(
-                    width: MediaQuery.of(context).size.width < 800
-                        ? widgetSize(context)
-                        : widgetSize(context) / 2 - 10,
-                    height: c1BoxSize(context) + 100,
+                    width: widgetSize(context),
                     child: ImageFade(
                       image: NetworkImage(
                         mediaDocs[i]['thumbnail'],
                       ),
-                      fit: BoxFit.cover,
+                      fit: BoxFit.fitWidth,
                       duration: const Duration(milliseconds: 900),
                       syncDuration: const Duration(milliseconds: 150),
                       placeholder: Padding(
@@ -1128,16 +1119,12 @@ class _MediaScreenState extends State<MediaScreen> {
                     ),
                   ),
                   Container(
-                    width: MediaQuery.of(context).size.width < 800
-                        ? widgetSize(context)
-                        : widgetSize(context) / 2,
-                    padding: EdgeInsets.only(
-                      left: MediaQuery.of(context).size.width < 800 ? 0 : 16,
-                    ),
+                    width: widgetSize(context),
+                    padding: EdgeInsets.only(top: 16),
                     child: Text(
                       mediaDocs[i]['title'],
                       style: TextStyle(
-                        fontSize: h4FontSize(context),
+                        fontSize: h3FontSize(context),
                         color: blackColor,
                       ),
                     ),
@@ -1170,14 +1157,12 @@ class _MediaScreenState extends State<MediaScreen> {
                         });
                       },
                       child: Container(
-                        width: c1BoxSize(context) + 60,
-                        height: c1BoxSize(context),
-                        margin: EdgeInsets.only(right: 16),
+                        padding: EdgeInsets.only(right: 16),
                         child: ImageFade(
                           image: NetworkImage(
                             mediaDocs[index]['thumbnail'],
                           ),
-                          fit: BoxFit.cover,
+                          fit: BoxFit.fitHeight,
                           duration: const Duration(milliseconds: 900),
                           syncDuration: const Duration(milliseconds: 150),
                           placeholder: Padding(

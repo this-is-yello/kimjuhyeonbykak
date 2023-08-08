@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:image_fade/image_fade.dart';
 import 'dart:ui';
 import 'package:kimjuhyeonbykak/main.dart';
 import 'package:kimjuhyeonbykak/style.dart';
 
 import 'package:animate_do/animate_do.dart';
 import 'package:kimjuhyeonbykak/navigation.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class BusinessPage extends StatefulWidget {
   const BusinessPage({super.key});
@@ -346,9 +349,9 @@ class SupportersKakIn extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'by 覺을 시작으로 옷에 대해 보고, 배우고, 깨닫길 바라며',
+                  'by 覺을 시작으로\n옷에 대해 보고, 배우고, 깨닫길 바라며',
                   style: TextStyle(
-                    fontSize: h4FontSize(context),
+                    fontSize: h3FontSize(context),
                   ),
                 ),
                 Padding(
@@ -374,7 +377,7 @@ class SupportersKakIn extends StatelessWidget {
               Text(
                 '각인(覺人)',
                 style: TextStyle(
-                  fontSize: h4FontSize(context),
+                  fontSize: h3FontSize(context),
                 ),
               ),
               Padding(
@@ -390,7 +393,17 @@ class SupportersKakIn extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 20),
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () async {
+                    final url = Uri.parse(
+                      'https://su-it.net/',
+                    );
+                    if (await canLaunchUrl(url)) {
+                      launchUrl(
+                        url,
+                        mode: LaunchMode.externalApplication,
+                      );
+                    }
+                  },
                   child: Text(
                     '마일리지 신청 및 등급 조회하기 >',
                     style: TextStyle(
@@ -410,8 +423,40 @@ class SupportersKakIn extends StatelessWidget {
 }
 
 // ---------- Ambassador ----------
-class SupportersAmbassador extends StatelessWidget {
+class SupportersAmbassador extends StatefulWidget {
   const SupportersAmbassador({super.key});
+
+  @override
+  State<SupportersAmbassador> createState() => _SupportersAmbassadorState();
+}
+
+class _SupportersAmbassadorState extends State<SupportersAmbassador> {
+  var userSearch;
+  var ambassadorSearch;
+  var ambassadorLength;
+
+  searchAmbassador() async {
+    try {
+      userSearch = await firestore
+          .collection('account')
+          .where('grade', isEqualTo: '엠버서더')
+          .get()
+          .then((value) {
+        setState(() {
+          ambassadorSearch = value.docs;
+          ambassadorLength = value.docs.length;
+        });
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    searchAmbassador();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -429,7 +474,7 @@ class SupportersAmbassador extends StatelessWidget {
                 Text(
                   '엠버서더 관련 타이틀 삽입',
                   style: TextStyle(
-                    fontSize: h4FontSize(context),
+                    fontSize: h3FontSize(context),
                   ),
                 ),
                 Padding(
@@ -455,7 +500,7 @@ class SupportersAmbassador extends StatelessWidget {
               Text(
                 '바이각 엠버서더',
                 style: TextStyle(
-                  fontSize: h4FontSize(context),
+                  fontSize: h3FontSize(context),
                 ),
               ),
               Padding(
@@ -485,32 +530,74 @@ class SupportersAmbassador extends StatelessWidget {
                                   childAspectRatio: 1.2 / 1,
                                   mainAxisSpacing: 20,
                                 ),
-                                itemCount: 20,
+                                itemCount: ambassadorLength,
                                 itemBuilder: (context, index) {
-                                  return Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Expanded(
-                                        flex: 1,
-                                        child: Container(
-                                          // width: c1BoxSize(context),
-                                          // height: c1BoxSize(context) + 20,
-                                          // margin: EdgeInsets.all(10),
-                                          color: blackColor,
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(top: 10),
-                                        child: Text(
-                                          '엠버서더_$index\n@idimda_$index',
-                                          style: TextStyle(
-                                            fontSize: h5FontSize(context),
-                                            color: blackColor,
+                                  return InkWell(
+                                    onTap: () async {
+                                      final url = Uri.parse(
+                                        '${ambassadorSearch[index]['ambassador'][4]}',
+                                      );
+                                      if (await canLaunchUrl(url)) {
+                                        launchUrl(
+                                          url,
+                                          mode: LaunchMode.externalApplication,
+                                        );
+                                      } else {
+                                        printError();
+                                      }
+                                    },
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Expanded(
+                                          flex: 1,
+                                          child: Container(
+                                            child: ImageFade(
+                                              image: NetworkImage(
+                                                '${ambassadorSearch[index]['ambassador'][0]}',
+                                              ),
+                                              fit: BoxFit.cover,
+                                              duration: const Duration(
+                                                  milliseconds: 900),
+                                              syncDuration: const Duration(
+                                                  milliseconds: 150),
+                                              placeholder: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(20),
+                                                child: Center(
+                                                  child:
+                                                      CircularProgressIndicator(
+                                                    color: blackColor,
+                                                  ),
+                                                ),
+                                              ),
+                                              errorBuilder: (context, error) =>
+                                                  Container(
+                                                color: const Color(0xFFFFFFFF),
+                                                alignment: Alignment.center,
+                                                child: const Icon(
+                                                  Icons.warning,
+                                                  color: Color(0xFF1E1E1E),
+                                                  size: 60.0,
+                                                ),
+                                              ),
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    ],
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 10),
+                                          child: Text(
+                                            '${ambassadorSearch[index]['ambassador'][2]}',
+                                            style: TextStyle(
+                                              fontSize: h5FontSize(context),
+                                              color: blackColor,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   );
                                 },
                               ),
@@ -535,7 +622,7 @@ class SupportersAmbassador extends StatelessWidget {
               Text(
                 '엠버서더 활동',
                 style: TextStyle(
-                  fontSize: h4FontSize(context),
+                  fontSize: h3FontSize(context),
                 ),
               ),
               Padding(

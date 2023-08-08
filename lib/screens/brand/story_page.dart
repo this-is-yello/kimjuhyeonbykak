@@ -417,105 +417,129 @@ class CiBiScreen extends StatelessWidget {
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 20),
-                  child: Container(
-                    width: widgetSize(context),
-                    padding: EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      color: greyColor,
-                      border: Border.all(
-                        color: blackColor,
-                        width: 2,
+                  child: Column(
+                    children: [
+                      Container(
+                        width: widgetSize(context),
+                        padding: EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          color: whiteColor,
+                          border: Border.all(
+                            color: blackColor,
+                            width: 2,
+                          ),
+                        ),
+                        child: Wrap(
+                          direction: Axis.horizontal,
+                          alignment: WrapAlignment.spaceEvenly,
+                          crossAxisAlignment: WrapCrossAlignment.center,
+                          spacing: 20,
+                          runSpacing: 20,
+                          children: [
+                            Container(
+                              width: c2BoxSize(context),
+                              child: ImageFade(
+                                image: AssetImage(
+                                  'assets/images/logos/bykakLogo_b.png',
+                                ),
+                                fit: BoxFit.fitWidth,
+                                duration: const Duration(milliseconds: 900),
+                                syncDuration: const Duration(milliseconds: 150),
+                                errorBuilder: (context, error) => Container(
+                                  color: const Color(0xFFFFFFFF),
+                                  alignment: Alignment.center,
+                                  child: const Icon(
+                                    Icons.warning,
+                                    color: Color(0xFF1E1E1E),
+                                    size: 60.0,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: c1BoxSize(context),
+                              child: ImageFade(
+                                image: AssetImage(
+                                  'assets/images/logos/bykakTextLogo_b.png',
+                                ),
+                                fit: BoxFit.fitWidth,
+                                duration: const Duration(milliseconds: 900),
+                                syncDuration: const Duration(milliseconds: 150),
+                                errorBuilder: (context, error) => Container(
+                                  color: const Color(0xFFFFFFFF),
+                                  alignment: Alignment.center,
+                                  child: const Icon(
+                                    Icons.warning,
+                                    color: Color(0xFF1E1E1E),
+                                    size: 60.0,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    child: Wrap(
-                      direction: Axis.horizontal,
-                      alignment: WrapAlignment.spaceEvenly,
-                      crossAxisAlignment: WrapCrossAlignment.center,
-                      spacing: 20,
-                      runSpacing: 20,
-                      children: [
-                        SizedBox(
-                          width: c1BoxSize(context),
-                          child: ImageFade(
-                            image: AssetImage(
-                              'assets/images/logos/bykakLogo_b.png',
-                            ),
-                            fit: BoxFit.fitWidth,
-                            duration: const Duration(milliseconds: 900),
-                            syncDuration: const Duration(milliseconds: 150),
-                            errorBuilder: (context, error) => Container(
-                              color: const Color(0xFFFFFFFF),
-                              alignment: Alignment.center,
-                              child: const Icon(
-                                Icons.warning,
-                                color: Color(0xFF1E1E1E),
-                                size: 60.0,
-                              ),
-                            ),
+                      Container(
+                        width: widgetSize(context),
+                        padding: EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          color: blackColor,
+                          border: Border.all(
+                            color: blackColor,
+                            width: 2,
                           ),
                         ),
-                        SizedBox(
-                          width: c1BoxSize(context),
-                          child: ImageFade(
-                            image: AssetImage(
-                              'assets/images/logos/bykakLogo_w.png',
-                            ),
-                            fit: BoxFit.fitWidth,
-                            duration: const Duration(milliseconds: 900),
-                            syncDuration: const Duration(milliseconds: 150),
-                            errorBuilder: (context, error) => Container(
-                              color: const Color(0xFFFFFFFF),
-                              alignment: Alignment.center,
-                              child: const Icon(
-                                Icons.warning,
-                                color: Color(0xFF1E1E1E),
-                                size: 60.0,
+                        child: Wrap(
+                          direction: Axis.horizontal,
+                          alignment: WrapAlignment.spaceEvenly,
+                          crossAxisAlignment: WrapCrossAlignment.center,
+                          spacing: 20,
+                          runSpacing: 20,
+                          children: [
+                            Container(
+                              width: c2BoxSize(context),
+                              child: ImageFade(
+                                image: AssetImage(
+                                  'assets/images/logos/bykakLogo_w.png',
+                                ),
+                                fit: BoxFit.fitWidth,
+                                duration: const Duration(milliseconds: 900),
+                                syncDuration: const Duration(milliseconds: 150),
+                                errorBuilder: (context, error) => Container(
+                                  color: const Color(0xFFFFFFFF),
+                                  alignment: Alignment.center,
+                                  child: const Icon(
+                                    Icons.warning,
+                                    color: Color(0xFF1E1E1E),
+                                    size: 60.0,
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
+                            Container(
+                              width: c1BoxSize(context),
+                              child: ImageFade(
+                                image: AssetImage(
+                                  'assets/images/logos/bykakTextLogo_w.png',
+                                ),
+                                fit: BoxFit.fitWidth,
+                                duration: const Duration(milliseconds: 900),
+                                syncDuration: const Duration(milliseconds: 150),
+                                errorBuilder: (context, error) => Container(
+                                  color: const Color(0xFFFFFFFF),
+                                  alignment: Alignment.center,
+                                  child: const Icon(
+                                    Icons.warning,
+                                    color: Color(0xFF1E1E1E),
+                                    size: 60.0,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                        // SizedBox(
-                        //   width: c1BoxSize(context),
-                        //   child: ImageFade(
-                        //     image: AssetImage(
-                        //       'assets/images/logos/bykakTextLogo_b.png',
-                        //     ),
-                        //     fit: BoxFit.fitWidth,
-                        //     duration: const Duration(milliseconds: 900),
-                        //     syncDuration: const Duration(milliseconds: 150),
-                        //     errorBuilder: (context, error) => Container(
-                        //       color: const Color(0xFFFFFFFF),
-                        //       alignment: Alignment.center,
-                        //       child: const Icon(
-                        //         Icons.warning,
-                        //         color: Color(0xFF1E1E1E),
-                        //         size: 60.0,
-                        //       ),
-                        //     ),
-                        //   ),
-                        // ),
-                        // SizedBox(
-                        //   width: c1BoxSize(context),
-                        //   child: ImageFade(
-                        //     image: AssetImage(
-                        //       'assets/images/logos/bykakTextLogo_w.png',
-                        //     ),
-                        //     fit: BoxFit.fitWidth,
-                        //     duration: const Duration(milliseconds: 900),
-                        //     syncDuration: const Duration(milliseconds: 150),
-                        //     errorBuilder: (context, error) => Container(
-                        //       color: const Color(0xFFFFFFFF),
-                        //       alignment: Alignment.center,
-                        //       child: const Icon(
-                        //         Icons.warning,
-                        //         color: Color(0xFF1E1E1E),
-                        //         size: 60.0,
-                        //       ),
-                        //     ),
-                        //   ),
-                        // ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               ],
@@ -550,59 +574,63 @@ class CiBiScreen extends StatelessWidget {
                   padding: EdgeInsets.only(top: 20),
                   child: Container(
                     width: widgetSize(context),
-                    padding: EdgeInsets.all(8),
                     decoration: BoxDecoration(
-                      color: greyColor,
                       border: Border.all(
                         color: blackColor,
                         width: 2,
                       ),
                     ),
-                    child: Wrap(
-                      direction: Axis.horizontal,
-                      alignment: WrapAlignment.spaceEvenly,
-                      crossAxisAlignment: WrapCrossAlignment.center,
-                      spacing: 20,
-                      runSpacing: 20,
+                    child: Row(
                       children: [
-                        Container(
-                          width: c1BoxSize(context),
-                          height: c1BoxSize(context),
-                          child: ImageFade(
-                            image: AssetImage(
-                              'assets/images/logos/bykakScissorLogo_b.png',
-                            ),
-                            fit: BoxFit.fitWidth,
-                            duration: const Duration(milliseconds: 900),
-                            syncDuration: const Duration(milliseconds: 150),
-                            errorBuilder: (context, error) => Container(
-                              color: const Color(0xFFFFFFFF),
-                              alignment: Alignment.center,
-                              child: const Icon(
-                                Icons.warning,
-                                color: Color(0xFF1E1E1E),
-                                size: 60.0,
+                        Flexible(
+                          fit: FlexFit.tight,
+                          child: Container(
+                            height: c1BoxSize(context),
+                            child: Padding(
+                              padding: const EdgeInsets.all(40),
+                              child: ImageFade(
+                                image: AssetImage(
+                                  'assets/images/logos/bykakScissorLogo_b.png',
+                                ),
+                                fit: BoxFit.contain,
+                                duration: const Duration(milliseconds: 900),
+                                syncDuration: const Duration(milliseconds: 150),
+                                errorBuilder: (context, error) => Container(
+                                  color: const Color(0xFFFFFFFF),
+                                  alignment: Alignment.center,
+                                  child: const Icon(
+                                    Icons.warning,
+                                    color: Color(0xFF1E1E1E),
+                                    size: 60.0,
+                                  ),
+                                ),
                               ),
                             ),
                           ),
                         ),
-                        Container(
-                          width: c1BoxSize(context),
-                          height: c1BoxSize(context),
-                          child: ImageFade(
-                            image: AssetImage(
-                              'assets/images/logos/bykakScissorLogo_w.png',
-                            ),
-                            fit: BoxFit.fitWidth,
-                            duration: const Duration(milliseconds: 900),
-                            syncDuration: const Duration(milliseconds: 150),
-                            errorBuilder: (context, error) => Container(
-                              color: const Color(0xFFFFFFFF),
-                              alignment: Alignment.center,
-                              child: const Icon(
-                                Icons.warning,
-                                color: Color(0xFF1E1E1E),
-                                size: 60.0,
+                        Flexible(
+                          fit: FlexFit.tight,
+                          child: Container(
+                            height: c1BoxSize(context),
+                            color: blackColor,
+                            child: Padding(
+                              padding: const EdgeInsets.all(40),
+                              child: ImageFade(
+                                image: AssetImage(
+                                  'assets/images/logos/bykakScissorLogo_w.png',
+                                ),
+                                fit: BoxFit.contain,
+                                duration: const Duration(milliseconds: 900),
+                                syncDuration: const Duration(milliseconds: 150),
+                                errorBuilder: (context, error) => Container(
+                                  color: const Color(0xFFFFFFFF),
+                                  alignment: Alignment.center,
+                                  child: const Icon(
+                                    Icons.warning,
+                                    color: Color(0xFF1E1E1E),
+                                    size: 60.0,
+                                  ),
+                                ),
                               ),
                             ),
                           ),
@@ -625,7 +653,7 @@ class CiBiScreen extends StatelessWidget {
                     bottom: 8,
                   ),
                   child: Text(
-                    '3. 전용색상',
+                    '3. 브랜드 컬러',
                     style: TextStyle(
                       fontSize: h2FontSize(context),
                       color: blackColor,
