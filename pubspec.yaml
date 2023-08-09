@@ -90,6 +90,7 @@ flutter:
     - assets/images/fabrics/
     - assets/images/makingProcess/
     - assets/images/jemulpoClub/
+    - assets/images/academy/
     - assets/images/rentalProducts/
     - assets/images/rentalCenter/
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -241,7 +241,7 @@ class _JemulpoClubStudioState extends State<JemulpoClubStudio> {
                           child: Text(
                             'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
                             style: TextStyle(
-                              fontSize: h5FontSize(context),
+                              fontSize: h4FontSize(context),
                               color: blackColor,
                             ),
                           ),
@@ -268,7 +268,7 @@ class _JemulpoClubStudioState extends State<JemulpoClubStudio> {
                             child: Text(
                               'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
                               style: TextStyle(
-                                fontSize: h5FontSize(context),
+                                fontSize: h4FontSize(context),
                                 color: blackColor,
                               ),
                             ),
@@ -296,7 +296,7 @@ class _JemulpoClubStudioState extends State<JemulpoClubStudio> {
                             child: Text(
                               'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
                               style: TextStyle(
-                                fontSize: h5FontSize(context),
+                                fontSize: h4FontSize(context),
                                 color: blackColor,
                               ),
                             ),
@@ -340,7 +340,7 @@ class _JemulpoClubStudioState extends State<JemulpoClubStudio> {
                     child: Text(
                       'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
                       style: TextStyle(
-                        fontSize: h5FontSize(context),
+                        fontSize: h4FontSize(context),
                         color: blackColor,
                       ),
                     ),
@@ -407,7 +407,7 @@ class _JemulpoClubStudioState extends State<JemulpoClubStudio> {
                       child: Text(
                         'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
                         style: TextStyle(
-                          fontSize: h5FontSize(context),
+                          fontSize: h4FontSize(context),
                           color: blackColor,
                         ),
                       ),

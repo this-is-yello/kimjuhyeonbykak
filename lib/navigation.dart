@@ -585,7 +585,9 @@ class _FooterState extends State<Footer> {
                     children: [
                       TextButton(
                         style: elevatedBtnTheme,
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.rootDelegate.toNamed(Routes.PRIVACY);
+                        },
                         child: Text(
                           '개인정보취급방침',
                           style: TextStyle(

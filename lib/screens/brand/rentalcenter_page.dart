@@ -207,10 +207,10 @@ class _RentalIntroduceState extends State<RentalIntroduce> {
     'assets/images/rentalCenter/rental_center_3.png'
   ];
   List rentalText = [
-    'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    '바이각 수트렌탈센터는 300벌 이상의 렌탈복과 100평대 규모의 인천 최초/최대의 정장렌탈 전문샵입니다.',
+    '웨딩, 혼주복, 면접, 데일리등으로 그 날에 걸맞은 다양한 수트를 경험하세요.',
+    '다양한 수트와 자켓들을 입어보면서 올바른 옷 입기와 자기갖춤에 큰 도움이 되시리라 강하게 믿습니다.',
+    // 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   ];
 
   @override
@@ -230,7 +230,7 @@ class _RentalIntroduceState extends State<RentalIntroduce> {
                 direction: Axis.horizontal,
                 crossAxisAlignment: WrapCrossAlignment.center,
                 runAlignment: WrapAlignment.spaceBetween,
-                verticalDirection: VerticalDirection.up,
+                verticalDirection: VerticalDirection.down,
                 alignment: WrapAlignment.start,
                 spacing: 20,
                 runSpacing: 20,
@@ -238,113 +238,41 @@ class _RentalIntroduceState extends State<RentalIntroduce> {
                   Container(
                     width: MediaQuery.of(context).size.width < 800
                         ? widgetSize(context)
-                        : widgetSize(context) / 2 - 20,
-                    alignment: Alignment.centerRight,
-                    child: Text(
-                      rentalText[0],
-                      style: TextStyle(
-                        fontSize: h5FontSize(context),
-                        color: blackColor,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    width: MediaQuery.of(context).size.width < 800
-                        ? widgetSize(context)
                         : widgetSize(context) / 2,
                     height: c1BoxSize(context) + 100,
                     child: fadeImage(rentalImage[0]),
                   ),
+                  Container(
+                    width: MediaQuery.of(context).size.width < 800
+                        ? widgetSize(context)
+                        : widgetSize(context) / 2 - 20,
+                    alignment: Alignment.centerRight,
+                    child: Text(
+                      '바이각 수트렌탈센터는 300벌 이상의 렌탈복과 100평대 규모의 인천 최초/최대의 정장렌탈 전문샵입니다. 웨딩, 혼주복, 면접, 데일리등으로 그 날에 걸맞은 다양한 수트를 경험하세요. 다양한 수트와 자켓들을 입어보면서 올바른 옷 입기와 자기갖춤에 큰 도움이 되시리라 강하게 믿습니다.',
+                      style: TextStyle(
+                        fontSize: h4FontSize(context),
+                        color: blackColor,
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 40),
-              child: SizedBox(
-                width: widgetSize(context),
-                child: Wrap(
-                  direction: Axis.horizontal,
-                  crossAxisAlignment: WrapCrossAlignment.center,
-                  runAlignment: WrapAlignment.spaceBetween,
-                  verticalDirection: VerticalDirection.down,
-                  alignment: WrapAlignment.start,
-                  spacing: 20,
-                  runSpacing: 20,
-                  children: [
-                    Container(
-                      width: MediaQuery.of(context).size.width < 800
-                          ? widgetSize(context)
-                          : widgetSize(context) / 2,
-                      height: c1BoxSize(context) + 100,
-                      child: fadeImage(rentalImage[1]),
-                    ),
-                    Container(
-                      width: MediaQuery.of(context).size.width < 800
-                          ? widgetSize(context)
-                          : widgetSize(context) / 2 - 20,
-                      alignment: Alignment.centerRight,
-                      child: Text(
-                        rentalText[1],
-                        style: TextStyle(
-                          fontSize: h5FontSize(context),
-                          color: blackColor,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 40),
-              child: SizedBox(
-                width: widgetSize(context),
-                child: Wrap(
-                  direction: Axis.horizontal,
-                  crossAxisAlignment: WrapCrossAlignment.center,
-                  runAlignment: WrapAlignment.spaceBetween,
-                  verticalDirection: VerticalDirection.up,
-                  alignment: WrapAlignment.start,
-                  spacing: 20,
-                  runSpacing: 20,
-                  children: [
-                    Container(
-                      width: MediaQuery.of(context).size.width < 800
-                          ? widgetSize(context)
-                          : widgetSize(context) / 2 - 20,
-                      alignment: Alignment.centerRight,
-                      child: Text(
-                        rentalText[2],
-                        style: TextStyle(
-                          fontSize: h5FontSize(context),
-                          color: blackColor,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      width: MediaQuery.of(context).size.width < 800
-                          ? widgetSize(context)
-                          : widgetSize(context) / 2,
-                      height: c1BoxSize(context) + 100,
-                      child: fadeImage(rentalImage[2]),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 40),
-              child: SizedBox(
-                width: widgetSize(context),
-                child: Text(
-                  rentalText[3],
-                  style: TextStyle(
-                    fontSize: h5FontSize(context),
-                    color: blackColor,
-                  ),
-                ),
-              ),
-            ),
+            //
+            // ------------------------------------------------------------
+            // Padding(
+            //   padding: const EdgeInsets.only(top: 40),
+            //   child: SizedBox(
+            //     width: widgetSize(context),
+            //     child: Text(
+            //       rentalText[3],
+            //       style: TextStyle(
+            //         fontSize: h4FontSize(context),
+            //         color: blackColor,
+            //       ),
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       ),

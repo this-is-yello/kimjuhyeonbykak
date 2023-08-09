@@ -34,6 +34,8 @@ import 'package:kimjuhyeonbykak/screens/account/my_page.dart';
 import 'package:kimjuhyeonbykak/screens/account/modify_account_page.dart';
 import 'package:kimjuhyeonbykak/screens/account/modify_ambassador_page.dart';
 
+import 'package:kimjuhyeonbykak/screens/privacy_page.dart';
+
 import 'package:get/get.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -68,6 +70,8 @@ abstract class Routes {
   static const MYPAGE = '/mypage';
   static const MODIFYACCOUNT = '/modifyaccount';
   static const MODIFYAMBASSADOR = '/modifyambassador';
+  // ---------------------------------------- About_Privacy ----------------------------------------
+  static const PRIVACY = '/Privacy';
 }
 
 class AppRouterDelegate extends GetDelegate {
@@ -180,6 +184,11 @@ abstract class AppPages {
     GetPage(
       name: Routes.MODIFYAMBASSADOR,
       page: () => const ModifyAmbassadorPage(),
+    ),
+    // ---------------------------------------- About_Privacy ----------------------------------------
+    GetPage(
+      name: Routes.PRIVACY,
+      page: () => const PrivacyPage(),
     ),
   ];
 }

@@ -223,7 +223,7 @@ academyText(context) {
       Text(
         '바이각 테일러아카데미는',
         style: TextStyle(
-          fontSize: h4FontSize(context),
+          fontSize: h3FontSize(context),
           fontWeight: FontWeight.bold,
           color: blackColor,
         ),
@@ -231,7 +231,7 @@ academyText(context) {
       Text(
         '장인들의 맞춤양복 기술이 후대에도\n이어나갈 수 있도록 후학양성을 위해',
         style: TextStyle(
-          fontSize: h3FontSize(context),
+          fontSize: h2FontSize(context),
           fontWeight: FontWeight.bold,
           color: bykakColor,
         ),
@@ -239,7 +239,7 @@ academyText(context) {
       Text(
         '설립되었습니다.',
         style: TextStyle(
-          fontSize: h4FontSize(context),
+          fontSize: h3FontSize(context),
           color: blackColor,
         ),
       ),
@@ -319,15 +319,25 @@ class Curriculum extends StatelessWidget {
                   children: [
                     Container(
                       width: widgetSize(context),
-                      child: fadeImage('assets/images/curriculum.png'),
+                      child: fadeImage('assets/images/academy/curriculum.png'),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 40),
                       child: InkWell(
-                        onTap: () {},
+                        onTap: () async {
+                          final url = Uri.parse(
+                            'https://docs.google.com/forms/d/14On8emrvBAKwD1ZkW327mbMT745oGc-LJoT9dGBEkcU/edit',
+                          );
+                          if (await canLaunchUrl(url)) {
+                            launchUrl(
+                              url,
+                              mode: LaunchMode.externalApplication,
+                            );
+                          }
+                        },
                         child: Container(
                           width: 240,
-                          height: 40,
+                          height: 48,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(200),
                             color: blackColor,
@@ -407,7 +417,8 @@ class WhoTeaching extends StatelessWidget {
                               width: c1BoxSize(context) + 20,
                               height: c1BoxSize(context) + 100,
                               margin: EdgeInsets.only(right: 16),
-                              color: blackColor,
+                              child: fadeImage(
+                                  'assets/images/academy/instructor_${index + 1}.png'),
                             );
                           },
                         ),
@@ -476,9 +487,7 @@ class WhyLearning extends StatelessWidget {
               ),
               child: SizedBox(
                 width: widgetSize(context),
-                child: fadeImage(MediaQuery.of(context).size.width < 800
-                    ? 'assets/images/why_column.png'
-                    : 'assets/images/why_row.png'),
+                child: fadeImage('assets/images/academy/why_row.png'),
               ),
             ),
             Padding(

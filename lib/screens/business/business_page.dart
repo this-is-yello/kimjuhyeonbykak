@@ -527,78 +527,108 @@ class _SupportersAmbassadorState extends State<SupportersAmbassador> {
                                 gridDelegate:
                                     SliverGridDelegateWithFixedCrossAxisCount(
                                   crossAxisCount: 1,
-                                  childAspectRatio: 1.2 / 1,
+                                  childAspectRatio: 1.5 / 1,
                                   mainAxisSpacing: 20,
                                 ),
                                 itemCount: ambassadorLength,
                                 itemBuilder: (context, index) {
-                                  return InkWell(
-                                    onTap: () async {
-                                      final url = Uri.parse(
-                                        '${ambassadorSearch[index]['ambassador'][4]}',
-                                      );
-                                      if (await canLaunchUrl(url)) {
-                                        launchUrl(
-                                          url,
-                                          mode: LaunchMode.externalApplication,
+                                  try {
+                                    return InkWell(
+                                      onTap: () async {
+                                        final url = Uri.parse(
+                                          '${ambassadorSearch[index]['ambassador'][4]}',
                                         );
-                                      } else {
-                                        printError();
-                                      }
-                                    },
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Expanded(
-                                          flex: 1,
-                                          child: Container(
-                                            child: ImageFade(
-                                              image: NetworkImage(
-                                                '${ambassadorSearch[index]['ambassador'][0]}',
-                                              ),
-                                              fit: BoxFit.cover,
-                                              duration: const Duration(
-                                                  milliseconds: 900),
-                                              syncDuration: const Duration(
-                                                  milliseconds: 150),
-                                              placeholder: Padding(
-                                                padding:
-                                                    const EdgeInsets.all(20),
-                                                child: Center(
-                                                  child:
-                                                      CircularProgressIndicator(
-                                                    color: blackColor,
+                                        if (await canLaunchUrl(url)) {
+                                          launchUrl(
+                                            url,
+                                            mode:
+                                                LaunchMode.externalApplication,
+                                          );
+                                        } else {
+                                          printError();
+                                        }
+                                      },
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Expanded(
+                                            flex: 1,
+                                            child: Container(
+                                              child: ImageFade(
+                                                image: NetworkImage(
+                                                  '${ambassadorSearch[index]['ambassador'][0]}',
+                                                ),
+                                                fit: BoxFit.cover,
+                                                duration: const Duration(
+                                                    milliseconds: 900),
+                                                syncDuration: const Duration(
+                                                    milliseconds: 150),
+                                                placeholder: Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(20),
+                                                  child: Center(
+                                                    child:
+                                                        CircularProgressIndicator(
+                                                      color: blackColor,
+                                                    ),
+                                                  ),
+                                                ),
+                                                errorBuilder:
+                                                    (context, error) =>
+                                                        Container(
+                                                  color:
+                                                      const Color(0xFFFFFFFF),
+                                                  alignment: Alignment.center,
+                                                  child: const Icon(
+                                                    Icons.warning,
+                                                    color: Color(0xFF1E1E1E),
+                                                    size: 60.0,
                                                   ),
                                                 ),
                                               ),
-                                              errorBuilder: (context, error) =>
-                                                  Container(
-                                                color: const Color(0xFFFFFFFF),
-                                                alignment: Alignment.center,
-                                                child: const Icon(
-                                                  Icons.warning,
-                                                  color: Color(0xFF1E1E1E),
-                                                  size: 60.0,
-                                                ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsets.only(top: 10),
+                                            child: Text(
+                                              '${ambassadorSearch[index]['ambassador'][2]}',
+                                              style: TextStyle(
+                                                fontSize: h5FontSize(context),
+                                                color: blackColor,
                                               ),
                                             ),
                                           ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 10),
-                                          child: Text(
-                                            '${ambassadorSearch[index]['ambassador'][2]}',
-                                            style: TextStyle(
-                                              fontSize: h5FontSize(context),
-                                              color: blackColor,
+                                        ],
+                                      ),
+                                    );
+                                  } catch (e) {
+                                    return Container(
+                                      width: widgetSize(context),
+                                      height: 500,
+                                      child: Center(
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            CircularProgressIndicator(
+                                                color: blackColor),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  top: 20),
+                                              child: Text(
+                                                ' ',
+                                                style: TextStyle(
+                                                  color: blackColor,
+                                                ),
+                                              ),
                                             ),
-                                          ),
+                                          ],
                                         ),
-                                      ],
-                                    ),
-                                  );
+                                      ),
+                                    );
+                                  }
                                 },
                               ),
                             ),
