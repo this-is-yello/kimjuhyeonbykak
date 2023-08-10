@@ -34,7 +34,9 @@ import 'package:kimjuhyeonbykak/screens/account/my_page.dart';
 import 'package:kimjuhyeonbykak/screens/account/modify_account_page.dart';
 import 'package:kimjuhyeonbykak/screens/account/modify_ambassador_page.dart';
 
-import 'package:kimjuhyeonbykak/screens/privacy_page.dart';
+import 'package:kimjuhyeonbykak/screens/privacy/privacy_page.dart';
+import 'package:kimjuhyeonbykak/screens/privacy/terms_page.dart';
+import 'package:kimjuhyeonbykak/screens/privacy/noemail_page.dart';
 
 import 'package:get/get.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -72,6 +74,8 @@ abstract class Routes {
   static const MODIFYAMBASSADOR = '/modifyambassador';
   // ---------------------------------------- About_Privacy ----------------------------------------
   static const PRIVACY = '/Privacy';
+  static const TERMS = '/terms';
+  static const NOEMAIL = '/noemail';
 }
 
 class AppRouterDelegate extends GetDelegate {
@@ -189,6 +193,14 @@ abstract class AppPages {
     GetPage(
       name: Routes.PRIVACY,
       page: () => const PrivacyPage(),
+    ),
+    GetPage(
+      name: Routes.TERMS,
+      page: () => const TermsPage(),
+    ),
+    GetPage(
+      name: Routes.NOEMAIL,
+      page: () => const NoEmailPage(),
     ),
   ];
 }

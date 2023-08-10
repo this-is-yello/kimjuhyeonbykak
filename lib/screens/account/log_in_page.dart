@@ -163,64 +163,6 @@ class _LogInPageState extends State<LogInPage> {
                         onTap: () async {
                           logInBtn();
                         }),
-                    // Padding(
-                    //   padding: const EdgeInsets.only(top: 24, bottom: 24),
-                    //   child: Container(
-                    //     width: 360,
-                    //     child: Row(
-                    //       children: [
-                    //         Flexible(
-                    //           fit: FlexFit.tight,
-                    //           child: Container(
-                    //             height: 1,
-                    //             color: blackColor,
-                    //           ),
-                    //         ),
-                    //         Padding(
-                    //           padding: EdgeInsets.only(left: 16, right: 16),
-                    //           child: Text('SNS계정으로 로그인하기'),
-                    //         ),
-                    //         Flexible(
-                    //           fit: FlexFit.tight,
-                    //           child: Container(
-                    //             height: 1,
-                    //             color: blackColor,
-                    //           ),
-                    //         ),
-                    //       ],
-                    //     ),
-                    //   ),
-                    // ),
-                    // InkWell(
-                    //   onTap: () {},
-                    //   child: Container(
-                    //     width: 360,
-                    //     height: 56,
-                    //     decoration: BoxDecoration(
-                    //       color: Colors.yellow,
-                    //       borderRadius: BorderRadius.circular(8),
-                    //     ),
-                    //     child: Row(
-                    //       mainAxisAlignment: MainAxisAlignment.center,
-                    //       children: [
-                    //         // 카톡 아이콘으로 바꿔야합니다.
-                    //         Icon(
-                    //           Icons.messenger_sharp,
-                    //           color: blackColor,
-                    //         ),
-                    //         Padding(padding: EdgeInsets.all(16)),
-                    //         Text(
-                    //           '카카오톡으로 로그인',
-                    //           style: TextStyle(
-                    //             fontSize: 16,
-                    //             color: blackColor,
-                    //             fontWeight: FontWeight.bold,
-                    //           ),
-                    //         ),
-                    //       ],
-                    //     ),
-                    //   ),
-                    // ),
                   ],
                 ),
               ),

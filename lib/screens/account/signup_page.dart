@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:kimjuhyeonbykak/screens/privacy/privacy_page.dart';
+import 'package:kimjuhyeonbykak/screens/privacy/terms_page.dart';
 import 'package:kimjuhyeonbykak/style.dart';
 import 'package:kimjuhyeonbykak/main.dart';
 
@@ -98,6 +101,9 @@ class _SignUpPageState extends State<SignUpPage> {
       }
     }
   }
+
+  bool _checkUseTerms = false;
+  bool _checkPrivacy = false;
 
   @override
   void initState() {
@@ -333,13 +339,116 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 40),
+              padding: EdgeInsets.only(top: 20),
+              child: SizedBox(
+                width: 360,
+                child: Row(
+                  children: [
+                    Checkbox(
+                      activeColor: blackColor,
+                      checkColor: whiteColor,
+                      value: _checkUseTerms,
+                      onChanged: (bool? value) {
+                        if (_checkUseTerms == false) {
+                          setState(() {
+                            _checkUseTerms = true;
+                          });
+                        } else {
+                          setState(() {
+                            _checkUseTerms = false;
+                          });
+                        }
+                      },
+                    ),
+                    Text(
+                      '이용약관 동의',
+                      style: TextStyle(
+                        fontSize: h5FontSize(context),
+                        color: blackColor,
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return TermsDialog();
+                          },
+                        );
+                      },
+                      icon: Icon(
+                        Icons.arrow_forward_ios_rounded,
+                        size: h5FontSize(context),
+                        color: blackColor,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 0),
+              child: SizedBox(
+                width: 360,
+                child: Row(
+                  children: [
+                    Checkbox(
+                      activeColor: blackColor,
+                      checkColor: whiteColor,
+                      value: _checkPrivacy,
+                      onChanged: (bool? value) {
+                        if (_checkPrivacy == false) {
+                          setState(() {
+                            _checkPrivacy = true;
+                          });
+                        } else {
+                          setState(() {
+                            _checkPrivacy = false;
+                          });
+                        }
+                      },
+                    ),
+                    Text(
+                      '개인정보 수집 및 이용 동의',
+                      style: TextStyle(
+                        fontSize: h5FontSize(context),
+                        color: blackColor,
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return PrivacyDialog();
+                          },
+                        );
+                      },
+                      icon: Icon(
+                        Icons.arrow_forward_ios_rounded,
+                        size: h5FontSize(context),
+                        color: blackColor,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 20),
               child: InkWell(
                 onTap: () {
-                  goSignUp();
+                  if (_checkUseTerms == true && _checkPrivacy == true) {
+                    goSignUp();
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Center(child: Text('개인정보 수집 및 이용약관에 동의해주세요.')),
+                      backgroundColor: bykakColor,
+                    ));
+                  }
                 },
                 child: Container(
-                  width: 300,
+                  width: 360,
                   height: 56,
                   decoration: BoxDecoration(
                     color: blackColor,

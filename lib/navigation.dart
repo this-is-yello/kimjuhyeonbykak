@@ -599,7 +599,9 @@ class _FooterState extends State<Footer> {
                       ),
                       TextButton(
                         style: elevatedBtnTheme,
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.rootDelegate.toNamed(Routes.TERMS);
+                        },
                         child: Text(
                           '이용약관',
                           style: TextStyle(
@@ -611,7 +613,9 @@ class _FooterState extends State<Footer> {
                       ),
                       TextButton(
                         style: elevatedBtnTheme,
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.rootDelegate.toNamed(Routes.NOEMAIL);
+                        },
                         child: Text(
                           '이메일무단수집거부',
                           style: TextStyle(

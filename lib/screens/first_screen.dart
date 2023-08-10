@@ -298,12 +298,12 @@ class _CarouselScreenState extends State<CarouselScreen> {
                             moveSel();
                           },
                           child: Container(
-                            width: 40,
+                            width: 20,
                             height: 8,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(100),
                               color: picNum == 0
-                                  ? blackColor.withAlpha(200)
+                                  ? greyColor.withAlpha(200)
                                   : whiteColor,
                             ),
                           ),
@@ -315,12 +315,12 @@ class _CarouselScreenState extends State<CarouselScreen> {
                             moveSel();
                           },
                           child: Container(
-                            width: 40,
+                            width: 20,
                             height: 8,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(100),
                               color: picNum == 1
-                                  ? blackColor.withAlpha(200)
+                                  ? greyColor.withAlpha(200)
                                   : whiteColor,
                             ),
                           ),
@@ -332,12 +332,12 @@ class _CarouselScreenState extends State<CarouselScreen> {
                             moveSel();
                           },
                           child: Container(
-                            width: 40,
+                            width: 20,
                             height: 8,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(100),
                               color: picNum == 2
-                                  ? blackColor.withAlpha(200)
+                                  ? greyColor.withAlpha(200)
                                   : whiteColor,
                             ),
                           ),
@@ -349,12 +349,12 @@ class _CarouselScreenState extends State<CarouselScreen> {
                             moveSel();
                           },
                           child: Container(
-                            width: 40,
+                            width: 20,
                             height: 8,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(100),
                               color: picNum == 3
-                                  ? blackColor.withAlpha(200)
+                                  ? greyColor.withAlpha(200)
                                   : whiteColor,
                             ),
                           ),

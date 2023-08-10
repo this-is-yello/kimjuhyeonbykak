@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:image_fade/image_fade.dart';
+import 'package:kimjuhyeonbykak/screens/privacy/privacy_page.dart';
 import 'package:kimjuhyeonbykak/style.dart';
 
 import 'package:kimjuhyeonbykak/main.dart';
@@ -313,6 +314,8 @@ class _InquiryScreenState extends State<InquiryScreen> {
   var _inputInquiryMail = TextEditingController();
   var _inputInquiry = TextEditingController();
 
+  bool _checkPrivacy = false;
+
   goInquiry() async {
     if (_inputInquiryName.text == '' ||
         _inputInquiryPhone.text == '' ||
@@ -595,23 +598,78 @@ class _InquiryScreenState extends State<InquiryScreen> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 40),
+            padding: EdgeInsets.only(top: 20),
+            child: SizedBox(
+              width: 800,
+              child: Row(
+                children: [
+                  Checkbox(
+                    activeColor: blackColor,
+                    checkColor: whiteColor,
+                    value: _checkPrivacy,
+                    onChanged: (bool? value) {
+                      if (_checkPrivacy == false) {
+                        setState(() {
+                          _checkPrivacy = true;
+                        });
+                      } else {
+                        setState(() {
+                          _checkPrivacy = false;
+                        });
+                      }
+                    },
+                  ),
+                  Text(
+                    '개인정보 수집 및 이용 동의',
+                    style: TextStyle(
+                      fontSize: h5FontSize(context),
+                      color: blackColor,
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return PrivacyDialog();
+                        },
+                      );
+                    },
+                    icon: Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      size: h5FontSize(context),
+                      color: blackColor,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 20),
             child: InkWell(
               onTap: () {
-                goInquiry();
+                if (_checkPrivacy == true) {
+                  goInquiry();
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Center(child: Text('개인정보 수집에 동의해주세요.')),
+                    backgroundColor: bykakColor,
+                  ));
+                }
               },
               child: Container(
-                width: 300,
-                height: 40,
+                width: 360,
+                height: 56,
                 decoration: BoxDecoration(
                   color: blackColor,
-                  borderRadius: BorderRadius.circular(500),
+                  borderRadius: BorderRadius.circular(8),
                 ),
                 child: Center(
                   child: Text(
                     '완료',
                     style: TextStyle(
-                      fontSize: h5FontSize(context),
+                      fontSize: 16,
                       color: whiteColor,
                     ),
                   ),
