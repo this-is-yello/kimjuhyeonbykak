@@ -611,7 +611,18 @@ class _UserMyPageState extends State<UserMyPage> {
                                               top: 16,
                                             ),
                                             child: TextButton(
-                                              onPressed: () {},
+                                              onPressed: () async {
+                                                final url = Uri.parse(
+                                                  'https://xn--2i0b31d0uch0z.com/shop/partner/login.php',
+                                                );
+                                                if (await canLaunchUrl(url)) {
+                                                  launchUrl(
+                                                    url,
+                                                    mode: LaunchMode
+                                                        .externalApplication,
+                                                  );
+                                                }
+                                              },
                                               child: Text(
                                                 '엠버서더 링크',
                                                 style: TextStyle(
@@ -641,7 +652,17 @@ class _UserMyPageState extends State<UserMyPage> {
                                   ),
                                 ),
                                 TextButton(
-                                  onPressed: () {},
+                                  onPressed: () async {
+                                    final url = Uri.parse(
+                                      'https://xn--2i0b31d0uch0z.com/bbs/register.php',
+                                    );
+                                    if (await canLaunchUrl(url)) {
+                                      launchUrl(
+                                        url,
+                                        mode: LaunchMode.externalApplication,
+                                      );
+                                    }
+                                  },
                                   child: Text(
                                     '엠버서더 신청',
                                     style: TextStyle(

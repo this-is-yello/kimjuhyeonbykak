@@ -622,7 +622,7 @@ class _InquiryScreenState extends State<InquiryScreen> {
                   Text(
                     '개인정보 수집 및 이용 동의',
                     style: TextStyle(
-                      fontSize: h5FontSize(context),
+                      fontSize: 16,
                       color: blackColor,
                     ),
                   ),

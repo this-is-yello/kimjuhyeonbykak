@@ -363,7 +363,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     Text(
                       '이용약관 동의',
                       style: TextStyle(
-                        fontSize: h5FontSize(context),
+                        fontSize: 16,
                         color: blackColor,
                       ),
                     ),
@@ -411,7 +411,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     Text(
                       '개인정보 수집 및 이용 동의',
                       style: TextStyle(
-                        fontSize: h5FontSize(context),
+                        fontSize: 16,
                         color: blackColor,
                       ),
                     ),

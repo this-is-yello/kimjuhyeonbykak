@@ -209,7 +209,7 @@ class _RentalIntroduceState extends State<RentalIntroduce> {
   List rentalText = [
     '바이각 수트렌탈센터는 300벌 이상의 렌탈복과 100평대 규모의 인천 최초/최대의 정장렌탈 전문샵입니다.',
     '웨딩, 혼주복, 면접, 데일리등으로 그 날에 걸맞은 다양한 수트를 경험하세요.',
-    '다양한 수트와 자켓들을 입어보면서 올바른 옷 입기와 자기갖춤에 큰 도움이 되시리라 강하게 믿습니다.',
+    '다양한 수트와 자켓들을 입어보며, 올바른 옷 입기와 자기갖춤에 큰 도움이 되시리라 강하게 믿습니다.',
     // 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   ];
 
@@ -247,12 +247,45 @@ class _RentalIntroduceState extends State<RentalIntroduce> {
                         ? widgetSize(context)
                         : widgetSize(context) / 2 - 20,
                     alignment: Alignment.centerRight,
-                    child: Text(
-                      '바이각 수트렌탈센터는 300벌 이상의 렌탈복과 100평대 규모의 인천 최초/최대의 정장렌탈 전문샵입니다. 웨딩, 혼주복, 면접, 데일리등으로 그 날에 걸맞은 다양한 수트를 경험하세요. 다양한 수트와 자켓들을 입어보면서 올바른 옷 입기와 자기갖춤에 큰 도움이 되시리라 강하게 믿습니다.',
-                      style: TextStyle(
-                        fontSize: h4FontSize(context),
-                        color: blackColor,
-                      ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 32),
+                          child: Text(
+                            '그 날을 위한 자신감, 바이각',
+                            style: TextStyle(
+                              fontSize: h3FontSize(context),
+                              fontWeight: FontWeight.bold,
+                              color: blackColor,
+                            ),
+                          ),
+                        ),
+                        Text(
+                          '바이각 수트렌탈센터는 300벌 이상의 렌탈복과 100평대 규모의 인천 최초/최대의 정장렌탈 전문샵입니다.',
+                          style: TextStyle(
+                            fontSize: h4FontSize(context),
+                            color: blackColor,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 20),
+                          child: Text(
+                            '웨딩, 혼주복, 면접, 데일리등으로 그 날에 걸맞은 다양한 수트를 경험하세요.',
+                            style: TextStyle(
+                              fontSize: h4FontSize(context),
+                              color: blackColor,
+                            ),
+                          ),
+                        ),
+                        Text(
+                          '다양한 수트와 자켓들을 입어보며, 올바른 옷 입기와 자기갖춤에 큰 도움이 되시리라 강하게 믿습니다.',
+                          style: TextStyle(
+                            fontSize: h4FontSize(context),
+                            color: blackColor,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],

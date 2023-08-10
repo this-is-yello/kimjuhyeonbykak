@@ -239,7 +239,7 @@ class _JemulpoClubStudioState extends State<JemulpoClubStudio> {
                         width: widgetSize(context),
                         child: Center(
                           child: Text(
-                            'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
+                            '개화기 컨셉의 사진들과 의상들이 준비되어 있으며 사교클럽의 의미를 둔 구락부의 명칭처럼 다양한 문화공간이 될 수 있도록 준비한 김주현바이각의 신제물포구락부 스튜디오입니다.',
                             style: TextStyle(
                               fontSize: h4FontSize(context),
                               color: blackColor,
@@ -256,49 +256,34 @@ class _JemulpoClubStudioState extends State<JemulpoClubStudio> {
                   ),
                   child: Column(
                     children: [
-                      Container(
-                        width: widgetSize(context),
-                        child: fadeImage(imageList[1]),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 20),
-                        child: SizedBox(
-                          width: widgetSize(context),
-                          child: Center(
-                            child: Text(
-                              'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
-                              style: TextStyle(
-                                fontSize: h4FontSize(context),
-                                color: blackColor,
-                              ),
+                      Row(
+                        children: [
+                          Flexible(
+                            fit: FlexFit.tight,
+                            child: SizedBox(
+                              width: widgetSize(context),
+                              child: fadeImage(imageList[1]),
                             ),
                           ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    top: 60,
-                  ),
-                  child: Column(
-                    children: [
-                      Container(
-                        width: widgetSize(context),
-                        child: fadeImage(imageList[2]),
+                          Flexible(
+                            fit: FlexFit.tight,
+                            child: Container(
+                              width: widgetSize(context),
+                              child: fadeImage(imageList[2]),
+                              padding: EdgeInsets.only(left: 20),
+                            ),
+                          ),
+                        ],
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 20),
                         child: SizedBox(
                           width: widgetSize(context),
-                          child: Center(
-                            child: Text(
-                              'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
-                              style: TextStyle(
-                                fontSize: h4FontSize(context),
-                                color: blackColor,
-                              ),
+                          child: Text(
+                            'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
+                            style: TextStyle(
+                              fontSize: h4FontSize(context),
+                              color: blackColor,
                             ),
                           ),
                         ),
@@ -308,46 +293,6 @@ class _JemulpoClubStudioState extends State<JemulpoClubStudio> {
                 ),
               ],
             ),
-          ),
-        ),
-        Padding(
-          padding: EdgeInsets.only(top: 60),
-          child: Column(
-            children: [
-              ScrollConfiguration(
-                behavior: MyCustomScrollBehavior(),
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width,
-                        child: fadeImage('assets/images/panorama.png'),
-                      ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width,
-                        child: fadeImage('assets/images/panorama.png'),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 20),
-                child: SizedBox(
-                  width: widgetSize(context),
-                  child: Center(
-                    child: Text(
-                      'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
-                      style: TextStyle(
-                        fontSize: h4FontSize(context),
-                        color: blackColor,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ],
           ),
         ),
         Padding(
@@ -403,19 +348,71 @@ class _JemulpoClubStudioState extends State<JemulpoClubStudio> {
                   padding: const EdgeInsets.only(top: 20),
                   child: SizedBox(
                     width: widgetSize(context),
-                    child: Center(
-                      child: Text(
-                        'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
-                        style: TextStyle(
-                          fontSize: h4FontSize(context),
-                          color: blackColor,
-                        ),
+                    child: Text(
+                      '개화기의 느낌이 나는 가구들과 소품뿐만 아니라 바이각에서 직접 제작한 맞춤양복들과 마네킹들이 인테리어 되어있습니다.',
+                      style: TextStyle(
+                        fontSize: h4FontSize(context),
+                        color: blackColor,
                       ),
                     ),
                   ),
                 ),
               ],
             ),
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.only(
+            top: MediaQuery.of(context).size.width < 800 ? 120 : 160,
+          ),
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(bottom: 40),
+                child: Text(
+                  'Interior',
+                  style: TextStyle(
+                    fontSize: h2FontSize(context),
+                    fontFamily: 'Cafe_24',
+                    fontWeight: FontWeight.bold,
+                    color: blackColor,
+                  ),
+                ),
+              ),
+              ScrollConfiguration(
+                behavior: MyCustomScrollBehavior(),
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width,
+                        child: fadeImage('assets/images/panorama.png'),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width,
+                        child: fadeImage('assets/images/panorama.png'),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: SizedBox(
+                  width: widgetSize(context),
+                  child: Center(
+                    child: Text(
+                      'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
+                      style: TextStyle(
+                        fontSize: h4FontSize(context),
+                        color: blackColor,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ],

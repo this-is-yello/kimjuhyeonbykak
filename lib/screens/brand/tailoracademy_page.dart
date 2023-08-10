@@ -326,7 +326,7 @@ class Curriculum extends StatelessWidget {
                       child: InkWell(
                         onTap: () async {
                           final url = Uri.parse(
-                            'https://docs.google.com/forms/d/14On8emrvBAKwD1ZkW327mbMT745oGc-LJoT9dGBEkcU/edit',
+                            'https://docs.google.com/forms/d/e/1FAIpQLSeM-FvxY2gbND6dbiuSg_kK61FK_ARsOGgwUmXV7J87oNZLsg/viewform',
                           );
                           if (await canLaunchUrl(url)) {
                             launchUrl(
