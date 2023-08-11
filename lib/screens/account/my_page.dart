@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter/material.dart';
 import 'package:kimjuhyeonbykak/style.dart';
 import 'package:kimjuhyeonbykak/main.dart';
 import 'package:kimjuhyeonbykak/navigation.dart';
@@ -434,7 +434,7 @@ class _UserMyPageState extends State<UserMyPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '엠버서더 프로필 편집',
+                  '엠버서더',
                   style: TextStyle(
                     fontSize: h2FontSize(context),
                     color: blackColor,
@@ -653,15 +653,8 @@ class _UserMyPageState extends State<UserMyPage> {
                                 ),
                                 TextButton(
                                   onPressed: () async {
-                                    final url = Uri.parse(
-                                      'https://xn--2i0b31d0uch0z.com/bbs/register.php',
-                                    );
-                                    if (await canLaunchUrl(url)) {
-                                      launchUrl(
-                                        url,
-                                        mode: LaunchMode.externalApplication,
-                                      );
-                                    }
+                                    Get.rootDelegate
+                                        .toNamed(Routes.AMBASSADORPROCESS);
                                   },
                                   child: Text(
                                     '엠버서더 신청',

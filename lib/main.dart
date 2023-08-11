@@ -27,8 +27,9 @@ import 'package:kimjuhyeonbykak/screens/community/event_view_page.dart';
 
 import 'package:kimjuhyeonbykak/screens/business/business_page.dart';
 
-import 'package:kimjuhyeonbykak/screens/account/log_in_page.dart';
+import 'package:kimjuhyeonbykak/screens/account/login_page.dart';
 import 'package:kimjuhyeonbykak/screens/account/signup_page.dart';
+import 'package:kimjuhyeonbykak/screens/account/ambassador_process_page.dart';
 import 'package:kimjuhyeonbykak/screens/account/account_inquiry_page.dart';
 import 'package:kimjuhyeonbykak/screens/account/my_page.dart';
 import 'package:kimjuhyeonbykak/screens/account/modify_account_page.dart';
@@ -72,6 +73,7 @@ abstract class Routes {
   static const MYPAGE = '/mypage';
   static const MODIFYACCOUNT = '/modifyaccount';
   static const MODIFYAMBASSADOR = '/modifyambassador';
+  static const AMBASSADORPROCESS = '/signupprocess';
   // ---------------------------------------- About_Privacy ----------------------------------------
   static const PRIVACY = '/Privacy';
   static const TERMS = '/terms';
@@ -172,6 +174,10 @@ abstract class AppPages {
     GetPage(
       name: Routes.SIGNUP,
       page: () => const SignUpPage(),
+    ),
+    GetPage(
+      name: Routes.AMBASSADORPROCESS,
+      page: () => const AmbassadorProcessPage(),
     ),
     GetPage(
       name: Routes.ACCOUNTINQUIRY,
