@@ -73,7 +73,7 @@ abstract class Routes {
   static const MYPAGE = '/mypage';
   static const MODIFYACCOUNT = '/modifyaccount';
   static const MODIFYAMBASSADOR = '/modifyambassador';
-  static const AMBASSADORPROCESS = '/signupprocess';
+  static const AMBASSADORPROCESS = '/ambassadorprocess';
   // ---------------------------------------- About_Privacy ----------------------------------------
   static const PRIVACY = '/Privacy';
   static const TERMS = '/terms';

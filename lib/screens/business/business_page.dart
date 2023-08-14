@@ -1,11 +1,11 @@
 import 'dart:ui';
-// import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:kimjuhyeonbykak/main.dart';
 import 'package:kimjuhyeonbykak/style.dart';
 
 import 'package:kimjuhyeonbykak/screens/privacy/privacy_page.dart';
 
+import 'package:get/get.dart';
 // import 'package:image_fade/image_fade.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:kimjuhyeonbykak/navigation.dart';
@@ -495,158 +495,6 @@ class _SupportersAmbassadorState extends State<SupportersAmbassador> {
             ),
           ),
         ),
-        // Padding(
-        //   padding: EdgeInsets.only(
-        //     top: 40,
-        //   ),
-        //   child: Column(
-        //     crossAxisAlignment: CrossAxisAlignment.start,
-        //     children: [
-        //       Text(
-        //         '바이각 엠버서더',
-        //         style: TextStyle(
-        //           fontSize: h3FontSize(context),
-        //         ),
-        //       ),
-        //       Padding(
-        //         padding: const EdgeInsets.only(top: 20),
-        //         child: ScrollConfiguration(
-        //           behavior: ScrollConfiguration.of(context).copyWith(
-        //             dragDevices: {
-        //               PointerDeviceKind.mouse,
-        //               PointerDeviceKind.touch,
-        //               PointerDeviceKind.trackpad,
-        //             },
-        //           ),
-        //           child: Column(
-        //             mainAxisAlignment: MainAxisAlignment.start,
-        //             children: [
-        //               Center(
-        //                 child: Column(
-        //                   children: [
-        //                     SizedBox(
-        //                       width: widgetSize(context),
-        //                       height: c1BoxSize(context) + 200,
-        //                       child: GridView.builder(
-        //                         scrollDirection: Axis.horizontal,
-        //                         gridDelegate:
-        //                             SliverGridDelegateWithFixedCrossAxisCount(
-        //                           crossAxisCount: 1,
-        //                           childAspectRatio: 1.5 / 1,
-        //                           mainAxisSpacing: 20,
-        //                         ),
-        //                         itemCount: ambassadorLength,
-        //                         itemBuilder: (context, index) {
-        //                           try {
-        //                             return InkWell(
-        //                               onTap: () async {
-        //                                 final url = Uri.parse(
-        //                                   '${ambassadorSearch[index]['ambassador'][4]}',
-        //                                 );
-        //                                 if (await canLaunchUrl(url)) {
-        //                                   launchUrl(
-        //                                     url,
-        //                                     mode:
-        //                                         LaunchMode.externalApplication,
-        //                                   );
-        //                                 } else {
-        //                                   printError();
-        //                                 }
-        //                               },
-        //                               child: Column(
-        //                                 crossAxisAlignment:
-        //                                     CrossAxisAlignment.start,
-        //                                 children: [
-        //                                   Expanded(
-        //                                     flex: 1,
-        //                                     child: Container(
-        //                                       child: ImageFade(
-        //                                         image: NetworkImage(
-        //                                           '${ambassadorSearch[index]['ambassador'][0]}',
-        //                                         ),
-        //                                         fit: BoxFit.cover,
-        //                                         duration: const Duration(
-        //                                             milliseconds: 900),
-        //                                         syncDuration: const Duration(
-        //                                             milliseconds: 150),
-        //                                         placeholder: Padding(
-        //                                           padding:
-        //                                               const EdgeInsets.all(20),
-        //                                           child: Center(
-        //                                             child:
-        //                                                 CircularProgressIndicator(
-        //                                               color: blackColor,
-        //                                             ),
-        //                                           ),
-        //                                         ),
-        //                                         errorBuilder:
-        //                                             (context, error) =>
-        //                                                 Container(
-        //                                           color:
-        //                                               const Color(0xFFFFFFFF),
-        //                                           alignment: Alignment.center,
-        //                                           child: const Icon(
-        //                                             Icons.warning,
-        //                                             color: Color(0xFF1E1E1E),
-        //                                             size: 60.0,
-        //                                           ),
-        //                                         ),
-        //                                       ),
-        //                                     ),
-        //                                   ),
-        //                                   Padding(
-        //                                     padding:
-        //                                         const EdgeInsets.only(top: 10),
-        //                                     child: Text(
-        //                                       '${ambassadorSearch[index]['ambassador'][2]}',
-        //                                       style: TextStyle(
-        //                                         fontSize: h5FontSize(context),
-        //                                         color: blackColor,
-        //                                       ),
-        //                                     ),
-        //                                   ),
-        //                                 ],
-        //                               ),
-        //                             );
-        //                           } catch (e) {
-        //                             return Container(
-        //                               width: widgetSize(context),
-        //                               height: 500,
-        //                               child: Center(
-        //                                 child: Column(
-        //                                   mainAxisAlignment:
-        //                                       MainAxisAlignment.center,
-        //                                   children: [
-        //                                     CircularProgressIndicator(
-        //                                         color: blackColor),
-        //                                     Padding(
-        //                                       padding: const EdgeInsets.only(
-        //                                           top: 20),
-        //                                       child: Text(
-        //                                         ' ',
-        //                                         style: TextStyle(
-        //                                           color: blackColor,
-        //                                         ),
-        //                                       ),
-        //                                     ),
-        //                                   ],
-        //                                 ),
-        //                               ),
-        //                             );
-        //                           }
-        //                         },
-        //                       ),
-        //                     ),
-        //                   ],
-        //                 ),
-        //               ),
-        //             ],
-        //           ),
-        //         ),
-        //       ),
-        //     ],
-        //   ),
-        // ),
         Padding(
           padding: EdgeInsets.only(
             top: 40,
@@ -691,7 +539,7 @@ class _SupportersAmbassadorState extends State<SupportersAmbassador> {
                               '인스타그램, 유튜브 등에 게시될 사진,\n영상을 직접 제작하며 제품을 홍보',
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                fontSize: h4FontSize(context),
+                                fontSize: h5FontSize(context) + 2,
                               ),
                             ),
                           ),
@@ -718,7 +566,7 @@ class _SupportersAmbassadorState extends State<SupportersAmbassador> {
                               '컨텐츠를 접한 유저들이 직접\n인플루언서 추천코드로 아이템을 구매',
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                fontSize: h4FontSize(context),
+                                fontSize: h5FontSize(context) + 2,
                               ),
                             ),
                           ),
@@ -745,7 +593,7 @@ class _SupportersAmbassadorState extends State<SupportersAmbassador> {
                               '구매확정이 완료되면, 판매 성과를\n기반으로 계약된 수수료 지급',
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                fontSize: h4FontSize(context),
+                                fontSize: h5FontSize(context) + 2,
                               ),
                             ),
                           ),
@@ -784,16 +632,8 @@ class _SupportersAmbassadorState extends State<SupportersAmbassador> {
                 child: Row(
                   children: [
                     InkWell(
-                      onTap: () async {
-                        final url = Uri.parse(
-                          'https://xn--2i0b31d0uch0z.com/bbs/register.php',
-                        );
-                        if (await canLaunchUrl(url)) {
-                          launchUrl(
-                            url,
-                            mode: LaunchMode.externalApplication,
-                          );
-                        }
+                      onTap: () {
+                        Get.rootDelegate.toNamed(Routes.AMBASSADORPROCESS);
                       },
                       child: Text(
                         '엠버서더 신청 >',

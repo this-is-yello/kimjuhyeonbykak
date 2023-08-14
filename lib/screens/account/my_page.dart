@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:kimjuhyeonbykak/screens/account/ambassador_process_page.dart';
 import 'package:kimjuhyeonbykak/style.dart';
 import 'package:kimjuhyeonbykak/main.dart';
 import 'package:kimjuhyeonbykak/navigation.dart';
@@ -128,10 +129,11 @@ class _ProfileState extends State<Profile> {
       currentUserPhone = currentUserSearch.get('phone');
       currentUserBirth = currentUserSearch.get('birth');
       currentUserGender = currentUserSearch.get('gender');
-      infoTitles = ['이름', '이메일', '전화번호', '생년월일', '성별'];
+      infoTitles = ['이름', '이메일', '회원등급', '전화번호', '생년월일', '성별'];
       currentUserInfo = [
         currentUserName,
         currentUserId,
+        currentUserGrade,
         currentUserPhone,
         currentUserBirth,
         currentUserGender
@@ -174,35 +176,35 @@ class _ProfileState extends State<Profile> {
                 ],
               ),
             ),
-            SizedBox(
-              width: widgetSize(context),
-              child: Row(
-                children: [
-                  Text(
-                    '회원님은 바이각의 ',
-                    style: TextStyle(
-                      fontSize: h4FontSize(context),
-                      color: blackColor,
-                    ),
-                  ),
-                  Text(
-                    '$currentUserGrade',
-                    style: TextStyle(
-                      fontSize: h3FontSize(context),
-                      fontWeight: FontWeight.bold,
-                      color: blackColor,
-                    ),
-                  ),
-                  Text(
-                    ' 입니다.',
-                    style: TextStyle(
-                      color: blackColor,
-                      fontSize: h4FontSize(context),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            // SizedBox(
+            //   width: widgetSize(context),
+            //   child: Row(
+            //     children: [
+            //       Text(
+            //         '회원님은 바이각의 ',
+            //         style: TextStyle(
+            //           fontSize: h4FontSize(context),
+            //           color: blackColor,
+            //         ),
+            //       ),
+            //       Text(
+            //         '$currentUserGrade',
+            //         style: TextStyle(
+            //           fontSize: h3FontSize(context),
+            //           fontWeight: FontWeight.bold,
+            //           color: blackColor,
+            //         ),
+            //       ),
+            //       Text(
+            //         ' 입니다.',
+            //         style: TextStyle(
+            //           color: blackColor,
+            //           fontSize: h4FontSize(context),
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // ),
             Padding(
               padding: const EdgeInsets.only(top: 8),
               child: Container(
@@ -373,8 +375,6 @@ class _UserMyPageState extends State<UserMyPage> {
             print('본 회원은 엠버서더이며, 필드가 존재하지 않으므로 추가합니다.');
             addAmbassador.update({
               'ambassador': [
-                'https://firebasestorage.googleapis.com/v0/b/kimjuhyeonbykak.appspot.com/o/ambassadorPic%2Fdefault_profile.png?alt=media&token=0f747b27-d254-44eb-82ff-603b979ca8a3',
-                'default_profile.png',
                 auth.currentUser?.displayName,
                 '엠버서더 소개말을 추가하세요.',
                 '',
@@ -392,23 +392,16 @@ class _UserMyPageState extends State<UserMyPage> {
     });
   }
 
-  var currentUserUid = auth.currentUser?.uid;
-  var ambassadorPic;
+  var ambassadorId;
   var ambassadorName;
-  var ambassadorIntroduce;
-  var ambassadorInsta;
-  var ambassadorBlog;
 
   ambassadorInfo() async {
     var profileStateSearch =
         await firestore.collection('account').doc('$currentUserId').get();
     var snapshot = profileStateSearch.get('ambassador');
     setState(() {
-      ambassadorPic = snapshot[0];
-      ambassadorName = snapshot[2];
-      ambassadorIntroduce = snapshot[3];
-      ambassadorInsta = snapshot[4];
-      ambassadorBlog = snapshot[5];
+      ambassadorName = snapshot[0];
+      ambassadorId = snapshot[1];
     });
     print(ambassadorName);
   }
@@ -444,229 +437,347 @@ class _UserMyPageState extends State<UserMyPage> {
                   padding: EdgeInsets.only(top: 40),
                   child: SizedBox(
                     width: widgetSize(context),
-                    child: ambassadorName != null
-                        ? Container(
-                            width: widgetSize(context),
-                            child: Wrap(
-                              direction: Axis.horizontal,
-                              alignment: WrapAlignment.spaceBetween,
-                              crossAxisAlignment: WrapCrossAlignment.center,
-                              spacing: 20,
-                              runSpacing: 20,
-                              children: [
-                                SizedBox(
-                                  width: MediaQuery.of(context).size.width < 800
-                                      ? widgetSize(context)
-                                      : widgetSize(context) / 2 - 10,
-                                  height: c1BoxSize(context) + 100,
-                                  child: ImageFade(
-                                    image: NetworkImage(
-                                      ambassadorPic,
+                    child: currentUserGrade == '엠버서더'
+                        ? Column(
+                            children: [
+                              Container(
+                                width: widgetSize(context),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(bottom: 8),
+                                          child: Row(
+                                            children: [
+                                              Text(
+                                                '엠버서더 이름',
+                                                style: TextStyle(
+                                                  fontSize: h4FontSize(context),
+                                                  fontWeight: FontWeight.bold,
+                                                  color: blackColor,
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 16),
+                                                child: Text(
+                                                  ambassadorName,
+                                                  style: TextStyle(
+                                                    fontSize:
+                                                        h4FontSize(context),
+                                                    color: blackColor,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              '엠버서더 아이디',
+                                              style: TextStyle(
+                                                fontSize: h4FontSize(context),
+                                                fontWeight: FontWeight.bold,
+                                                color: blackColor,
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 16),
+                                              child: Text(
+                                                ambassadorId,
+                                                style: TextStyle(
+                                                  fontSize: h4FontSize(context),
+                                                  color: blackColor,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
                                     ),
-                                    fit: BoxFit.contain,
-                                    duration: const Duration(milliseconds: 900),
-                                    syncDuration:
-                                        const Duration(milliseconds: 150),
-                                    placeholder: Padding(
-                                      padding: const EdgeInsets.all(20),
-                                      child: Center(
-                                        child: CircularProgressIndicator(
+                                    TextButton(
+                                      onPressed: () async {
+                                        final url = Uri.parse(
+                                          'https://xn--2i0b31d0uch0z.com/shop/partner/login.php',
+                                        );
+                                        if (await canLaunchUrl(url)) {
+                                          launchUrl(
+                                            url,
+                                            mode:
+                                                LaunchMode.externalApplication,
+                                          );
+                                        }
+                                      },
+                                      child: Text(
+                                        '엠버서더 페이지',
+                                        style: TextStyle(
+                                          fontSize: h5FontSize(context),
                                           color: blackColor,
                                         ),
                                       ),
                                     ),
-                                    errorBuilder: (context, error) => Container(
-                                      color: const Color(0xFFFFFFFF),
-                                      alignment: Alignment.center,
-                                      child: const Icon(
-                                        Icons.warning,
-                                        color: Color(0xFF1E1E1E),
-                                        size: 60.0,
+                                  ],
+                                ),
+                              ),
+                              Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 8),
+                                    child: SizedBox(
+                                      width: widgetSize(context),
+                                      child: Text(
+                                        '엠버서더 활동',
+                                        style: TextStyle(
+                                          fontSize: h4FontSize(context),
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                     ),
                                   ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 40),
+                                    child: Wrap(
+                                      direction: Axis.horizontal,
+                                      crossAxisAlignment:
+                                          WrapCrossAlignment.center,
+                                      runAlignment: WrapAlignment.spaceBetween,
+                                      alignment: WrapAlignment.start,
+                                      spacing: 10,
+                                      runSpacing: 30,
+                                      children: [
+                                        Container(
+                                          width: MediaQuery.of(context)
+                                                      .size
+                                                      .width <
+                                                  800
+                                              ? widgetSize(context)
+                                              : (widgetSize(context) / 3) - 7,
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                '1. 컨텐츠 제작',
+                                                style: TextStyle(
+                                                  fontSize: h4FontSize(context),
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    top: 8),
+                                                child: Text(
+                                                  '인스타그램, 유튜브 등에 게시될 사진,\n영상을 직접 제작하며 제품을 홍보',
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                    fontSize:
+                                                        h5FontSize(context) + 2,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Container(
+                                          width: MediaQuery.of(context)
+                                                      .size
+                                                      .width <
+                                                  800
+                                              ? widgetSize(context)
+                                              : (widgetSize(context) / 3) - 7,
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                '2. 유저 유입과 구입',
+                                                style: TextStyle(
+                                                  fontSize: h4FontSize(context),
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    top: 8),
+                                                child: Text(
+                                                  '컨텐츠를 접한 유저들이 직접\n인플루언서 추천코드로 아이템을 구매',
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                    fontSize:
+                                                        h5FontSize(context) + 2,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Container(
+                                          width: MediaQuery.of(context)
+                                                      .size
+                                                      .width <
+                                                  800
+                                              ? widgetSize(context)
+                                              : (widgetSize(context) / 3) - 7,
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                '3. 수수료 정산',
+                                                style: TextStyle(
+                                                  fontSize: h4FontSize(context),
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    top: 8),
+                                                child: Text(
+                                                  '구매확정이 완료되면, 판매 성과를\n기반으로 계약된 수수료 지급',
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                    fontSize:
+                                                        h5FontSize(context) + 2,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(
+                                      top: 40,
+                                    ),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          '엠버서더 혜택',
+                                          style: TextStyle(
+                                            fontSize: h4FontSize(context),
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(top: 20),
+                                          child: SizedBox(
+                                            width: widgetSize(context),
+                                            child: fadeImage(
+                                                'assets/images/benefit.png'),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          )
+                        : currentUserGrade == '엠버서더 대기중'
+                            ? Center(
+                                child: Padding(
+                                  padding: const EdgeInsets.only(right: 2),
+                                  child: Text(
+                                    '전송된 엠버서더 계정이 확인될 때까지 기다려주세요.\n(확인까지 최대 24시간 걸립니다.)',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontSize: h4FontSize(context),
+                                      color: blackColor,
+                                    ),
+                                  ),
                                 ),
-                                SizedBox(
-                                  width: MediaQuery.of(context).size.width < 800
-                                      ? widgetSize(context)
-                                      : widgetSize(context) / 2 - 10,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Row(
+                              )
+                            : Center(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(bottom: 8),
+                                      child: Row(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                            MainAxisAlignment.center,
                                         children: [
-                                          Text(
-                                            ambassadorName,
-                                            style: TextStyle(
-                                              fontSize: h2FontSize(context),
-                                              fontWeight: FontWeight.bold,
-                                              color: blackColor,
+                                          Padding(
+                                            padding:
+                                                const EdgeInsets.only(right: 2),
+                                            child: Text(
+                                              '회원님은 엠버서더가 아닙니다.',
+                                              style: TextStyle(
+                                                fontSize: h4FontSize(context),
+                                                color: blackColor,
+                                              ),
                                             ),
                                           ),
                                           TextButton(
-                                            onPressed: () {
+                                            onPressed: () async {
                                               Get.rootDelegate.toNamed(
-                                                  Routes.MODIFYAMBASSADOR);
+                                                  Routes.AMBASSADORPROCESS);
                                             },
                                             child: Text(
-                                              '프로필 편집',
+                                              '엠버서더 신청',
                                               style: TextStyle(
+                                                decoration:
+                                                    TextDecoration.underline,
+                                                fontSize: h4FontSize(context),
                                                 color: blackColor,
                                               ),
                                             ),
                                           ),
                                         ],
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                          top: 20,
-                                        ),
-                                        child: Container(
-                                          width: double.infinity,
-                                          padding: EdgeInsets.only(
-                                            top: 8,
-                                            bottom: 12,
-                                          ),
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(right: 2),
                                           child: Text(
-                                            ambassadorIntroduce,
+                                            '이미 엠버서더라면?',
                                             style: TextStyle(
                                               fontSize: h4FontSize(context),
                                               color: blackColor,
                                             ),
                                           ),
-                                          decoration: BoxDecoration(
-                                            border: Border(
-                                              bottom: BorderSide(
-                                                color: greyColor,
-                                                width: 2,
-                                              ),
+                                        ),
+                                        TextButton(
+                                          onPressed: () async {
+                                            showDialog(
+                                              context: context,
+                                              builder: (context) {
+                                                return DesignerAmbassador();
+                                              },
+                                            );
+                                          },
+                                          child: Text(
+                                            '엠버서더 정보입력',
+                                            style: TextStyle(
+                                              decoration:
+                                                  TextDecoration.underline,
+                                              fontSize: h4FontSize(context),
+                                              color: blackColor,
                                             ),
                                           ),
                                         ),
-                                      ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                              top: 16,
-                                            ),
-                                            child: TextButton(
-                                              onPressed: () async {
-                                                final url = Uri.parse(
-                                                  ambassadorInsta,
-                                                );
-                                                if (await canLaunchUrl(url)) {
-                                                  launchUrl(
-                                                    url,
-                                                    mode: LaunchMode
-                                                        .externalApplication,
-                                                  );
-                                                }
-                                              },
-                                              child: Text(
-                                                '인스타그램',
-                                                // ambassadorBlog,
-                                                style: TextStyle(
-                                                  fontSize: h4FontSize(context),
-                                                  color: blackColor,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                              top: 16,
-                                            ),
-                                            child: TextButton(
-                                              onPressed: () async {
-                                                final url = Uri.parse(
-                                                  ambassadorBlog,
-                                                );
-                                                if (await canLaunchUrl(url)) {
-                                                  launchUrl(
-                                                    url,
-                                                    mode: LaunchMode
-                                                        .externalApplication,
-                                                  );
-                                                }
-                                              },
-                                              child: Text(
-                                                '블로그',
-                                                // ambassadorInsta,
-                                                style: TextStyle(
-                                                  fontSize: h4FontSize(context),
-                                                  color: blackColor,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                              top: 16,
-                                            ),
-                                            child: TextButton(
-                                              onPressed: () async {
-                                                final url = Uri.parse(
-                                                  'https://xn--2i0b31d0uch0z.com/shop/partner/login.php',
-                                                );
-                                                if (await canLaunchUrl(url)) {
-                                                  launchUrl(
-                                                    url,
-                                                    mode: LaunchMode
-                                                        .externalApplication,
-                                                  );
-                                                }
-                                              },
-                                              child: Text(
-                                                '엠버서더 링크',
-                                                style: TextStyle(
-                                                  fontSize: h4FontSize(context),
-                                                  color: blackColor,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          )
-                        : Center(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  '회원님은 엠버서더가 아닙니다',
-                                  style: TextStyle(
-                                    fontSize: h5FontSize(context),
-                                    color: blackColor,
-                                  ),
-                                ),
-                                TextButton(
-                                  onPressed: () async {
-                                    Get.rootDelegate
-                                        .toNamed(Routes.AMBASSADORPROCESS);
-                                  },
-                                  child: Text(
-                                    '엠버서더 신청',
-                                    style: TextStyle(
-                                      fontSize: h5FontSize(context),
-                                      color: blackColor,
+                                      ],
                                     ),
-                                  ),
+                                  ],
                                 ),
-                              ],
-                            ),
-                          ),
+                              ),
                   ),
                 ),
               ],

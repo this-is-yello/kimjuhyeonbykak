@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:kimjuhyeonbykak/main.dart';
 import 'package:kimjuhyeonbykak/style.dart';
 import 'package:kimjuhyeonbykak/navigation.dart';
 
@@ -104,7 +106,7 @@ class AmbassadorProcessContent extends StatelessWidget {
                   child: Text(
                     '● 김주현바이각 엠버서더 관리는 데시그너에서 진행하고 있습니다.',
                     style: TextStyle(
-                      fontSize: h4FontSize(context),
+                      fontSize: h4FontSize(context) + 2,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -113,9 +115,9 @@ class AmbassadorProcessContent extends StatelessWidget {
                   width: widgetSize(context),
                   padding: EdgeInsets.only(top: 8),
                   child: Text(
-                    '- 아래 절차를 숙지하시고 엠버서더 신청하세요.',
+                    '  - 아래 절차를 숙지하시고 엠버서더 신청을 진행하세요.',
                     style: TextStyle(
-                      fontSize: h5FontSize(context),
+                      fontSize: h5FontSize(context) + 2,
                     ),
                   ),
                 ),
@@ -139,7 +141,48 @@ class AmbassadorProcessContent extends StatelessWidget {
                   SizedBox(
                     width: widgetSize(context),
                     child: Text(
-                      '- 엠버서더 코드는 아이디와 동일하게 설정됩니다. (입력X)',
+                      '  - 엠버서더 코드는 아이디와 동일하게 설정됩니다. (입력X)',
+                      style: TextStyle(
+                        fontSize: h5FontSize(context),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: widgetSize(context),
+                    child: fadeImage('assets/images/ambassador_process_1.png'),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 120),
+              child: Column(
+                children: [
+                  Container(
+                    width: widgetSize(context),
+                    padding: EdgeInsets.only(bottom: 8),
+                    child: Text(
+                      '2. 데시그너의 가입정보를 입력합니다.',
+                      style: TextStyle(
+                        fontSize: h4FontSize(context),
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: widgetSize(context),
+                    padding: EdgeInsets.only(bottom: 4),
+                    child: Text(
+                      '  - 공식 홈페이지로 돌아와서 데시그너 회원가입 확인을 해야합니다.',
+                      style: TextStyle(
+                        fontSize: h5FontSize(context),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: widgetSize(context),
+                    child: Text(
+                      '  - 데시그너에서 가입한 아이디와 이름을 입력합니다.',
                       style: TextStyle(
                         fontSize: h5FontSize(context),
                       ),
@@ -156,10 +199,19 @@ class AmbassadorProcessContent extends StatelessWidget {
               width: widgetSize(context),
               padding: EdgeInsets.only(bottom: 8),
               child: Text(
-                '2. 로그인 후 엠버서더 메뉴로 진입합니다.',
+                '3. 데시그너에 로그인 후 엠버서더 메뉴로 진입합니다.',
                 style: TextStyle(
                   fontSize: h4FontSize(context),
                   fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            SizedBox(
+              width: widgetSize(context),
+              child: Text(
+                '  - 회원가입 확인이 완료되면 엠버서더 메뉴가 활성화 됩니다.',
+                style: TextStyle(
+                  fontSize: h5FontSize(context),
                 ),
               ),
             ),
@@ -175,17 +227,18 @@ class AmbassadorProcessContent extends StatelessWidget {
                     width: widgetSize(context),
                     padding: EdgeInsets.only(bottom: 8),
                     child: Text(
-                      '3. 약관 동의 후 회원가입을 진행합니다.',
+                      '4. 신청서를 작성 제출 후, 승인이 될 때까지 기다립니다. ',
                       style: TextStyle(
                         fontSize: h4FontSize(context),
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
-                  SizedBox(
+                  Container(
                     width: widgetSize(context),
+                    padding: EdgeInsets.only(bottom: 4),
                     child: Text(
-                      '- 기업 파트너일 경우 : 사업자등록증(기업) 사본',
+                      '  - 기업 파트너일 경우 : 사업자등록증(기업) 사본',
                       style: TextStyle(
                         fontSize: h5FontSize(context),
                       ),
@@ -194,7 +247,7 @@ class AmbassadorProcessContent extends StatelessWidget {
                   SizedBox(
                     width: widgetSize(context),
                     child: Text(
-                      '- 개인 파트너일 경우 : 신분증(기업) 사본',
+                      '  - 개인 파트너일 경우 : 신분증(기업) 사본',
                       style: TextStyle(
                         fontSize: h5FontSize(context),
                       ),
@@ -209,6 +262,15 @@ class AmbassadorProcessContent extends StatelessWidget {
             ),
             InkWell(
               onTap: () async {
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return WillPopScope(
+                      onWillPop: () async => false,
+                      child: DesignerAmbassador(),
+                    );
+                  },
+                );
                 final url = Uri.parse(
                   'https://xn--2i0b31d0uch0z.com/bbs/register.php',
                 );
@@ -238,6 +300,176 @@ class AmbassadorProcessContent extends StatelessWidget {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class DesignerAmbassador extends StatefulWidget {
+  const DesignerAmbassador({super.key});
+
+  @override
+  State<DesignerAmbassador> createState() => _DesignerAmbassadorState();
+}
+
+class _DesignerAmbassadorState extends State<DesignerAmbassador> {
+  var _inputDesignerId = TextEditingController();
+  var _inputDesignerName = TextEditingController();
+
+  var currentUserId = auth.currentUser?.email;
+
+  changeGrade() async {
+    var currentUserGrade =
+        await firestore.collection('account').doc('$currentUserId').update({
+      'grade': '엠버서더 대기중',
+      'ambassadorReady': [_inputDesignerName.text, _inputDesignerId.text],
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      child: Padding(
+        padding: EdgeInsets.symmetric(vertical: 40),
+        child: Container(
+          width: 360,
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          child: ListView(
+            shrinkWrap: true,
+            children: [
+              Text(
+                '데시그너 가입 확인',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: blackColor,
+                ),
+              ),
+              Container(
+                width: 360,
+                padding: EdgeInsets.only(top: 20),
+                child: TextField(
+                  controller: _inputDesignerName,
+                  keyboardType: TextInputType.name,
+                  decoration: InputDecoration(
+                    hintText: '데시그너 가입 이름',
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(width: 1),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        width: 2,
+                        color: blackColor,
+                      ),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 8),
+                child: SizedBox(
+                  width: 360,
+                  child: TextField(
+                    controller: _inputDesignerId,
+                    keyboardType: TextInputType.text,
+                    decoration: InputDecoration(
+                      hintText: '데시그너 아이디',
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(width: 1),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          width: 2,
+                          color: blackColor,
+                        ),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                width: 360,
+                padding: EdgeInsets.only(top: 20),
+                child: Row(
+                  children: [
+                    Flexible(
+                      fit: FlexFit.tight,
+                      child: InkWell(
+                        onTap: () {
+                          // 신청데이터 수집
+                          if (_inputDesignerId.text != '' &&
+                              _inputDesignerName.text != '') {
+                            changeGrade();
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Center(
+                                  child: Text('정보 전달 완료. 확인까지 최대 24시간 걸립니다.')),
+                              backgroundColor: bykakColor,
+                            ));
+                            Navigator.pop(context);
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Center(child: Text('정보를 입력하세요.')),
+                              backgroundColor: bykakColor,
+                            ));
+                          }
+                          Get.rootDelegate.toNamed(Routes.MAIN);
+                        },
+                        child: Container(
+                          height: 48,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: blackColor,
+                          ),
+                          child: Center(
+                            child: Text(
+                              '확인요청',
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: whiteColor,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Flexible(
+                      fit: FlexFit.tight,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 12),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: Container(
+                            height: 48,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: blackColor, width: 2),
+                              borderRadius: BorderRadius.circular(8),
+                              color: whiteColor,
+                            ),
+                            child: Center(
+                              child: Text(
+                                '취소',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: blackColor,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
