@@ -147,7 +147,7 @@ class JemulpoClubMain extends StatelessWidget {
                       'New JemulpoClub',
                       style: TextStyle(
                         fontSize: h1FontSize(context),
-                        fontFamily: 'Cafe_24',
+                        fontFamily: 'Classic',
                         fontWeight: FontWeight.bold,
                         color: whiteColor,
                       ),
@@ -239,7 +239,7 @@ class _JemulpoClubStudioState extends State<JemulpoClubStudio> {
                         width: widgetSize(context),
                         child: Center(
                           child: Text(
-                            '개화기 컨셉의 사진들과 의상들이 준비되어 있으며 사교클럽의 의미를 둔 구락부의 명칭처럼 다양한 문화공간이 될 수 있도록 준비한 김주현바이각의 신제물포구락부 스튜디오입니다.',
+                            '신제물포구락부는 개화기의 역사를 담고 있는 인천 동인천에 위치한 구제물포구락부의 역사를 계승하고자 하여 설립되었습니다.',
                             style: TextStyle(
                               fontSize: h4FontSize(context),
                               color: blackColor,
@@ -256,22 +256,25 @@ class _JemulpoClubStudioState extends State<JemulpoClubStudio> {
                   ),
                   child: Column(
                     children: [
-                      Row(
+                      Wrap(
+                        direction: Axis.horizontal,
+                        crossAxisAlignment: WrapCrossAlignment.center,
+                        runAlignment: WrapAlignment.spaceBetween,
+                        alignment: WrapAlignment.start,
+                        spacing: 10,
+                        runSpacing: 30,
                         children: [
-                          Flexible(
-                            fit: FlexFit.tight,
-                            child: SizedBox(
-                              width: widgetSize(context),
-                              child: fadeImage(imageList[1]),
-                            ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width < 800
+                                ? widgetSize(context)
+                                : (widgetSize(context) / 2) - 7,
+                            child: fadeImage(imageList[1]),
                           ),
-                          Flexible(
-                            fit: FlexFit.tight,
-                            child: Container(
-                              width: widgetSize(context),
-                              child: fadeImage(imageList[2]),
-                              padding: EdgeInsets.only(left: 20),
-                            ),
+                          Container(
+                            width: MediaQuery.of(context).size.width < 800
+                                ? widgetSize(context)
+                                : (widgetSize(context) / 2) - 7,
+                            child: fadeImage(imageList[2]),
                           ),
                         ],
                       ),
@@ -280,7 +283,7 @@ class _JemulpoClubStudioState extends State<JemulpoClubStudio> {
                         child: SizedBox(
                           width: widgetSize(context),
                           child: Text(
-                            'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
+                            '개화기 컨셉의 사진들과 의상들이 준비되어 있으며 사교클럽의 의미를 둔 구락부의 명칭처럼 다양한 문화공간이 될 수 있도록 준비한 김주현바이각의 신제물포구락부 스튜디오입니다.',
                             style: TextStyle(
                               fontSize: h4FontSize(context),
                               color: blackColor,
@@ -373,7 +376,7 @@ class _JemulpoClubStudioState extends State<JemulpoClubStudio> {
                   'Interior',
                   style: TextStyle(
                     fontSize: h2FontSize(context),
-                    fontFamily: 'Cafe_24',
+                    fontFamily: 'Classic',
                     fontWeight: FontWeight.bold,
                     color: blackColor,
                   ),
@@ -394,21 +397,6 @@ class _JemulpoClubStudioState extends State<JemulpoClubStudio> {
                         child: fadeImage('assets/images/panorama.png'),
                       ),
                     ],
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 20),
-                child: SizedBox(
-                  width: widgetSize(context),
-                  child: Center(
-                    child: Text(
-                      'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
-                      style: TextStyle(
-                        fontSize: h4FontSize(context),
-                        color: blackColor,
-                      ),
-                    ),
                   ),
                 ),
               ),
@@ -436,7 +424,7 @@ class JemulpoClubFilming extends StatelessWidget {
               'Filming',
               style: TextStyle(
                 fontSize: h2FontSize(context),
-                fontFamily: 'Cafe_24',
+                fontFamily: 'Classic',
                 fontWeight: FontWeight.bold,
                 color: blackColor,
               ),
@@ -499,7 +487,7 @@ class JemulpoClubFilming extends StatelessWidget {
                                     ? widgetSize(context)
                                     : widgetSize(context) / 2 - 10,
                                 child: Text(
-                                  '모든 촬영과 의상이 김주현 바이 각과 신제물포구락부와 함께한 가수 황인욱의 "이별주"의 뮤직비디오에 함께하였습니다.',
+                                  '모든 촬영과 의상이 김주현바이각과 신제물포구락부와 함께한 가수 황인욱의 "이별주"의 뮤직비디오에 함께하였습니다.',
                                   style: TextStyle(
                                     fontSize: h5FontSize(context),
                                     color: blackColor,
@@ -541,7 +529,7 @@ class JemulpoClubLocation extends StatelessWidget {
               'Location',
               style: TextStyle(
                 fontSize: h2FontSize(context),
-                fontFamily: 'Cafe_24',
+                fontFamily: 'Classic',
                 fontWeight: FontWeight.bold,
                 color: blackColor,
               ),

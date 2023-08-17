@@ -799,8 +799,13 @@ class AdminMyPage extends StatefulWidget {
 
 class _AdminMyPageState extends State<AdminMyPage> {
   var _inputSearchName = TextEditingController();
+  var _inputNonMembarName = TextEditingController();
   var searchAdmin;
+  var adminLength;
   var searchAdminLength;
+  var searchNonMember;
+  var nonMemberLength;
+  var searchNonMemberLength;
 
   var communityInquiryLength;
   var communityInquiryDocs;
@@ -809,13 +814,15 @@ class _AdminMyPageState extends State<AdminMyPage> {
   bool? aStste;
 
   // TextFormField의 텍스트를 지웁니다. ------------------------------
-  emptyTextFormField() {
-    _inputSearchName.addListener(() {
-      _inputSearchName.clear();
-    });
-  }
+  // emptyTextFormField() {
+  //   _inputSearchName.addListener(() {
+  //     _inputSearchName.clear();
+  //   });
+  // }
 
-  searchItems() async {
+  searchUsers() async {
+    var lengthResult = await firestore.collection('account').get();
+    adminLength = lengthResult.docs.length;
     Map<String, dynamic> searchResult = await firestore
         .collection('account')
         .where('name', isEqualTo: _inputSearchName.text)
@@ -824,6 +831,22 @@ class _AdminMyPageState extends State<AdminMyPage> {
       setState(() {
         searchAdmin = value.docs;
         searchAdminLength = value.docs.length;
+      });
+      return Future.delayed(Duration.zero);
+    });
+  }
+
+  searchNoMember() async {
+    var lengthResult = await firestore.collection('noMemberAmbassador').get();
+    nonMemberLength = lengthResult.docs.length;
+    Map<String, dynamic> searchResult = await firestore
+        .collection('noMemberAmbassador')
+        .where('name', isEqualTo: _inputNonMembarName.text)
+        .get()
+        .then((value) {
+      setState(() {
+        searchNonMember = value.docs;
+        searchNonMemberLength = value.docs.length;
       });
       return Future.delayed(Duration.zero);
     });
@@ -1370,6 +1393,11 @@ class _AdminMyPageState extends State<AdminMyPage> {
                     },
                     child: Container(
                       height: 40,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(4),
+                        border: Border.all(color: blackColor, width: 2),
+                        color: whiteColor,
+                      ),
                       child: Center(
                         child: Text(
                           '닫기',
@@ -1378,11 +1406,6 @@ class _AdminMyPageState extends State<AdminMyPage> {
                             color: blackColor,
                           ),
                         ),
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(4),
-                        border: Border.all(color: blackColor, width: 2),
-                        color: whiteColor,
                       ),
                     ),
                   ),
@@ -1466,7 +1489,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
                               .update({
                             'grade': '관리자',
                           });
-                          searchItems();
+                          searchUsers();
                         } catch (e) {
                           print(e);
                         }
@@ -1511,7 +1534,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
                                 .update({
                               'grade': '엠버서더',
                             });
-                            searchItems();
+                            searchUsers();
                           } catch (e) {
                             print(e);
                           }
@@ -1555,7 +1578,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
                               .update({
                             'grade': '각인',
                           });
-                          searchItems();
+                          searchUsers();
                         } catch (e) {
                           print(e);
                         }
@@ -1565,26 +1588,155 @@ class _AdminMyPageState extends State<AdminMyPage> {
                     ),
                   ],
                 ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 12),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Container(
+                      height: 40,
+                      child: Center(
+                        child: Text(
+                          '닫기',
+                          style: TextStyle(
+                            fontSize: h5FontSize(context),
+                            color: whiteColor,
+                          ),
+                        ),
+                      ),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(4),
+                        border: Border.all(color: blackColor, width: 2),
+                        color: blackColor,
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(bottom: 16),
-              child: TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: Text(
-                  '닫기',
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: blackColor,
+        );
+      },
+    );
+  }
+
+  nonGradeDialog(index) {
+    bool a = false;
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(
+            '등급변경',
+            style: TextStyle(
+              fontSize: h3FontSize(context),
+              color: blackColor,
+            ),
+          ),
+          content: SizedBox(
+            width: 320,
+            height: 160,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                InkWell(
+                  onTap: () {
+                    if (searchNonMember[index]['grade'] == '엠버서더 대기중') {
+                      try {
+                        firestore
+                            .collection('noMemberAmbassador')
+                            .doc(searchNonMember[index]['id'])
+                            .update({
+                          'grade': '엠버서더',
+                        });
+                        setState(() {
+                          a = true;
+                        });
+                        searchNoMember();
+                      } catch (e) {
+                        print(e);
+                      }
+                      Navigator.pop(context);
+                    } else {
+                      try {
+                        firestore
+                            .collection('noMemberAmbassador')
+                            .doc(searchNonMember[index]['id'])
+                            .update({
+                          'grade': '엠버서더 대기중',
+                        });
+                        setState(() {
+                          a = false;
+                        });
+                        searchNoMember();
+                        Navigator.pop(context);
+                      } catch (e) {
+                        print(e);
+                      }
+                    }
+                  },
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        '엠버서더 인정 / 박탈',
+                        style: TextStyle(color: Colors.red),
+                      ),
+                    ),
                   ),
                 ),
-              ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  child: InkWell(
+                    onTap: () {
+                      try {
+                        firestore
+                            .collection('noMemberAmbassador')
+                            .doc(searchNonMember[index]['id'])
+                            .delete();
+                        searchNoMember();
+                        Navigator.pop(context);
+                      } catch (e) {
+                        print(e);
+                      }
+                    },
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          '엠버서더 신청 삭제',
+                          style: TextStyle(color: Colors.red),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Container(
+                    height: 40,
+                    child: Center(
+                      child: Text(
+                        '닫기',
+                        style: TextStyle(
+                          fontSize: h5FontSize(context),
+                          color: whiteColor,
+                        ),
+                      ),
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4),
+                      border: Border.all(color: blackColor, width: 2),
+                      color: blackColor,
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ],
+          ),
         );
       },
     );
@@ -1593,7 +1745,8 @@ class _AdminMyPageState extends State<AdminMyPage> {
   @override
   void initState() {
     super.initState();
-    searchItems();
+    searchUsers();
+    searchNoMember();
     inquiryState();
   }
 
@@ -1973,7 +2126,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '회원 관리',
+                  '회원 관리 ($adminLength)',
                   style: TextStyle(
                     fontSize: h2FontSize(context),
                     color: blackColor,
@@ -1992,7 +2145,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
                         setState(() {
                           _inputSearchName.text = value;
                         });
-                        searchItems();
+                        searchUsers();
                       },
                       style: TextStyle(
                         fontSize: h4FontSize(context),
@@ -2008,7 +2161,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
                             ),
                           ),
                           onTap: () {
-                            searchItems();
+                            searchUsers();
                           },
                         ),
                         border: OutlineInputBorder(
@@ -2033,7 +2186,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
                             width: widgetSize(context),
                             child: Center(
                               child: Text(
-                                '검색어를 입력하세요.',
+                                '검색결과 없음',
                                 style: TextStyle(
                                   fontSize: h5FontSize(context),
                                   color: blackColor,
@@ -2048,85 +2201,297 @@ class _AdminMyPageState extends State<AdminMyPage> {
                             shrinkWrap: true,
                             itemCount: searchAdminLength,
                             itemBuilder: (context, index) {
-                              return Padding(
-                                padding: const EdgeInsets.only(bottom: 16),
-                                child: InkWell(
-                                  onTap: () {
-                                    gradeState(index);
-                                    userInfo(index);
-                                  },
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                          vertical: 8,
-                                        ),
-                                        child: Row(
-                                          children: [
-                                            Text(
-                                              searchAdmin[index]['name'],
-                                              style: TextStyle(
-                                                fontSize: h4FontSize(context),
-                                                fontWeight: FontWeight.bold,
-                                                color: blackColor,
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  EdgeInsets.only(left: 16),
-                                              child: Text(
-                                                searchAdmin[index]['birth'],
+                              try {
+                                return Padding(
+                                  padding: const EdgeInsets.only(bottom: 16),
+                                  child: InkWell(
+                                    onTap: () {
+                                      gradeState(index);
+                                      userInfo(index);
+                                    },
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                            vertical: 8,
+                                          ),
+                                          child: Row(
+                                            children: [
+                                              Text(
+                                                searchAdmin[index]['name'],
                                                 style: TextStyle(
                                                   fontSize: h4FontSize(context),
+                                                  fontWeight: FontWeight.bold,
                                                   color: blackColor,
                                                 ),
                                               ),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  EdgeInsets.only(left: 16),
-                                              child: Text(
-                                                searchAdmin[index]['grade'],
-                                                style: TextStyle(
-                                                  fontSize: h4FontSize(context),
-                                                  color: blackColor,
+                                              Padding(
+                                                padding:
+                                                    EdgeInsets.only(left: 16),
+                                                child: Text(
+                                                  searchAdmin[index]['birth'],
+                                                  style: TextStyle(
+                                                    fontSize:
+                                                        h4FontSize(context),
+                                                    color: blackColor,
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                          ],
+                                              Padding(
+                                                padding:
+                                                    EdgeInsets.only(left: 16),
+                                                child: Text(
+                                                  searchAdmin[index]['grade'],
+                                                  style: TextStyle(
+                                                    fontSize:
+                                                        h4FontSize(context),
+                                                    color: blackColor,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                      Text(
-                                        searchAdmin[index]['id'],
-                                        style: TextStyle(
-                                          fontSize: h4FontSize(context),
-                                          color: blackColor,
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.symmetric(
-                                          vertical: 8,
-                                        ),
-                                        child: Text(
-                                          searchAdmin[index]['phone'],
+                                        Text(
+                                          searchAdmin[index]['id'],
                                           style: TextStyle(
                                             fontSize: h4FontSize(context),
-                                            fontWeight: FontWeight.bold,
                                             color: blackColor,
                                           ),
                                         ),
-                                      ),
-                                      Container(
-                                        width: widgetSize(context),
-                                        height: 2,
-                                        color: greyColor,
-                                      )
-                                    ],
+                                        Padding(
+                                          padding: EdgeInsets.symmetric(
+                                            vertical: 8,
+                                          ),
+                                          child: Text(
+                                            searchAdmin[index]['phone'],
+                                            style: TextStyle(
+                                              fontSize: h4FontSize(context),
+                                              fontWeight: FontWeight.bold,
+                                              color: blackColor,
+                                            ),
+                                          ),
+                                        ),
+                                        Container(
+                                          width: widgetSize(context),
+                                          height: 2,
+                                          color: greyColor,
+                                        )
+                                      ],
+                                    ),
                                   ),
+                                );
+                              } catch (e) {
+                                return SizedBox(
+                                  width: widgetSize(context),
+                                  height: 300,
+                                  child: Center(
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        CircularProgressIndicator(
+                                          color: blackColor,
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 20),
+                                          child: Text(
+                                            '로딩이 오래 걸리면 새로고침(F5) 한 번만 눌러주세요.',
+                                            style: TextStyle(color: blackColor),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              }
+                            },
+                          ),
+                        ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 60),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '비회원 엠버서더 ($nonMemberLength)',
+                  style: TextStyle(
+                    fontSize: h2FontSize(context),
+                    color: blackColor,
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 16),
+                  child: SizedBox(
+                    width: widgetSize(context),
+                    child: TextField(
+                      controller: _inputNonMembarName,
+                      cursorColor: blackColor,
+                      keyboardType: TextInputType.name,
+                      textInputAction: TextInputAction.search,
+                      onSubmitted: (value) {
+                        setState(() {
+                          _inputNonMembarName.text = value;
+                        });
+                        searchNoMember();
+                      },
+                      style: TextStyle(
+                        fontSize: h4FontSize(context),
+                        color: blackColor,
+                      ),
+                      decoration: InputDecoration(
+                        suffixIcon: InkWell(
+                          child: SizedBox(
+                            width: 70,
+                            child: Icon(
+                              Icons.search,
+                              color: blackColor,
+                            ),
+                          ),
+                          onTap: () {
+                            searchNoMember();
+                          },
+                        ),
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: blackColor,
+                          ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: blackColor, width: 2),
+                        ),
+                        hintText: '이름을 입력하세요.',
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(8, 16, 8, 0),
+                  child: _inputNonMembarName.text.isEmpty
+                      ? Padding(
+                          padding: const EdgeInsets.only(top: 20),
+                          child: SizedBox(
+                            width: widgetSize(context),
+                            child: Center(
+                              child: Text(
+                                '검색결과 없음',
+                                style: TextStyle(
+                                  fontSize: h5FontSize(context),
+                                  color: blackColor,
                                 ),
-                              );
+                              ),
+                            ),
+                          ),
+                        )
+                      : Padding(
+                          padding: const EdgeInsets.only(top: 20),
+                          child: ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: searchNonMemberLength,
+                            itemBuilder: (context, index) {
+                              try {
+                                return Padding(
+                                  padding: const EdgeInsets.only(bottom: 16),
+                                  child: InkWell(
+                                    onTap: () {
+                                      // gradeState(index);
+                                      // userInfo(index);
+                                      nonGradeDialog(index);
+                                    },
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                            vertical: 8,
+                                          ),
+                                          child: Row(
+                                            children: [
+                                              Text(
+                                                searchNonMember[index]['name'],
+                                                style: TextStyle(
+                                                  fontSize: h4FontSize(context),
+                                                  fontWeight: FontWeight.bold,
+                                                  color: blackColor,
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    EdgeInsets.only(left: 16),
+                                                child: Text(
+                                                  searchNonMember[index]
+                                                      ['grade'],
+                                                  style: TextStyle(
+                                                    fontSize:
+                                                        h4FontSize(context),
+                                                    color: blackColor,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Text(
+                                          searchNonMember[index]['id'],
+                                          style: TextStyle(
+                                            fontSize: h4FontSize(context),
+                                            color: blackColor,
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.symmetric(
+                                            vertical: 8,
+                                          ),
+                                          child: Text(
+                                            searchNonMember[index]['phone'],
+                                            style: TextStyle(
+                                              fontSize: h4FontSize(context),
+                                              fontWeight: FontWeight.bold,
+                                              color: blackColor,
+                                            ),
+                                          ),
+                                        ),
+                                        Container(
+                                          width: widgetSize(context),
+                                          height: 2,
+                                          color: greyColor,
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              } catch (e) {
+                                return SizedBox(
+                                  width: widgetSize(context),
+                                  height: 300,
+                                  child: Center(
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        CircularProgressIndicator(
+                                            color: blackColor),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 20),
+                                          child: Text(
+                                            '로딩이 오래 걸리면 새로고침(F5) 한 번만 눌러주세요.',
+                                            style: TextStyle(color: blackColor),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              }
                             },
                           ),
                         ),

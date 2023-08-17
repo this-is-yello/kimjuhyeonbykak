@@ -221,7 +221,7 @@ class _CarouselScreenState extends State<CarouselScreen> {
                               mainTitles[index],
                               style: TextStyle(
                                 fontSize: h1FontSize(context),
-                                fontFamily: 'Cafe_24',
+                                fontFamily: 'Classic',
                                 fontWeight: FontWeight.bold,
                                 color: whiteColor,
                               ),
@@ -265,7 +265,7 @@ class _CarouselScreenState extends State<CarouselScreen> {
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
                                     fontSize: h4FontSize(context),
-                                    fontFamily: 'Cafe_24',
+                                    fontFamily: 'Classic',
                                     color: whiteColor,
                                   ),
                                 ),
@@ -521,7 +521,7 @@ class _BykakStoryState extends State<BykakStory> {
                       'By 覺 Story',
                       style: TextStyle(
                         fontSize: h2FontSize(context),
-                        fontFamily: 'Cafe_24',
+                        fontFamily: 'Classic',
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -532,7 +532,7 @@ class _BykakStoryState extends State<BykakStory> {
                       child: Text(
                         '2014년 김주현바이각은 인천의 고급 수제양복을 알리기 위해,\n남성들을 위한 올바른 스타일링과 문화적 놀이터를 만들고자 설립되었습니다.',
                         style: TextStyle(
-                          fontSize: h5FontSize(context),
+                          fontSize: h5FontSize(context) + 2,
                         ),
                       ),
                     ),
@@ -758,7 +758,7 @@ class _TailorShopScreenState extends State<TailorShopScreen> {
                   'k!mjuhyeon by 覺',
                   style: TextStyle(
                     fontSize: h2FontSize(context),
-                    fontFamily: 'Cafe_24',
+                    fontFamily: 'Classic',
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -768,9 +768,9 @@ class _TailorShopScreenState extends State<TailorShopScreen> {
                     bottom: 20,
                   ),
                   child: Text(
-                    'Lorem Ipsum is simply dummy text of the printing and typesetting industry.\nLorem Ipsum has been the industrys standard dummy text ever since the 1500s',
+                    '인천에서 유일하게 매장 내 수제 공방을 운영하며\n비스포크 맞춤 수트의 정석을 구현하고 있습니다.',
                     style: TextStyle(
-                      fontSize: h5FontSize(context),
+                      fontSize: h5FontSize(context) + 2,
                     ),
                     textAlign: TextAlign.center,
                   ),
@@ -935,7 +935,7 @@ class _TailorAcademyScreenState extends State<TailorAcademyScreen> {
                   'by 覺 Tailor Academy',
                   style: TextStyle(
                     fontSize: h2FontSize(context),
-                    fontFamily: 'Cafe_24',
+                    fontFamily: 'Classic',
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -945,9 +945,9 @@ class _TailorAcademyScreenState extends State<TailorAcademyScreen> {
                     bottom: 20,
                   ),
                   child: Text(
-                    'Lorem Ipsum is simply dummy text of the printing and typesetting industry.\nLorem Ipsum has been the industrys standard dummy text ever since the 1500s',
+                    '바이각 테일러아카데미는 장인들의 맞춤양복 기술이\n후대에도 이어나갈 수 있도록, 후학양성을 위해 설립되었습니다.',
                     style: TextStyle(
-                      fontSize: h5FontSize(context),
+                      fontSize: h5FontSize(context) + 2,
                     ),
                     textAlign: TextAlign.center,
                   ),
@@ -1049,7 +1049,7 @@ class _NewJemulpoClubScreenState extends State<NewJemulpoClubScreen> {
                     'New JemulpoClub',
                     style: TextStyle(
                       fontSize: h2FontSize(context),
-                      fontFamily: 'Cafe_24',
+                      fontFamily: 'Classic',
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -1059,9 +1059,9 @@ class _NewJemulpoClubScreenState extends State<NewJemulpoClubScreen> {
                       bottom: 20,
                     ),
                     child: Text(
-                      'Lorem Ipsum is simply dummy text of the printing and typesetting industry.\nLorem Ipsum has been the industrys standard dummy text ever since the 1500s',
+                      '개화기의 역사를 담고있는 동인천의 제물포구락부의 역사를\n계승하고자 하여 설립되었습니다.',
                       style: TextStyle(
-                        fontSize: h5FontSize(context),
+                        fontSize: h5FontSize(context) + 2,
                       ),
                       textAlign: TextAlign.center,
                     ),
@@ -1134,9 +1134,9 @@ class _MainCommentState extends State<MainComment> {
               textAlign: TextAlign.center,
               '바이각을 시작으로 옷에 대해\n보고, 배우고, 깨닫길 바라며..',
               style: TextStyle(
-                fontFamily: 'Cafe_24',
+                fontFamily: 'Classic',
                 fontSize: h3FontSize(context),
-                color: bykakColor,
+                color: blackColor,
               ),
             ),
           ),

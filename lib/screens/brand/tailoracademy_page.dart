@@ -158,7 +158,7 @@ class TailorAcademyMain extends StatelessWidget {
                       'by 覺 Tailor Academy',
                       style: TextStyle(
                         fontSize: h1FontSize(context),
-                        fontFamily: 'Cafe_24',
+                        fontFamily: 'Classic',
                         fontWeight: FontWeight.bold,
                         color: whiteColor,
                       ),
@@ -304,7 +304,7 @@ class Curriculum extends StatelessWidget {
               'Curriculum',
               style: TextStyle(
                 fontSize: h2FontSize(context),
-                fontFamily: 'Cafe_24',
+                fontFamily: 'Classic',
                 fontWeight: FontWeight.bold,
                 color: blackColor,
               ),
@@ -322,7 +322,7 @@ class Curriculum extends StatelessWidget {
                       child: fadeImage('assets/images/academy/curriculum.png'),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 40),
+                      padding: const EdgeInsets.only(top: 80),
                       child: InkWell(
                         onTap: () async {
                           final url = Uri.parse(
@@ -337,16 +337,17 @@ class Curriculum extends StatelessWidget {
                         },
                         child: Container(
                           width: 240,
-                          height: 48,
+                          // height: 48,
+                          padding: EdgeInsets.symmetric(vertical: 16),
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(200),
+                            borderRadius: BorderRadius.circular(8),
                             color: blackColor,
                           ),
                           child: Center(
                             child: Text(
                               '수강신청',
                               style: TextStyle(
-                                fontSize: h5FontSize(context),
+                                fontSize: h4FontSize(context),
                                 color: whiteColor,
                               ),
                             ),
@@ -384,7 +385,7 @@ class WhoTeaching extends StatelessWidget {
               'Instructor',
               style: TextStyle(
                 fontSize: h2FontSize(context),
-                fontFamily: 'Cafe_24',
+                fontFamily: 'Classic',
                 fontWeight: FontWeight.bold,
                 color: blackColor,
               ),
@@ -476,7 +477,7 @@ class WhyLearning extends StatelessWidget {
               'Reason',
               style: TextStyle(
                 fontSize: h2FontSize(context),
-                fontFamily: 'Cafe_24',
+                fontFamily: 'Classic',
                 fontWeight: FontWeight.bold,
                 color: blackColor,
               ),
@@ -591,7 +592,7 @@ class AcademyLocation extends StatelessWidget {
               'Location',
               style: TextStyle(
                 fontSize: h2FontSize(context),
-                fontFamily: 'Cafe_24',
+                fontFamily: 'Classic',
                 fontWeight: FontWeight.bold,
                 color: blackColor,
               ),

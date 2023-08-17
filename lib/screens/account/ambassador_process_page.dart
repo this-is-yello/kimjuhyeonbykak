@@ -94,7 +94,7 @@ class AmbassadorProcessContent extends StatelessWidget {
                 'Process',
                 style: TextStyle(
                   fontSize: h2FontSize(context),
-                  fontFamily: 'Cafe_24',
+                  fontFamily: 'Classic',
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -314,8 +314,9 @@ class DesignerAmbassador extends StatefulWidget {
 }
 
 class _DesignerAmbassadorState extends State<DesignerAmbassador> {
-  var _inputDesignerId = TextEditingController();
   var _inputDesignerName = TextEditingController();
+  var _inputDesignerPhone = TextEditingController();
+  var _inputDesignerId = TextEditingController();
 
   var currentUserId = auth.currentUser?.email;
 
@@ -324,6 +325,18 @@ class _DesignerAmbassadorState extends State<DesignerAmbassador> {
         await firestore.collection('account').doc('$currentUserId').update({
       'grade': '엠버서더 대기중',
       'ambassadorReady': [_inputDesignerName.text, _inputDesignerId.text],
+    });
+  }
+
+  noMemberAmbassador() async {
+    var noMember = await firestore
+        .collection('noMemberAmbassador')
+        .doc(_inputDesignerId.text)
+        .set({
+      'name': _inputDesignerName.text,
+      'phone': _inputDesignerPhone.text,
+      'id': _inputDesignerId.text,
+      'grade': '엠버서더 대기중',
     });
   }
 
@@ -356,14 +369,47 @@ class _DesignerAmbassadorState extends State<DesignerAmbassador> {
                     hintText: '데시그너 가입 이름',
                     border: OutlineInputBorder(
                       borderSide: BorderSide(width: 1),
-                      borderRadius: BorderRadius.circular(8),
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(8),
+                        topRight: Radius.circular(8),
+                      ),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(
                         width: 2,
                         color: blackColor,
                       ),
-                      borderRadius: BorderRadius.circular(8),
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(8),
+                        topRight: Radius.circular(8),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                width: 360,
+                child: TextField(
+                  controller: _inputDesignerPhone,
+                  keyboardType: TextInputType.phone,
+                  decoration: InputDecoration(
+                    hintText: '전화번호',
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(width: 1),
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(8),
+                        bottomRight: Radius.circular(8),
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        width: 2,
+                        color: blackColor,
+                      ),
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(8),
+                        bottomRight: Radius.circular(8),
+                      ),
                     ),
                   ),
                 ),
@@ -404,20 +450,26 @@ class _DesignerAmbassadorState extends State<DesignerAmbassador> {
                           // 신청데이터 수집
                           if (_inputDesignerId.text != '' &&
                               _inputDesignerName.text != '') {
-                            changeGrade();
+                            if (auth.currentUser?.uid != null) {
+                              print('공홈 "회원"이 엠버서더를 신청합니다.');
+                              changeGrade();
+                            } else {
+                              print('공홈 "비회원"이 엠버서더를 신청합니다.');
+                              noMemberAmbassador();
+                            }
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               content: Center(
                                   child: Text('정보 전달 완료. 확인까지 최대 24시간 걸립니다.')),
                               backgroundColor: bykakColor,
                             ));
                             Navigator.pop(context);
+                            Get.rootDelegate.toNamed(Routes.BUSINESS);
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               content: Center(child: Text('정보를 입력하세요.')),
                               backgroundColor: bykakColor,
                             ));
                           }
-                          Get.rootDelegate.toNamed(Routes.MAIN);
                         },
                         child: Container(
                           height: 48,

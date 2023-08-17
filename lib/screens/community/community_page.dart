@@ -167,13 +167,13 @@ class _CommunityContentState extends State<CommunityContent> {
                               ),
                             ),
                           ),
-                          Text(
-                            '어제보다 나은 작업물을 만드는 것이 이 시대의 장인정신입니다.',
-                            style: TextStyle(
-                              fontSize: h5FontSize(context),
-                              color: blackColor,
-                            ),
-                          ),
+                          // Text(
+                          //   '어제보다 나은 작업물을 만드는 것이 이 시대의 장인정신입니다.',
+                          //   style: TextStyle(
+                          //     fontSize: h5FontSize(context),
+                          //     color: blackColor,
+                          //   ),
+                          // ),
                         ],
                       ),
                     ),

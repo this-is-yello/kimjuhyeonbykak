@@ -129,7 +129,7 @@ class StoryMain extends StatelessWidget {
                       'By 覺 Story',
                       style: TextStyle(
                         fontSize: h1FontSize(context),
-                        fontFamily: 'Cafe_24',
+                        fontFamily: 'Classic',
                         fontWeight: FontWeight.bold,
                         color: whiteColor,
                       ),
@@ -149,7 +149,7 @@ class StoryMain extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      '바이각스토리 관련 멘트삽입',
+                      '바이각을 시작으로 옷에 대해 보고, 배우고, 깨닫길 바라며',
                       style: TextStyle(
                         fontSize: h5FontSize(context),
                         color: whiteColor,
@@ -307,7 +307,7 @@ class CeoMessageScreen extends StatelessWidget {
                   '김주현입니다.',
                   style: TextStyle(
                     fontSize: h2FontSize(context),
-                    fontFamily: 'Cafe_24',
+                    fontFamily: 'Classic',
                     fontWeight: FontWeight.bold,
                     color: blackColor,
                   ),
@@ -408,13 +408,13 @@ class CiBiScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                Text(
-                  'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ',
-                  style: TextStyle(
-                    fontSize: h5FontSize(context),
-                    color: blackColor,
-                  ),
-                ),
+                // Text(
+                //   'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ',
+                //   style: TextStyle(
+                //     fontSize: h5FontSize(context),
+                //     color: blackColor,
+                //   ),
+                // ),
                 Padding(
                   padding: EdgeInsets.only(top: 20),
                   child: Column(
@@ -563,13 +563,13 @@ class CiBiScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                Text(
-                  'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ',
-                  style: TextStyle(
-                    fontSize: h5FontSize(context),
-                    color: blackColor,
-                  ),
-                ),
+                // Text(
+                //   'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ',
+                //   style: TextStyle(
+                //     fontSize: h5FontSize(context),
+                //     color: blackColor,
+                //   ),
+                // ),
                 Padding(
                   padding: EdgeInsets.only(top: 20),
                   child: Container(
@@ -660,13 +660,13 @@ class CiBiScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                Text(
-                  'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ',
-                  style: TextStyle(
-                    fontSize: h5FontSize(context),
-                    color: blackColor,
-                  ),
-                ),
+                // Text(
+                //   'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ',
+                //   style: TextStyle(
+                //     fontSize: h5FontSize(context),
+                //     color: blackColor,
+                //   ),
+                // ),
                 Padding(
                   padding: EdgeInsets.only(top: 20),
                   child: Container(
