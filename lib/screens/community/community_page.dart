@@ -346,25 +346,12 @@ class _InquiryScreenState extends State<InquiryScreen> {
             'inquiry': _inputInquiry.text,
             'aState': '답변 대기중',
           });
-          return showDialog(
-            context: context,
-            builder: (context) => AlertDialog(
-              content: Text('문의가 등록되었습니다.'),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: Text(
-                    '확인',
-                    style: TextStyle(
-                      color: blackColor,
-                    ),
-                  ),
-                )
-              ],
+          return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Center(
+              child: Text('문의가 등록되었습니다.'),
             ),
-          );
+            backgroundColor: bykakColor,
+          ));
         } catch (e) {
           print(e);
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(

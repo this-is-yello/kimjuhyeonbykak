@@ -144,7 +144,7 @@ class RentalCenterMain extends StatelessWidget {
                       'by 覺 Suit RentalCenter',
                       style: TextStyle(
                         fontSize: h1FontSize(context),
-                        fontFamily: 'Classic',
+                        fontFamily: 'NotoSerif',
                         fontWeight: FontWeight.bold,
                         color: whiteColor,
                       ),
@@ -330,7 +330,7 @@ class RentalProduct extends StatelessWidget {
               'Product',
               style: TextStyle(
                 fontSize: h2FontSize(context),
-                fontFamily: 'Classic',
+                fontFamily: 'NotoSerif',
                 fontWeight: FontWeight.bold,
                 color: blackColor,
               ),
@@ -388,7 +388,7 @@ class RentalCenterLocation extends StatelessWidget {
               'Location',
               style: TextStyle(
                 fontSize: h2FontSize(context),
-                fontFamily: 'Classic',
+                fontFamily: 'NotoSerif',
                 fontWeight: FontWeight.bold,
                 color: blackColor,
               ),

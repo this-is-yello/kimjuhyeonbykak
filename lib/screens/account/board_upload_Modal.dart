@@ -237,6 +237,7 @@ class _MagazineUpModalState extends State<MagazineUpModal> {
                             style: TextStyle(
                               fontSize: h5FontSize(context),
                               color: blackColor,
+                              decoration: TextDecoration.underline,
                             ),
                           ),
                         ),
@@ -279,6 +280,7 @@ class _MagazineUpModalState extends State<MagazineUpModal> {
                       style: TextStyle(
                         fontSize: h5FontSize(context),
                         color: blackColor,
+                        decoration: TextDecoration.underline,
                       ),
                     ),
                   ),
@@ -645,6 +647,7 @@ class _NewsUpModalState extends State<NewsUpModal> {
                             style: TextStyle(
                               fontSize: h5FontSize(context),
                               color: blackColor,
+                              decoration: TextDecoration.underline,
                             ),
                           ),
                         ),
@@ -687,6 +690,7 @@ class _NewsUpModalState extends State<NewsUpModal> {
                       style: TextStyle(
                         fontSize: h5FontSize(context),
                         color: blackColor,
+                        decoration: TextDecoration.underline,
                       ),
                     ),
                   ),
@@ -1317,6 +1321,7 @@ class _EventUpModalState extends State<EventUpModal> {
                             style: TextStyle(
                               fontSize: h5FontSize(context),
                               color: blackColor,
+                              decoration: TextDecoration.underline,
                             ),
                           ),
                         ),
@@ -1359,6 +1364,7 @@ class _EventUpModalState extends State<EventUpModal> {
                       style: TextStyle(
                         fontSize: h5FontSize(context),
                         color: blackColor,
+                        decoration: TextDecoration.underline,
                       ),
                     ),
                   ),
@@ -1696,6 +1702,7 @@ class _MediaUpModalState extends State<MediaUpModal> {
                             style: TextStyle(
                               fontSize: h5FontSize(context),
                               color: blackColor,
+                              decoration: TextDecoration.underline,
                             ),
                           ),
                         ),
@@ -1930,6 +1937,7 @@ class _ProductUpModalState extends State<ProductUpModal> {
                             style: TextStyle(
                               fontSize: h5FontSize(context),
                               color: blackColor,
+                              decoration: TextDecoration.underline,
                             ),
                           ),
                         ),

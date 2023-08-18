@@ -128,6 +128,16 @@ class _IdInquiryState extends State<IdInquiry> {
   var idSearch;
 
   searchId() async {
+    userSearch = await firestore
+        .collection('account')
+        .where('name', isEqualTo: _inputInquiryName.text)
+        .where('birth', isEqualTo: _inputInquiryBirth.text)
+        .where('phone', isEqualTo: _inputInquiryPhone.text)
+        .get()
+        .then((value) {
+      idSearch = value.docs[0]['id'];
+    });
+    print(idSearch);
     try {
       if (_inputInquiryName.text.isEmpty ||
           _inputInquiryPhone.text.isEmpty ||
@@ -139,33 +149,43 @@ class _IdInquiryState extends State<IdInquiry> {
           ),
         );
       } else {
-        userSearch = await firestore
-            .collection('account')
-            .where('name', isEqualTo: _inputInquiryName.text)
-            .where('birth', isEqualTo: _inputInquiryBirth.text)
-            .where('phone', isEqualTo: _inputInquiryPhone.text)
-            .get()
-            .then((value) {
-          idSearch = value.docs[0]['id'];
-        });
-        print(idSearch);
         return showDialog(
           context: context,
           builder: (ctx) => AlertDialog(
-            content: Text('조회하신 이름으로 등록된 이메일는\n$idSearch 입니다.'),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: Text(
-                  '확인',
-                  style: TextStyle(
-                    color: blackColor,
+            content: SizedBox(
+              height: 160,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('조회하신 이름으로 등록된 이메일은\n$idSearch 입니다.'),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 40),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Container(
+                        width: 300,
+                        height: 56,
+                        decoration: BoxDecoration(
+                          color: blackColor,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Center(
+                          child: Text(
+                            '확인',
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: whiteColor,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
-                ),
-              )
-            ],
+                ],
+              ),
+            ),
           ),
         );
       }
@@ -318,6 +338,16 @@ class _PwInquiryState extends State<PwInquiry> {
   var pwSearch;
 
   searchPw() async {
+    userSearch = await firestore
+        .collection('account')
+        .where('id', isEqualTo: _inputInquiryId.text)
+        .where('name', isEqualTo: _inputInquiryName.text)
+        .where('birth', isEqualTo: _inputInquiryBirth.text)
+        .where('phone', isEqualTo: _inputInquiryPhone.text)
+        .get()
+        .then((value) {
+      pwSearch = value.docs[0]['password'];
+    });
     if (_inputInquiryName.text.isEmpty ||
         _inputInquiryPhone.text.isEmpty ||
         _inputInquiryId.text.isEmpty) {
@@ -329,33 +359,43 @@ class _PwInquiryState extends State<PwInquiry> {
       );
     } else {
       try {
-        userSearch = await firestore
-            .collection('account')
-            .where('id', isEqualTo: _inputInquiryId.text)
-            .where('name', isEqualTo: _inputInquiryName.text)
-            .where('birth', isEqualTo: _inputInquiryBirth.text)
-            .where('phone', isEqualTo: _inputInquiryPhone.text)
-            .get()
-            .then((value) {
-          pwSearch = value.docs[0]['password'];
-        });
         return showDialog(
           context: context,
           builder: (ctx) => AlertDialog(
-            content: Text('조회하신 정보로 등록된 비밀번호는\n$pwSearch 입니다.'),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: Text(
-                  '확인',
-                  style: TextStyle(
-                    color: blackColor,
+            content: SizedBox(
+              height: 160,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('조회하신 정보로 등록된 비밀번호는\n$pwSearch 입니다.'),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 40),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Container(
+                        width: 300,
+                        height: 56,
+                        decoration: BoxDecoration(
+                          color: blackColor,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Center(
+                          child: Text(
+                            '확인',
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: whiteColor,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
-                ),
-              )
-            ],
+                ],
+              ),
+            ),
           ),
         );
       } catch (e) {

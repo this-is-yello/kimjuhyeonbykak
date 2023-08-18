@@ -158,7 +158,7 @@ class TailorAcademyMain extends StatelessWidget {
                       'by 覺 Tailor Academy',
                       style: TextStyle(
                         fontSize: h1FontSize(context),
-                        fontFamily: 'Classic',
+                        fontFamily: 'NotoSerif',
                         fontWeight: FontWeight.bold,
                         color: whiteColor,
                       ),
@@ -304,7 +304,7 @@ class Curriculum extends StatelessWidget {
               'Curriculum',
               style: TextStyle(
                 fontSize: h2FontSize(context),
-                fontFamily: 'Classic',
+                fontFamily: 'NotoSerif',
                 fontWeight: FontWeight.bold,
                 color: blackColor,
               ),
@@ -385,7 +385,7 @@ class WhoTeaching extends StatelessWidget {
               'Instructor',
               style: TextStyle(
                 fontSize: h2FontSize(context),
-                fontFamily: 'Classic',
+                fontFamily: 'NotoSerif',
                 fontWeight: FontWeight.bold,
                 color: blackColor,
               ),
@@ -477,7 +477,7 @@ class WhyLearning extends StatelessWidget {
               'Reason',
               style: TextStyle(
                 fontSize: h2FontSize(context),
-                fontFamily: 'Classic',
+                fontFamily: 'NotoSerif',
                 fontWeight: FontWeight.bold,
                 color: blackColor,
               ),
@@ -592,7 +592,7 @@ class AcademyLocation extends StatelessWidget {
               'Location',
               style: TextStyle(
                 fontSize: h2FontSize(context),
-                fontFamily: 'Classic',
+                fontFamily: 'NotoSerif',
                 fontWeight: FontWeight.bold,
                 color: blackColor,
               ),

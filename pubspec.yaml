@@ -112,9 +112,16 @@ flutter:
           weight: 700
         - asset: assets/fonts/Pretendard-Light.ttf
           weight: 100
+    - family: NotoSerif
+      fonts:
+        - asset: assets/fonts/NotoSerif-Medium.otf
+        - asset: assets/fonts/NotoSerif-Bold.otf
+          weight: 700
+        - asset: assets/fonts/NotoSerif-Light.otf
+          weight: 100
     - family: Cafe_24
       fonts:
-        - asset: assets/fonts/Cafe24Classictype.ttf
+        - asset: assets/fonts/Cafe24.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

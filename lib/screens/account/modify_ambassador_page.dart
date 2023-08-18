@@ -180,6 +180,7 @@ class _ModifyAmbassadorPageState extends State<ModifyAmbassadorPage> {
                                 style: TextStyle(
                                   fontSize: h5FontSize(context),
                                   color: blackColor,
+                                  decoration: TextDecoration.underline,
                                 ),
                               ),
                             ),

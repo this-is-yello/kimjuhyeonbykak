@@ -244,7 +244,7 @@ void main() async {
         title: 'kimjuhyeon by 覺',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          fontFamily: 'LINE_seed',
+          fontFamily: 'Pretendard',
           primaryColor: blackColor,
         ),
         defaultTransition: Transition.fadeIn,

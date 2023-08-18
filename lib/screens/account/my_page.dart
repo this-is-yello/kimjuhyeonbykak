@@ -238,6 +238,7 @@ class _ProfileState extends State<Profile> {
                             '정보변경',
                             style: TextStyle(
                               color: blackColor,
+                              decoration: TextDecoration.underline,
                             ),
                           ),
                         ),
@@ -507,7 +508,7 @@ class _UserMyPageState extends State<UserMyPage> {
                                     TextButton(
                                       onPressed: () async {
                                         final url = Uri.parse(
-                                          'https://xn--2i0b31d0uch0z.com/shop/partner/login.php',
+                                          'http://xn--2i0b31d0uch0z.com/shop/partner/login.php',
                                         );
                                         if (await canLaunchUrl(url)) {
                                           launchUrl(
@@ -522,6 +523,7 @@ class _UserMyPageState extends State<UserMyPage> {
                                         style: TextStyle(
                                           fontSize: h5FontSize(context),
                                           color: blackColor,
+                                          decoration: TextDecoration.underline,
                                         ),
                                       ),
                                     ),
@@ -1297,8 +1299,16 @@ class _AdminMyPageState extends State<AdminMyPage> {
                           left: 4,
                         ),
                         child: TextButton(
-                          onPressed: () {
-                            // 전화걸기
+                          onPressed: () async {
+                            final url = Uri.parse(
+                              'tel:${searchAdmin[index]['phone']}',
+                            );
+                            if (await canLaunchUrl(url)) {
+                              launchUrl(
+                                url,
+                                mode: LaunchMode.externalApplication,
+                              );
+                            }
                           },
                           child: Text(
                             searchAdmin[index]['phone'],
@@ -1325,8 +1335,16 @@ class _AdminMyPageState extends State<AdminMyPage> {
                     Padding(
                       padding: const EdgeInsets.only(left: 4),
                       child: TextButton(
-                        onPressed: () {
-                          // 메일 보내기
+                        onPressed: () async {
+                          final url = Uri.parse(
+                            'mailto:${searchAdmin[index]['id']}',
+                          );
+                          if (await canLaunchUrl(url)) {
+                            launchUrl(
+                              url,
+                              mode: LaunchMode.externalApplication,
+                            );
+                          }
                         },
                         child: Text(
                           searchAdmin[index]['id'],
@@ -2009,6 +2027,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
                               style: TextStyle(
                                 fontSize: h5FontSize(context),
                                 color: blackColor,
+                                decoration: TextDecoration.underline,
                               ),
                             ),
                           ),
@@ -2029,6 +2048,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
                               style: TextStyle(
                                 fontSize: h5FontSize(context),
                                 color: blackColor,
+                                decoration: TextDecoration.underline,
                               ),
                             ),
                           ),
@@ -2049,6 +2069,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
                               style: TextStyle(
                                 fontSize: h5FontSize(context),
                                 color: blackColor,
+                                decoration: TextDecoration.underline,
                               ),
                             ),
                           ),
@@ -2069,6 +2090,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
                               style: TextStyle(
                                 fontSize: h5FontSize(context),
                                 color: blackColor,
+                                decoration: TextDecoration.underline,
                               ),
                             ),
                           ),
@@ -2089,6 +2111,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
                               style: TextStyle(
                                 fontSize: h5FontSize(context),
                                 color: blackColor,
+                                decoration: TextDecoration.underline,
                               ),
                             ),
                           ),
@@ -2109,6 +2132,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
                               style: TextStyle(
                                 fontSize: h5FontSize(context),
                                 color: blackColor,
+                                decoration: TextDecoration.underline,
                               ),
                             ),
                           ),

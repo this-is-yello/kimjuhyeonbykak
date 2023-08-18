@@ -94,7 +94,7 @@ class AmbassadorProcessContent extends StatelessWidget {
                 'Process',
                 style: TextStyle(
                   fontSize: h2FontSize(context),
-                  fontFamily: 'Classic',
+                  fontFamily: 'NotoSerif',
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -272,7 +272,7 @@ class AmbassadorProcessContent extends StatelessWidget {
                   },
                 );
                 final url = Uri.parse(
-                  'https://xn--2i0b31d0uch0z.com/bbs/register.php',
+                  'http://xn--2i0b31d0uch0z.com/bbs/register.php',
                 );
                 if (await canLaunchUrl(url)) {
                   launchUrl(

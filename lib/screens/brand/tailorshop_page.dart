@@ -166,7 +166,7 @@ class TailorShopMain extends StatelessWidget {
                       'k!mjuhyeon by 覺',
                       style: TextStyle(
                         fontSize: h1FontSize(context),
-                        fontFamily: 'Classic',
+                        fontFamily: 'NotoSerif',
                         fontWeight: FontWeight.bold,
                         color: whiteColor,
                       ),
@@ -606,7 +606,7 @@ class _LabelState extends State<Label> {
             'Label',
             style: TextStyle(
               fontSize: h2FontSize(context),
-              fontFamily: 'Classic',
+              fontFamily: 'NotoSerif',
               fontWeight: FontWeight.bold,
               color: blackColor,
             ),
@@ -1012,7 +1012,7 @@ class _MakingProcessState extends State<MakingProcess> {
               'Making Process',
               style: TextStyle(
                 fontSize: h2FontSize(context),
-                fontFamily: 'Classic',
+                fontFamily: 'NotoSerif',
                 fontWeight: FontWeight.bold,
                 color: blackColor,
               ),
@@ -1304,7 +1304,7 @@ class Service extends StatelessWidget {
               'Service',
               style: TextStyle(
                 fontSize: h2FontSize(context),
-                fontFamily: 'Classic',
+                fontFamily: 'NotoSerif',
                 fontWeight: FontWeight.bold,
                 color: blackColor,
               ),
@@ -1367,7 +1367,7 @@ class Service extends StatelessWidget {
 //               'Location',
 //               style: TextStyle(
 //                 fontSize: h2FontSize(context),
-//                 fontFamily: 'Classic',
+//                 fontFamily: 'NotoSerif',
 //                 fontWeight: FontWeight.bold,
 //                 color: blackColor,
 //               ),

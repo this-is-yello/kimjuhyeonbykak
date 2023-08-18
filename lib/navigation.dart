@@ -37,11 +37,16 @@ class _MainAppBarState extends State<MainAppBar> {
     ['서포터즈', '협찬·협업·단체복 문의'],
   ];
   List subMenuText = [
-    'Lorem Ipsum is simply dummy text of the printing and typesetting industry. 브랜드의 설명 the industrys standard dummy text ever since the 1500s',
-    'Lorem Ipsum is simply dummy text of the printing and typesetting industry. 홍보의 설명 the industrys standard dummy text ever since the 1500s',
-    'Lorem Ipsum is simply dummy text of the printing and typesetting industry. 제품 관련 설명 the industrys standard dummy text ever since the 1500s',
-    'Lorem Ipsum is simply dummy text of the printing and typesetting industry. 커뮤니티의 설명 the industrys standard dummy text ever since the 1500s',
-    'Lorem Ipsum is simply dummy text of the printing and typesetting industry. 비즈니스 관련 설명 the industrys standard dummy text ever since the 1500s',
+    '',
+    '',
+    '',
+    '',
+    '',
+    // 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. 브랜드의 설명 the industrys standard dummy text ever since the 1500s',
+    // 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. 홍보의 설명 the industrys standard dummy text ever since the 1500s',
+    // 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. 제품 관련 설명 the industrys standard dummy text ever since the 1500s',
+    // 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. 커뮤니티의 설명 the industrys standard dummy text ever since the 1500s',
+    // 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. 비즈니스 관련 설명 the industrys standard dummy text ever since the 1500s',
   ];
   List subMenuLinks = [
     [
@@ -384,70 +389,50 @@ class _MainAppBarState extends State<MainAppBar> {
                   },
                   child: Container(
                     width: MediaQuery.of(context).size.width,
-                    height: 280,
+                    height: 80,
                     color: blackColor,
-                    child: SizedBox(
-                      // width: widgetSize(context),
-                      child: Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 40),
-                              child: SizedBox(
-                                // width: 800,
-                                height: 60,
-                                child: ListView.builder(
-                                  itemCount: subMenu[i].length,
-                                  shrinkWrap: true,
-                                  scrollDirection: Axis.horizontal,
-                                  itemBuilder: (context, index) {
-                                    return Container(
-                                      height: 60,
-                                      child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          backgroundColor:
-                                              whiteColor.withOpacity(0),
-                                          shadowColor:
-                                              whiteColor.withOpacity(0),
-                                          alignment: Alignment.centerLeft,
-                                          elevation: 0,
-                                        ),
-                                        onPressed: () {
-                                          setState(() {
-                                            publicityNum = index;
-                                            communityNum = index;
-                                            businessNum = index;
-                                          });
-                                          Get.rootDelegate
-                                              .toNamed(subMenuLinks[i][index]);
-                                          print(subMenu[i][index]);
-                                        },
-                                        child: Text(
-                                          subMenu[i][index],
-                                          style: TextStyle(
-                                            fontSize: 16,
-                                            color: whiteColor,
-                                          ),
-                                        ),
-                                      ),
-                                    );
-                                  },
+                    child: Center(
+                      child: SizedBox(
+                        width: widgetSize(context),
+                        height: 60,
+                        child: ListView.builder(
+                          itemCount: subMenu[i].length,
+                          shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) {
+                            return Container(
+                              height: 60,
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: whiteColor.withOpacity(0),
+                                  shadowColor: whiteColor.withOpacity(0),
+                                  alignment: Alignment.centerLeft,
+                                  elevation: 0,
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    publicityNum = index;
+                                    communityNum = index;
+                                    businessNum = index;
+                                  });
+                                  Get.rootDelegate
+                                      .toNamed(subMenuLinks[i][index]);
+                                  print(subMenu[i][index]);
+                                },
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(horizontal: 4),
+                                  child: Text(
+                                    subMenu[i][index],
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      color: whiteColor,
+                                    ),
+                                  ),
                                 ),
                               ),
-                            ),
-                            SizedBox(
-                              width: 800,
-                              child: Text(
-                                subMenuText[i],
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  color: whiteColor,
-                                ),
-                              ),
-                            )
-                          ],
+                            );
+                          },
                         ),
                       ),
                     ),
@@ -532,6 +517,7 @@ class _FooterState extends State<Footer> {
                             fontSize: 12,
                             color: blackColor,
                             fontWeight: FontWeight.bold,
+                            decoration: TextDecoration.underline,
                           ),
                         ),
                       ),
@@ -554,6 +540,7 @@ class _FooterState extends State<Footer> {
                             fontSize: 12,
                             color: blackColor,
                             fontWeight: FontWeight.bold,
+                            decoration: TextDecoration.underline,
                           ),
                         ),
                       ),
@@ -576,6 +563,7 @@ class _FooterState extends State<Footer> {
                             fontSize: 12,
                             color: blackColor,
                             fontWeight: FontWeight.bold,
+                            decoration: TextDecoration.underline,
                           ),
                         ),
                       ),

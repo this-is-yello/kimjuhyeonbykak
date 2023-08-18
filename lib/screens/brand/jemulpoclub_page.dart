@@ -147,7 +147,7 @@ class JemulpoClubMain extends StatelessWidget {
                       'New JemulpoClub',
                       style: TextStyle(
                         fontSize: h1FontSize(context),
-                        fontFamily: 'Classic',
+                        fontFamily: 'NotoSerif',
                         fontWeight: FontWeight.bold,
                         color: whiteColor,
                       ),
@@ -376,7 +376,7 @@ class _JemulpoClubStudioState extends State<JemulpoClubStudio> {
                   'Interior',
                   style: TextStyle(
                     fontSize: h2FontSize(context),
-                    fontFamily: 'Classic',
+                    fontFamily: 'NotoSerif',
                     fontWeight: FontWeight.bold,
                     color: blackColor,
                   ),
@@ -424,7 +424,7 @@ class JemulpoClubFilming extends StatelessWidget {
               'Filming',
               style: TextStyle(
                 fontSize: h2FontSize(context),
-                fontFamily: 'Classic',
+                fontFamily: 'NotoSerif',
                 fontWeight: FontWeight.bold,
                 color: blackColor,
               ),
@@ -529,7 +529,7 @@ class JemulpoClubLocation extends StatelessWidget {
               'Location',
               style: TextStyle(
                 fontSize: h2FontSize(context),
-                fontFamily: 'Classic',
+                fontFamily: 'NotoSerif',
                 fontWeight: FontWeight.bold,
                 color: blackColor,
               ),

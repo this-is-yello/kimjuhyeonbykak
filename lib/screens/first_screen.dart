@@ -221,7 +221,7 @@ class _CarouselScreenState extends State<CarouselScreen> {
                               mainTitles[index],
                               style: TextStyle(
                                 fontSize: h1FontSize(context),
-                                fontFamily: 'Classic',
+                                fontFamily: 'NotoSerif',
                                 fontWeight: FontWeight.bold,
                                 color: whiteColor,
                               ),
@@ -265,7 +265,7 @@ class _CarouselScreenState extends State<CarouselScreen> {
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
                                     fontSize: h4FontSize(context),
-                                    fontFamily: 'Classic',
+                                    fontFamily: 'NotoSerif',
                                     color: whiteColor,
                                   ),
                                 ),
@@ -521,7 +521,7 @@ class _BykakStoryState extends State<BykakStory> {
                       'By 覺 Story',
                       style: TextStyle(
                         fontSize: h2FontSize(context),
-                        fontFamily: 'Classic',
+                        fontFamily: 'NotoSerif',
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -554,7 +554,7 @@ class _BykakStoryState extends State<BykakStory> {
               child: Text(
                 '자세히보기',
                 style: TextStyle(
-                  fontSize: h4FontSize(context),
+                  fontSize: h5FontSize(context),
                   decoration: TextDecoration.underline,
                   color: blackColor,
                 ),
@@ -758,7 +758,7 @@ class _TailorShopScreenState extends State<TailorShopScreen> {
                   'k!mjuhyeon by 覺',
                   style: TextStyle(
                     fontSize: h2FontSize(context),
-                    fontFamily: 'Classic',
+                    fontFamily: 'NotoSerif',
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -787,7 +787,7 @@ class _TailorShopScreenState extends State<TailorShopScreen> {
                     child: Text(
                       '자세히보기',
                       style: TextStyle(
-                        fontSize: h4FontSize(context),
+                        fontSize: h5FontSize(context),
                         decoration: TextDecoration.underline,
                         color: blackColor,
                       ),
@@ -935,7 +935,7 @@ class _TailorAcademyScreenState extends State<TailorAcademyScreen> {
                   'by 覺 Tailor Academy',
                   style: TextStyle(
                     fontSize: h2FontSize(context),
-                    fontFamily: 'Classic',
+                    fontFamily: 'NotoSerif',
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -964,7 +964,7 @@ class _TailorAcademyScreenState extends State<TailorAcademyScreen> {
                     child: Text(
                       '자세히보기',
                       style: TextStyle(
-                        fontSize: h4FontSize(context),
+                        fontSize: h5FontSize(context),
                         decoration: TextDecoration.underline,
                         color: blackColor,
                       ),
@@ -1049,7 +1049,7 @@ class _NewJemulpoClubScreenState extends State<NewJemulpoClubScreen> {
                     'New JemulpoClub',
                     style: TextStyle(
                       fontSize: h2FontSize(context),
-                      fontFamily: 'Classic',
+                      fontFamily: 'NotoSerif',
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -1078,7 +1078,7 @@ class _NewJemulpoClubScreenState extends State<NewJemulpoClubScreen> {
                       child: Text(
                         '자세히보기',
                         style: TextStyle(
-                          fontSize: h4FontSize(context),
+                          fontSize: h5FontSize(context),
                           decoration: TextDecoration.underline,
                           color: blackColor,
                         ),
@@ -1134,7 +1134,8 @@ class _MainCommentState extends State<MainComment> {
               textAlign: TextAlign.center,
               '바이각을 시작으로 옷에 대해\n보고, 배우고, 깨닫길 바라며..',
               style: TextStyle(
-                fontFamily: 'Classic',
+                fontFamily: 'NotoSerif',
+                fontWeight: FontWeight.bold,
                 fontSize: h3FontSize(context),
                 color: blackColor,
               ),

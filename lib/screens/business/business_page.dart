@@ -649,7 +649,7 @@ class _SupportersAmbassadorState extends State<SupportersAmbassador> {
                       child: InkWell(
                         onTap: () async {
                           final url = Uri.parse(
-                            'https://xn--2i0b31d0uch0z.com/shop/partner/login.php',
+                            'http://xn--2i0b31d0uch0z.com/shop/partner/login.php',
                           );
                           if (await canLaunchUrl(url)) {
                             launchUrl(
@@ -734,25 +734,12 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
           'inquiry': _inputInquiry.text,
           'aState': '답변 대기중',
         });
-        return showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-            content: Text('문의가 등록되었습니다.'),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: Text(
-                  '확인',
-                  style: TextStyle(
-                    color: blackColor,
-                  ),
-                ),
-              )
-            ],
+        return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Center(
+            child: Text('문의가 등록되었습니다.'),
           ),
-        );
+          backgroundColor: bykakColor,
+        ));
       } catch (e) {
         print(e);
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
