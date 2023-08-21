@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:kimjuhyeonbykak/style.dart';
 
@@ -192,69 +194,80 @@ class _StoryContentState extends State<StoryContent> {
   Widget build(BuildContext context) {
     return Center(
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Padding(
-            padding: EdgeInsets.only(top: 40, bottom: 40),
-            child: Container(
-              width: 360,
-              padding: EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: blackColor.withOpacity(0.7),
-                borderRadius: BorderRadius.circular(100),
-              ),
+          SizedBox(
+            width: widgetSize(context),
+            child: Padding(
+              padding: EdgeInsets.only(top: 40, bottom: 40),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  ElevatedButton(
-                    style: elevatedBtnTheme,
-                    onPressed: () {
-                      setState(() {
-                        storyNum = 0;
-                      });
-                    },
-                    child: Text(
-                      'Ceo Message',
-                      style: TextStyle(
-                        fontSize: storyNum == 0 ? 14 : 13,
-                        fontWeight:
-                            storyNum == 0 ? FontWeight.bold : FontWeight.normal,
-                        color: whiteColor,
-                      ),
+                  Container(
+                    width: 360,
+                    padding: EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: blackColor.withOpacity(0.7),
+                      borderRadius: BorderRadius.circular(100),
                     ),
-                  ),
-                  ElevatedButton(
-                    style: elevatedBtnTheme,
-                    onPressed: () {
-                      setState(() {
-                        storyNum = 1;
-                      });
-                    },
-                    child: Text(
-                      '연혁',
-                      style: TextStyle(
-                        fontSize: storyNum == 1 ? 14 : 13,
-                        fontWeight:
-                            storyNum == 1 ? FontWeight.bold : FontWeight.normal,
-                        color: whiteColor,
-                      ),
-                    ),
-                  ),
-                  ElevatedButton(
-                    style: elevatedBtnTheme,
-                    onPressed: () {
-                      setState(() {
-                        storyNum = 2;
-                      });
-                    },
-                    child: Text(
-                      'CI·BI',
-                      style: TextStyle(
-                        fontSize: storyNum == 2 ? 14 : 13,
-                        fontWeight:
-                            storyNum == 2 ? FontWeight.bold : FontWeight.normal,
-                        color: whiteColor,
-                      ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        ElevatedButton(
+                          style: elevatedBtnTheme,
+                          onPressed: () {
+                            setState(() {
+                              storyNum = 0;
+                            });
+                          },
+                          child: Text(
+                            'Ceo Message',
+                            style: TextStyle(
+                              fontSize: storyNum == 0 ? 14 : 13,
+                              fontWeight: storyNum == 0
+                                  ? FontWeight.bold
+                                  : FontWeight.normal,
+                              color: whiteColor,
+                            ),
+                          ),
+                        ),
+                        ElevatedButton(
+                          style: elevatedBtnTheme,
+                          onPressed: () {
+                            setState(() {
+                              storyNum = 1;
+                            });
+                          },
+                          child: Text(
+                            '연혁',
+                            style: TextStyle(
+                              fontSize: storyNum == 1 ? 14 : 13,
+                              fontWeight: storyNum == 1
+                                  ? FontWeight.bold
+                                  : FontWeight.normal,
+                              color: whiteColor,
+                            ),
+                          ),
+                        ),
+                        ElevatedButton(
+                          style: elevatedBtnTheme,
+                          onPressed: () {
+                            setState(() {
+                              storyNum = 2;
+                            });
+                          },
+                          child: Text(
+                            'CI·BI',
+                            style: TextStyle(
+                              fontSize: storyNum == 2 ? 14 : 13,
+                              fontWeight: storyNum == 2
+                                  ? FontWeight.bold
+                                  : FontWeight.normal,
+                              color: whiteColor,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
@@ -375,11 +388,97 @@ class HistoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: widgetSize(context),
-      child: Column(
-        children: [
-          fadeImage('assets/images/history.png'),
-        ],
+      width: MediaQuery.of(context).size.width,
+      child: ScrollConfiguration(
+        behavior: ScrollConfiguration.of(context).copyWith(
+          dragDevices: {
+            PointerDeviceKind.mouse,
+            PointerDeviceKind.touch,
+            PointerDeviceKind.trackpad,
+          },
+        ),
+        child: Column(
+          children: [
+            Text(
+              'History',
+              style: TextStyle(
+                fontFamily: 'NotoSerif',
+                fontWeight: FontWeight.bold,
+                fontSize: h2FontSize(context),
+                color: blackColor,
+              ),
+            ),
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: 320,
+              padding: EdgeInsets.symmetric(horizontal: 40),
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: [
+                  SizedBox(
+                    height: 320,
+                    child: ImageFade(
+                      image: AssetImage(
+                        'assets/images/history_1.png',
+                      ),
+                      fit: BoxFit.fitHeight,
+                      duration: const Duration(milliseconds: 900),
+                      syncDuration: const Duration(milliseconds: 150),
+                      placeholder: Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: Center(
+                          child: CircularProgressIndicator(
+                            color: blackColor,
+                          ),
+                        ),
+                      ),
+                      errorBuilder: (context, error) => Container(
+                        color: const Color(0xFFFFFFFF),
+                        alignment: Alignment.center,
+                        child: const Icon(
+                          Icons.warning,
+                          color: Color(0xFF1E1E1E),
+                          size: 60.0,
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    // width: widgetSize(context),
+                    height: 320,
+                    // child: fadeImage('assets/images/history_2.png'),
+                    child: ImageFade(
+                      image: AssetImage(
+                        'assets/images/history_2.png',
+                      ),
+                      fit: BoxFit.fitHeight,
+                      duration: const Duration(milliseconds: 900),
+                      syncDuration: const Duration(milliseconds: 150),
+                      placeholder: Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: Center(
+                          child: CircularProgressIndicator(
+                            color: blackColor,
+                          ),
+                        ),
+                      ),
+                      errorBuilder: (context, error) => Container(
+                        color: const Color(0xFFFFFFFF),
+                        alignment: Alignment.center,
+                        child: const Icon(
+                          Icons.warning,
+                          color: Color(0xFF1E1E1E),
+                          size: 60.0,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            // fadeImage('assets/images/history.png'),
+          ],
+        ),
       ),
     );
   }

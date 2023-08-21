@@ -96,12 +96,12 @@ class _TailorShopPageState extends State<TailorShopPage> {
                   ),
                   child: Service(),
                 ),
-                // Padding(
-                //   padding: EdgeInsets.only(
-                //     top: MediaQuery.of(context).size.width < 800 ? 120 : 160,
-                //   ),
-                //   child: TailorShopLocation(),
-                // ),
+                Padding(
+                  padding: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.width < 800 ? 120 : 160,
+                  ),
+                  child: TailorShopLocation(),
+                ),
                 Padding(
                   padding: EdgeInsets.only(
                     top: MediaQuery.of(context).size.width < 800 ? 120 : 160,
@@ -225,224 +225,6 @@ class Shops extends StatefulWidget {
 class _ShopsState extends State<Shops> {
   late VideoPlayerController _videoController;
 
-  jemulpoShop() {
-    return Column(
-      children: [
-        // SizedBox(
-        //   child: Stack(
-        //     alignment: Alignment.bottomCenter,
-        //     children: [
-        //       fadeImage('assets/images/shop_jemulpo.png'),
-        //       Padding(
-        //         padding: const EdgeInsets.only(bottom: 40),
-        //         child: Center(
-        //           child: Column(
-        //             children: [
-        //               Text(
-        //                 '제물포 본점',
-        //                 style: TextStyle(
-        //                   fontSize: 24,
-        //                   color: whiteColor,
-        //                 ),
-        //               ),
-        //             ],
-        //           ),
-        //         ),
-        //       ),
-        //     ],
-        //   ),
-        // ),
-        Container(
-          padding: EdgeInsets.all(16),
-          color: whiteColor,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 8, bottom: 20),
-                child: Container(
-                  width: double.infinity,
-                  height: c1BoxSize(context) + 40,
-                  color: blackColor,
-                ),
-              ),
-              SizedBox(
-                child: Text(
-                  '김주현바이각 제물포 본점',
-                  style: TextStyle(
-                    fontSize: h3FontSize(context),
-                    color: blackColor,
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                child: SizedBox(
-                  child: Text(
-                    '인천시 미추홀구 석정로 200 1층',
-                    style: TextStyle(
-                      fontSize: h5FontSize(context),
-                      color: blackColor,
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                child: Text(
-                  '제물포 본점은 마스터테일러와 재단팀들이 상주해 있으며,\n지하에 작업하는 아뜰리에가 존재하고 있습니다.',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: h6FontSize(context),
-                    color: blackColor,
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 20),
-                child: InkWell(
-                  onTap: () async {
-                    final url = Uri.parse(
-                      'https://map.naver.com/v5/entry/place/36410973?lng=126.6574860&lat=37.4676341&placePath=%2Fbooking%3FbookingRedirectUrl=https:%2F%2Fm.booking.naver.com%2Fbooking%2F6%2Fbizes%2F151182%26entry=plt&c=15,0,0,0,dh',
-                    );
-                    if (await canLaunchUrl(url)) {
-                      launchUrl(
-                        url,
-                        mode: LaunchMode.externalApplication,
-                      );
-                    }
-                  },
-                  child: Container(
-                    padding: EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      color: blackColor,
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Center(
-                      child: Text(
-                        '예약하기',
-                        style: TextStyle(
-                          fontSize: h5FontSize(context),
-                          color: whiteColor,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              )
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-
-  songdoShop() {
-    return Column(
-      children: [
-        // SizedBox(
-        //   child: Stack(
-        //     alignment: Alignment.bottomCenter,
-        //     children: [
-        //       fadeImage('assets/images/shop_songdo.png'),
-        //       Padding(
-        //         padding: const EdgeInsets.only(bottom: 40),
-        //         child: Center(
-        //           child: Text(
-        //             '인천 송도점',
-        //             style: TextStyle(
-        //               fontSize: 24,
-        //               color: whiteColor,
-        //             ),
-        //           ),
-        //         ),
-        //       ),
-        //     ],
-        //   ),
-        // ),
-        Container(
-          padding: EdgeInsets.all(16),
-          color: whiteColor,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 8, bottom: 20),
-                child: Container(
-                  width: double.infinity,
-                  height: c1BoxSize(context) + 40,
-                  color: blackColor,
-                ),
-              ),
-              SizedBox(
-                child: Text(
-                  '김주현바이각 송도점',
-                  style: TextStyle(
-                    fontSize: h3FontSize(context),
-                    color: blackColor,
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                child: SizedBox(
-                  child: Text(
-                    '인천시 연수구 송도동 20-22 푸르지오월드마크 1단지',
-                    style: TextStyle(
-                      fontSize: h5FontSize(context),
-                      color: blackColor,
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                child: Text(
-                  '인천송도점은 스타일링 서비스와 화려하고 트렌디한\n김주현바이각만의 색을 입힌 퍼포먼스 스토어입니다.',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: h6FontSize(context),
-                    color: blackColor,
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 20),
-                child: InkWell(
-                  onTap: () async {
-                    final url = Uri.parse(
-                      'https://map.naver.com/v5/entry/place/36936148?lng=126.6515575&lat=37.3983890&placePath=%2Fbooking%3FbookingRedirectUrl=https:%2F%2Fm.booking.naver.com%2Fbooking%2F13%2Fbizes%2F210516%26entry=plt&c=15,0,0,0,dh',
-                    );
-                    if (await canLaunchUrl(url)) {
-                      launchUrl(
-                        url,
-                        mode: LaunchMode.externalApplication,
-                      );
-                    }
-                  },
-                  child: Container(
-                    padding: EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      color: blackColor,
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Center(
-                      child: Text(
-                        '예약하기',
-                        style: TextStyle(
-                          fontSize: h5FontSize(context),
-                          color: whiteColor,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              )
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-
   @override
   void initState() {
     super.initState();
@@ -536,31 +318,6 @@ class _ShopsState extends State<Shops> {
                   ),
                 ),
               ],
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 60),
-            child: SizedBox(
-              width: widgetSize(context),
-              child: MediaQuery.of(context).size.width < 800
-                  ? Column(
-                      children: [
-                        jemulpoShop(),
-                        songdoShop(),
-                      ],
-                    )
-                  : Row(
-                      children: [
-                        Expanded(
-                          flex: 1,
-                          child: jemulpoShop(),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: songdoShop(),
-                        ),
-                      ],
-                    ),
             ),
           ),
         ],
@@ -1349,124 +1106,122 @@ class Service extends StatelessWidget {
 }
 
 // ---------- TailorShop_Location -----------------------------------------------------------------------------------------------------
-// class TailorShopLocation extends StatelessWidget {
-//   const TailorShopLocation({super.key});
+class TailorShopLocation extends StatelessWidget {
+  const TailorShopLocation({super.key});
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Padding(
-//       padding: EdgeInsets.only(
-//         left: 20,
-//         right: 20,
-//       ),
-//       child: SizedBox(
-//         width: widgetSize(context),
-//         child: Column(
-//           children: [
-//             Text(
-//               'Location',
-//               style: TextStyle(
-//                 fontSize: h2FontSize(context),
-//                 fontFamily: 'NotoSerif',
-//                 fontWeight: FontWeight.bold,
-//                 color: blackColor,
-//               ),
-//             ),
-//             Padding(
-//               padding: EdgeInsets.only(
-//                 top: 40,
-//               ),
-//               child: Column(
-//                 children: [
-//                   Container(
-//                     width: widgetSize(context),
-//                     height: c1BoxSize(context) + 200,
-//                     color: blackColor,
-//                   ),
-//                   SizedBox(
-//                     width: widgetSize(context),
-//                     child: Row(
-//                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                       children: [
-//                         Padding(
-//                           padding: const EdgeInsets.only(top: 20),
-//                           child: Column(
-//                             crossAxisAlignment: CrossAxisAlignment.start,
-//                             children: [
-//                               Text(
-//                                 '김주현바이각 제물포 본점',
-//                                 style: TextStyle(
-//                                   fontSize: h3FontSize(context) - 2,
-//                                   color: blackColor,
-//                                 ),
-//                               ),
-//                               Text(
-//                                 '인천광역시 미추홀구 석정로200 1층',
-//                                 style: TextStyle(
-//                                   fontSize: h5FontSize(context),
-//                                   color: blackColor,
-//                                 ),
-//                               ),
-//                             ],
-//                           ),
-//                         ),
-//                         Row(
-//                           children: [
-//                             InkWell(
-//                               onTap: () async {
-//                                 final url = Uri.parse(
-//                                   'https://map.naver.com/v5/entry/place/1943136667?c=16,0,0,0,dh',
-//                                 );
-//                                 if (await canLaunchUrl(url)) {
-//                                   launchUrl(
-//                                     url,
-//                                     mode: LaunchMode.externalApplication,
-//                                   );
-//                                 }
-//                               },
-//                               child: Icon(
-//                                 Icons.map_outlined,
-//                                 size: 32,
-//                                 color: blackColor,
-//                               ),
-//                             ),
-//                             Padding(
-//                               padding: const EdgeInsets.only(left: 20),
-//                               child: InkWell(
-//                                 onTap: () {
-//                                   Clipboard.setData(
-//                                     ClipboardData(
-//                                       text: '인천 미추홀구 석정로 200',
-//                                     ),
-//                                   );
-//                                   ScaffoldMessenger.of(context).showSnackBar(
-//                                     SnackBar(
-//                                       content: Center(
-//                                         child: Text('주소가 복사되었습니다.'),
-//                                       ),
-//                                       backgroundColor: bykakColor,
-//                                       duration: Duration(seconds: 2),
-//                                     ),
-//                                   );
-//                                 },
-//                                 child: Icon(
-//                                   Icons.copy,
-//                                   size: 32,
-//                                   color: blackColor,
-//                                 ),
-//                               ),
-//                             ),
-//                           ],
-//                         )
-//                       ],
-//                     ),
-//                   )
-//                 ],
-//               ),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(
+        left: 20,
+        right: 20,
+      ),
+      child: SizedBox(
+        width: widgetSize(context),
+        child: Column(
+          children: [
+            Text(
+              'Location',
+              style: TextStyle(
+                fontSize: h2FontSize(context),
+                fontFamily: 'NotoSerif',
+                fontWeight: FontWeight.bold,
+                color: blackColor,
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(
+                top: 40,
+              ),
+              child: Column(
+                children: [
+                  SizedBox(
+                    width: widgetSize(context),
+                    child: fadeImage(
+                        'assets/images/locations/tailor_shop_map.png'),
+                  ),
+                  Container(
+                    width: widgetSize(context),
+                    padding: const EdgeInsets.all(8),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              '김주현바이각 제물포 본점',
+                              style: TextStyle(
+                                fontSize: h3FontSize(context) - 2,
+                                color: blackColor,
+                              ),
+                            ),
+                            Text(
+                              '인천광역시 미추홀구 석정로200 1층',
+                              style: TextStyle(
+                                fontSize: h5FontSize(context),
+                                color: blackColor,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            InkWell(
+                              onTap: () async {
+                                final url = Uri.parse(
+                                  'https://map.naver.com/v5/entry/place/36410973?c=16,0,0,0,dh',
+                                );
+                                if (await canLaunchUrl(url)) {
+                                  launchUrl(
+                                    url,
+                                    mode: LaunchMode.externalApplication,
+                                  );
+                                }
+                              },
+                              child: Icon(
+                                Icons.map_outlined,
+                                size: h2FontSize(context),
+                                color: blackColor,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 20),
+                              child: InkWell(
+                                onTap: () {
+                                  Clipboard.setData(
+                                    ClipboardData(
+                                      text: '인천 미추홀구 석정로 200',
+                                    ),
+                                  );
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Center(
+                                        child: Text('주소가 복사되었습니다.'),
+                                      ),
+                                      backgroundColor: bykakColor,
+                                      duration: Duration(seconds: 2),
+                                    ),
+                                  );
+                                },
+                                child: Icon(
+                                  Icons.copy,
+                                  size: h2FontSize(context),
+                                  color: blackColor,
+                                ),
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

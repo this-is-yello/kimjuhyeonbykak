@@ -542,35 +542,33 @@ class JemulpoClubLocation extends StatelessWidget {
                 children: [
                   Container(
                     width: widgetSize(context),
-                    height: c1BoxSize(context) + 200,
-                    color: blackColor,
+                    child: fadeImage(
+                        'assets/images/locations/new_jemulpoclub_map.png'),
                   ),
-                  SizedBox(
+                  Container(
                     width: widgetSize(context),
+                    padding: const EdgeInsets.all(8),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top: 20),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                '신제물포구락부',
-                                style: TextStyle(
-                                  fontSize: h3FontSize(context),
-                                  color: blackColor,
-                                ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              '신제물포구락부',
+                              style: TextStyle(
+                                fontSize: h3FontSize(context),
+                                color: blackColor,
                               ),
-                              Text(
-                                '인천광역시 미추홀구 석정로200 지하1층',
-                                style: TextStyle(
-                                  fontSize: h5FontSize(context),
-                                  color: blackColor,
-                                ),
+                            ),
+                            Text(
+                              '인천광역시 미추홀구 석정로200 지하1층',
+                              style: TextStyle(
+                                fontSize: h5FontSize(context),
+                                color: blackColor,
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                         Row(
                           children: [
@@ -588,7 +586,7 @@ class JemulpoClubLocation extends StatelessWidget {
                               },
                               child: Icon(
                                 Icons.map_outlined,
-                                size: 32,
+                                size: h2FontSize(context),
                                 color: blackColor,
                               ),
                             ),
@@ -598,7 +596,7 @@ class JemulpoClubLocation extends StatelessWidget {
                                 onTap: () {
                                   Clipboard.setData(
                                     ClipboardData(
-                                      text: '인천 미추홀구 석정로 200 지하1층',
+                                      text: '인천 미추홀구 석정로 200',
                                     ),
                                   );
                                   ScaffoldMessenger.of(context).showSnackBar(
@@ -613,7 +611,7 @@ class JemulpoClubLocation extends StatelessWidget {
                                 },
                                 child: Icon(
                                   Icons.copy,
-                                  size: 32,
+                                  size: h2FontSize(context),
                                   color: blackColor,
                                 ),
                               ),

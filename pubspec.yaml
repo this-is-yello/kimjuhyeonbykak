@@ -86,6 +86,7 @@ flutter:
     - assets/images/
     - assets/images/background/
     - assets/images/logos/
+    - assets/images/locations/
     - assets/images/sponsorShip/
     - assets/images/fabrics/
     - assets/images/makingProcess/

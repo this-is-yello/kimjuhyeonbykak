@@ -603,37 +603,35 @@ class AcademyLocation extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  Container(
-                    width: widgetSize(context),
-                    height: c1BoxSize(context) + 200,
-                    color: blackColor,
-                  ),
                   SizedBox(
                     width: widgetSize(context),
+                    child: fadeImage(
+                        'assets/images/locations/tailor_academy_map.png'),
+                  ),
+                  Container(
+                    width: widgetSize(context),
+                    padding: const EdgeInsets.all(8),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top: 20),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                '바이각 테일러아카데미',
-                                style: TextStyle(
-                                  fontSize: h3FontSize(context) - 2,
-                                  color: blackColor,
-                                ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              '바이각 테일러아카데미',
+                              style: TextStyle(
+                                fontSize: h3FontSize(context) - 2,
+                                color: blackColor,
                               ),
-                              Text(
-                                '인천광역시 미추홀구 석정로200 3층',
-                                style: TextStyle(
-                                  fontSize: h5FontSize(context),
-                                  color: blackColor,
-                                ),
+                            ),
+                            Text(
+                              '인천광역시 미추홀구 석정로200 3층',
+                              style: TextStyle(
+                                fontSize: h5FontSize(context),
+                                color: blackColor,
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                         Row(
                           children: [
@@ -651,7 +649,7 @@ class AcademyLocation extends StatelessWidget {
                               },
                               child: Icon(
                                 Icons.map_outlined,
-                                size: 32,
+                                size: h2FontSize(context),
                                 color: blackColor,
                               ),
                             ),
@@ -661,7 +659,7 @@ class AcademyLocation extends StatelessWidget {
                                 onTap: () {
                                   Clipboard.setData(
                                     ClipboardData(
-                                      text: '인천 미추홀구 석정로 200 3층',
+                                      text: '인천 미추홀구 석정로 200',
                                     ),
                                   );
                                   ScaffoldMessenger.of(context).showSnackBar(
@@ -676,7 +674,7 @@ class AcademyLocation extends StatelessWidget {
                                 },
                                 child: Icon(
                                   Icons.copy,
-                                  size: 32,
+                                  size: h2FontSize(context),
                                   color: blackColor,
                                 ),
                               ),
