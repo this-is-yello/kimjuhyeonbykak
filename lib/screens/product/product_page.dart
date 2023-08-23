@@ -210,55 +210,52 @@ class _ProductsGridState extends State<ProductsGrid> {
       if (productsDocs[8]['thumbnail'] != null) {
         return Padding(
           padding: EdgeInsets.fromLTRB(20, 40, 20, 0),
-          child: SizedBox(
-            width: MediaQuery.of(context).size.width,
-            child: Center(
-              child: SizedBox(
-                width: widgetSize(context),
-                child: GridView.builder(
-                  itemCount: productsDocsLength.hashCode,
-                  shrinkWrap: true,
-                  controller: ScrollController(),
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: MediaQuery.of(context).size.width < 800
-                        ? 2
-                        : MediaQuery.of(context).size.width < 1240
-                            ? 3
-                            : 4,
-                    childAspectRatio: 1 / 1.2,
-                    mainAxisSpacing: 10,
-                    crossAxisSpacing: 10,
-                  ),
-                  itemBuilder: (context, index) {
-                    return SizedBox(
-                      child: ImageFade(
-                        image: NetworkImage(
-                          productsDocs[index]['thumbnail'],
-                        ),
-                        fit: BoxFit.cover,
-                        duration: const Duration(milliseconds: 900),
-                        syncDuration: const Duration(milliseconds: 150),
-                        placeholder: Padding(
-                          padding: const EdgeInsets.all(20),
-                          child: Center(
-                            child: CircularProgressIndicator(
-                              color: blackColor,
-                            ),
-                          ),
-                        ),
-                        errorBuilder: (context, error) => Container(
-                          color: const Color(0xFFFFFFFF),
-                          alignment: Alignment.center,
-                          child: const Icon(
-                            Icons.warning,
-                            color: Color(0xFF1E1E1E),
-                            size: 60.0,
+          child: Center(
+            child: SizedBox(
+              width: widgetSize(context),
+              child: GridView.builder(
+                itemCount: productsDocsLength.hashCode,
+                shrinkWrap: true,
+                controller: ScrollController(),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: MediaQuery.of(context).size.width < 800
+                      ? 2
+                      : MediaQuery.of(context).size.width < 1240
+                          ? 3
+                          : 4,
+                  childAspectRatio: 1 / 1.2,
+                  mainAxisSpacing: 10,
+                  crossAxisSpacing: 10,
+                ),
+                itemBuilder: (context, index) {
+                  return SizedBox(
+                    child: ImageFade(
+                      image: NetworkImage(
+                        productsDocs[index]['thumbnail'],
+                      ),
+                      fit: BoxFit.cover,
+                      duration: const Duration(milliseconds: 900),
+                      syncDuration: const Duration(milliseconds: 150),
+                      placeholder: Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: Center(
+                          child: CircularProgressIndicator(
+                            color: blackColor,
                           ),
                         ),
                       ),
-                    );
-                  },
-                ),
+                      errorBuilder: (context, error) => Container(
+                        color: const Color(0xFFFFFFFF),
+                        alignment: Alignment.center,
+                        child: const Icon(
+                          Icons.warning,
+                          color: Color(0xFF1E1E1E),
+                          size: 60.0,
+                        ),
+                      ),
+                    ),
+                  );
+                },
               ),
             ),
           ),

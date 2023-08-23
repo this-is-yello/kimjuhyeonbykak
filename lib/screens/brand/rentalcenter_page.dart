@@ -343,6 +343,7 @@ class RentalProduct extends StatelessWidget {
                   // 사진이 추가될 때 마다 숫자 바꿔야 함?
                   itemCount: 22,
                   shrinkWrap: true,
+                  controller: ScrollController(),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: MediaQuery.of(context).size.width < 800
                         ? 2
@@ -401,8 +402,21 @@ class RentalCenterLocation extends StatelessWidget {
                 children: [
                   SizedBox(
                     width: widgetSize(context),
-                    child: fadeImage(
-                        'assets/images/locations/rental_center_map.png'),
+                    child: InkWell(
+                      onTap: () async {
+                        final url = Uri.parse(
+                          'https://map.naver.com/v5/entry/place/1943136667?c=16,0,0,0,dh',
+                        );
+                        if (await canLaunchUrl(url)) {
+                          launchUrl(
+                            url,
+                            mode: LaunchMode.externalApplication,
+                          );
+                        }
+                      },
+                      child: fadeImage(
+                          'assets/images/locations/rental_center_map.png'),
+                    ),
                   ),
                   Container(
                     padding: const EdgeInsets.all(8),
@@ -443,10 +457,21 @@ class RentalCenterLocation extends StatelessWidget {
                                   );
                                 }
                               },
-                              child: Icon(
-                                Icons.map_outlined,
-                                size: h2FontSize(context),
-                                color: blackColor,
+                              child: Column(
+                                children: [
+                                  Icon(
+                                    Icons.map_outlined,
+                                    size: h2FontSize(context),
+                                    color: blackColor,
+                                  ),
+                                  Text(
+                                    '지도보기',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: blackColor,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                             Padding(
@@ -468,10 +493,21 @@ class RentalCenterLocation extends StatelessWidget {
                                     ),
                                   );
                                 },
-                                child: Icon(
-                                  Icons.copy,
-                                  size: h2FontSize(context),
-                                  color: blackColor,
+                                child: Column(
+                                  children: [
+                                    Icon(
+                                      Icons.copy,
+                                      size: h2FontSize(context),
+                                      color: blackColor,
+                                    ),
+                                    Text(
+                                      '주소복사',
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        color: blackColor,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),

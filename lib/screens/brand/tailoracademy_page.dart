@@ -605,8 +605,21 @@ class AcademyLocation extends StatelessWidget {
                 children: [
                   SizedBox(
                     width: widgetSize(context),
-                    child: fadeImage(
-                        'assets/images/locations/tailor_academy_map.png'),
+                    child: InkWell(
+                      onTap: () async {
+                        final url = Uri.parse(
+                          'https://map.naver.com/v5/entry/place/1869541062?lng=126.6574898&lat=37.4676329&placePath=%2Fhome%3Fentry=plt&c=15,0,0,0,dh',
+                        );
+                        if (await canLaunchUrl(url)) {
+                          launchUrl(
+                            url,
+                            mode: LaunchMode.externalApplication,
+                          );
+                        }
+                      },
+                      child: fadeImage(
+                          'assets/images/locations/tailor_academy_map.png'),
+                    ),
                   ),
                   Container(
                     width: widgetSize(context),
@@ -647,10 +660,21 @@ class AcademyLocation extends StatelessWidget {
                                   );
                                 }
                               },
-                              child: Icon(
-                                Icons.map_outlined,
-                                size: h2FontSize(context),
-                                color: blackColor,
+                              child: Column(
+                                children: [
+                                  Icon(
+                                    Icons.map_outlined,
+                                    size: h2FontSize(context),
+                                    color: blackColor,
+                                  ),
+                                  Text(
+                                    '지도보기',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: blackColor,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                             Padding(
@@ -672,10 +696,21 @@ class AcademyLocation extends StatelessWidget {
                                     ),
                                   );
                                 },
-                                child: Icon(
-                                  Icons.copy,
-                                  size: h2FontSize(context),
-                                  color: blackColor,
+                                child: Column(
+                                  children: [
+                                    Icon(
+                                      Icons.copy,
+                                      size: h2FontSize(context),
+                                      color: blackColor,
+                                    ),
+                                    Text(
+                                      '주소복사',
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        color: blackColor,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),

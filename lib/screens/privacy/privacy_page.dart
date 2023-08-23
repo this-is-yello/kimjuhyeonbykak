@@ -201,7 +201,7 @@ class PrivacyContent extends StatelessWidget {
                     width: widgetSize(context),
                     padding: EdgeInsets.only(top: 20),
                     child: SelectableText(
-                      '개인정보 자동수집 장치의 설치ㆍ운영 및 그 거부에 관한 사항회사는 귀하의 정보를 수시로 저장하고 찾아내는 ‘쿠키(cookie)’ 등을 운용합니다.\n쿠키란 oo의 웹사이트를 운영하는데 이용되는 서버가 귀하의 브라우저에 보내는 아주 작은 텍스트 파일로서 귀하의 컴퓨터 하드디스크에 저장됩니다.',
+                      '개인정보 자동수집 장치의 설치ㆍ운영 및 그 거부에 관한 사항회사는 귀하의 정보를 수시로 저장하고 찾아내는 ‘쿠키(cookie)’ 등을 운용합니다.\n쿠키란 웹사이트를 운영하는데 이용되는 서버가 귀하의 브라우저에 보내는 아주 작은 텍스트 파일로서 귀하의 컴퓨터 하드디스크에 저장됩니다.',
                       style: TextStyle(
                         fontSize: h5FontSize(context),
                         color: blackColor,

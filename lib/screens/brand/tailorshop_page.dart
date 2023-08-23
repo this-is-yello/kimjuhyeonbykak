@@ -1,7 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:kimjuhyeonbykak/screens/loading.dart';
 import 'package:kimjuhyeonbykak/style.dart';
 import 'package:kimjuhyeonbykak/navigation.dart';
 
@@ -308,7 +307,7 @@ class _ShopsState extends State<Shops> {
                   child: SizedBox(
                     width: widgetSize(context),
                     child: Text(
-                      '단추 하나, 깃 하나로도 고객을 감동시키는 수트를 만들기 위해 40년 이상의 경력을 가진 7명의 장인을 직접 모셨습니다. 김주현바이각은 인천에서 유일하게 매장 내 수제 공방을 운영하며 비스포크 맞춤 수트의 정석을 구현하고 있습니다.',
+                      '단추 하나, 깃 하나로도 고객을 감동시키는 수트를 만들기 위해 40년 이상의 경력을 가진 7명의 장인을 직접 모셨습니다.\n김주현바이각은 인천에서 유일하게 매장 내 수제 공방을 운영하며 비스포크 맞춤 수트의 정석을 구현하고 있습니다.',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: h5FontSize(context),
@@ -340,14 +339,14 @@ class _LabelState extends State<Label> {
     '온전히 장인정신에 입각한 수 만번의 손 바느질',
     '김주현바이각의 헤리티지 브랜드 Black Label은 효율성을 배제한\n오직 맞춤슈트의 품질만을 생각하는 브랜드로서 특별한 고객만을 위한 매달 30벌의 수트만을 지어드리고 있습니다\n온전히 손 바느질만으로 완성되는 Black Label은 국내 및 세계의 다양하고 우수한 원단과 양질의 부자재들을 사용하고 있습니다.\n\n김주현바이각 Black Label의 주 고객들은 자신을 사랑하고, 자신감 넘치며 성공적인 삶을 사는 남성분들입니다.',
     '"시대 흐름을 초월한\n변치않는 클래식"',
-    '수트는 시대를 초월해 남성을 가장 잘 표현할 수 있는 의복입니다.\n아들에게도 물려줄 수 있는 맞춤수트를 지어드리는 것이 우리의 변치않는 수트철학입니다.',
+    '수트는 시대를 초월해 남성을 가장 잘 표현할 수 있는 의복입니다.\n아들에게도 물려줄 수 있는 맞춤수트를 지어드리는 것\n그것이 우리의 변치않는 수트철학입니다.',
   ];
   List whiteLabelTexts = [
     '트렌디하고 스타일쉬한\n김주현바이각 White label',
     '보다 간편히, 보다 트렌디한 수트',
     '김주현바이각의 매스티지 브랜드 White label은 고유의 비스포크 방식은 유지, 트렌디하고 컴포터블한 세퍼레잇 컬렉션을 전개합니다.\n스웨이드, 레더, 니트웨어 등 다양한 제품군을 선보이며 공정과정을 간략화 함으로써 부담없이 즐기실 수 있는 브랜드입니다.\n\n김주현바이각 White label은 여타 공장에서 제작되어진 브랜드 수트와 격이 다른 품위와 편안함을 느껴보실 수 있습니다.',
     '"Suit In Wity"',
-    '각박한 빌딩 숲, 똑같은 비즈니스 수트, 그 안에서 우리의 위트를 찾습니다.\n“입어서 즐거운 옷”  이것이 바로 White label의 철학입니다. Wity는 Wit와 City의 합성어입니다.',
+    '각박한 빌딩 숲, 똑같은 비즈니스 수트, 그 안에서 우리의 위트를 찾습니다.\n“입어서 즐거운 옷”  이것이 바로 White label의 철학입니다.\nWity는 Wit와 City의 합성어입니다.',
   ];
 
   @override
@@ -1072,30 +1071,28 @@ class Service extends StatelessWidget {
               ),
               child: SizedBox(
                 width: widgetSize(context),
-                child: MediaQuery.of(context).size.width < 800
-                    ? Column(
-                        children: [
-                          servicePic(context),
-                          Padding(
-                            padding: EdgeInsets.only(top: 40),
-                            child: serviceText(context),
-                          ),
-                        ],
-                      )
-                    : Row(
-                        children: [
-                          Flexible(
-                            fit: FlexFit.tight,
-                            child: servicePic(context),
-                          ),
-                          Flexible(
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 40),
-                              child: serviceText(context),
-                            ),
-                          ),
-                        ],
-                      ),
+                child: Wrap(
+                  direction: Axis.horizontal,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  runAlignment: WrapAlignment.spaceBetween,
+                  alignment: WrapAlignment.start,
+                  spacing: 20,
+                  runSpacing: 20,
+                  children: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width < 800
+                          ? widgetSize(context)
+                          : (widgetSize(context) / 2) - 10,
+                      child: servicePic(context),
+                    ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width < 800
+                          ? widgetSize(context)
+                          : (widgetSize(context) / 2) - 10,
+                      child: serviceText(context),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
@@ -1137,8 +1134,21 @@ class TailorShopLocation extends StatelessWidget {
                 children: [
                   SizedBox(
                     width: widgetSize(context),
-                    child: fadeImage(
-                        'assets/images/locations/tailor_shop_map.png'),
+                    child: InkWell(
+                      onTap: () async {
+                        final url = Uri.parse(
+                          'https://map.naver.com/v5/entry/place/36410973?c=16,0,0,0,dh',
+                        );
+                        if (await canLaunchUrl(url)) {
+                          launchUrl(
+                            url,
+                            mode: LaunchMode.externalApplication,
+                          );
+                        }
+                      },
+                      child: fadeImage(
+                          'assets/images/locations/tailor_shop_map.png'),
+                    ),
                   ),
                   Container(
                     width: widgetSize(context),
@@ -1179,10 +1189,21 @@ class TailorShopLocation extends StatelessWidget {
                                   );
                                 }
                               },
-                              child: Icon(
-                                Icons.map_outlined,
-                                size: h2FontSize(context),
-                                color: blackColor,
+                              child: Column(
+                                children: [
+                                  Icon(
+                                    Icons.map_outlined,
+                                    size: h2FontSize(context),
+                                    color: blackColor,
+                                  ),
+                                  Text(
+                                    '지도보기',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: blackColor,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                             Padding(
@@ -1204,10 +1225,21 @@ class TailorShopLocation extends StatelessWidget {
                                     ),
                                   );
                                 },
-                                child: Icon(
-                                  Icons.copy,
-                                  size: h2FontSize(context),
-                                  color: blackColor,
+                                child: Column(
+                                  children: [
+                                    Icon(
+                                      Icons.copy,
+                                      size: h2FontSize(context),
+                                      color: blackColor,
+                                    ),
+                                    Text(
+                                      '주소복사',
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        color: blackColor,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),

@@ -2011,7 +2011,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
                       runAlignment: WrapAlignment.center,
                       alignment: WrapAlignment.spaceEvenly,
                       children: [
-                        Container(
+                        SizedBox(
                           height: 40,
                           child: TextButton(
                             onPressed: () {
