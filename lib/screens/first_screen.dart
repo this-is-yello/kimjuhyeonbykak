@@ -523,6 +523,7 @@ class _BykakStoryState extends State<BykakStory> {
                         fontSize: h2FontSize(context),
                         fontFamily: 'NotoSerif',
                         fontWeight: FontWeight.bold,
+                        color: blackColor,
                       ),
                     ),
                     Padding(
@@ -533,6 +534,7 @@ class _BykakStoryState extends State<BykakStory> {
                         '2014년 김주현바이각은 인천의 고급 수제양복을 알리기 위해,\n남성들을 위한 올바른 스타일링과 문화적 놀이터를 만들고자 설립되었습니다.',
                         style: TextStyle(
                           fontSize: h5FontSize(context) + 2,
+                          color: blackColor,
                         ),
                       ),
                     ),
@@ -578,6 +580,7 @@ countingText(context) {
             '총 ',
             style: TextStyle(
               fontSize: h3FontSize(context),
+              color: blackColor,
             ),
           ),
           SizedBox(
@@ -590,6 +593,7 @@ countingText(context) {
               style: TextStyle(
                 fontSize: h2FontSize(context),
                 fontWeight: FontWeight.bold,
+                color: blackColor,
               ),
             ),
           ),
@@ -597,6 +601,7 @@ countingText(context) {
             '벌 제작',
             style: TextStyle(
               fontSize: h3FontSize(context),
+              color: blackColor,
             ),
           ),
         ],
@@ -624,6 +629,7 @@ countingText(context) {
                 style: TextStyle(
                   fontSize: h2FontSize(context),
                   fontWeight: FontWeight.bold,
+                  color: blackColor,
                 ),
               ),
             ),
@@ -631,6 +637,7 @@ countingText(context) {
               '번의 바느질',
               style: TextStyle(
                 fontSize: h3FontSize(context),
+                color: blackColor,
               ),
             ),
           ],
@@ -642,6 +649,7 @@ countingText(context) {
             '총 ',
             style: TextStyle(
               fontSize: h3FontSize(context),
+              color: blackColor,
             ),
           ),
           SizedBox(
@@ -654,6 +662,7 @@ countingText(context) {
               style: TextStyle(
                 fontSize: h2FontSize(context),
                 fontWeight: FontWeight.bold,
+                color: blackColor,
               ),
             ),
           ),
@@ -661,6 +670,7 @@ countingText(context) {
             '의 제작시간',
             style: TextStyle(
               fontSize: h3FontSize(context),
+              color: blackColor,
             ),
           ),
         ],
@@ -760,6 +770,7 @@ class _TailorShopScreenState extends State<TailorShopScreen> {
                     fontSize: h2FontSize(context),
                     fontFamily: 'NotoSerif',
                     fontWeight: FontWeight.bold,
+                    color: blackColor,
                   ),
                 ),
                 Padding(
@@ -771,6 +782,7 @@ class _TailorShopScreenState extends State<TailorShopScreen> {
                     '인천에서 유일하게 매장 내 수제 공방을 운영하며\n비스포크 맞춤 수트의 정석을 구현하고 있습니다.',
                     style: TextStyle(
                       fontSize: h5FontSize(context) + 2,
+                      color: blackColor,
                     ),
                     textAlign: TextAlign.center,
                   ),
@@ -836,6 +848,7 @@ doWhat(context) {
         '맞춤정장을 배워 무엇을 할 수 있을까?',
         style: TextStyle(
           fontSize: h4FontSize(context) - 2,
+          color: blackColor,
         ),
       ),
       Row(
@@ -845,6 +858,7 @@ doWhat(context) {
             '"나는 테일러링을 배워서 ',
             style: TextStyle(
               fontSize: h4FontSize(context) - 2,
+              color: blackColor,
             ),
           ),
           Container(
@@ -866,6 +880,7 @@ doWhat(context) {
                   textStyle: TextStyle(
                     fontSize: h4FontSize(context),
                     fontWeight: FontWeight.bold,
+                    color: blackColor,
                   ),
                 ),
                 RotateAnimatedText(
@@ -873,6 +888,7 @@ doWhat(context) {
                   textStyle: TextStyle(
                     fontSize: h4FontSize(context),
                     fontWeight: FontWeight.bold,
+                    color: blackColor,
                   ),
                 ),
                 RotateAnimatedText(
@@ -880,6 +896,7 @@ doWhat(context) {
                   textStyle: TextStyle(
                     fontSize: h4FontSize(context),
                     fontWeight: FontWeight.bold,
+                    color: blackColor,
                   ),
                 ),
               ],
@@ -889,6 +906,7 @@ doWhat(context) {
             ' 을 하고싶다"',
             style: TextStyle(
               fontSize: h4FontSize(context) - 2,
+              color: blackColor,
             ),
           ),
         ],
@@ -937,6 +955,7 @@ class _TailorAcademyScreenState extends State<TailorAcademyScreen> {
                     fontSize: h2FontSize(context),
                     fontFamily: 'NotoSerif',
                     fontWeight: FontWeight.bold,
+                    color: blackColor,
                   ),
                 ),
                 Padding(
@@ -948,6 +967,7 @@ class _TailorAcademyScreenState extends State<TailorAcademyScreen> {
                     '바이각 테일러아카데미는 장인들의 맞춤양복 기술이\n후대에도 이어나갈 수 있도록, 후학양성을 위해 설립되었습니다.',
                     style: TextStyle(
                       fontSize: h5FontSize(context) + 2,
+                      color: blackColor,
                     ),
                     textAlign: TextAlign.center,
                   ),
@@ -1051,6 +1071,7 @@ class _NewJemulpoClubScreenState extends State<NewJemulpoClubScreen> {
                       fontSize: h2FontSize(context),
                       fontFamily: 'NotoSerif',
                       fontWeight: FontWeight.bold,
+                      color: blackColor,
                     ),
                   ),
                   Padding(
@@ -1062,6 +1083,7 @@ class _NewJemulpoClubScreenState extends State<NewJemulpoClubScreen> {
                       '개화기의 역사를 담고있는 동인천의 제물포구락부의 역사를\n계승하고자 하여 설립되었습니다.',
                       style: TextStyle(
                         fontSize: h5FontSize(context) + 2,
+                        color: blackColor,
                       ),
                       textAlign: TextAlign.center,
                     ),

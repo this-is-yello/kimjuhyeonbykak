@@ -167,7 +167,7 @@ class JemulpoClubMain extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      '신제물포구락부 관련멘트 삽입',
+                      '사교클럽의 의미를 담은 명칭 구락부, 바이각의 다양한 문화공간',
                       style: TextStyle(
                         fontSize: h5FontSize(context),
                         color: whiteColor,
@@ -540,7 +540,7 @@ class JemulpoClubLocation extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  Container(
+                  SizedBox(
                     width: widgetSize(context),
                     child: fadeImage(
                         'assets/images/locations/new_jemulpoclub_map.png'),

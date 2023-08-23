@@ -468,7 +468,7 @@ class _SupportersAmbassadorState extends State<SupportersAmbassador> {
       children: [
         Padding(
           padding: EdgeInsets.only(
-            top: 40,
+            top: 56,
           ),
           child: SizedBox(
             width: widgetSize(context),
@@ -482,15 +482,15 @@ class _SupportersAmbassadorState extends State<SupportersAmbassador> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: Text(
-                    '엠버서더 관련 화면들은 데시그너로 넘어가는데.. 엠버서더 소개말을 뭐라고 정해야될지 생각해야합니다.',
-                    style: TextStyle(
-                      fontSize: h5FontSize(context),
-                    ),
-                  ),
-                ),
+                // Padding(
+                //   padding: const EdgeInsets.only(top: 20),
+                //   child: Text(
+                //     '엠버서더 관련 화면들은 데시그너로 넘어가는데.. 엠버서더 소개말을 뭐라고 정해야될지 생각해야합니다.',
+                //     style: TextStyle(
+                //       fontSize: h5FontSize(context),
+                //     ),
+                //   ),
+                // ),
               ],
             ),
           ),

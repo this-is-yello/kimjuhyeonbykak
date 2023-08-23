@@ -222,6 +222,7 @@ void main() async {
       GetMaterialApp.router(
         title: 'kimjuhyeon by 覺',
         debugShowCheckedModeBanner: false,
+        color: blackColor,
         theme: ThemeData(
           fontFamily: 'Pretendard',
           primaryColor: blackColor,
@@ -243,6 +244,7 @@ void main() async {
       GetMaterialApp(
         title: 'kimjuhyeon by 覺',
         debugShowCheckedModeBanner: false,
+        color: blackColor,
         theme: ThemeData(
           fontFamily: 'Pretendard',
           primaryColor: blackColor,
