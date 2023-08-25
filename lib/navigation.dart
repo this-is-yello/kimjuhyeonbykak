@@ -394,6 +394,29 @@ class _MainAppBarState extends State<MainAppBar> {
                                 ),
                               )
                             : Container(),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 16),
+                          child: InkWell(
+                            child: Icon(
+                              Icons.sunny,
+                              color: whiteColor,
+                              size: 20,
+                            ),
+                            onTap: () {
+                              // if (darkState == false) {
+                              //   setState(() {
+                              //     darkState = true;
+                              //   });
+                              //   print(darkState);
+                              // } else {
+                              //   setState(() {
+                              //     darkState = false;
+                              //   });
+                              //   print(darkState);
+                              // }
+                            },
+                          ),
+                        ),
                       ],
                     )
                   ],
@@ -484,7 +507,7 @@ class _FooterState extends State<Footer> {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
       decoration: BoxDecoration(
         border: Border(
           top: BorderSide(
@@ -501,32 +524,13 @@ class _FooterState extends State<Footer> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              InkWell(
-                onTap: () {
-                  Get.rootDelegate.toNamed(Routes.MAIN);
-                },
-                child: SizedBox(
-                  width: c5BoxSize(context) + 10,
-                  height: c5BoxSize(context) + 10,
-                  // color: blackColor,
-                  child: Image.asset(
-                    'assets/images/logos/bykakLogo_w.png',
-                    fit: BoxFit.fitWidth,
-                  ),
-                ),
-              ),
-              // Container(
-              //   width: 100,
-              //   height: 100,
-              // ),
               Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
                     children: [
-                      TextButton(
-                        style: elevatedBtnTheme,
-                        onPressed: () async {
+                      InkWell(
+                        onTap: () async {
                           final url = Uri.parse(
                             'https://www.instagram.com/kimjuhyeon_by_kak/',
                           );
@@ -547,32 +551,33 @@ class _FooterState extends State<Footer> {
                           ),
                         ),
                       ),
-                      TextButton(
-                        style: elevatedBtnTheme,
-                        onPressed: () async {
-                          final url = Uri.parse(
-                            'https://blog.naver.com/kimjuhyeon_',
-                          );
-                          if (await canLaunchUrl(url)) {
-                            launchUrl(
-                              url,
-                              mode: LaunchMode.externalApplication,
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        child: InkWell(
+                          onTap: () async {
+                            final url = Uri.parse(
+                              'https://blog.naver.com/kimjuhyeon_',
                             );
-                          }
-                        },
-                        child: Text(
-                          'Blog',
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: blackColor,
-                            fontWeight: FontWeight.bold,
-                            decoration: TextDecoration.underline,
+                            if (await canLaunchUrl(url)) {
+                              launchUrl(
+                                url,
+                                mode: LaunchMode.externalApplication,
+                              );
+                            }
+                          },
+                          child: Text(
+                            'Blog',
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: blackColor,
+                              fontWeight: FontWeight.bold,
+                              decoration: TextDecoration.underline,
+                            ),
                           ),
                         ),
                       ),
-                      TextButton(
-                        style: elevatedBtnTheme,
-                        onPressed: () async {
+                      InkWell(
+                        onTap: () async {
                           final url = Uri.parse(
                             'https://www.youtube.com/channel/UChLYML6MnztkeOYdtdAQqaw',
                           );
@@ -597,9 +602,8 @@ class _FooterState extends State<Footer> {
                   ),
                   Row(
                     children: [
-                      TextButton(
-                        style: elevatedBtnTheme,
-                        onPressed: () {
+                      InkWell(
+                        onTap: () {
                           Get.rootDelegate.toNamed(Routes.PRIVACY);
                         },
                         child: Text(
@@ -611,23 +615,25 @@ class _FooterState extends State<Footer> {
                           ),
                         ),
                       ),
-                      TextButton(
-                        style: elevatedBtnTheme,
-                        onPressed: () {
-                          Get.rootDelegate.toNamed(Routes.TERMS);
-                        },
-                        child: Text(
-                          '이용약관',
-                          style: TextStyle(
-                            fontSize: 10,
-                            color: blackColor,
-                            fontWeight: FontWeight.bold,
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 12, vertical: 8),
+                        child: InkWell(
+                          onTap: () {
+                            Get.rootDelegate.toNamed(Routes.TERMS);
+                          },
+                          child: Text(
+                            '이용약관',
+                            style: TextStyle(
+                              fontSize: 10,
+                              color: blackColor,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ),
-                      TextButton(
-                        style: elevatedBtnTheme,
-                        onPressed: () {
+                      InkWell(
+                        onTap: () {
                           Get.rootDelegate.toNamed(Routes.NOEMAIL);
                         },
                         child: Text(
@@ -641,18 +647,28 @@ class _FooterState extends State<Footer> {
                       ),
                     ],
                   ),
-                  TextButton(
-                    style: elevatedBtnTheme,
-                    onPressed: () {},
-                    child: Text(
-                      '2023 DESIGNER ALL RIGHT RESERVED',
-                      style: TextStyle(
-                        fontSize: 10,
-                        color: blackColor,
-                      ),
+                  Text(
+                    '2023 DESIGNER ALL RIGHT RESERVED',
+                    style: TextStyle(
+                      fontSize: 10,
+                      color: blackColor,
                     ),
                   ),
                 ],
+              ),
+              InkWell(
+                onTap: () {
+                  Get.rootDelegate.toNamed(Routes.MAIN);
+                },
+                child: SizedBox(
+                  width: c5BoxSize(context) + 10,
+                  height: c5BoxSize(context) + 10,
+                  // color: blackColor,
+                  child: Image.asset(
+                    'assets/images/logos/bykakLogo_w.png',
+                    fit: BoxFit.fitWidth,
+                  ),
+                ),
               ),
             ],
           ),
