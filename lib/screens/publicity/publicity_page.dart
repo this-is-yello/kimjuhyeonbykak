@@ -82,7 +82,7 @@ class _PublicityPageState extends State<PublicityPage> {
               child: FloatingActionButton(
                 child: Icon(
                   Icons.keyboard_arrow_up_rounded,
-                  color: whiteColor,
+                  color: Color(0xFFFFFFFF),
                   size: 30,
                 ),
                 backgroundColor: bykakColor,
@@ -210,7 +210,7 @@ class _PublicityContentState extends State<PublicityContent> {
                             fontWeight: publicityNum == 0
                                 ? FontWeight.bold
                                 : FontWeight.normal,
-                            color: whiteColor,
+                            color: Color(0xFF1E1E1E),
                           ),
                         ),
                       ),
@@ -228,7 +228,7 @@ class _PublicityContentState extends State<PublicityContent> {
                             fontWeight: publicityNum == 1
                                 ? FontWeight.bold
                                 : FontWeight.normal,
-                            color: whiteColor,
+                            color: Color(0xFF1E1E1E),
                           ),
                         ),
                       ),
@@ -246,7 +246,7 @@ class _PublicityContentState extends State<PublicityContent> {
                             fontWeight: publicityNum == 2
                                 ? FontWeight.bold
                                 : FontWeight.normal,
-                            color: whiteColor,
+                            color: Color(0xFF1E1E1E),
                           ),
                         ),
                       ),

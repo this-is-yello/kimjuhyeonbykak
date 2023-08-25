@@ -213,12 +213,25 @@ class _ModifyAccountPageState extends State<ModifyAccountPage> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 20, bottom: 12),
-                    child: SizedBox(
+                    child: Container(
+                      padding: EdgeInsets.only(left: 8),
                       width: 360,
                       child: Row(
                         children: [
-                          Text('이메일: '),
-                          Text('$currentUserId'),
+                          Text(
+                            '이메일 : ',
+                            style: TextStyle(
+                              fontSize: h4FontSize(context),
+                              color: blackColor,
+                            ),
+                          ),
+                          Text(
+                            '$currentUserId',
+                            style: TextStyle(
+                              fontSize: h4FontSize(context),
+                              color: blackColor,
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -229,46 +242,57 @@ class _ModifyAccountPageState extends State<ModifyAccountPage> {
                       controller: _inputCurrentPassword,
                       keyboardType: TextInputType.visiblePassword,
                       obscureText: true,
+                      style: TextStyle(
+                        fontSize: h4FontSize(context),
+                        color: blackColor,
+                      ),
                       decoration: InputDecoration(
                         hintText: '현재 비밀번호',
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(width: 1),
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(8),
-                            topRight: Radius.circular(8),
+                        hintStyle: TextStyle(
+                          color: blackColor,
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            width: 2,
+                            color: blackColor,
                           ),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             width: 2,
                             color: blackColor,
-                          ),
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(8),
-                            topRight: Radius.circular(8),
                           ),
                         ),
                       ),
                     ),
                   ),
-                  SizedBox(
+                  Container(
+                    padding: EdgeInsets.symmetric(vertical: 8),
                     width: 360,
                     child: TextField(
                       controller: _inputModifyPassword,
                       keyboardType: TextInputType.visiblePassword,
                       obscureText: true,
+                      style: TextStyle(
+                        fontSize: h4FontSize(context),
+                        color: blackColor,
+                      ),
                       decoration: InputDecoration(
                         hintText: '새 비밀번호',
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(width: 1),
-                          borderRadius: BorderRadius.circular(0),
+                        hintStyle: TextStyle(
+                          color: blackColor,
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            width: 2,
+                            color: blackColor,
+                          ),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             width: 2,
                             color: blackColor,
                           ),
-                          borderRadius: BorderRadius.circular(0),
                         ),
                       ),
                     ),
@@ -279,23 +303,25 @@ class _ModifyAccountPageState extends State<ModifyAccountPage> {
                       controller: _inputModifyPasswordCheck,
                       keyboardType: TextInputType.visiblePassword,
                       obscureText: true,
+                      style: TextStyle(
+                        fontSize: h4FontSize(context),
+                        color: blackColor,
+                      ),
                       decoration: InputDecoration(
                         hintText: '새 비밀번호 확인',
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(width: 1),
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(8),
-                            bottomRight: Radius.circular(8),
+                        hintStyle: TextStyle(
+                          color: blackColor,
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            width: 2,
+                            color: blackColor,
                           ),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             width: 2,
                             color: blackColor,
-                          ),
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(8),
-                            bottomRight: Radius.circular(8),
                           ),
                         ),
                       ),
@@ -343,13 +369,19 @@ class _ModifyAccountPageState extends State<ModifyAccountPage> {
                       width: 360,
                       child: TextField(
                         controller: _inputmodifyName,
+                        style: TextStyle(
+                          fontSize: h4FontSize(context),
+                          color: blackColor,
+                        ),
                         decoration: InputDecoration(
                           hintText: '이름',
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide(width: 1),
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(8),
-                              topRight: Radius.circular(8),
+                          hintStyle: TextStyle(
+                            color: blackColor,
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              width: 2,
+                              color: blackColor,
                             ),
                           ),
                           focusedBorder: OutlineInputBorder(
@@ -357,51 +389,65 @@ class _ModifyAccountPageState extends State<ModifyAccountPage> {
                               width: 2,
                               color: blackColor,
                             ),
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(8),
-                              topRight: Radius.circular(8),
-                            ),
                           ),
                         ),
                       ),
                     ),
                   ),
-                  SizedBox(
+                  Container(
+                    padding: EdgeInsets.symmetric(vertical: 8),
                     width: 360,
                     child: TextField(
                       controller: _inputModifyPhone,
+                      style: TextStyle(
+                        fontSize: h4FontSize(context),
+                        color: blackColor,
+                      ),
                       decoration: InputDecoration(
                         hintText: '전화번호',
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(width: 1),
-                          borderRadius: BorderRadius.circular(0),
+                        hintStyle: TextStyle(
+                          color: blackColor,
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            width: 2,
+                            color: blackColor,
+                          ),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             width: 2,
                             color: blackColor,
                           ),
-                          borderRadius: BorderRadius.circular(0),
                         ),
                       ),
                     ),
                   ),
-                  SizedBox(
+                  Container(
+                    padding: EdgeInsets.only(bottom: 8),
                     width: 360,
                     child: TextField(
                       controller: _inputModifyBirth,
+                      style: TextStyle(
+                        fontSize: h4FontSize(context),
+                        color: blackColor,
+                      ),
                       decoration: InputDecoration(
                         hintText: '생년월일',
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(width: 1),
-                          borderRadius: BorderRadius.circular(0),
+                        hintStyle: TextStyle(
+                          color: blackColor,
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            width: 2,
+                            color: blackColor,
+                          ),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             width: 2,
                             color: blackColor,
                           ),
-                          borderRadius: BorderRadius.circular(0),
                         ),
                       ),
                     ),
@@ -410,15 +456,14 @@ class _ModifyAccountPageState extends State<ModifyAccountPage> {
                     width: 360,
                     child: ToggleButtons(
                       isSelected: genderModify,
-                      constraints: BoxConstraints(minWidth: 120, minHeight: 44),
-                      borderWidth: 0,
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(8),
-                        bottomRight: Radius.circular(8),
-                      ),
+                      constraints: BoxConstraints(minWidth: 117, minHeight: 44),
+                      borderWidth: 2,
+                      borderColor: blackColor,
+                      borderRadius: BorderRadius.circular(4),
                       fillColor: blackColor,
                       color: blackColor,
                       selectedColor: whiteColor,
+                      selectedBorderColor: blackColor,
                       onPressed: (index) {
                         toggleSelect(index);
                         setState(() {
@@ -467,7 +512,7 @@ class _ModifyAccountPageState extends State<ModifyAccountPage> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 20, bottom: 80),
+                    padding: const EdgeInsets.only(top: 8, bottom: 80),
                     child: InkWell(
                       onTap: () {
                         Get.rootDelegate.toNamed(Routes.MYPAGE);

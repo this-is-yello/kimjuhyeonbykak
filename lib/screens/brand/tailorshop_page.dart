@@ -121,7 +121,7 @@ class _TailorShopPageState extends State<TailorShopPage> {
               child: FloatingActionButton(
                 child: Icon(
                   Icons.keyboard_arrow_up_rounded,
-                  color: whiteColor,
+                  color: Color(0xFFFFFFFF),
                   size: 30,
                 ),
                 backgroundColor: bykakColor,
@@ -167,7 +167,7 @@ class TailorShopMain extends StatelessWidget {
                         fontSize: h1FontSize(context),
                         fontFamily: 'NotoSerif',
                         fontWeight: FontWeight.bold,
-                        color: whiteColor,
+                        color: Color(0xFFFFFFFF),
                       ),
                     ),
                     Padding(
@@ -180,7 +180,7 @@ class TailorShopMain extends StatelessWidget {
                         style: TextStyle(
                           fontSize: h2FontSize(context),
                           fontWeight: FontWeight.bold,
-                          color: whiteColor,
+                          color: Color(0xFFFFFFFF),
                         ),
                       ),
                     ),
@@ -188,7 +188,7 @@ class TailorShopMain extends StatelessWidget {
                       '전통과 정통을 바느질하다.',
                       style: TextStyle(
                         fontSize: h5FontSize(context),
-                        color: whiteColor,
+                        color: Color(0xFFFFFFFF),
                       ),
                     ),
                   ],
@@ -202,7 +202,7 @@ class TailorShopMain extends StatelessWidget {
               atRestEffect: WidgetRestingEffects.bounce(),
               child: Icon(
                 Icons.keyboard_arrow_down_rounded,
-                color: whiteColor,
+                color: Color(0xFFFFFFFF),
                 size: 72,
               ),
             ),
@@ -389,7 +389,7 @@ class _LabelState extends State<Label> {
                     blackLabelTexts[0],
                     style: TextStyle(
                       fontSize: h3FontSize(context),
-                      color: whiteColor,
+                      color: Color(0xFFFFFFFF),
                     ),
                   ),
                   Padding(
@@ -401,7 +401,7 @@ class _LabelState extends State<Label> {
                       blackLabelTexts[1],
                       style: TextStyle(
                         fontSize: h4FontSize(context),
-                        color: whiteColor,
+                        color: Color(0xFFFFFFFF),
                       ),
                     ),
                   ),
@@ -409,7 +409,7 @@ class _LabelState extends State<Label> {
                     blackLabelTexts[2],
                     style: TextStyle(
                       fontSize: h5FontSize(context),
-                      color: whiteColor,
+                      color: Color(0xFFFFFFFF),
                     ),
                   ),
                 ],
@@ -459,7 +459,7 @@ class _LabelState extends State<Label> {
                     textAlign: TextAlign.end,
                     style: TextStyle(
                       fontSize: h3FontSize(context),
-                      color: whiteColor,
+                      color: Color(0xFFFFFFFF),
                     ),
                   ),
                   Padding(
@@ -472,7 +472,7 @@ class _LabelState extends State<Label> {
                       textAlign: TextAlign.end,
                       style: TextStyle(
                         fontSize: h4FontSize(context),
-                        color: whiteColor,
+                        color: Color(0xFFFFFFFF),
                       ),
                     ),
                   ),
@@ -481,7 +481,7 @@ class _LabelState extends State<Label> {
                     textAlign: TextAlign.end,
                     style: TextStyle(
                       fontSize: h5FontSize(context),
-                      color: whiteColor,
+                      color: Color(0xFFFFFFFF),
                     ),
                   ),
                 ],
@@ -533,7 +533,7 @@ class _LabelState extends State<Label> {
                       decoration: BoxDecoration(
                         border: Border.all(
                           width: 4,
-                          color: blackColor,
+                          color: greyColor,
                         ),
                       ),
                       margin: EdgeInsets.symmetric(horizontal: 12),

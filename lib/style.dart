@@ -3,10 +3,10 @@ import 'package:image_fade/image_fade.dart';
 
 // ---------- Color -----------------------------------------------------------------------------------------------------
 var bykakColor = const Color(0xFF205B48);
-var blackColor = const Color(0xFF1E1E1E);
+var blackColor = const Color(0xFFFFFFFF);
 var greyColor = const Color(0xFF9E9E9E);
 var lightGreyColor = const Color(0xFFD9D9D9);
-var whiteColor = const Color(0xFFFFFFFF);
+var whiteColor = const Color(0xFF1E1E1E);
 
 // ---------- Variable -----------------------------------------------------------------------------------------------------
 int i = 0;
@@ -61,8 +61,8 @@ fadeImage(img) {
 bottomToTop(context, moveTop()) {
   return Container(
     width: double.infinity,
-    height: 64,
-    color: blackColor,
+    height: 56,
+    color: bykakColor,
     child: ElevatedButton(
       style: elevatedBtnTheme,
       onPressed: () {
@@ -73,8 +73,8 @@ bottomToTop(context, moveTop()) {
         child: Text(
           '맨 위로 ↑',
           style: TextStyle(
-            color: whiteColor,
             fontSize: h5FontSize(context),
+            color: Color(0xFFFFFFFF),
           ),
         ),
       ),

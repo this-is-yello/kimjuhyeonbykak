@@ -85,7 +85,7 @@ class _CommunityPageState extends State<CommunityPage> {
               child: FloatingActionButton(
                 child: Icon(
                   Icons.keyboard_arrow_up_rounded,
-                  color: whiteColor,
+                  color: Color(0xFFFFFFFF),
                   size: 30,
                 ),
                 backgroundColor: bykakColor,
@@ -403,6 +403,9 @@ class _InquiryScreenState extends State<InquiryScreen> {
                           decoration: InputDecoration(
                             hintText: '이름을 입력하세요.',
                             border: InputBorder.none,
+                            hintStyle: TextStyle(
+                              color: blackColor,
+                            ),
                           ),
                         ),
                       ),
@@ -456,6 +459,9 @@ class _InquiryScreenState extends State<InquiryScreen> {
                             decoration: InputDecoration(
                               hintText: '전화번호을 입력하세요.',
                               border: InputBorder.none,
+                              hintStyle: TextStyle(
+                                color: blackColor,
+                              ),
                             ),
                           ),
                         ),
@@ -508,6 +514,9 @@ class _InquiryScreenState extends State<InquiryScreen> {
                           decoration: InputDecoration(
                             hintText: '이메일을 입력하세요.',
                             border: InputBorder.none,
+                            hintStyle: TextStyle(
+                              color: blackColor,
+                            ),
                           ),
                         ),
                       ),
@@ -533,6 +542,8 @@ class _InquiryScreenState extends State<InquiryScreen> {
             child: DropdownButton(
               dropdownColor: whiteColor,
               focusColor: whiteColor,
+              iconEnabledColor: blackColor,
+              iconDisabledColor: blackColor,
               isExpanded: true,
               value: _selectedValue,
               underline: SizedBox.shrink(),
@@ -548,6 +559,7 @@ class _InquiryScreenState extends State<InquiryScreen> {
                       value,
                       style: TextStyle(
                         fontSize: h4FontSize(context),
+                        color: blackColor,
                       ),
                     ),
                   );
@@ -560,26 +572,28 @@ class _InquiryScreenState extends State<InquiryScreen> {
               },
             ),
           ),
-          Container(
+          SizedBox(
             width: 800,
             height: c1BoxSize(context) + 200,
             child: TextField(
               controller: _inputInquiry,
-              cursorColor: blackColor,
               maxLines: 18,
               style: TextStyle(
                 fontSize: h4FontSize(context),
                 color: blackColor,
               ),
               decoration: InputDecoration(
+                hintText: '내용을 입력하세요.',
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: blackColor, width: 2),
                 ),
-                hintText: '내용을 입력하세요.',
                 border: OutlineInputBorder(
                   borderSide: BorderSide(
                     color: blackColor,
                   ),
+                ),
+                hintStyle: TextStyle(
+                  color: blackColor,
                 ),
               ),
             ),
@@ -593,6 +607,13 @@ class _InquiryScreenState extends State<InquiryScreen> {
                   Checkbox(
                     activeColor: blackColor,
                     checkColor: whiteColor,
+                    fillColor: MaterialStateProperty.resolveWith<Color>(
+                        (Set<MaterialState> states) {
+                      if (states.contains(MaterialState.disabled)) {
+                        return blackColor.withOpacity(.32);
+                      }
+                      return blackColor;
+                    }),
                     value: _checkPrivacy,
                     onChanged: (bool? value) {
                       if (_checkPrivacy == false) {

@@ -100,7 +100,7 @@ class _RentalCenterPageState extends State<RentalCenterPage> {
               child: FloatingActionButton(
                 child: Icon(
                   Icons.keyboard_arrow_up_rounded,
-                  color: whiteColor,
+                  color: Color(0xFFFFFFFF),
                   size: 30,
                 ),
                 backgroundColor: bykakColor,
@@ -146,7 +146,7 @@ class RentalCenterMain extends StatelessWidget {
                         fontSize: h1FontSize(context),
                         fontFamily: 'NotoSerif',
                         fontWeight: FontWeight.bold,
-                        color: whiteColor,
+                        color: Color(0xFFFFFFFF),
                       ),
                     ),
                     Padding(
@@ -159,7 +159,7 @@ class RentalCenterMain extends StatelessWidget {
                         style: TextStyle(
                           fontSize: h2FontSize(context),
                           fontWeight: FontWeight.bold,
-                          color: whiteColor,
+                          color: Color(0xFFFFFFFF),
                         ),
                       ),
                     ),
@@ -167,7 +167,7 @@ class RentalCenterMain extends StatelessWidget {
                       '그 날을 위한 자신감, 바이각',
                       style: TextStyle(
                         fontSize: h5FontSize(context),
-                        color: whiteColor,
+                        color: Color(0xFFFFFFFF),
                       ),
                     ),
                   ],
@@ -181,7 +181,7 @@ class RentalCenterMain extends StatelessWidget {
               atRestEffect: WidgetRestingEffects.bounce(),
               child: Icon(
                 Icons.keyboard_arrow_down_rounded,
-                color: whiteColor,
+                color: Color(0xFFFFFFFF),
                 size: 72,
               ),
             ),

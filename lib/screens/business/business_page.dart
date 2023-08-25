@@ -84,7 +84,7 @@ class _BusinessPageState extends State<BusinessPage> {
               child: FloatingActionButton(
                 child: Icon(
                   Icons.keyboard_arrow_up_rounded,
-                  color: whiteColor,
+                  color: Color(0xFFFFFFFF),
                   size: 30,
                 ),
                 backgroundColor: bykakColor,
@@ -355,6 +355,7 @@ class SupportersKakIn extends StatelessWidget {
                   style: TextStyle(
                     fontSize: h3FontSize(context),
                     fontWeight: FontWeight.bold,
+                    color: blackColor,
                   ),
                 ),
                 Padding(
@@ -363,6 +364,7 @@ class SupportersKakIn extends StatelessWidget {
                     '수많은 맞춤정장샵 사이에 by 覺을 선택해주시고 믿고 구매해주셔서 진심으로 감사드리며, 그동안 저희를 사랑해주셨던 분들이 우리 브랜드의 근간임을 잊은 적이 없습니다. 그렇기에 그 사랑을 보답하고자, 그리고 더욱 고객님에게 각인되고 친근하게 소통하고자 탄생한 멤버쉽 제도입니다.',
                     style: TextStyle(
                       fontSize: h5FontSize(context),
+                      color: blackColor,
                     ),
                   ),
                 ),
@@ -382,6 +384,7 @@ class SupportersKakIn extends StatelessWidget {
                 style: TextStyle(
                   fontSize: h3FontSize(context),
                   fontWeight: FontWeight.bold,
+                  color: blackColor,
                 ),
               ),
               Padding(
@@ -480,6 +483,7 @@ class _SupportersAmbassadorState extends State<SupportersAmbassador> {
                   style: TextStyle(
                     fontSize: h3FontSize(context),
                     fontWeight: FontWeight.bold,
+                    color: blackColor,
                   ),
                 ),
                 // Padding(
@@ -507,6 +511,7 @@ class _SupportersAmbassadorState extends State<SupportersAmbassador> {
                 style: TextStyle(
                   fontSize: h3FontSize(context),
                   fontWeight: FontWeight.bold,
+                  color: blackColor,
                 ),
               ),
               Padding(
@@ -531,6 +536,7 @@ class _SupportersAmbassadorState extends State<SupportersAmbassador> {
                             style: TextStyle(
                               fontSize: h4FontSize(context),
                               fontWeight: FontWeight.bold,
+                              color: blackColor,
                             ),
                           ),
                           Padding(
@@ -540,6 +546,7 @@ class _SupportersAmbassadorState extends State<SupportersAmbassador> {
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: h5FontSize(context) + 2,
+                                color: blackColor,
                               ),
                             ),
                           ),
@@ -558,6 +565,7 @@ class _SupportersAmbassadorState extends State<SupportersAmbassador> {
                             style: TextStyle(
                               fontSize: h4FontSize(context),
                               fontWeight: FontWeight.bold,
+                              color: blackColor,
                             ),
                           ),
                           Padding(
@@ -567,6 +575,7 @@ class _SupportersAmbassadorState extends State<SupportersAmbassador> {
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: h5FontSize(context) + 2,
+                                color: blackColor,
                               ),
                             ),
                           ),
@@ -585,6 +594,7 @@ class _SupportersAmbassadorState extends State<SupportersAmbassador> {
                             style: TextStyle(
                               fontSize: h4FontSize(context),
                               fontWeight: FontWeight.bold,
+                              color: blackColor,
                             ),
                           ),
                           Padding(
@@ -594,6 +604,7 @@ class _SupportersAmbassadorState extends State<SupportersAmbassador> {
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: h5FontSize(context) + 2,
+                                color: blackColor,
                               ),
                             ),
                           ),
@@ -615,6 +626,7 @@ class _SupportersAmbassadorState extends State<SupportersAmbassador> {
                       style: TextStyle(
                         fontSize: h3FontSize(context),
                         fontWeight: FontWeight.bold,
+                        color: blackColor,
                       ),
                     ),
                     Padding(
@@ -781,6 +793,7 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
                       style: TextStyle(
                         fontSize: h4FontSize(context),
                         fontWeight: FontWeight.bold,
+                        color: blackColor,
                       ),
                     ),
                   ),
@@ -795,6 +808,9 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
                     decoration: InputDecoration(
                       hintText: '예시 : 김주현바이각',
                       border: InputBorder.none,
+                      hintStyle: TextStyle(
+                        color: blackColor,
+                      ),
                     ),
                   ),
                   Container(
@@ -830,6 +846,7 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
                           style: TextStyle(
                             fontSize: h4FontSize(context),
                             fontWeight: FontWeight.bold,
+                            color: blackColor,
                           ),
                         ),
                       ),
@@ -844,6 +861,9 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
                         decoration: InputDecoration(
                           hintText: '예시 : 홍길동 / 대리',
                           border: InputBorder.none,
+                          hintStyle: TextStyle(
+                            color: blackColor,
+                          ),
                         ),
                       ),
                       Container(
@@ -868,6 +888,7 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
                           style: TextStyle(
                             fontSize: h4FontSize(context),
                             fontWeight: FontWeight.bold,
+                            color: blackColor,
                           ),
                         ),
                       ),
@@ -882,6 +903,9 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
                         decoration: InputDecoration(
                           hintText: '예시 : https://www.bykak.com/html/',
                           border: InputBorder.none,
+                          hintStyle: TextStyle(
+                            color: blackColor,
+                          ),
                         ),
                       ),
                       Container(
@@ -919,6 +943,7 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
                           style: TextStyle(
                             fontSize: h4FontSize(context),
                             fontWeight: FontWeight.bold,
+                            color: blackColor,
                           ),
                         ),
                       ),
@@ -933,6 +958,9 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
                         decoration: InputDecoration(
                           hintText: '예시 : designercom@naver.com',
                           border: InputBorder.none,
+                          hintStyle: TextStyle(
+                            color: blackColor,
+                          ),
                         ),
                       ),
                       Container(
@@ -957,6 +985,7 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
                           style: TextStyle(
                             fontSize: h4FontSize(context),
                             fontWeight: FontWeight.bold,
+                            color: blackColor,
                           ),
                         ),
                       ),
@@ -971,6 +1000,9 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
                         decoration: InputDecoration(
                           hintText: '예시 : 010-1234-1234 / 032-5678-5678',
                           border: InputBorder.none,
+                          hintStyle: TextStyle(
+                            color: blackColor,
+                          ),
                         ),
                       ),
                       Container(
@@ -1013,6 +1045,13 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
                   Checkbox(
                     activeColor: blackColor,
                     checkColor: whiteColor,
+                    fillColor: MaterialStateProperty.resolveWith<Color>(
+                        (Set<MaterialState> states) {
+                      if (states.contains(MaterialState.disabled)) {
+                        return blackColor.withOpacity(.32);
+                      }
+                      return blackColor;
+                    }),
                     value: _checkSponsorship,
                     onChanged: (bool? value) {
                       if (_checkCoperation == true || _checkUniform == true) {
@@ -1044,6 +1083,13 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
                   Checkbox(
                     activeColor: blackColor,
                     checkColor: whiteColor,
+                    fillColor: MaterialStateProperty.resolveWith<Color>(
+                        (Set<MaterialState> states) {
+                      if (states.contains(MaterialState.disabled)) {
+                        return blackColor.withOpacity(.32);
+                      }
+                      return blackColor;
+                    }),
                     value: _checkCoperation,
                     onChanged: (bool? value) {
                       if (_checkSponsorship == true || _checkUniform == true) {
@@ -1075,6 +1121,13 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
                   Checkbox(
                     activeColor: blackColor,
                     checkColor: whiteColor,
+                    fillColor: MaterialStateProperty.resolveWith<Color>(
+                        (Set<MaterialState> states) {
+                      if (states.contains(MaterialState.disabled)) {
+                        return blackColor.withOpacity(.32);
+                      }
+                      return blackColor;
+                    }),
                     value: _checkUniform,
                     onChanged: (bool? value) {
                       if (_checkSponsorship == true ||
@@ -1119,6 +1172,9 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
                     color: blackColor,
                   ),
                 ),
+                hintStyle: TextStyle(
+                  color: blackColor,
+                ),
               ),
             ),
           ),
@@ -1131,6 +1187,13 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
                   Checkbox(
                     activeColor: blackColor,
                     checkColor: whiteColor,
+                    fillColor: MaterialStateProperty.resolveWith<Color>(
+                        (Set<MaterialState> states) {
+                      if (states.contains(MaterialState.disabled)) {
+                        return blackColor.withOpacity(.32);
+                      }
+                      return blackColor;
+                    }),
                     value: _checkPrivacy,
                     onChanged: (bool? value) {
                       if (_checkPrivacy == false) {

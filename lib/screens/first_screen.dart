@@ -95,7 +95,7 @@ class _MainPageState extends State<MainPage> {
               child: FloatingActionButton(
                 child: Icon(
                   Icons.keyboard_arrow_up_rounded,
-                  color: whiteColor,
+                  color: Color(0xFFFFFFFF),
                   size: 30,
                 ),
                 backgroundColor: bykakColor,
@@ -223,7 +223,7 @@ class _CarouselScreenState extends State<CarouselScreen> {
                                 fontSize: h1FontSize(context),
                                 fontFamily: 'NotoSerif',
                                 fontWeight: FontWeight.bold,
-                                color: whiteColor,
+                                color: Color(0xFFFFFFFF),
                               ),
                             ),
                             Padding(
@@ -235,7 +235,7 @@ class _CarouselScreenState extends State<CarouselScreen> {
                                 mainSubTitles[index],
                                 style: TextStyle(
                                   fontSize: h5FontSize(context) + 1,
-                                  color: whiteColor,
+                                  color: Color(0xFFFFFFFF),
                                 ),
                               ),
                             ),
@@ -255,7 +255,7 @@ class _CarouselScreenState extends State<CarouselScreen> {
                                 decoration: BoxDecoration(
                                   border: Border(
                                     bottom: BorderSide(
-                                      color: whiteColor,
+                                      color: Color(0xFFFFFFFF),
                                       width: 2,
                                     ),
                                   ),
@@ -266,7 +266,7 @@ class _CarouselScreenState extends State<CarouselScreen> {
                                   style: TextStyle(
                                     fontSize: h4FontSize(context),
                                     fontFamily: 'NotoSerif',
-                                    color: whiteColor,
+                                    color: Color(0xFFFFFFFF),
                                   ),
                                 ),
                               ),
@@ -304,7 +304,7 @@ class _CarouselScreenState extends State<CarouselScreen> {
                               borderRadius: BorderRadius.circular(100),
                               color: picNum == 0
                                   ? greyColor.withAlpha(200)
-                                  : whiteColor,
+                                  : Color(0xFFFFFFFF),
                             ),
                           ),
                         ),
@@ -321,7 +321,7 @@ class _CarouselScreenState extends State<CarouselScreen> {
                               borderRadius: BorderRadius.circular(100),
                               color: picNum == 1
                                   ? greyColor.withAlpha(200)
-                                  : whiteColor,
+                                  : Color(0xFFFFFFFF),
                             ),
                           ),
                         ),
@@ -338,7 +338,7 @@ class _CarouselScreenState extends State<CarouselScreen> {
                               borderRadius: BorderRadius.circular(100),
                               color: picNum == 2
                                   ? greyColor.withAlpha(200)
-                                  : whiteColor,
+                                  : Color(0xFFFFFFFF),
                             ),
                           ),
                         ),
@@ -355,7 +355,7 @@ class _CarouselScreenState extends State<CarouselScreen> {
                               borderRadius: BorderRadius.circular(100),
                               color: picNum == 3
                                   ? greyColor.withAlpha(200)
-                                  : whiteColor,
+                                  : Color(0xFFFFFFFF),
                             ),
                           ),
                         ),
@@ -378,7 +378,7 @@ class _CarouselScreenState extends State<CarouselScreen> {
                             style: TextStyle(
                               fontSize: picNum == 0 ? 16 : 12,
                               fontWeight: picNum == 0 ? FontWeight.bold : null,
-                              color: whiteColor,
+                              color: Color(0xFFFFFFFF),
                             ),
                           ),
                         ),
@@ -393,7 +393,7 @@ class _CarouselScreenState extends State<CarouselScreen> {
                             style: TextStyle(
                               fontSize: picNum == 1 ? 16 : 12,
                               fontWeight: picNum == 1 ? FontWeight.bold : null,
-                              color: whiteColor,
+                              color: Color(0xFFFFFFFF),
                             ),
                           ),
                         ),
@@ -408,7 +408,7 @@ class _CarouselScreenState extends State<CarouselScreen> {
                             style: TextStyle(
                               fontSize: picNum == 2 ? 16 : 12,
                               fontWeight: picNum == 2 ? FontWeight.bold : null,
-                              color: whiteColor,
+                              color: Color(0xFFFFFFFF),
                             ),
                           ),
                         ),
@@ -423,7 +423,7 @@ class _CarouselScreenState extends State<CarouselScreen> {
                             style: TextStyle(
                               fontSize: picNum == 3 ? 16 : 12,
                               fontWeight: picNum == 3 ? FontWeight.bold : null,
-                              color: whiteColor,
+                              color: Color(0xFFFFFFFF),
                             ),
                           ),
                         ),
@@ -436,7 +436,7 @@ class _CarouselScreenState extends State<CarouselScreen> {
                 atRestEffect: WidgetRestingEffects.bounce(),
                 child: Icon(
                   Icons.keyboard_arrow_down_rounded,
-                  color: whiteColor,
+                  color: Color(0xFFFFFFFF),
                   size: 72,
                 ),
               ),
@@ -491,7 +491,7 @@ class _BykakStoryState extends State<BykakStory> {
                       width: c1BoxSize(context),
                       height: c1BoxSize(context),
                       child: Image.asset(
-                        'assets/images/logos/bykakScissorLogo_b.png',
+                        'assets/images/logos/bykakScissorLogo_w.png',
                         fit: BoxFit.fitWidth,
                       ),
                     ),
@@ -617,6 +617,7 @@ countingText(context) {
               '총 ',
               style: TextStyle(
                 fontSize: h3FontSize(context),
+                color: blackColor,
               ),
             ),
             SizedBox(

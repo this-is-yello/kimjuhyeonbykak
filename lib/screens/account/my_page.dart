@@ -94,7 +94,7 @@ class _MyPageState extends State<MyPage> {
                 backgroundColor: bykakColor,
                 child: Icon(
                   Icons.keyboard_arrow_up_rounded,
-                  color: whiteColor,
+                  color: Color(0xFFFFFFFF),
                   size: 30,
                 ),
               ),
@@ -533,7 +533,7 @@ class _UserMyPageState extends State<UserMyPage> {
                               Column(
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.only(top: 8),
+                                    padding: const EdgeInsets.only(top: 20),
                                     child: SizedBox(
                                       width: widgetSize(context),
                                       child: Text(
@@ -541,6 +541,7 @@ class _UserMyPageState extends State<UserMyPage> {
                                         style: TextStyle(
                                           fontSize: h4FontSize(context),
                                           fontWeight: FontWeight.bold,
+                                          color: blackColor,
                                         ),
                                       ),
                                     ),
@@ -572,6 +573,7 @@ class _UserMyPageState extends State<UserMyPage> {
                                                 style: TextStyle(
                                                   fontSize: h4FontSize(context),
                                                   fontWeight: FontWeight.bold,
+                                                  color: blackColor,
                                                 ),
                                               ),
                                               Padding(
@@ -583,6 +585,7 @@ class _UserMyPageState extends State<UserMyPage> {
                                                   style: TextStyle(
                                                     fontSize:
                                                         h5FontSize(context) + 2,
+                                                    color: blackColor,
                                                   ),
                                                 ),
                                               ),
@@ -605,6 +608,7 @@ class _UserMyPageState extends State<UserMyPage> {
                                                 style: TextStyle(
                                                   fontSize: h4FontSize(context),
                                                   fontWeight: FontWeight.bold,
+                                                  color: blackColor,
                                                 ),
                                               ),
                                               Padding(
@@ -616,6 +620,7 @@ class _UserMyPageState extends State<UserMyPage> {
                                                   style: TextStyle(
                                                     fontSize:
                                                         h5FontSize(context) + 2,
+                                                    color: blackColor,
                                                   ),
                                                 ),
                                               ),
@@ -638,6 +643,7 @@ class _UserMyPageState extends State<UserMyPage> {
                                                 style: TextStyle(
                                                   fontSize: h4FontSize(context),
                                                   fontWeight: FontWeight.bold,
+                                                  color: blackColor,
                                                 ),
                                               ),
                                               Padding(
@@ -649,6 +655,7 @@ class _UserMyPageState extends State<UserMyPage> {
                                                   style: TextStyle(
                                                     fontSize:
                                                         h5FontSize(context) + 2,
+                                                    color: blackColor,
                                                   ),
                                                 ),
                                               ),
@@ -671,6 +678,7 @@ class _UserMyPageState extends State<UserMyPage> {
                                           style: TextStyle(
                                             fontSize: h4FontSize(context),
                                             fontWeight: FontWeight.bold,
+                                            color: blackColor,
                                           ),
                                         ),
                                         Padding(
@@ -1698,7 +1706,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        '엠버서더 인정 / 박탈',
+                        '엠버서더 승인 / 박탈',
                         style: TextStyle(color: Colors.red),
                       ),
                     ),

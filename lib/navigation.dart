@@ -216,163 +216,188 @@ class _MainAppBarState extends State<MainAppBar> {
   }
 
   bool navBarHover = false;
+  bool hoverColor = false;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.width < 800 ? 56 : 64,
-          color: blackColor,
-          child: Center(
-            child: SizedBox(
-              width: widgetSize(context),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  ElevatedButton(
-                    style: elevatedBtnTheme,
-                    onPressed: () {
-                      Get.rootDelegate.toNamed(Routes.MAIN);
-                    },
-                    child: Image.asset(
-                      width: MediaQuery.of(context).size.width < 800 ? 56 : 64,
-                      height: MediaQuery.of(context).size.width < 800 ? 56 : 64,
-                      'assets/images/logos/bykakScissorLogo_w.png',
-                      fit: BoxFit.contain,
+        InkWell(
+          onTap: () {},
+          mouseCursor: SystemMouseCursors.basic,
+          onHover: (value) {
+            setState(() {
+              hoverColor = value;
+            });
+          },
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.width < 800 ? 56 : 64,
+            color: hoverColor
+                ? Color(0xFFFFFFFF)
+                : Color(0xFFFFFFFF).withOpacity(0.8),
+            child: Center(
+              child: SizedBox(
+                width: widgetSize(context),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ElevatedButton(
+                      style: elevatedBtnTheme,
+                      onPressed: () {
+                        Get.rootDelegate.toNamed(Routes.MAIN);
+                      },
+                      child: SizedBox(
+                        width: 110,
+                        child: Image.asset(
+                          width:
+                              MediaQuery.of(context).size.width < 800 ? 56 : 64,
+                          height:
+                              MediaQuery.of(context).size.width < 800 ? 56 : 64,
+                          'assets/images/logos/bykakTextLogo_b.png',
+                          fit: BoxFit.fitWidth,
+                        ),
+                      ),
                     ),
-                  ),
-                  MediaQuery.of(context).size.width < 800
-                      ? Container()
-                      : Row(
-                          children: [
-                            ListView.builder(
-                              itemCount: 5,
-                              shrinkWrap: true,
-                              scrollDirection: Axis.horizontal,
-                              itemBuilder: (context, index) {
-                                return InkWell(
-                                  onTap: () {},
-                                  onHover: (value) {
-                                    setState(() {
-                                      navBarHover = value;
-                                      i = index;
-                                    });
-                                  },
-                                  child: Container(
-                                    width: 100,
-                                    child: ElevatedButton(
-                                      style: elevatedBtnTheme,
-                                      onPressed: () {
-                                        setState(() {
-                                          publicityNum = 0;
-                                          communityNum = 0;
-                                          businessNum = 0;
-                                        });
-                                        Get.rootDelegate
-                                            .toNamed(navsMenuLinks[index]);
-                                      },
-                                      child: Text(
-                                        navsMenu[index],
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          color: whiteColor,
+                    MediaQuery.of(context).size.width < 800
+                        ? Container()
+                        : Row(
+                            children: [
+                              ListView.builder(
+                                itemCount: 5,
+                                shrinkWrap: true,
+                                scrollDirection: Axis.horizontal,
+                                itemBuilder: (context, index) {
+                                  return InkWell(
+                                    onTap: () {},
+                                    onHover: (value) {
+                                      setState(() {
+                                        navBarHover = value;
+                                        i = index;
+                                      });
+                                    },
+                                    child: Container(
+                                      width: 100,
+                                      child: ElevatedButton(
+                                        style: elevatedBtnTheme,
+                                        onPressed: () {
+                                          setState(() {
+                                            publicityNum = 0;
+                                            communityNum = 0;
+                                            businessNum = 0;
+                                          });
+                                          Get.rootDelegate
+                                              .toNamed(navsMenuLinks[index]);
+                                        },
+                                        child: Text(
+                                          navsMenu[index],
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                            color: Color(0xFF1E1E1E),
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                );
+                                  );
+                                },
+                              ),
+                            ],
+                          ),
+                    Row(
+                      children: [
+                        ListView(
+                          shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                          children: [
+                            // -------------------------------------------------- 언어변환 --------------------------------------------------
+                            // ElevatedButton(
+                            //   style: elevatedBtnTheme,
+                            //   onHover: (value) {
+                            //     setState(() {
+                            //       hoverColor = value;
+                            //     });
+                            //   }
+                            //   onPressed: () {
+                            //     setState(() {
+                            //       if (langBtn == true) {
+                            //         langBtn = false;
+                            //       } else {
+                            //         langBtn = true;
+                            //       }
+                            //     });
+                            //   },
+                            //   child: Text(
+                            //     langBtn ? KOR : ENG,
+                            //     style: TextStyle(
+                            //       fontSize: 16,
+                            //       color: Color(0xFF1E1E1E),
+                            //     ),
+                            //   ),
+                            // ),
+                            ElevatedButton(
+                              style: elevatedBtnTheme,
+                              onPressed: () {
+                                if (auth.currentUser?.uid != null &&
+                                    inMypage == true) {
+                                  auth.signOut();
+                                  Get.rootDelegate.toNamed(Routes.MAIN);
+                                  Future.delayed(Duration(milliseconds: 700),
+                                      () {
+                                    return ScaffoldMessenger.of(context)
+                                        .showSnackBar(SnackBar(
+                                      content: Center(
+                                        child: Text('로그아웃 되었습니다.'),
+                                      ),
+                                      backgroundColor: bykakColor,
+                                    ));
+                                  });
+                                } else if (auth.currentUser?.uid == null) {
+                                  Get.rootDelegate.toNamed(Routes.LOGIN);
+                                  print(auth.currentUser?.uid);
+                                } else if (auth.currentUser?.uid != null) {
+                                  Get.rootDelegate.toNamed(Routes.MYPAGE);
+                                }
                               },
+                              child: Text(
+                                auth.currentUser?.uid == null
+                                    ? '로그인'
+                                    : inMypage
+                                        ? '로그아웃'
+                                        : '마이페이지',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xFF1E1E1E),
+                                ),
+                              ),
                             ),
                           ],
                         ),
-                  Row(
-                    children: [
-                      ListView(
-                        shrinkWrap: true,
-                        scrollDirection: Axis.horizontal,
-                        children: [
-// -------------------------------------------------- 언어변환 --------------------------------------------------
-                          // ElevatedButton(
-                          //   style: elevatedBtnTheme,
-                          //   onPressed: () {
-                          //     setState(() {
-                          //       if (langBtn == true) {
-                          //         langBtn = false;
-                          //       } else {
-                          //         langBtn = true;
-                          //       }
-                          //     });
-                          //   },
-                          //   child: Text(
-                          //     langBtn ? KOR : ENG,
-                          //     style: TextStyle(
-                          //       fontSize: 16,
-                          //       color: whiteColor,
-                          //     ),
-                          //   ),
-                          // ),
-                          ElevatedButton(
-                            style: elevatedBtnTheme,
-                            onPressed: () {
-                              if (auth.currentUser?.uid != null &&
-                                  inMypage == true) {
-                                auth.signOut();
-                                Get.rootDelegate.toNamed(Routes.MAIN);
-                                Future.delayed(Duration(milliseconds: 700), () {
-                                  return ScaffoldMessenger.of(context)
-                                      .showSnackBar(SnackBar(
-                                    content: Center(
-                                      child: Text('로그아웃 되었습니다.'),
-                                    ),
-                                    backgroundColor: bykakColor,
-                                  ));
-                                });
-                              } else if (auth.currentUser?.uid == null) {
-                                Get.rootDelegate.toNamed(Routes.LOGIN);
-                                print(auth.currentUser?.uid);
-                              } else if (auth.currentUser?.uid != null) {
-                                Get.rootDelegate.toNamed(Routes.MYPAGE);
-                              }
-                            },
-                            child: Text(
-                              auth.currentUser?.uid == null
-                                  ? '로그인'
-                                  : inMypage
-                                      ? '로그아웃'
-                                      : '마이페이지',
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: whiteColor,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      MediaQuery.of(context).size.width < 800
-                          ? Padding(
-                              padding: const EdgeInsets.only(left: 16),
-                              child: InkWell(
-                                onTap: () async {
-                                  setState(() {
-                                    publicityNum = 0;
-                                    communityNum = 0;
-                                    businessNum = 0;
-                                  });
-                                  mobileMenu();
-                                },
-                                child: Icon(
-                                  Icons.menu_rounded,
-                                  size: 32,
-                                  color: whiteColor,
+                        MediaQuery.of(context).size.width < 800
+                            ? Padding(
+                                padding: const EdgeInsets.only(left: 16),
+                                child: InkWell(
+                                  onTap: () async {
+                                    setState(() {
+                                      publicityNum = 0;
+                                      communityNum = 0;
+                                      businessNum = 0;
+                                    });
+                                    mobileMenu();
+                                  },
+                                  child: Icon(
+                                    Icons.menu_rounded,
+                                    size: 32,
+                                    color: whiteColor,
+                                  ),
                                 ),
-                              ),
-                            )
-                          : Container(),
-                    ],
-                  )
-                ],
+                              )
+                            : Container(),
+                      ],
+                    )
+                  ],
+                ),
               ),
             ),
           ),
@@ -385,12 +410,13 @@ class _MainAppBarState extends State<MainAppBar> {
                   onHover: (value) {
                     setState(() {
                       navBarHover = value;
+                      hoverColor = value;
                     });
                   },
                   child: Container(
                     width: MediaQuery.of(context).size.width,
                     height: 80,
-                    color: blackColor,
+                    color: Color(0xFFFFFFFF),
                     child: Center(
                       child: SizedBox(
                         width: widgetSize(context),
@@ -426,7 +452,7 @@ class _MainAppBarState extends State<MainAppBar> {
                                     subMenu[i][index],
                                     style: TextStyle(
                                       fontSize: 16,
-                                      color: whiteColor,
+                                      color: Color(0xFF1E1E1E),
                                     ),
                                   ),
                                 ),
@@ -480,11 +506,11 @@ class _FooterState extends State<Footer> {
                   Get.rootDelegate.toNamed(Routes.MAIN);
                 },
                 child: SizedBox(
-                  width: c4BoxSize(context),
-                  height: c4BoxSize(context),
+                  width: c5BoxSize(context) + 10,
+                  height: c5BoxSize(context) + 10,
                   // color: blackColor,
                   child: Image.asset(
-                    'assets/images/logos/bykakLogo_b.png',
+                    'assets/images/logos/bykakLogo_w.png',
                     fit: BoxFit.fitWidth,
                   ),
                 ),

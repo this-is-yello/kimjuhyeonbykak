@@ -87,7 +87,7 @@ class _StoryPageState extends State<StoryPage> {
               child: FloatingActionButton(
                 child: Icon(
                   Icons.keyboard_arrow_up_rounded,
-                  color: whiteColor,
+                  color: Color(0xFFFFFFFF),
                   size: 30,
                 ),
                 backgroundColor: bykakColor,
@@ -133,7 +133,7 @@ class StoryMain extends StatelessWidget {
                         fontSize: h1FontSize(context),
                         fontFamily: 'NotoSerif',
                         fontWeight: FontWeight.bold,
-                        color: whiteColor,
+                        color: Color(0xFFFFFFFF),
                       ),
                     ),
                     Padding(
@@ -146,7 +146,7 @@ class StoryMain extends StatelessWidget {
                         style: TextStyle(
                           fontSize: h2FontSize(context),
                           fontWeight: FontWeight.bold,
-                          color: whiteColor,
+                          color: Color(0xFFFFFFFF),
                         ),
                       ),
                     ),
@@ -154,7 +154,7 @@ class StoryMain extends StatelessWidget {
                       '바이각을 시작으로 옷에 대해 보고, 배우고, 깨닫길 바라며',
                       style: TextStyle(
                         fontSize: h5FontSize(context),
-                        color: whiteColor,
+                        color: Color(0xFFFFFFFF),
                       ),
                     ),
                   ],
@@ -168,7 +168,7 @@ class StoryMain extends StatelessWidget {
               atRestEffect: WidgetRestingEffects.bounce(),
               child: Icon(
                 Icons.keyboard_arrow_down_rounded,
-                color: whiteColor,
+                color: Color(0xFFFFFFFF),
                 size: 72,
               ),
             ),

@@ -103,7 +103,7 @@ class _JemulpoClubPageState extends State<JemulpoClubPage> {
               child: FloatingActionButton(
                 child: Icon(
                   Icons.keyboard_arrow_up_rounded,
-                  color: whiteColor,
+                  color: Color(0xFFFFFFFF),
                   size: 30,
                 ),
                 backgroundColor: bykakColor,
@@ -149,7 +149,7 @@ class JemulpoClubMain extends StatelessWidget {
                         fontSize: h1FontSize(context),
                         fontFamily: 'NotoSerif',
                         fontWeight: FontWeight.bold,
-                        color: whiteColor,
+                        color: Color(0xFFFFFFFF),
                       ),
                     ),
                     Padding(
@@ -162,7 +162,7 @@ class JemulpoClubMain extends StatelessWidget {
                         style: TextStyle(
                           fontSize: h2FontSize(context),
                           fontWeight: FontWeight.bold,
-                          color: whiteColor,
+                          color: Color(0xFFFFFFFF),
                         ),
                       ),
                     ),
@@ -170,7 +170,7 @@ class JemulpoClubMain extends StatelessWidget {
                       '사교클럽의 의미를 담은 명칭 구락부, 바이각의 다양한 문화공간',
                       style: TextStyle(
                         fontSize: h5FontSize(context),
-                        color: whiteColor,
+                        color: Color(0xFFFFFFFF),
                       ),
                     ),
                   ],
@@ -184,7 +184,7 @@ class JemulpoClubMain extends StatelessWidget {
               atRestEffect: WidgetRestingEffects.bounce(),
               child: Icon(
                 Icons.keyboard_arrow_down_rounded,
-                color: whiteColor,
+                color: Color(0xFFFFFFFF),
                 size: 72,
               ),
             ),

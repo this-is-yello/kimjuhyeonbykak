@@ -114,7 +114,7 @@ class _TailorAcademyPageState extends State<TailorAcademyPage> {
               child: FloatingActionButton(
                 child: Icon(
                   Icons.keyboard_arrow_up_rounded,
-                  color: whiteColor,
+                  color: Color(0xFFFFFFFF),
                   size: 30,
                 ),
                 backgroundColor: bykakColor,
@@ -160,7 +160,7 @@ class TailorAcademyMain extends StatelessWidget {
                         fontSize: h1FontSize(context),
                         fontFamily: 'NotoSerif',
                         fontWeight: FontWeight.bold,
-                        color: whiteColor,
+                        color: Color(0xFFFFFFFF),
                       ),
                     ),
                     Padding(
@@ -173,7 +173,7 @@ class TailorAcademyMain extends StatelessWidget {
                         style: TextStyle(
                           fontSize: h2FontSize(context),
                           fontWeight: FontWeight.bold,
-                          color: whiteColor,
+                          color: Color(0xFFFFFFFF),
                         ),
                       ),
                     ),
@@ -181,7 +181,7 @@ class TailorAcademyMain extends StatelessWidget {
                       '어제보다 나은 작업물을 만드는 것이 이 시대의 장인정신입니다.',
                       style: TextStyle(
                         fontSize: h5FontSize(context),
-                        color: whiteColor,
+                        color: Color(0xFFFFFFFF),
                       ),
                     ),
                   ],
@@ -195,7 +195,7 @@ class TailorAcademyMain extends StatelessWidget {
               atRestEffect: WidgetRestingEffects.bounce(),
               child: Icon(
                 Icons.keyboard_arrow_down_rounded,
-                color: whiteColor,
+                color: Color(0xFFFFFFFF),
                 size: 72,
               ),
             ),
@@ -504,6 +504,7 @@ class WhyLearning extends StatelessWidget {
                         '맞춤정장을 배워 무엇을 할 수 있을까?',
                         style: TextStyle(
                           fontSize: h4FontSize(context) - 2,
+                          color: blackColor,
                         ),
                       ),
                       Row(
@@ -513,6 +514,7 @@ class WhyLearning extends StatelessWidget {
                             '"나는 테일러링을 배워서 ',
                             style: TextStyle(
                               fontSize: h4FontSize(context) - 2,
+                              color: blackColor,
                             ),
                           ),
                           Container(
@@ -536,6 +538,7 @@ class WhyLearning extends StatelessWidget {
                                   textStyle: TextStyle(
                                     fontSize: h4FontSize(context),
                                     fontWeight: FontWeight.bold,
+                                    color: blackColor,
                                   ),
                                 ),
                                 RotateAnimatedText(
@@ -543,6 +546,7 @@ class WhyLearning extends StatelessWidget {
                                   textStyle: TextStyle(
                                     fontSize: h4FontSize(context),
                                     fontWeight: FontWeight.bold,
+                                    color: blackColor,
                                   ),
                                 ),
                                 RotateAnimatedText(
@@ -550,6 +554,7 @@ class WhyLearning extends StatelessWidget {
                                   textStyle: TextStyle(
                                     fontSize: h4FontSize(context),
                                     fontWeight: FontWeight.bold,
+                                    color: blackColor,
                                   ),
                                 ),
                               ],
@@ -559,6 +564,7 @@ class WhyLearning extends StatelessWidget {
                             ' 을 하고싶다"',
                             style: TextStyle(
                               fontSize: h4FontSize(context) - 2,
+                              color: blackColor,
                             ),
                           ),
                         ],

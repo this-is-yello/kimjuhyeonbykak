@@ -56,7 +56,7 @@ class _LogInPageState extends State<LogInPage> {
                 width: 200,
                 color: whiteColor,
                 child: Image.asset(
-                  'assets/images/logos/bykakLogo_b.png',
+                  'assets/images/logos/bykakLogo_w.png',
                   fit: BoxFit.contain,
                 ),
               ),
@@ -71,21 +71,28 @@ class _LogInPageState extends State<LogInPage> {
                       width: 360,
                       child: TextField(
                         controller: _inputId,
+                        style: TextStyle(
+                          color: blackColor,
+                        ),
                         keyboardType: TextInputType.emailAddress,
                         textInputAction: TextInputAction.go,
                         onSubmitted: (value) => logInBtn(),
                         decoration: InputDecoration(
                           hintText: '이메일',
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide(width: 1),
-                            borderRadius: BorderRadius.circular(8),
+                          hintStyle: TextStyle(
+                            color: blackColor,
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              width: 2,
+                              color: blackColor,
+                            ),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                               width: 2,
                               color: blackColor,
                             ),
-                            borderRadius: BorderRadius.circular(8),
                           ),
                         ),
                       ),
@@ -100,18 +107,25 @@ class _LogInPageState extends State<LogInPage> {
                           textInputAction: TextInputAction.go,
                           onSubmitted: (value) => logInBtn(),
                           obscureText: true,
+                          style: TextStyle(
+                            color: blackColor,
+                          ),
                           decoration: InputDecoration(
                             hintText: '비밀번호',
-                            border: OutlineInputBorder(
-                              borderSide: BorderSide(width: 1),
-                              borderRadius: BorderRadius.circular(8),
+                            hintStyle: TextStyle(
+                              color: blackColor,
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                width: 2,
+                                color: blackColor,
+                              ),
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                 width: 2,
                                 color: blackColor,
                               ),
-                              borderRadius: BorderRadius.circular(8),
                             ),
                           ),
                         ),
@@ -127,14 +141,29 @@ class _LogInPageState extends State<LogInPage> {
                             onTap: () {
                               Get.rootDelegate.toNamed(Routes.SIGNUP);
                             },
-                            child: Text('회원가입'),
+                            child: Text(
+                              '회원가입',
+                              style: TextStyle(
+                                color: blackColor,
+                              ),
+                            ),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 8, right: 8),
-                            child: Text('/'),
+                            child: Text(
+                              '/',
+                              style: TextStyle(
+                                color: blackColor,
+                              ),
+                            ),
                           ),
                           InkWell(
-                            child: Text('이메일, 비밀번호 찾기'),
+                            child: Text(
+                              '이메일, 비밀번호 찾기',
+                              style: TextStyle(
+                                color: blackColor,
+                              ),
+                            ),
                             onTap: () {
                               Get.rootDelegate.toNamed(Routes.ACCOUNTINQUIRY);
                             },
