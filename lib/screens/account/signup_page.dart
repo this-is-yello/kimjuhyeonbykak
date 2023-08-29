@@ -62,7 +62,7 @@ class _SignUpPageState extends State<SignUpPage> {
         _inputNewBirth.text.isEmpty ||
         _inputNewPhone.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Center(child: Text('입력되지 않은 정보가 있습니다.')),
+        content: Center(child: Text('입력하지 않은 정보가 있습니다.')),
         backgroundColor: bykakColor,
       ));
     } else {
@@ -132,7 +132,9 @@ class _SignUpPageState extends State<SignUpPage> {
               child: SizedBox(
                 width: 200,
                 child: Image.asset(
-                  'assets/images/logos/bykakTextLogo_b.png',
+                  darkState
+                      ? 'assets/images/logos/bykakTextLogo_w.png'
+                      : 'assets/images/logos/bykakTextLogo_b.png',
                   fit: BoxFit.fitWidth,
                 ),
               ),
@@ -148,11 +150,13 @@ class _SignUpPageState extends State<SignUpPage> {
                       keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
                         hintText: '이메일',
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(width: 1),
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(8),
-                            topRight: Radius.circular(8),
+                        hintStyle: TextStyle(
+                          color: blackColor,
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            width: 2,
+                            color: blackColor,
                           ),
                         ),
                         focusedBorder: OutlineInputBorder(
@@ -160,15 +164,12 @@ class _SignUpPageState extends State<SignUpPage> {
                             width: 2,
                             color: blackColor,
                           ),
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(8),
-                            topRight: Radius.circular(8),
-                          ),
                         ),
                       ),
                     ),
                   ),
-                  SizedBox(
+                  Container(
+                    padding: EdgeInsets.symmetric(vertical: 8),
                     width: 360,
                     child: TextField(
                       controller: _inputNewPassword,
@@ -176,16 +177,20 @@ class _SignUpPageState extends State<SignUpPage> {
                       obscureText: true,
                       decoration: InputDecoration(
                         hintText: '비밀번호',
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(width: 1),
-                          borderRadius: BorderRadius.circular(0),
+                        hintStyle: TextStyle(
+                          color: blackColor,
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            width: 2,
+                            color: blackColor,
+                          ),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             width: 2,
                             color: blackColor,
                           ),
-                          borderRadius: BorderRadius.circular(0),
                         ),
                       ),
                     ),
@@ -198,21 +203,19 @@ class _SignUpPageState extends State<SignUpPage> {
                       obscureText: true,
                       decoration: InputDecoration(
                         hintText: '비밀번호 확인',
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(width: 1),
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(8),
-                            bottomRight: Radius.circular(8),
+                        hintStyle: TextStyle(
+                          color: blackColor,
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            width: 2,
+                            color: blackColor,
                           ),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             width: 2,
                             color: blackColor,
-                          ),
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(8),
-                            bottomRight: Radius.circular(8),
                           ),
                         ),
                       ),
@@ -232,11 +235,13 @@ class _SignUpPageState extends State<SignUpPage> {
                       keyboardType: TextInputType.name,
                       decoration: InputDecoration(
                         hintText: '이름',
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(width: 1),
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(8),
-                            topRight: Radius.circular(8),
+                        hintStyle: TextStyle(
+                          color: blackColor,
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            width: 2,
+                            color: blackColor,
                           ),
                         ),
                         focusedBorder: OutlineInputBorder(
@@ -244,31 +249,32 @@ class _SignUpPageState extends State<SignUpPage> {
                             width: 2,
                             color: blackColor,
                           ),
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(8),
-                            topRight: Radius.circular(8),
-                          ),
                         ),
                       ),
                     ),
                   ),
-                  SizedBox(
+                  Container(
+                    padding: EdgeInsets.symmetric(vertical: 8),
                     width: 360,
                     child: TextField(
                       controller: _inputNewBirth,
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                         hintText: '생년월일 (예시 : 230606)',
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(width: 1),
-                          borderRadius: BorderRadius.circular(0),
+                        hintStyle: TextStyle(
+                          color: blackColor,
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            width: 2,
+                            color: blackColor,
+                          ),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             width: 2,
                             color: blackColor,
                           ),
-                          borderRadius: BorderRadius.circular(0),
                         ),
                       ),
                     ),
@@ -280,21 +286,19 @@ class _SignUpPageState extends State<SignUpPage> {
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                         hintText: '휴대전화',
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(width: 1),
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(8),
-                            bottomRight: Radius.circular(8),
+                        hintStyle: TextStyle(
+                          color: blackColor,
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            width: 2,
+                            color: blackColor,
                           ),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             width: 2,
                             color: blackColor,
-                          ),
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(8),
-                            bottomRight: Radius.circular(8),
                           ),
                         ),
                       ),
@@ -310,7 +314,9 @@ class _SignUpPageState extends State<SignUpPage> {
                 child: ToggleButtons(
                   isSelected: genderSelect,
                   constraints: BoxConstraints(minWidth: 118, minHeight: 40),
-                  borderRadius: BorderRadius.circular(8),
+                  borderRadius: BorderRadius.circular(4),
+                  borderColor: blackColor,
+                  selectedBorderColor: blackColor,
                   fillColor: blackColor,
                   color: blackColor,
                   selectedColor: whiteColor,
@@ -347,6 +353,13 @@ class _SignUpPageState extends State<SignUpPage> {
                     Checkbox(
                       activeColor: blackColor,
                       checkColor: whiteColor,
+                      fillColor: MaterialStateProperty.resolveWith<Color>(
+                          (Set<MaterialState> states) {
+                        if (states.contains(MaterialState.disabled)) {
+                          return blackColor.withOpacity(.32);
+                        }
+                        return blackColor;
+                      }),
                       value: _checkUseTerms,
                       onChanged: (bool? value) {
                         if (_checkUseTerms == false) {
@@ -395,6 +408,13 @@ class _SignUpPageState extends State<SignUpPage> {
                     Checkbox(
                       activeColor: blackColor,
                       checkColor: whiteColor,
+                      fillColor: MaterialStateProperty.resolveWith<Color>(
+                          (Set<MaterialState> states) {
+                        if (states.contains(MaterialState.disabled)) {
+                          return blackColor.withOpacity(.32);
+                        }
+                        return blackColor;
+                      }),
                       value: _checkPrivacy,
                       onChanged: (bool? value) {
                         if (_checkPrivacy == false) {

@@ -720,7 +720,7 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
         _inputInquiryMail.text == '' ||
         _inputInquiry.text == '') {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Center(child: Text('입력되지 않은 정보가 있습니다.')),
+        content: Center(child: Text('입력하지 않은 정보가 있습니다.')),
         backgroundColor: bykakColor,
       ));
     } else {
@@ -1163,17 +1163,21 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
                 color: blackColor,
               ),
               decoration: InputDecoration(
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: blackColor, width: 2),
-                ),
                 hintText: '내용을 입력하세요.',
-                border: OutlineInputBorder(
+                hintStyle: TextStyle(
+                  color: blackColor,
+                ),
+                enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(
+                    width: 2,
                     color: blackColor,
                   ),
                 ),
-                hintStyle: TextStyle(
-                  color: blackColor,
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    width: 2,
+                    color: blackColor,
+                  ),
                 ),
               ),
             ),

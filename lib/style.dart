@@ -3,10 +3,15 @@ import 'package:image_fade/image_fade.dart';
 
 // ---------- Color -----------------------------------------------------------------------------------------------------
 var bykakColor = const Color(0xFF205B48);
-var blackColor = const Color(0xFFFFFFFF);
+var blackColor = const Color(0xFF1E1E1E);
 var greyColor = const Color(0xFF9E9E9E);
 var lightGreyColor = const Color(0xFFD9D9D9);
-var whiteColor = const Color(0xFF1E1E1E);
+var whiteColor = const Color(0xFFFFFFFF);
+
+bool darkState = false;
+
+// darkState ? blackColor = const Color(0xFFFFFFFF) : whiteColor = const Color(0xFF1E1E1E);
+// darkState ? whiteColor = const Color(0xFF1E1E1E) : blackColor = const Color(0xFFFFFFFF);
 
 // ---------- Variable -----------------------------------------------------------------------------------------------------
 int i = 0;
@@ -42,7 +47,7 @@ fadeImage(img) {
       padding: const EdgeInsets.all(20),
       child: Center(
         child: CircularProgressIndicator(
-          color: blackColor,
+          color: darkState ? whiteColor : blackColor,
         ),
       ),
     ),

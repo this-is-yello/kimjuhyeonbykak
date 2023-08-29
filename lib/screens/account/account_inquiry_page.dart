@@ -32,7 +32,9 @@ class _AccountInquiryPageState extends State<AccountInquiryPage> {
               child: SizedBox(
                 width: 200,
                 child: Image.asset(
-                  'assets/images/logos/bykakTextLogo_b.png',
+                  darkState
+                      ? 'assets/images/logos/bykakTextLogo_w.png'
+                      : 'assets/images/logos/bykakTextLogo_b.png',
                   fit: BoxFit.fitWidth,
                 ),
               ),
@@ -128,27 +130,27 @@ class _IdInquiryState extends State<IdInquiry> {
   var idSearch;
 
   searchId() async {
-    userSearch = await firestore
-        .collection('account')
-        .where('name', isEqualTo: _inputInquiryName.text)
-        .where('birth', isEqualTo: _inputInquiryBirth.text)
-        .where('phone', isEqualTo: _inputInquiryPhone.text)
-        .get()
-        .then((value) {
-      idSearch = value.docs[0]['id'];
-    });
-    print(idSearch);
     try {
-      if (_inputInquiryName.text.isEmpty ||
-          _inputInquiryPhone.text.isEmpty ||
-          _inputInquiryBirth.text.isEmpty) {
+      if (_inputInquiryName.text == '' ||
+          _inputInquiryPhone.text == '' ||
+          _inputInquiryBirth.text == '') {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Center(child: Text('입력되지 않은 정보가 있습니다.')),
+            content: Center(child: Text('입력하지 않은 정보가 있습니다.')),
             backgroundColor: bykakColor,
           ),
         );
       } else {
+        userSearch = await firestore
+            .collection('account')
+            .where('name', isEqualTo: _inputInquiryName.text)
+            .where('birth', isEqualTo: _inputInquiryBirth.text)
+            .where('phone', isEqualTo: _inputInquiryPhone.text)
+            .get()
+            .then((value) {
+          idSearch = value.docs[0]['id'];
+        });
+        print(idSearch);
         return showDialog(
           context: context,
           builder: (ctx) => AlertDialog(
@@ -217,11 +219,13 @@ class _IdInquiryState extends State<IdInquiry> {
                 onSubmitted: (value) => searchId(),
                 decoration: InputDecoration(
                   hintText: '이름',
-                  border: const OutlineInputBorder(
-                    borderSide: BorderSide(width: 1),
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(8),
-                      topRight: Radius.circular(8),
+                  hintStyle: TextStyle(
+                    color: blackColor,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      width: 2,
+                      color: blackColor,
                     ),
                   ),
                   focusedBorder: OutlineInputBorder(
@@ -229,15 +233,12 @@ class _IdInquiryState extends State<IdInquiry> {
                       width: 2,
                       color: blackColor,
                     ),
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(8),
-                      topRight: Radius.circular(8),
-                    ),
                   ),
                 ),
               ),
             ),
-            SizedBox(
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 8),
               width: 360,
               child: TextField(
                 controller: _inputInquiryBirth,
@@ -246,16 +247,20 @@ class _IdInquiryState extends State<IdInquiry> {
                 onSubmitted: (value) => searchId(),
                 decoration: InputDecoration(
                   hintText: '생년월일 (예시 : 230606)',
-                  border: const OutlineInputBorder(
-                    borderSide: BorderSide(width: 1),
-                    borderRadius: BorderRadius.zero,
+                  hintStyle: TextStyle(
+                    color: blackColor,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      width: 2,
+                      color: blackColor,
+                    ),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(
                       width: 2,
                       color: blackColor,
                     ),
-                    borderRadius: BorderRadius.zero,
                   ),
                 ),
               ),
@@ -269,21 +274,19 @@ class _IdInquiryState extends State<IdInquiry> {
                 onSubmitted: (value) => searchId(),
                 decoration: InputDecoration(
                   hintText: '휴대전화',
-                  border: const OutlineInputBorder(
-                    borderSide: BorderSide(width: 1),
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(8),
-                      bottomRight: Radius.circular(8),
+                  hintStyle: TextStyle(
+                    color: blackColor,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      width: 2,
+                      color: blackColor,
                     ),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(
                       width: 2,
                       color: blackColor,
-                    ),
-                    borderRadius: const BorderRadius.only(
-                      bottomLeft: Radius.circular(8),
-                      bottomRight: Radius.circular(8),
                     ),
                   ),
                 ),
@@ -338,26 +341,27 @@ class _PwInquiryState extends State<PwInquiry> {
   var pwSearch;
 
   searchPw() async {
-    userSearch = await firestore
-        .collection('account')
-        .where('id', isEqualTo: _inputInquiryId.text)
-        .where('name', isEqualTo: _inputInquiryName.text)
-        .where('birth', isEqualTo: _inputInquiryBirth.text)
-        .where('phone', isEqualTo: _inputInquiryPhone.text)
-        .get()
-        .then((value) {
-      pwSearch = value.docs[0]['password'];
-    });
-    if (_inputInquiryName.text.isEmpty ||
-        _inputInquiryPhone.text.isEmpty ||
-        _inputInquiryId.text.isEmpty) {
+    if (_inputInquiryName.text == '' ||
+        _inputInquiryPhone.text == '' ||
+        _inputInquiryBirth.text == '' ||
+        _inputInquiryId.text == '') {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Center(child: Text('입력되지 않은 정보가 있습니다.')),
+          content: Center(child: Text('입력하지 않은 정보가 있습니다.')),
           backgroundColor: bykakColor,
         ),
       );
     } else {
+      userSearch = await firestore
+          .collection('account')
+          .where('id', isEqualTo: _inputInquiryId.text)
+          .where('name', isEqualTo: _inputInquiryName.text)
+          .where('birth', isEqualTo: _inputInquiryBirth.text)
+          .where('phone', isEqualTo: _inputInquiryPhone.text)
+          .get()
+          .then((value) {
+        pwSearch = value.docs[0]['password'];
+      });
       try {
         return showDialog(
           context: context,
@@ -426,11 +430,13 @@ class _PwInquiryState extends State<PwInquiry> {
                 onSubmitted: (value) => searchPw(),
                 decoration: InputDecoration(
                   hintText: '이메일',
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(width: 1),
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(8),
-                      topRight: Radius.circular(8),
+                  hintStyle: TextStyle(
+                    color: blackColor,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      width: 2,
+                      color: blackColor,
                     ),
                   ),
                   focusedBorder: OutlineInputBorder(
@@ -438,15 +444,12 @@ class _PwInquiryState extends State<PwInquiry> {
                       width: 2,
                       color: blackColor,
                     ),
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(8),
-                      topRight: Radius.circular(8),
-                    ),
                   ),
                 ),
               ),
             ),
-            SizedBox(
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 8),
               width: 360,
               child: TextField(
                 controller: _inputInquiryName,
@@ -455,21 +458,26 @@ class _PwInquiryState extends State<PwInquiry> {
                 onSubmitted: (value) => searchPw(),
                 decoration: InputDecoration(
                   hintText: '이름',
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(width: 1),
-                    borderRadius: BorderRadius.circular(0),
+                  hintStyle: TextStyle(
+                    color: blackColor,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      width: 2,
+                      color: blackColor,
+                    ),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(
                       width: 2,
                       color: blackColor,
                     ),
-                    borderRadius: BorderRadius.circular(0),
                   ),
                 ),
               ),
             ),
-            SizedBox(
+            Container(
+              padding: EdgeInsets.only(bottom: 8),
               width: 360,
               child: TextField(
                 controller: _inputInquiryBirth,
@@ -478,16 +486,20 @@ class _PwInquiryState extends State<PwInquiry> {
                 onSubmitted: (value) => searchPw(),
                 decoration: InputDecoration(
                   hintText: '생년월일 (예시 : 230606)',
-                  border: const OutlineInputBorder(
-                    borderSide: BorderSide(width: 1),
-                    borderRadius: BorderRadius.zero,
+                  hintStyle: TextStyle(
+                    color: blackColor,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      width: 2,
+                      color: blackColor,
+                    ),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(
                       width: 2,
                       color: blackColor,
                     ),
-                    borderRadius: BorderRadius.zero,
                   ),
                 ),
               ),
@@ -499,21 +511,19 @@ class _PwInquiryState extends State<PwInquiry> {
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                   hintText: '휴대전화',
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(width: 1),
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(8),
-                      bottomRight: Radius.circular(8),
+                  hintStyle: TextStyle(
+                    color: blackColor,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      width: 2,
+                      color: blackColor,
                     ),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(
                       width: 2,
                       color: blackColor,
-                    ),
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(8),
-                      bottomRight: Radius.circular(8),
                     ),
                   ),
                 ),

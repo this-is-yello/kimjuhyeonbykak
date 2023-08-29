@@ -544,7 +544,9 @@ class CiBiScreen extends StatelessWidget {
                               width: c2BoxSize(context),
                               child: ImageFade(
                                 image: AssetImage(
-                                  'assets/images/logos/bykakLogo_b.png',
+                                  darkState
+                                      ? 'assets/images/logos/bykakLogo_w.png'
+                                      : 'assets/images/logos/bykakLogo_b.png',
                                 ),
                                 fit: BoxFit.fitWidth,
                                 duration: const Duration(milliseconds: 900),
@@ -564,7 +566,9 @@ class CiBiScreen extends StatelessWidget {
                               width: c1BoxSize(context),
                               child: ImageFade(
                                 image: AssetImage(
-                                  'assets/images/logos/bykakTextLogo_b.png',
+                                  darkState
+                                      ? 'assets/images/logos/bykakTextLogo_w.png'
+                                      : 'assets/images/logos/bykakTextLogo_b.png',
                                 ),
                                 fit: BoxFit.fitWidth,
                                 duration: const Duration(milliseconds: 900),
@@ -604,7 +608,9 @@ class CiBiScreen extends StatelessWidget {
                               width: c2BoxSize(context),
                               child: ImageFade(
                                 image: AssetImage(
-                                  'assets/images/logos/bykakLogo_w.png',
+                                  darkState
+                                      ? 'assets/images/logos/bykakLogo_b.png'
+                                      : 'assets/images/logos/bykakLogo_w.png',
                                 ),
                                 fit: BoxFit.fitWidth,
                                 duration: const Duration(milliseconds: 900),
@@ -624,7 +630,9 @@ class CiBiScreen extends StatelessWidget {
                               width: c1BoxSize(context),
                               child: ImageFade(
                                 image: AssetImage(
-                                  'assets/images/logos/bykakTextLogo_w.png',
+                                  darkState
+                                      ? 'assets/images/logos/bykakTextLogo_b.png'
+                                      : 'assets/images/logos/bykakTextLogo_w.png',
                                 ),
                                 fit: BoxFit.fitWidth,
                                 duration: const Duration(milliseconds: 900),
@@ -694,7 +702,9 @@ class CiBiScreen extends StatelessWidget {
                               padding: const EdgeInsets.all(40),
                               child: ImageFade(
                                 image: AssetImage(
-                                  'assets/images/logos/bykakScissorLogo_b.png',
+                                  darkState
+                                      ? 'assets/images/logos/bykakScissorLogo_w.png'
+                                      : 'assets/images/logos/bykakScissorLogo_b.png',
                                 ),
                                 fit: BoxFit.contain,
                                 duration: const Duration(milliseconds: 900),
@@ -721,7 +731,9 @@ class CiBiScreen extends StatelessWidget {
                               padding: const EdgeInsets.all(40),
                               child: ImageFade(
                                 image: AssetImage(
-                                  'assets/images/logos/bykakScissorLogo_w.png',
+                                  darkState
+                                      ? 'assets/images/logos/bykakScissorLogo_b.png'
+                                      : 'assets/images/logos/bykakScissorLogo_w.png',
                                 ),
                                 fit: BoxFit.contain,
                                 duration: const Duration(milliseconds: 900),

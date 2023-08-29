@@ -154,7 +154,7 @@ class _ModifyAccountPageState extends State<ModifyAccountPage> {
         _inputModifyBirth.text == '') {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Center(child: Text('입력되지 않은 정보가 있습니다.')),
+          content: Center(child: Text('입력하지 않은 정보가 있습니다.')),
           backgroundColor: bykakColor,
         ),
       );

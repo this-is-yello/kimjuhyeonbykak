@@ -233,9 +233,7 @@ class _MainAppBarState extends State<MainAppBar> {
           child: Container(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.width < 800 ? 56 : 64,
-            color: hoverColor
-                ? Color(0xFFFFFFFF)
-                : Color(0xFFFFFFFF).withOpacity(0.8),
+            color: hoverColor ? blackColor : blackColor.withOpacity(0.8),
             child: Center(
               child: SizedBox(
                 width: widgetSize(context),
@@ -254,7 +252,9 @@ class _MainAppBarState extends State<MainAppBar> {
                               MediaQuery.of(context).size.width < 800 ? 56 : 64,
                           height:
                               MediaQuery.of(context).size.width < 800 ? 56 : 64,
-                          'assets/images/logos/bykakTextLogo_b.png',
+                          darkState
+                              ? 'assets/images/logos/bykakTextLogo_b.png'
+                              : 'assets/images/logos/bykakTextLogo_w.png',
                           fit: BoxFit.fitWidth,
                         ),
                       ),
@@ -294,7 +294,7 @@ class _MainAppBarState extends State<MainAppBar> {
                                           style: TextStyle(
                                             fontSize: 16,
                                             fontWeight: FontWeight.bold,
-                                            color: Color(0xFF1E1E1E),
+                                            color: whiteColor,
                                           ),
                                         ),
                                       ),
@@ -368,7 +368,7 @@ class _MainAppBarState extends State<MainAppBar> {
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
-                                  color: Color(0xFF1E1E1E),
+                                  color: whiteColor,
                                 ),
                               ),
                             ),
@@ -403,17 +403,21 @@ class _MainAppBarState extends State<MainAppBar> {
                               size: 20,
                             ),
                             onTap: () {
-                              // if (darkState == false) {
-                              //   setState(() {
-                              //     darkState = true;
-                              //   });
-                              //   print(darkState);
-                              // } else {
-                              //   setState(() {
-                              //     darkState = false;
-                              //   });
-                              //   print(darkState);
-                              // }
+                              if (darkState == false) {
+                                setState(() {
+                                  darkState = true;
+                                  blackColor = const Color(0xFFFFFFFF);
+                                  whiteColor = const Color(0xFF1E1E1E);
+                                });
+                                print('다크모드 적용');
+                              } else {
+                                setState(() {
+                                  darkState = false;
+                                  blackColor = const Color(0xFF1E1E1E);
+                                  whiteColor = const Color(0xFFFFFFFF);
+                                });
+                                print('다크모드 해제');
+                              }
                             },
                           ),
                         ),
@@ -439,7 +443,7 @@ class _MainAppBarState extends State<MainAppBar> {
                   child: Container(
                     width: MediaQuery.of(context).size.width,
                     height: 80,
-                    color: Color(0xFFFFFFFF),
+                    color: blackColor,
                     child: Center(
                       child: SizedBox(
                         width: widgetSize(context),
@@ -475,7 +479,7 @@ class _MainAppBarState extends State<MainAppBar> {
                                     subMenu[i][index],
                                     style: TextStyle(
                                       fontSize: 16,
-                                      color: Color(0xFF1E1E1E),
+                                      color: whiteColor,
                                     ),
                                   ),
                                 ),
@@ -665,7 +669,9 @@ class _FooterState extends State<Footer> {
                   height: c5BoxSize(context) + 10,
                   // color: blackColor,
                   child: Image.asset(
-                    'assets/images/logos/bykakLogo_w.png',
+                    darkState
+                        ? 'assets/images/logos/bykakLogo_w.png'
+                        : 'assets/images/logos/bykakLogo_b.png',
                     fit: BoxFit.fitWidth,
                   ),
                 ),

@@ -491,7 +491,9 @@ class _BykakStoryState extends State<BykakStory> {
                       width: c1BoxSize(context),
                       height: c1BoxSize(context),
                       child: Image.asset(
-                        'assets/images/logos/bykakScissorLogo_w.png',
+                        darkState
+                            ? 'assets/images/logos/bykakScissorLogo_w.png'
+                            : 'assets/images/logos/bykakScissorLogo_b.png',
                         fit: BoxFit.fitWidth,
                       ),
                     ),

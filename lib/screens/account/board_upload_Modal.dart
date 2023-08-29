@@ -118,7 +118,7 @@ class _MagazineUpModalState extends State<MagazineUpModal> {
               height: 80,
               child: Center(
                 child: Text(
-                  '입력되지 않은 정보가 있습니다.',
+                  '입력하지 않은 정보가 있습니다.',
                   style: TextStyle(
                     fontSize: 16,
                     color: blackColor,
@@ -481,7 +481,7 @@ class _NewsUpModalState extends State<NewsUpModal> {
               height: 80,
               child: Center(
                 child: Text(
-                  '입력되지 않은 정보가 있습니다.',
+                  '입력하지 않은 정보가 있습니다.',
                   style: TextStyle(
                     fontSize: 16,
                     color: blackColor,
@@ -1107,7 +1107,7 @@ class _EventUpModalState extends State<EventUpModal> {
               height: 80,
               child: Center(
                 child: Text(
-                  '입력되지 않은 정보가 있습니다.',
+                  '입력하지 않은 정보가 있습니다.',
                   style: TextStyle(
                     fontSize: 16,
                     color: blackColor,
@@ -1536,7 +1536,7 @@ class _MediaUpModalState extends State<MediaUpModal> {
               height: 80,
               child: Center(
                 child: Text(
-                  '입력되지 않은 정보가 있습니다.',
+                  '입력하지 않은 정보가 있습니다.',
                   style: TextStyle(
                     fontSize: 16,
                     color: blackColor,
@@ -1867,7 +1867,7 @@ class _ProductUpModalState extends State<ProductUpModal> {
               height: 80,
               child: Center(
                 child: Text(
-                  '입력되지 않은 정보가 있습니다.',
+                  '입력하지 않은 정보가 있습니다.',
                   style: TextStyle(
                     fontSize: 16,
                     color: blackColor,

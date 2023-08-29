@@ -56,7 +56,9 @@ class _LogInPageState extends State<LogInPage> {
                 width: 200,
                 color: whiteColor,
                 child: Image.asset(
-                  'assets/images/logos/bykakLogo_w.png',
+                  darkState
+                      ? 'assets/images/logos/bykakLogo_w.png'
+                      : 'assets/images/logos/bykakLogo_b.png',
                   fit: BoxFit.contain,
                 ),
               ),
