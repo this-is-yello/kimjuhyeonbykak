@@ -341,28 +341,28 @@ class _PwInquiryState extends State<PwInquiry> {
   var pwSearch;
 
   searchPw() async {
-    if (_inputInquiryName.text == '' ||
-        _inputInquiryPhone.text == '' ||
-        _inputInquiryBirth.text == '' ||
-        _inputInquiryId.text == '') {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Center(child: Text('입력하지 않은 정보가 있습니다.')),
-          backgroundColor: bykakColor,
-        ),
-      );
-    } else {
-      userSearch = await firestore
-          .collection('account')
-          .where('id', isEqualTo: _inputInquiryId.text)
-          .where('name', isEqualTo: _inputInquiryName.text)
-          .where('birth', isEqualTo: _inputInquiryBirth.text)
-          .where('phone', isEqualTo: _inputInquiryPhone.text)
-          .get()
-          .then((value) {
-        pwSearch = value.docs[0]['password'];
-      });
-      try {
+    try {
+      if (_inputInquiryName.text == '' ||
+          _inputInquiryPhone.text == '' ||
+          _inputInquiryBirth.text == '' ||
+          _inputInquiryId.text == '') {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Center(child: Text('입력하지 않은 정보가 있습니다.')),
+            backgroundColor: bykakColor,
+          ),
+        );
+      } else {
+        userSearch = await firestore
+            .collection('account')
+            .where('id', isEqualTo: _inputInquiryId.text)
+            .where('name', isEqualTo: _inputInquiryName.text)
+            .where('birth', isEqualTo: _inputInquiryBirth.text)
+            .where('phone', isEqualTo: _inputInquiryPhone.text)
+            .get()
+            .then((value) {
+          pwSearch = value.docs[0]['password'];
+        });
         return showDialog(
           context: context,
           builder: (ctx) => AlertDialog(
@@ -402,14 +402,14 @@ class _PwInquiryState extends State<PwInquiry> {
             ),
           ),
         );
-      } catch (e) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Center(child: Text('가입된 정보가 없거나, 잘못된 정보입니다.')),
-            backgroundColor: bykakColor,
-          ),
-        );
       }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Center(child: Text('가입된 정보가 없거나, 잘못된 정보입니다.')),
+          backgroundColor: bykakColor,
+        ),
+      );
     }
   }
 

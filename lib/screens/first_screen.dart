@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:image_fade/image_fade.dart';
 import 'package:kimjuhyeonbykak/style.dart';
 import 'package:kimjuhyeonbykak/main.dart';
 import 'package:kimjuhyeonbykak/navigation.dart';
@@ -782,7 +783,7 @@ class _TailorShopScreenState extends State<TailorShopScreen> {
                     bottom: 20,
                   ),
                   child: Text(
-                    '인천에서 유일하게 매장 내 수제 공방을 운영하며\n비스포크 맞춤 수트의 정석을 구현하고 있습니다.',
+                    '인천에서 유일하게 매장 내 수제 공방을 운영하며,\n비스포크 맞춤 수트의 정석을 구현하고 있습니다.',
                     style: TextStyle(
                       fontSize: h5FontSize(context) + 2,
                       color: blackColor,
@@ -1115,19 +1116,47 @@ class _NewJemulpoClubScreenState extends State<NewJemulpoClubScreen> {
             ),
             ScrollConfiguration(
               behavior: MyCustomScrollBehavior(),
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      child: fadeImage('assets/images/panorama.png'),
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      child: fadeImage('assets/images/panorama.png'),
-                    ),
-                  ],
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: c1BoxSize(context) + 160,
+                color: Color(0xFF1E1E1E),
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  controller: ScrollController(initialScrollOffset: 5000),
+                  itemBuilder: (context, index) {
+                    return ImageFade(
+                      image: AssetImage(
+                        'assets/images/panorama.png',
+                      ),
+                      fit: BoxFit.fitHeight,
+                      duration: const Duration(milliseconds: 900),
+                      syncDuration: const Duration(milliseconds: 150),
+                      // placeholder: Padding(
+                      //   padding: const EdgeInsets.all(20),
+                      //   child: Center(
+                      //     child: CircularProgressIndicator(
+                      //       color: darkState ? whiteColor : blackColor,
+                      //     ),
+                      //   ),
+                      // ),
+                      loadingBuilder: (context, progress, chunkEvent) {
+                        return Center(
+                          child: CircularProgressIndicator(
+                            color: Color(0xFF1E1E1E),
+                          ),
+                        );
+                      },
+                      errorBuilder: (context, error) => Container(
+                        color: const Color(0xFFFFFFFF),
+                        alignment: Alignment.center,
+                        child: const Icon(
+                          Icons.warning,
+                          color: Color(0xFF1E1E1E),
+                          size: 60.0,
+                        ),
+                      ),
+                    );
+                  },
                 ),
               ),
             ),

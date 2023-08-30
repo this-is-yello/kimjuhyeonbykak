@@ -236,14 +236,21 @@ class _ProductsGridState extends State<ProductsGrid> {
                       fit: BoxFit.cover,
                       duration: const Duration(milliseconds: 900),
                       syncDuration: const Duration(milliseconds: 150),
-                      placeholder: Padding(
-                        padding: const EdgeInsets.all(20),
-                        child: Center(
+                      // placeholder: Padding(
+                      //   padding: const EdgeInsets.all(20),
+                      //   child: Center(
+                      //     child: CircularProgressIndicator(
+                      //       color: blackColor,
+                      //     ),
+                      //   ),
+                      // ),
+                      loadingBuilder: (context, progress, chunkEvent) {
+                        return Center(
                           child: CircularProgressIndicator(
                             color: blackColor,
                           ),
-                        ),
-                      ),
+                        );
+                      },
                       errorBuilder: (context, error) => Container(
                         color: const Color(0xFFFFFFFF),
                         alignment: Alignment.center,

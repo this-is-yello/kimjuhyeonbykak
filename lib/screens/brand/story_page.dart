@@ -415,53 +415,31 @@ class HistoryScreen extends StatelessWidget {
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: [
-                  SizedBox(
+                  Container(
                     height: 320,
+                    color: darkState ? Color(0xFF1E1E1E) : Color(0xFFFFFFFF),
                     child: ImageFade(
                       image: AssetImage(
-                        'assets/images/history_1.png',
+                        'assets/images/history_3.png',
                       ),
                       fit: BoxFit.fitHeight,
                       duration: const Duration(milliseconds: 900),
                       syncDuration: const Duration(milliseconds: 150),
-                      placeholder: Padding(
-                        padding: const EdgeInsets.all(20),
-                        child: Center(
+                      loadingBuilder: (context, progress, chunkEvent) {
+                        return Center(
                           child: CircularProgressIndicator(
                             color: blackColor,
                           ),
-                        ),
-                      ),
-                      errorBuilder: (context, error) => Container(
-                        color: const Color(0xFFFFFFFF),
-                        alignment: Alignment.center,
-                        child: const Icon(
-                          Icons.warning,
-                          color: Color(0xFF1E1E1E),
-                          size: 60.0,
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    // width: widgetSize(context),
-                    height: 320,
-                    // child: fadeImage('assets/images/history_2.png'),
-                    child: ImageFade(
-                      image: AssetImage(
-                        'assets/images/history_2.png',
-                      ),
-                      fit: BoxFit.fitHeight,
-                      duration: const Duration(milliseconds: 900),
-                      syncDuration: const Duration(milliseconds: 150),
-                      placeholder: Padding(
-                        padding: const EdgeInsets.all(20),
-                        child: Center(
-                          child: CircularProgressIndicator(
-                            color: blackColor,
-                          ),
-                        ),
-                      ),
+                        );
+                      },
+                      // placeholder: Padding(
+                      //   padding: const EdgeInsets.all(20),
+                      //   child: Center(
+                      //     child: CircularProgressIndicator(
+                      //       color: blackColor,
+                      //     ),
+                      //   ),
+                      // ),
                       errorBuilder: (context, error) => Container(
                         color: const Color(0xFFFFFFFF),
                         alignment: Alignment.center,

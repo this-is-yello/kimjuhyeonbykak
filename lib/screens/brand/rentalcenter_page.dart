@@ -515,8 +515,42 @@ class RentalCenterLocation extends StatelessWidget {
                         )
                       ],
                     ),
-                  )
+                  ),
                 ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 40),
+              child: InkWell(
+                onTap: () async {
+                  final url = Uri.parse(
+                    'https://m.booking.naver.com/booking/13/bizes/839741?theme=place&entry=pll&area=pll',
+                  );
+                  if (await canLaunchUrl(url)) {
+                    launchUrl(
+                      url,
+                      mode: LaunchMode.externalApplication,
+                    );
+                  }
+                },
+                child: Container(
+                  width: 240,
+                  // height: 48,
+                  padding: EdgeInsets.symmetric(vertical: 16),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: blackColor,
+                  ),
+                  child: Center(
+                    child: Text(
+                      '예약하기',
+                      style: TextStyle(
+                        fontSize: h4FontSize(context),
+                        color: whiteColor,
+                      ),
+                    ),
+                  ),
+                ),
               ),
             ),
           ],

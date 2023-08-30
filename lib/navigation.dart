@@ -170,7 +170,9 @@ class _MainAppBarState extends State<MainAppBar> {
                                       bottom: 40,
                                     ),
                                     child: Image.asset(
-                                      'assets/images/logos/bykakLogo_b.png',
+                                      darkState
+                                          ? 'assets/images/logos/bykakLogo_w.png'
+                                          : 'assets/images/logos/bykakLogo_b.png',
                                       fit: BoxFit.contain,
                                     ),
                                   ),
@@ -204,7 +206,9 @@ class _MainAppBarState extends State<MainAppBar> {
                   bottom: 40,
                 ),
                 child: Image.asset(
-                  'assets/images/logos/bykakLogo_w.png',
+                  darkState
+                      ? 'assets/images/logos/bykakLogo_b.png'
+                      : 'assets/images/logos/bykakLogo_w.png',
                   fit: BoxFit.contain,
                 ),
               ),
@@ -418,6 +422,7 @@ class _MainAppBarState extends State<MainAppBar> {
                                 });
                                 print('다크모드 해제');
                               }
+                              Get.forceAppUpdate();
                             },
                           ),
                         ),

@@ -210,7 +210,7 @@ class _PublicityContentState extends State<PublicityContent> {
                             fontWeight: publicityNum == 0
                                 ? FontWeight.bold
                                 : FontWeight.normal,
-                            color: Color(0xFF1E1E1E),
+                            color: whiteColor,
                           ),
                         ),
                       ),
@@ -228,7 +228,7 @@ class _PublicityContentState extends State<PublicityContent> {
                             fontWeight: publicityNum == 1
                                 ? FontWeight.bold
                                 : FontWeight.normal,
-                            color: Color(0xFF1E1E1E),
+                            color: whiteColor,
                           ),
                         ),
                       ),
@@ -246,7 +246,7 @@ class _PublicityContentState extends State<PublicityContent> {
                             fontWeight: publicityNum == 2
                                 ? FontWeight.bold
                                 : FontWeight.normal,
-                            color: Color(0xFF1E1E1E),
+                            color: whiteColor,
                           ),
                         ),
                       ),
@@ -341,14 +341,21 @@ class _MagazineScreenState extends State<MagazineScreen> {
                               fit: BoxFit.cover,
                               duration: const Duration(milliseconds: 900),
                               syncDuration: const Duration(milliseconds: 150),
-                              placeholder: Padding(
-                                padding: const EdgeInsets.all(20),
-                                child: Center(
+                              // placeholder: Padding(
+                              //   padding: const EdgeInsets.all(20),
+                              //   child: Center(
+                              //     child: CircularProgressIndicator(
+                              //       color: blackColor,
+                              //     ),
+                              //   ),
+                              // ),
+                              loadingBuilder: (context, progress, chunkEvent) {
+                                return Center(
                                   child: CircularProgressIndicator(
                                     color: blackColor,
                                   ),
-                                ),
-                              ),
+                                );
+                              },
                               errorBuilder: (context, error) => Container(
                                 color: const Color(0xFFFFFFFF),
                                 alignment: Alignment.center,
@@ -519,14 +526,21 @@ class _NewsScreenState extends State<NewsScreen> {
                             fit: BoxFit.cover,
                             duration: const Duration(milliseconds: 900),
                             syncDuration: const Duration(milliseconds: 150),
-                            placeholder: Padding(
-                              padding: const EdgeInsets.all(20),
-                              child: Center(
+                            // placeholder: Padding(
+                            //   padding: const EdgeInsets.all(20),
+                            //   child: Center(
+                            //     child: CircularProgressIndicator(
+                            //       color: blackColor,
+                            //     ),
+                            //   ),
+                            // ),
+                            loadingBuilder: (context, progress, chunkEvent) {
+                              return Center(
                                 child: CircularProgressIndicator(
                                   color: blackColor,
                                 ),
-                              ),
-                            ),
+                              );
+                            },
                             errorBuilder: (context, error) => Container(
                               color: const Color(0xFFFFFFFF),
                               alignment: Alignment.center,

@@ -1008,14 +1008,21 @@ class _EventScreenState extends State<EventScreen> {
                           fit: BoxFit.cover,
                           duration: const Duration(milliseconds: 900),
                           syncDuration: const Duration(milliseconds: 150),
-                          placeholder: Padding(
-                            padding: const EdgeInsets.all(20),
-                            child: Center(
+                          // placeholder: Padding(
+                          //   padding: const EdgeInsets.all(20),
+                          //   child: Center(
+                          //     child: CircularProgressIndicator(
+                          //       color: blackColor,
+                          //     ),
+                          //   ),
+                          // ),
+                          loadingBuilder: (context, progress, chunkEvent) {
+                            return Center(
                               child: CircularProgressIndicator(
                                 color: blackColor,
                               ),
-                            ),
-                          ),
+                            );
+                          },
                           errorBuilder: (context, error) => Container(
                             color: const Color(0xFFFFFFFF),
                             alignment: Alignment.center,
@@ -1160,7 +1167,7 @@ class _MediaScreenState extends State<MediaScreen> {
               },
               child: Column(
                 children: [
-                  Container(
+                  SizedBox(
                     width: widgetSize(context),
                     child: ImageFade(
                       image: NetworkImage(
@@ -1169,14 +1176,21 @@ class _MediaScreenState extends State<MediaScreen> {
                       fit: BoxFit.fitWidth,
                       duration: const Duration(milliseconds: 900),
                       syncDuration: const Duration(milliseconds: 150),
-                      placeholder: Padding(
-                        padding: const EdgeInsets.all(20),
-                        child: Center(
+                      // placeholder: Padding(
+                      //   padding: const EdgeInsets.all(20),
+                      //   child: Center(
+                      //     child: CircularProgressIndicator(
+                      //       color: blackColor,
+                      //     ),
+                      //   ),
+                      // ),
+                      loadingBuilder: (context, progress, chunkEvent) {
+                        return Center(
                           child: CircularProgressIndicator(
                             color: blackColor,
                           ),
-                        ),
-                      ),
+                        );
+                      },
                       errorBuilder: (context, error) => Container(
                         color: const Color(0xFFFFFFFF),
                         alignment: Alignment.center,
@@ -1235,14 +1249,21 @@ class _MediaScreenState extends State<MediaScreen> {
                           fit: BoxFit.fitHeight,
                           duration: const Duration(milliseconds: 900),
                           syncDuration: const Duration(milliseconds: 150),
-                          placeholder: Padding(
-                            padding: const EdgeInsets.all(20),
-                            child: Center(
+                          // placeholder: Padding(
+                          //   padding: const EdgeInsets.all(20),
+                          //   child: Center(
+                          //     child: CircularProgressIndicator(
+                          //       color: blackColor,
+                          //     ),
+                          //   ),
+                          // ),
+                          loadingBuilder: (context, progress, chunkEvent) {
+                            return Center(
                               child: CircularProgressIndicator(
                                 color: blackColor,
                               ),
-                            ),
-                          ),
+                            );
+                          },
                           errorBuilder: (context, error) => Container(
                             color: const Color(0xFFFFFFFF),
                             alignment: Alignment.center,
