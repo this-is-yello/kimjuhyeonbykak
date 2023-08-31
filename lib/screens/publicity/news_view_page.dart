@@ -216,7 +216,7 @@ class _NewsViewContentState extends State<NewsViewContent> {
                           Text(
                             '뒤로가기',
                             style: TextStyle(
-                              fontSize: h3FontSize(context),
+                              fontSize: h4FontSize(context),
                               height: 1.5,
                               color: blackColor,
                             ),

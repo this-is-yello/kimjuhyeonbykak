@@ -5,6 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'firebase_options.dart';
 
 import 'package:kimjuhyeonbykak/screens/first_screen.dart';
@@ -83,7 +84,6 @@ abstract class Routes {
 class AppRouterDelegate extends GetDelegate {
   GetNavConfig get prevRoute =>
       history.length < 2 ? history.last : history[history.length - 2];
-
   @override
   Future<GetNavConfig> popHistory() async {
     final result = prevRoute;
@@ -94,8 +94,12 @@ class AppRouterDelegate extends GetDelegate {
   @override
   Widget build(BuildContext context) {
     // print(history.toString());
+    FirebaseAnalytics analytics = FirebaseAnalytics.instance;
     return Navigator(
       onPopPage: (route, result) => route.didPop(result),
+      observers: [
+        FirebaseAnalyticsObserver(analytics: analytics),
+      ],
       pages: currentConfiguration != null
           ? [currentConfiguration!.currentPage!]
           : [GetNavConfig.fromRoute(Routes.MAIN)!.currentPage!],
@@ -222,6 +226,9 @@ void main() async {
       GetMaterialApp.router(
         title: 'kimjuhyeon by 覺',
         debugShowCheckedModeBanner: false,
+        navigatorObservers: [
+          FirebaseAnalyticsObserver(analytics: FirebaseAnalytics.instance),
+        ],
         color: blackColor,
         theme: ThemeData(
           fontFamily: 'Pretendard',
@@ -244,6 +251,9 @@ void main() async {
       GetMaterialApp(
         title: 'kimjuhyeon by 覺',
         debugShowCheckedModeBanner: false,
+        navigatorObservers: [
+          FirebaseAnalyticsObserver(analytics: FirebaseAnalytics.instance),
+        ],
         color: blackColor,
         theme: ThemeData(
           fontFamily: 'Pretendard',
