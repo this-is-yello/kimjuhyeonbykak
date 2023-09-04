@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:kimjuhyeonbykak/style.dart';
 
@@ -6,6 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:meta_seo/meta_seo.dart';
 import 'firebase_options.dart';
 
 import 'package:kimjuhyeonbykak/screens/first_screen.dart';
@@ -95,6 +97,17 @@ class AppRouterDelegate extends GetDelegate {
   Widget build(BuildContext context) {
     // print(history.toString());
     FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+    if (kIsWeb) {
+      MetaSEO meta = MetaSEO();
+      meta.ogTitle(ogTitle: '김주현바이각');
+      meta.ogImage(
+          ogImage:
+              'https://github.com/this-is-yello/kimjuhyeonbykak/blob/main/assets/images/splash_logo.png?raw=true');
+      meta.description(description: '전통과 정통을 바느질하다.');
+      meta.keywords(
+          keywords:
+              '테일러샵, 테일러아카데미, 수트렌탈센터, 남성정장, 맞춤정장, 맞춤예복, 인천맞춤정장, 인천맞춤예복, 김주현바이각');
+    }
     return Navigator(
       onPopPage: (route, result) => route.didPop(result),
       observers: [
@@ -220,6 +233,10 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  if (kIsWeb) {
+    MetaSEO().config();
+  }
 
   if (GetPlatform.isWeb) {
     runApp(
