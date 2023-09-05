@@ -302,7 +302,7 @@ class _MagazineScreenState extends State<MagazineScreen> {
   @override
   Widget build(BuildContext context) {
     try {
-      if (magazineDocs[i]['thumbnail'] != null) {
+      if (magazineDocsLength > 0) {
         return SizedBox(
           width: widgetSize(context),
           child: Column(
@@ -407,18 +407,18 @@ class _MagazineScreenState extends State<MagazineScreen> {
           ),
         );
       } else {
-        return Container(
+        return SizedBox(
           width: widgetSize(context),
           height: 300,
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                CircularProgressIndicator(color: blackColor),
+                // CircularProgressIndicator(color: blackColor),
                 Padding(
                   padding: const EdgeInsets.only(top: 20),
                   child: Text(
-                    '로딩이 오래 걸리면 새로고침(F5) 한 번만 눌러주세요.',
+                    '게시물이 없습니다.',
                     style: TextStyle(color: blackColor),
                   ),
                 ),
@@ -485,7 +485,7 @@ class _NewsScreenState extends State<NewsScreen> {
   @override
   Widget build(BuildContext context) {
     try {
-      if (newsDocs[i]['thumbnail'] != null) {
+      if (newsDocsLength > 0) {
         return SizedBox(
           width: widgetSize(context),
           child: ListView.builder(
@@ -593,18 +593,18 @@ class _NewsScreenState extends State<NewsScreen> {
           ),
         );
       } else {
-        return Container(
+        return SizedBox(
           width: widgetSize(context),
           height: 300,
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                CircularProgressIndicator(color: blackColor),
+                // CircularProgressIndicator(color: blackColor),
                 Padding(
                   padding: const EdgeInsets.only(top: 20),
                   child: Text(
-                    '로딩이 오래 걸리면 새로고침(F5) 한 번만 눌러주세요.',
+                    '게시물이 없습니다.',
                     style: TextStyle(color: blackColor),
                   ),
                 ),

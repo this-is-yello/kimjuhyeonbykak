@@ -343,6 +343,7 @@ class _DesignerAmbassadorState extends State<DesignerAmbassador> {
   @override
   Widget build(BuildContext context) {
     return Dialog(
+      backgroundColor: whiteColor,
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 40),
         child: Container(

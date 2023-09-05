@@ -884,6 +884,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
     return showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
+        backgroundColor: whiteColor,
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -1039,6 +1040,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
     return showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
+        backgroundColor: whiteColor,
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -1261,6 +1263,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
       context: context,
       builder: (context) {
         return AlertDialog(
+          backgroundColor: whiteColor,
           title: Text(
             '회원정보',
             style: TextStyle(
@@ -1469,6 +1472,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
       context: context,
       builder: (context) {
         return AlertDialog(
+          backgroundColor: whiteColor,
           title: Text(
             '등급변경',
             style: TextStyle(
@@ -1495,6 +1499,13 @@ class _AdminMyPageState extends State<AdminMyPage> {
                     Checkbox(
                       activeColor: blackColor,
                       checkColor: whiteColor,
+                      fillColor: MaterialStateProperty.resolveWith<Color>(
+                          (Set<MaterialState> states) {
+                        if (states.contains(MaterialState.disabled)) {
+                          return blackColor.withOpacity(.32);
+                        }
+                        return blackColor;
+                      }),
                       value: _checkAdmin,
                       onChanged: (bool? value) {
                         if (_checkAmbassador == true || _checkKakin == true) {
@@ -1540,6 +1551,13 @@ class _AdminMyPageState extends State<AdminMyPage> {
                       Checkbox(
                         activeColor: blackColor,
                         checkColor: whiteColor,
+                        fillColor: MaterialStateProperty.resolveWith<Color>(
+                            (Set<MaterialState> states) {
+                          if (states.contains(MaterialState.disabled)) {
+                            return blackColor.withOpacity(.32);
+                          }
+                          return blackColor;
+                        }),
                         value: _checkAmbassador,
                         onChanged: (bool? value) {
                           if (_checkAdmin == true || _checkKakin == true) {
@@ -1584,6 +1602,13 @@ class _AdminMyPageState extends State<AdminMyPage> {
                     Checkbox(
                       activeColor: blackColor,
                       checkColor: whiteColor,
+                      fillColor: MaterialStateProperty.resolveWith<Color>(
+                          (Set<MaterialState> states) {
+                        if (states.contains(MaterialState.disabled)) {
+                          return blackColor.withOpacity(.32);
+                        }
+                        return blackColor;
+                      }),
                       value: _checkKakin,
                       onChanged: (bool? value) {
                         if (_checkAdmin == true || _checkAmbassador == true) {
@@ -1653,6 +1678,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
       context: context,
       builder: (context) {
         return AlertDialog(
+          backgroundColor: whiteColor,
           title: Text(
             '등급변경',
             style: TextStyle(
@@ -2196,15 +2222,22 @@ class _AdminMyPageState extends State<AdminMyPage> {
                             searchUsers();
                           },
                         ),
-                        border: OutlineInputBorder(
+                        hintText: '이름을 입력하세요.',
+                        hintStyle: TextStyle(
+                          color: blackColor,
+                        ),
+                        enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
+                            width: 2,
                             color: blackColor,
                           ),
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: blackColor, width: 2),
+                          borderSide: BorderSide(
+                            width: 2,
+                            color: blackColor,
+                          ),
                         ),
-                        hintText: '이름을 입력하세요.',
                       ),
                     ),
                   ),
@@ -2396,10 +2429,22 @@ class _AdminMyPageState extends State<AdminMyPage> {
                             color: blackColor,
                           ),
                         ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: blackColor, width: 2),
-                        ),
                         hintText: '이름을 입력하세요.',
+                        hintStyle: TextStyle(
+                          color: blackColor,
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            width: 2,
+                            color: blackColor,
+                          ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            width: 2,
+                            color: blackColor,
+                          ),
+                        ),
                       ),
                     ),
                   ),

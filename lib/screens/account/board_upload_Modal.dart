@@ -65,8 +65,10 @@ class _MagazineUpModalState extends State<MagazineUpModal> {
   }
 
   Future uploadMagazine() async {
-    final ref_1 = firestorage.ref('post/magazine/$thumbnailName');
-    final ref_2 = firestorage.ref('post/magazine/$contentName');
+    int number1 = Random().nextInt(999999);
+    int number2 = Random().nextInt(999999);
+    final ref_1 = firestorage.ref('post/magazine/$number1$thumbnailName');
+    final ref_2 = firestorage.ref('post/magazine/$number2$contentName');
     ref_1.putData(thumbnailByte);
     ref_2.putData(contentByte);
     print('업로드 중일겁니다..');
@@ -113,6 +115,7 @@ class _MagazineUpModalState extends State<MagazineUpModal> {
             () => Navigator.pop(context),
           );
           return Dialog(
+            backgroundColor: whiteColor,
             child: Container(
               width: 200,
               height: 80,
@@ -146,6 +149,7 @@ class _MagazineUpModalState extends State<MagazineUpModal> {
   @override
   Widget build(BuildContext context) {
     return Dialog(
+      backgroundColor: whiteColor,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 40),
         child: Container(
@@ -196,6 +200,9 @@ class _MagazineUpModalState extends State<MagazineUpModal> {
                             decoration: InputDecoration(
                               hintText: '제목을 입력하세요.',
                               border: InputBorder.none,
+                              hintStyle: TextStyle(
+                                color: blackColor,
+                              ),
                             ),
                           ),
                         ),
@@ -427,8 +434,10 @@ class _NewsUpModalState extends State<NewsUpModal> {
   }
 
   Future uploadNews() async {
-    final ref_1 = firestorage.ref('post/news/$thumbnailName');
-    final ref_2 = firestorage.ref('post/news/$contentName');
+    int number1 = Random().nextInt(999999);
+    int number2 = Random().nextInt(999999);
+    final ref_1 = firestorage.ref('post/news/$number1$thumbnailName');
+    final ref_2 = firestorage.ref('post/news/$number2$contentName');
     ref_1.putData(thumbnailByte);
     ref_2.putData(contentByte);
     print('업로드 중일겁니다..');
@@ -476,6 +485,7 @@ class _NewsUpModalState extends State<NewsUpModal> {
             () => Navigator.pop(context),
           );
           return Dialog(
+            backgroundColor: whiteColor,
             child: Container(
               width: 200,
               height: 80,
@@ -509,6 +519,7 @@ class _NewsUpModalState extends State<NewsUpModal> {
   @override
   Widget build(BuildContext context) {
     return Dialog(
+      backgroundColor: whiteColor,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 40),
         child: Container(
@@ -559,6 +570,9 @@ class _NewsUpModalState extends State<NewsUpModal> {
                             decoration: InputDecoration(
                               hintText: '제목을 입력하세요.',
                               border: InputBorder.none,
+                              hintStyle: TextStyle(
+                                color: blackColor,
+                              ),
                             ),
                           ),
                         ),
@@ -607,6 +621,9 @@ class _NewsUpModalState extends State<NewsUpModal> {
                             decoration: InputDecoration(
                               hintText: '신문사 이름을 입력하세요.',
                               border: InputBorder.none,
+                              hintStyle: TextStyle(
+                                color: blackColor,
+                              ),
                             ),
                           ),
                         ),
@@ -809,6 +826,7 @@ class _NotificationUpModalState extends State<NotificationUpModal> {
   @override
   Widget build(BuildContext context) {
     return Dialog(
+      backgroundColor: whiteColor,
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 40),
         child: Container(
@@ -859,6 +877,9 @@ class _NotificationUpModalState extends State<NotificationUpModal> {
                             decoration: InputDecoration(
                               hintText: '제목을 입력하세요.',
                               border: InputBorder.none,
+                              hintStyle: TextStyle(
+                                color: blackColor,
+                              ),
                             ),
                           ),
                         ),
@@ -902,15 +923,19 @@ class _NotificationUpModalState extends State<NotificationUpModal> {
                             color: blackColor,
                           ),
                           decoration: InputDecoration(
-                            focusedBorder: OutlineInputBorder(
+                            hintText: '내용을 입력하세요.',
+                            hintStyle: TextStyle(
+                              color: blackColor,
+                            ),
+                            enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: blackColor,
                                 width: 2,
+                                color: blackColor,
                               ),
                             ),
-                            hintText: '내용을 입력하세요.',
-                            border: OutlineInputBorder(
+                            focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
+                                width: 2,
                                 color: blackColor,
                               ),
                             ),
@@ -1050,8 +1075,10 @@ class _EventUpModalState extends State<EventUpModal> {
   }
 
   Future uploadEvent() async {
-    final ref_1 = firestorage.ref('post/event/$thumbnailName');
-    final ref_2 = firestorage.ref('post/event/$contentName');
+    int number1 = Random().nextInt(999999);
+    int number2 = Random().nextInt(999999);
+    final ref_1 = firestorage.ref('post/event/$number1$thumbnailName');
+    final ref_2 = firestorage.ref('post/event/$number2$contentName');
     ref_1.putData(thumbnailByte);
     ref_2.putData(contentByte);
     print('업로드 중일겁니다..');
@@ -1102,6 +1129,7 @@ class _EventUpModalState extends State<EventUpModal> {
             () => Navigator.pop(context),
           );
           return Dialog(
+            backgroundColor: whiteColor,
             child: Container(
               width: 200,
               height: 80,
@@ -1135,6 +1163,7 @@ class _EventUpModalState extends State<EventUpModal> {
   @override
   Widget build(BuildContext context) {
     return Dialog(
+      backgroundColor: whiteColor,
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 40),
         child: Container(
@@ -1185,6 +1214,9 @@ class _EventUpModalState extends State<EventUpModal> {
                             decoration: InputDecoration(
                               hintText: '제목을 입력하세요.',
                               border: InputBorder.none,
+                              hintStyle: TextStyle(
+                                color: blackColor,
+                              ),
                             ),
                           ),
                         ),
@@ -1233,6 +1265,9 @@ class _EventUpModalState extends State<EventUpModal> {
                             decoration: InputDecoration(
                               hintText: '제목을 입력하세요.',
                               border: InputBorder.none,
+                              hintStyle: TextStyle(
+                                color: blackColor,
+                              ),
                             ),
                           ),
                         ),
@@ -1281,6 +1316,9 @@ class _EventUpModalState extends State<EventUpModal> {
                             decoration: InputDecoration(
                               hintText: '23.01.01 - 23.01.01',
                               border: InputBorder.none,
+                              hintStyle: TextStyle(
+                                color: blackColor,
+                              ),
                             ),
                           ),
                         ),
@@ -1492,7 +1530,8 @@ class _MediaUpModalState extends State<MediaUpModal> {
   }
 
   Future uploadMedia() async {
-    final ref_1 = firestorage.ref('post/media/$thumbnailName');
+    int number1 = Random().nextInt(999999);
+    final ref_1 = firestorage.ref('post/media/$number1$thumbnailName');
     ref_1.putData(thumbnailByte);
     print('업로드 중일겁니다..');
     Future.delayed(
@@ -1531,6 +1570,7 @@ class _MediaUpModalState extends State<MediaUpModal> {
             () => Navigator.pop(context),
           );
           return Dialog(
+            backgroundColor: whiteColor,
             child: Container(
               width: 200,
               height: 80,
@@ -1564,6 +1604,7 @@ class _MediaUpModalState extends State<MediaUpModal> {
   @override
   Widget build(BuildContext context) {
     return Dialog(
+      backgroundColor: whiteColor,
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 40),
         child: Container(
@@ -1614,6 +1655,9 @@ class _MediaUpModalState extends State<MediaUpModal> {
                             decoration: InputDecoration(
                               hintText: '제목을 입력하세요.',
                               border: InputBorder.none,
+                              hintStyle: TextStyle(
+                                color: blackColor,
+                              ),
                             ),
                           ),
                         ),
@@ -1662,6 +1706,9 @@ class _MediaUpModalState extends State<MediaUpModal> {
                             decoration: InputDecoration(
                               hintText: '링크을 입력하세요.',
                               border: InputBorder.none,
+                              hintStyle: TextStyle(
+                                color: blackColor,
+                              ),
                             ),
                           ),
                         ),
@@ -1827,7 +1874,8 @@ class _ProductUpModalState extends State<ProductUpModal> {
   }
 
   Future uploadProduct() async {
-    final ref_1 = firestorage.ref('post/product/$thumbnailName');
+    int number1 = Random().nextInt(999999);
+    final ref_1 = firestorage.ref('post/product/$number1$thumbnailName');
     ref_1.putData(thumbnailByte);
     print('업로드 중일겁니다..');
     Future.delayed(
@@ -1862,6 +1910,7 @@ class _ProductUpModalState extends State<ProductUpModal> {
             () => Navigator.pop(context),
           );
           return Dialog(
+            backgroundColor: whiteColor,
             child: Container(
               width: 200,
               height: 80,
@@ -1895,6 +1944,7 @@ class _ProductUpModalState extends State<ProductUpModal> {
   @override
   Widget build(BuildContext context) {
     return Dialog(
+      backgroundColor: whiteColor,
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 40),
         child: Container(

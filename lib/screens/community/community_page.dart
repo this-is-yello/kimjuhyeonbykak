@@ -749,7 +749,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
   @override
   Widget build(BuildContext context) {
     try {
-      if (notificationDocs[i]['title'] != null) {
+      if (notificationLength > 0) {
         return Column(
           children: [
             SizedBox(
@@ -902,11 +902,11 @@ class _NotificationScreenState extends State<NotificationScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                CircularProgressIndicator(color: blackColor),
+                // CircularProgressIndicator(color: blackColor),
                 Padding(
                   padding: const EdgeInsets.only(top: 20),
                   child: Text(
-                    '로딩이 오래 걸리면 새로고침(F5) 한 번만 눌러주세요.',
+                    '게시물이 없습니다.',
                     style: TextStyle(color: blackColor),
                   ),
                 ),
@@ -973,7 +973,7 @@ class _EventScreenState extends State<EventScreen> {
   @override
   Widget build(BuildContext context) {
     try {
-      if (eventDocs[i]['thumbnail'] != null) {
+      if (eventDocsLength > 0) {
         return SizedBox(
           width: widgetSize(context),
           child: GridView.builder(
@@ -1062,6 +1062,7 @@ class _EventScreenState extends State<EventScreen> {
                                 fontSize: h5FontSize(context),
                                 color: blackColor,
                               ),
+                              maxLines: 1,
                             ),
                           ),
                         ],
@@ -1081,11 +1082,11 @@ class _EventScreenState extends State<EventScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                CircularProgressIndicator(color: blackColor),
+                // CircularProgressIndicator(color: blackColor),
                 Padding(
                   padding: const EdgeInsets.only(top: 20),
                   child: Text(
-                    '로딩이 오래 걸리면 새로고침(F5) 한 번만 눌러주세요.',
+                    '게시물이 없습니다.',
                     style: TextStyle(color: blackColor),
                   ),
                 ),
@@ -1154,135 +1155,157 @@ class _MediaScreenState extends State<MediaScreen> {
   @override
   Widget build(BuildContext context) {
     try {
-      return Column(
-        children: [
-          SizedBox(
-            width: widgetSize(context),
-            child: InkWell(
-              onTap: () async {
-                final url = Uri.parse(mediaDocs[i]['link']);
-                if (await canLaunchUrl(url)) {
-                  launchUrl(url, mode: LaunchMode.externalApplication);
-                }
-              },
-              child: Column(
-                children: [
-                  SizedBox(
-                    width: widgetSize(context),
-                    child: ImageFade(
-                      image: NetworkImage(
-                        mediaDocs[i]['thumbnail'],
-                      ),
-                      fit: BoxFit.fitWidth,
-                      duration: const Duration(milliseconds: 900),
-                      syncDuration: const Duration(milliseconds: 150),
-                      // placeholder: Padding(
-                      //   padding: const EdgeInsets.all(20),
-                      //   child: Center(
-                      //     child: CircularProgressIndicator(
-                      //       color: blackColor,
-                      //     ),
-                      //   ),
-                      // ),
-                      loadingBuilder: (context, progress, chunkEvent) {
-                        return Center(
-                          child: CircularProgressIndicator(
-                            color: blackColor,
+      if (mediaDocsLength > 0) {
+        return Column(
+          children: [
+            SizedBox(
+              width: widgetSize(context),
+              child: InkWell(
+                onTap: () async {
+                  final url = Uri.parse(mediaDocs[i]['link']);
+                  if (await canLaunchUrl(url)) {
+                    launchUrl(url, mode: LaunchMode.externalApplication);
+                  }
+                },
+                child: Column(
+                  children: [
+                    SizedBox(
+                      width: widgetSize(context),
+                      child: ImageFade(
+                        image: NetworkImage(
+                          mediaDocs[i]['thumbnail'],
+                        ),
+                        fit: BoxFit.fitWidth,
+                        duration: const Duration(milliseconds: 900),
+                        syncDuration: const Duration(milliseconds: 150),
+                        // placeholder: Padding(
+                        //   padding: const EdgeInsets.all(20),
+                        //   child: Center(
+                        //     child: CircularProgressIndicator(
+                        //       color: blackColor,
+                        //     ),
+                        //   ),
+                        // ),
+                        loadingBuilder: (context, progress, chunkEvent) {
+                          return Center(
+                            child: CircularProgressIndicator(
+                              color: blackColor,
+                            ),
+                          );
+                        },
+                        errorBuilder: (context, error) => Container(
+                          color: const Color(0xFFFFFFFF),
+                          alignment: Alignment.center,
+                          child: const Icon(
+                            Icons.warning,
+                            color: Color(0xFF1E1E1E),
+                            size: 128.0,
                           ),
-                        );
-                      },
-                      errorBuilder: (context, error) => Container(
-                        color: const Color(0xFFFFFFFF),
-                        alignment: Alignment.center,
-                        child: const Icon(
-                          Icons.warning,
-                          color: Color(0xFF1E1E1E),
-                          size: 128.0,
                         ),
                       ),
                     ),
-                  ),
-                  Container(
-                    width: widgetSize(context),
-                    padding: EdgeInsets.only(top: 16),
-                    child: Text(
-                      mediaDocs[i]['title'],
-                      style: TextStyle(
-                        fontSize: h3FontSize(context),
-                        color: blackColor,
+                    Container(
+                      width: widgetSize(context),
+                      padding: EdgeInsets.only(top: 16),
+                      child: Text(
+                        mediaDocs[i]['title'],
+                        style: TextStyle(
+                          fontSize: h3FontSize(context),
+                          color: blackColor,
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 20),
-            child: SizedBox(
-              width: widgetSize(context),
-              height: c1BoxSize(context),
-              child: ScrollConfiguration(
-                behavior: ScrollConfiguration.of(context).copyWith(
-                  dragDevices: {
-                    PointerDeviceKind.mouse,
-                    PointerDeviceKind.touch,
-                    PointerDeviceKind.trackpad,
-                  },
-                ),
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: mediaDocsLength,
-                  itemBuilder: (context, index) {
-                    return InkWell(
-                      onTap: () {
-                        setState(() {
-                          i = index;
-                        });
-                      },
-                      child: Container(
-                        padding: EdgeInsets.only(right: 16),
-                        child: ImageFade(
-                          image: NetworkImage(
-                            mediaDocs[index]['thumbnail'],
-                          ),
-                          fit: BoxFit.fitHeight,
-                          duration: const Duration(milliseconds: 900),
-                          syncDuration: const Duration(milliseconds: 150),
-                          // placeholder: Padding(
-                          //   padding: const EdgeInsets.all(20),
-                          //   child: Center(
-                          //     child: CircularProgressIndicator(
-                          //       color: blackColor,
-                          //     ),
-                          //   ),
-                          // ),
-                          loadingBuilder: (context, progress, chunkEvent) {
-                            return Center(
-                              child: CircularProgressIndicator(
-                                color: blackColor,
+            Padding(
+              padding: EdgeInsets.only(top: 20),
+              child: SizedBox(
+                width: widgetSize(context),
+                height: c1BoxSize(context),
+                child: ScrollConfiguration(
+                  behavior: ScrollConfiguration.of(context).copyWith(
+                    dragDevices: {
+                      PointerDeviceKind.mouse,
+                      PointerDeviceKind.touch,
+                      PointerDeviceKind.trackpad,
+                    },
+                  ),
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: mediaDocsLength,
+                    itemBuilder: (context, index) {
+                      return InkWell(
+                        onTap: () {
+                          setState(() {
+                            i = index;
+                          });
+                        },
+                        child: Container(
+                          padding: EdgeInsets.only(right: 16),
+                          child: ImageFade(
+                            image: NetworkImage(
+                              mediaDocs[index]['thumbnail'],
+                            ),
+                            fit: BoxFit.fitHeight,
+                            duration: const Duration(milliseconds: 900),
+                            syncDuration: const Duration(milliseconds: 150),
+                            // placeholder: Padding(
+                            //   padding: const EdgeInsets.all(20),
+                            //   child: Center(
+                            //     child: CircularProgressIndicator(
+                            //       color: blackColor,
+                            //     ),
+                            //   ),
+                            // ),
+                            loadingBuilder: (context, progress, chunkEvent) {
+                              return Center(
+                                child: CircularProgressIndicator(
+                                  color: blackColor,
+                                ),
+                              );
+                            },
+                            errorBuilder: (context, error) => Container(
+                              color: const Color(0xFFFFFFFF),
+                              alignment: Alignment.center,
+                              child: const Icon(
+                                Icons.warning,
+                                color: Color(0xFF1E1E1E),
+                                size: 128.0,
                               ),
-                            );
-                          },
-                          errorBuilder: (context, error) => Container(
-                            color: const Color(0xFFFFFFFF),
-                            alignment: Alignment.center,
-                            child: const Icon(
-                              Icons.warning,
-                              color: Color(0xFF1E1E1E),
-                              size: 128.0,
                             ),
                           ),
                         ),
-                      ),
-                    );
-                  },
+                      );
+                    },
+                  ),
                 ),
               ),
             ),
+          ],
+        );
+      } else {
+        return SizedBox(
+          width: widgetSize(context),
+          height: 300,
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // CircularProgressIndicator(color: blackColor),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20),
+                  child: Text(
+                    '게시물이 없습니다.',
+                    style: TextStyle(color: blackColor),
+                  ),
+                ),
+              ],
+            ),
           ),
-        ],
-      );
+        );
+      }
     } catch (e) {
       print(e);
       return SizedBox(
