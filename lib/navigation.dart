@@ -250,7 +250,7 @@ class _MainAppBarState extends State<MainAppBar> {
                         Get.rootDelegate.toNamed(Routes.MAIN);
                       },
                       child: SizedBox(
-                        width: 110,
+                        width: 100,
                         child: Image.asset(
                           width:
                               MediaQuery.of(context).size.width < 800 ? 56 : 64,
@@ -281,7 +281,6 @@ class _MainAppBarState extends State<MainAppBar> {
                                       });
                                     },
                                     child: Container(
-                                      width: 100,
                                       child: ElevatedButton(
                                         style: elevatedBtnTheme,
                                         onPressed: () {
@@ -293,12 +292,16 @@ class _MainAppBarState extends State<MainAppBar> {
                                           Get.rootDelegate
                                               .toNamed(navsMenuLinks[index]);
                                         },
-                                        child: Text(
-                                          navsMenu[index],
-                                          style: TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                            color: whiteColor,
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                            horizontal: 12,
+                                          ),
+                                          child: Text(
+                                            navsMenu[index],
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              color: whiteColor,
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -371,7 +374,6 @@ class _MainAppBarState extends State<MainAppBar> {
                                         : '마이페이지',
                                 style: TextStyle(
                                   fontSize: 16,
-                                  fontWeight: FontWeight.bold,
                                   color: whiteColor,
                                 ),
                               ),

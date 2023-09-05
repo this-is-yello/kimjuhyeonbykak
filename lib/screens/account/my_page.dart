@@ -1727,6 +1727,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
                         print(e);
                       }
                     }
+                    Get.forceAppUpdate();
                   },
                   child: Center(
                     child: Padding(
@@ -1752,6 +1753,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
                       } catch (e) {
                         print(e);
                       }
+                      Get.forceAppUpdate();
                     },
                     child: Center(
                       child: Padding(
