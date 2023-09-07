@@ -794,7 +794,7 @@ class CiBiScreen extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.only(bottom: 16),
                               child: Text(
-                                '색상의 이름?',
+                                '바이각 그린',
                                 style: TextStyle(
                                   fontSize: h3FontSize(context),
                                   fontWeight: FontWeight.bold,
@@ -820,7 +820,7 @@ class CiBiScreen extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              'CMYK : (65, 0, 21, 64',
+                              'CMYK : (65, 0, 21, 64)',
                               style: TextStyle(
                                 fontSize: h5FontSize(context),
                                 color: blackColor,

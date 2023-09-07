@@ -264,28 +264,12 @@ class _NewsViewContentState extends State<NewsViewContent> {
                     ),
                     SizedBox(
                       width: widgetSize(context),
-                      child: Row(
-                        children: [
-                          Text(
-                            '기자이름 $newsNum',
-                            style: TextStyle(
-                              fontSize: h5FontSize(context),
-                              color: blackColor,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 16),
-                            child: Text(
-                              newsDocs[newsNum]['date']
-                                  .toString()
-                                  .substring(0, 10),
-                              style: TextStyle(
-                                fontSize: h5FontSize(context),
-                                color: blackColor,
-                              ),
-                            ),
-                          ),
-                        ],
+                      child: Text(
+                        newsDocs[newsNum]['date'].toString().substring(0, 10),
+                        style: TextStyle(
+                          fontSize: h5FontSize(context),
+                          color: blackColor,
+                        ),
                       ),
                     ),
                     Padding(
