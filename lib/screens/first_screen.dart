@@ -56,6 +56,8 @@ class _MainPageState extends State<MainPage> {
     topState = true;
     inMypage = false;
     scrollState();
+    darkState = Get.isDarkMode ? true : false;
+    print(Get.isDarkMode);
   }
 
   @override
@@ -845,77 +847,80 @@ class _TailorShopScreenState extends State<TailorShopScreen> {
 
 // ---------- TailorAcademy -----------------------------------------------------------------------------------------------------
 doWhat(context) {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.center,
-    children: [
-      Text(
-        '맞춤정장을 배워 무엇을 할 수 있을까?',
-        style: TextStyle(
-          fontSize: h4FontSize(context) - 2,
-          color: blackColor,
-        ),
-      ),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            '"나는 테일러링을 배워서 ',
-            style: TextStyle(
-              fontSize: h4FontSize(context) - 2,
-              color: blackColor,
-            ),
+  return SizedBox(
+    width: MediaQuery.of(context).size.width,
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Text(
+          '맞춤정장을 배워 무엇을 할 수 있을까?',
+          style: TextStyle(
+            fontSize: h4FontSize(context) - 2,
+            color: blackColor,
           ),
-          Container(
-            width: c1BoxSize(context),
-            height: MediaQuery.of(context).size.width < 800 ? 32 : 40,
-            decoration: BoxDecoration(
-              border: Border(
-                bottom: BorderSide(
-                  color: blackColor,
-                  width: 2,
-                ),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              '"나는 테일러링을 배워서 ',
+              style: TextStyle(
+                fontSize: h4FontSize(context) - 2,
+                color: blackColor,
               ),
             ),
-            child: AnimatedTextKit(
-              totalRepeatCount: 50000,
-              animatedTexts: [
-                RotateAnimatedText(
-                  '나만의 수트제작',
-                  textStyle: TextStyle(
-                    fontSize: h4FontSize(context),
-                    fontWeight: FontWeight.bold,
+            Container(
+              width: c1BoxSize(context),
+              height: MediaQuery.of(context).size.width < 800 ? 32 : 40,
+              decoration: BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(
                     color: blackColor,
+                    width: 2,
                   ),
                 ),
-                RotateAnimatedText(
-                  '테일러샵 창업',
-                  textStyle: TextStyle(
-                    fontSize: h4FontSize(context),
-                    fontWeight: FontWeight.bold,
-                    color: blackColor,
+              ),
+              child: AnimatedTextKit(
+                totalRepeatCount: 50000,
+                animatedTexts: [
+                  RotateAnimatedText(
+                    '나만의 수트제작',
+                    textStyle: TextStyle(
+                      fontSize: h4FontSize(context),
+                      fontWeight: FontWeight.bold,
+                      color: blackColor,
+                    ),
                   ),
-                ),
-                RotateAnimatedText(
-                  '쇼핑몰 오픈',
-                  textStyle: TextStyle(
-                    fontSize: h4FontSize(context),
-                    fontWeight: FontWeight.bold,
-                    color: blackColor,
+                  RotateAnimatedText(
+                    '테일러샵 창업',
+                    textStyle: TextStyle(
+                      fontSize: h4FontSize(context),
+                      fontWeight: FontWeight.bold,
+                      color: blackColor,
+                    ),
                   ),
-                ),
-              ],
+                  RotateAnimatedText(
+                    '쇼핑몰 오픈',
+                    textStyle: TextStyle(
+                      fontSize: h4FontSize(context),
+                      fontWeight: FontWeight.bold,
+                      color: blackColor,
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-          Text(
-            ' 을 하고싶다"',
-            style: TextStyle(
-              fontSize: h4FontSize(context) - 2,
-              color: blackColor,
+            Text(
+              ' 을 하고싶다"',
+              style: TextStyle(
+                fontSize: h4FontSize(context) - 2,
+                color: blackColor,
+              ),
             ),
-          ),
-        ],
-      ),
-    ],
+          ],
+        ),
+      ],
+    ),
   );
 }
 
@@ -946,86 +951,90 @@ class _TailorAcademyScreenState extends State<TailorAcademyScreen> {
       child: FadeInDown(
         animate: true,
         duration: const Duration(milliseconds: 2000),
-        child: Center(
-          child: Container(
-            width: widgetSize(context),
-            margin: const EdgeInsets.only(left: 20, right: 20),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'by 覺 Tailor Academy',
-                  style: TextStyle(
-                    fontSize: h2FontSize(context),
-                    fontFamily: 'NotoSerif',
-                    fontWeight: FontWeight.bold,
-                    color: blackColor,
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    top: 40,
-                    bottom: 20,
-                  ),
-                  child: Text(
-                    '바이각 테일러아카데미는 장인들의 맞춤양복 기술이\n후대에도 이어나갈 수 있도록, 후학양성을 위해 설립되었습니다.',
-                    style: TextStyle(
-                      fontSize: h5FontSize(context) + 2,
-                      color: blackColor,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    bottom: 40,
-                  ),
-                  child: ElevatedButton(
-                    style: elevatedBtnTheme,
-                    onPressed: () {
-                      Get.rootDelegate.toNamed(Routes.TAILORACADEMY);
-                    },
-                    child: Text(
-                      '자세히보기',
+        child: Column(
+          children: [
+            Center(
+              child: Container(
+                width: widgetSize(context),
+                margin: const EdgeInsets.only(left: 20, right: 20),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'by 覺 Tailor Academy',
                       style: TextStyle(
-                        fontSize: h5FontSize(context),
-                        decoration: TextDecoration.underline,
+                        fontSize: h2FontSize(context),
+                        fontFamily: 'NotoSerif',
+                        fontWeight: FontWeight.bold,
                         color: blackColor,
                       ),
                     ),
-                  ),
+                    Padding(
+                      padding: EdgeInsets.only(
+                        top: 40,
+                        bottom: 20,
+                      ),
+                      child: Text(
+                        '바이각 테일러아카데미는 장인들의 맞춤양복 기술이\n후대에도 이어나갈 수 있도록, 후학양성을 위해 설립되었습니다.',
+                        style: TextStyle(
+                          fontSize: h5FontSize(context) + 2,
+                          color: blackColor,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        bottom: 40,
+                      ),
+                      child: ElevatedButton(
+                        style: elevatedBtnTheme,
+                        onPressed: () {
+                          Get.rootDelegate.toNamed(Routes.TAILORACADEMY);
+                        },
+                        child: Text(
+                          '자세히보기',
+                          style: TextStyle(
+                            fontSize: h5FontSize(context),
+                            decoration: TextDecoration.underline,
+                            color: blackColor,
+                          ),
+                        ),
+                      ),
+                    ),
+                    // MediaQuery.of(context).size.width < 800
+                    //     ? Column(
+                    //         crossAxisAlignment: CrossAxisAlignment.center,
+                    //         children: [
+                    //           Padding(
+                    //             padding: EdgeInsets.only(bottom: 20),
+                    //             child: doWhat(context),
+                    //           ),
+                    //           SizedBox(
+                    //             width: double.infinity,
+                    //             child: academyVideo(),
+                    //           ),
+                    //         ],
+                    //       )
+                    //     : Row(
+                    //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //         children: [
+                    //           Padding(
+                    //             padding: const EdgeInsets.only(right: 40),
+                    //             child: doWhat(context),
+                    //           ),
+                    //           Flexible(
+                    //             fit: FlexFit.tight,
+                    //             child: academyVideo(),
+                    //           ),
+                    //         ],
+                    //       ),
+                  ],
                 ),
-                doWhat(context),
-                // MediaQuery.of(context).size.width < 800
-                //     ? Column(
-                //         crossAxisAlignment: CrossAxisAlignment.center,
-                //         children: [
-                //           Padding(
-                //             padding: EdgeInsets.only(bottom: 20),
-                //             child: doWhat(context),
-                //           ),
-                //           SizedBox(
-                //             width: double.infinity,
-                //             child: academyVideo(),
-                //           ),
-                //         ],
-                //       )
-                //     : Row(
-                //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //         children: [
-                //           Padding(
-                //             padding: const EdgeInsets.only(right: 40),
-                //             child: doWhat(context),
-                //           ),
-                //           Flexible(
-                //             fit: FlexFit.tight,
-                //             child: academyVideo(),
-                //           ),
-                //         ],
-                //       ),
-              ],
+              ),
             ),
-          ),
+            doWhat(context),
+          ],
         ),
       ),
     );

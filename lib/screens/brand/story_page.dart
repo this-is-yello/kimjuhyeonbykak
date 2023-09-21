@@ -417,7 +417,7 @@ class HistoryScreen extends StatelessWidget {
                 children: [
                   Container(
                     height: 320,
-                    color: darkState ? Color(0xFF1E1E1E) : Color(0xFFFFFFFF),
+                    color: darkState == true ? Color(0xFF1E1E1E) : Color(0xFFFFFFFF),
                     child: ImageFade(
                       image: AssetImage(
                         'assets/images/history_3.png',
@@ -522,7 +522,7 @@ class CiBiScreen extends StatelessWidget {
                               width: c2BoxSize(context),
                               child: ImageFade(
                                 image: AssetImage(
-                                  darkState
+                                  darkState == true
                                       ? 'assets/images/logos/bykakLogo_w.png'
                                       : 'assets/images/logos/bykakLogo_b.png',
                                 ),
@@ -544,7 +544,7 @@ class CiBiScreen extends StatelessWidget {
                               width: c1BoxSize(context),
                               child: ImageFade(
                                 image: AssetImage(
-                                  darkState
+                                  darkState == true
                                       ? 'assets/images/logos/bykakTextLogo_w.png'
                                       : 'assets/images/logos/bykakTextLogo_b.png',
                                 ),
@@ -586,7 +586,7 @@ class CiBiScreen extends StatelessWidget {
                               width: c2BoxSize(context),
                               child: ImageFade(
                                 image: AssetImage(
-                                  darkState
+                                  darkState == true
                                       ? 'assets/images/logos/bykakLogo_b.png'
                                       : 'assets/images/logos/bykakLogo_w.png',
                                 ),
@@ -608,7 +608,7 @@ class CiBiScreen extends StatelessWidget {
                               width: c1BoxSize(context),
                               child: ImageFade(
                                 image: AssetImage(
-                                  darkState
+                                  darkState == true
                                       ? 'assets/images/logos/bykakTextLogo_b.png'
                                       : 'assets/images/logos/bykakTextLogo_w.png',
                                 ),
@@ -680,7 +680,7 @@ class CiBiScreen extends StatelessWidget {
                               padding: const EdgeInsets.all(40),
                               child: ImageFade(
                                 image: AssetImage(
-                                  darkState
+                                  darkState == true
                                       ? 'assets/images/logos/bykakScissorLogo_w.png'
                                       : 'assets/images/logos/bykakScissorLogo_b.png',
                                 ),
@@ -709,7 +709,7 @@ class CiBiScreen extends StatelessWidget {
                               padding: const EdgeInsets.all(40),
                               child: ImageFade(
                                 image: AssetImage(
-                                  darkState
+                                  darkState == true
                                       ? 'assets/images/logos/bykakScissorLogo_b.png'
                                       : 'assets/images/logos/bykakScissorLogo_w.png',
                                 ),
