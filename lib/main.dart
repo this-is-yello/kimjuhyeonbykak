@@ -251,6 +251,10 @@ void main() async {
           fontFamily: 'Pretendard',
           primaryColor: blackColor,
         ),
+        darkTheme: ThemeData(
+          fontFamily: 'Pretendard',
+          primaryColor: whiteColor,
+        ),
         // darkTheme: FlexThemeData.dark(scheme: FlexScheme.amber),
         // themeMode: ThemeMode.system,
         defaultTransition: Transition.fadeIn,
@@ -275,6 +279,10 @@ void main() async {
         theme: ThemeData(
           fontFamily: 'Pretendard',
           primaryColor: blackColor,
+        ),
+        darkTheme: ThemeData(
+          fontFamily: 'Pretendard',
+          primaryColor: whiteColor,
         ),
         defaultTransition: Transition.fadeIn,
         transitionDuration: Duration(milliseconds: 1000),

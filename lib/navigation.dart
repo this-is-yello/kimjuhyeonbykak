@@ -409,7 +409,10 @@ class _MainAppBarState extends State<MainAppBar> {
                               size: 20,
                             ),
                             onTap: () {
-                              if (darkState == false) {
+                              Get.changeTheme(
+                                Get.isDarkMode ? ThemeData.light() : ThemeData.dark()
+                              );
+                              if (Get.isDarkMode == false) {
                                 setState(() {
                                   darkState = true;
                                   blackColor = const Color(0xFFFFFFFF);

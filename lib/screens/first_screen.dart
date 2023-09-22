@@ -56,8 +56,6 @@ class _MainPageState extends State<MainPage> {
     topState = true;
     inMypage = false;
     scrollState();
-    darkState = Get.isDarkMode ? true : false;
-    print(Get.isDarkMode);
   }
 
   @override
