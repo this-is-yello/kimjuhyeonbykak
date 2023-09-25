@@ -76,15 +76,15 @@ class _TermsPageState extends State<TermsPage> {
           : Padding(
               padding: const EdgeInsets.only(right: 8, bottom: 8),
               child: FloatingActionButton(
+                backgroundColor: bykakColor,
+                onPressed: () {
+                  moveTop();
+                },
                 child: Icon(
                   Icons.keyboard_arrow_up_rounded,
                   color: Color(0xFFFFFFFF),
                   size: 30,
                 ),
-                backgroundColor: bykakColor,
-                onPressed: () {
-                  moveTop();
-                },
               ),
             ),
     );

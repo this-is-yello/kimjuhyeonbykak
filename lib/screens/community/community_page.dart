@@ -83,15 +83,15 @@ class _CommunityPageState extends State<CommunityPage> {
           : Padding(
               padding: const EdgeInsets.only(right: 8, bottom: 8),
               child: FloatingActionButton(
+                backgroundColor: bykakColor,
+                onPressed: () {
+                  moveTop();
+                },
                 child: Icon(
                   Icons.keyboard_arrow_up_rounded,
                   color: Color(0xFFFFFFFF),
                   size: 30,
                 ),
-                backgroundColor: bykakColor,
-                onPressed: () {
-                  moveTop();
-                },
               ),
             ),
     );
@@ -139,7 +139,7 @@ class _CommunityContentState extends State<CommunityContent> {
                             blackColor.withOpacity(0),
                             whiteColor,
                           ],
-                          stops: [0, 1],
+                          stops: const [0, 1],
                         ),
                       ),
                     )
@@ -309,10 +309,10 @@ class _InquiryScreenState extends State<InquiryScreen> {
   ];
   String _selectedValue = '주제를 선택하세요.';
 
-  var _inputInquiryName = TextEditingController();
-  var _inputInquiryPhone = TextEditingController();
-  var _inputInquiryMail = TextEditingController();
-  var _inputInquiry = TextEditingController();
+  final _inputInquiryName = TextEditingController();
+  final _inputInquiryPhone = TextEditingController();
+  final _inputInquiryMail = TextEditingController();
+  final _inputInquiry = TextEditingController();
 
   bool _checkPrivacy = false;
 
@@ -1000,7 +1000,7 @@ class _EventScreenState extends State<EventScreen> {
                   children: [
                     Expanded(
                       flex: 1,
-                      child: Container(
+                      child: SizedBox(
                         child: ImageFade(
                           image: NetworkImage(
                             eventDocs[index]['thumbnail'],

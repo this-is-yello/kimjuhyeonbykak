@@ -1,11 +1,9 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:image_fade/image_fade.dart';
 import 'package:kimjuhyeonbykak/style.dart';
 import 'package:kimjuhyeonbykak/main.dart';
 
 import 'package:kimjuhyeonbykak/navigation.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class ProductPage extends StatefulWidget {
   const ProductPage({super.key});
@@ -83,15 +81,15 @@ class _ProductPageState extends State<ProductPage> {
           : Padding(
               padding: const EdgeInsets.only(right: 8, bottom: 8),
               child: FloatingActionButton(
+                backgroundColor: bykakColor,
+                onPressed: () {
+                  moveTop();
+                },
                 child: Icon(
                   Icons.keyboard_arrow_up_rounded,
                   color: Color(0xFFFFFFFF),
                   size: 30,
                 ),
-                backgroundColor: bykakColor,
-                onPressed: () {
-                  moveTop();
-                },
               ),
             ),
     );
@@ -129,7 +127,7 @@ class ProductTitle extends StatelessWidget {
                       blackColor.withOpacity(0),
                       whiteColor,
                     ],
-                    stops: [0, 1],
+                    stops: const [0, 1],
                   ),
                 ),
               )

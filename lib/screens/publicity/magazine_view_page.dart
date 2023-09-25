@@ -77,15 +77,15 @@ class _MagazineViewPageState extends State<MagazineViewPage> {
           : Padding(
               padding: const EdgeInsets.only(right: 8, bottom: 8),
               child: FloatingActionButton(
+                backgroundColor: bykakColor,
+                onPressed: () {
+                  moveTop();
+                },
                 child: Icon(
                   Icons.keyboard_arrow_up_rounded,
                   color: Color(0xFFFFFFFF),
                   size: 30,
                 ),
-                backgroundColor: bykakColor,
-                onPressed: () {
-                  moveTop();
-                },
               ),
             ),
     );
@@ -147,7 +147,7 @@ class _MagazineViewContentState extends State<MagazineViewContent> {
                             blackColor.withOpacity(0),
                             whiteColor,
                           ],
-                          stops: [0, 1],
+                          stops: const [0, 1],
                         ),
                       ),
                     )
@@ -238,7 +238,7 @@ class _MagazineViewContentState extends State<MagazineViewContent> {
                         fit: BoxFit.fitWidth,
                       );
                     } catch (e) {
-                      return Container(
+                      return SizedBox(
                         width: widgetSize(context),
                         height: 500,
                         child: Center(

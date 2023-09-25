@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:kimjuhyeonbykak/style.dart';
 import 'package:kimjuhyeonbykak/main.dart';
@@ -8,6 +6,7 @@ import 'package:side_sheet/side_sheet.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // ---------- App_Bar -----------------------------------------------------------------------------------------------------
 class MainAppBar extends StatefulWidget {
@@ -280,7 +279,7 @@ class _MainAppBarState extends State<MainAppBar> {
                                         i = index;
                                       });
                                     },
-                                    child: Container(
+                                    child: SizedBox(
                                       child: ElevatedButton(
                                         style: elevatedBtnTheme,
                                         onPressed: () {
@@ -404,29 +403,45 @@ class _MainAppBarState extends State<MainAppBar> {
                           padding: const EdgeInsets.only(left: 16),
                           child: InkWell(
                             child: Icon(
-                              Icons.sunny,
+                              darkState ? Icons.nights_stay_sharp : Icons.sunny,
                               color: whiteColor,
                               size: 20,
                             ),
                             onTap: () {
-                              Get.changeTheme(
-                                Get.isDarkMode ? ThemeData.light() : ThemeData.dark()
-                              );
-                              if (Get.isDarkMode == false) {
+                              // if (Get.isDarkMode == false) {
+                              //   Get.changeThemeMode(
+                              //     ThemeMode.dark
+                              //   );
+                              //   setState(() {
+                              //     darkState = true;
+                              //     blackColor = const Color(0xFFFFFFFF);
+                              //     whiteColor = const Color(0xFF1E1E1E);
+                              //   });
+                              // } else {
+                              //   Get.changeThemeMode(
+                              //     ThemeMode.light
+                              //   );
+                              //   setState(() {
+                              //     darkState = false;
+                              //     blackColor = const Color(0xFF1E1E1E);
+                              //     whiteColor = const Color(0xFFFFFFFF);
+                              //   });
+                              // }
+                              // print('다크모드 : ${Get.isDarkMode}');
+                              if (darkState == false) {
                                 setState(() {
                                   darkState = true;
                                   blackColor = const Color(0xFFFFFFFF);
                                   whiteColor = const Color(0xFF1E1E1E);
                                 });
-                                print('다크모드 적용');
                               } else {
                                 setState(() {
                                   darkState = false;
                                   blackColor = const Color(0xFF1E1E1E);
                                   whiteColor = const Color(0xFFFFFFFF);
                                 });
-                                print('다크모드 해제');
                               }
+                              print('다크모드 : $darkState');
                               Get.forceAppUpdate();
                             },
                           ),
@@ -463,7 +478,7 @@ class _MainAppBarState extends State<MainAppBar> {
                           shrinkWrap: true,
                           scrollDirection: Axis.horizontal,
                           itemBuilder: (context, index) {
-                            return Container(
+                            return SizedBox(
                               height: 60,
                               child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(

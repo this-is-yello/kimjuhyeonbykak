@@ -6,7 +6,6 @@ import 'package:kimjuhyeonbykak/main.dart';
 import 'package:kimjuhyeonbykak/navigation.dart';
 import 'package:kimjuhyeonbykak/screens/account/board_upload_modal.dart';
 
-import 'package:image_fade/image_fade.dart';
 // import 'package:file_picker/file_picker.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -77,7 +76,7 @@ class _MyPageState extends State<MyPage> {
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
+            children: const [
               MainAppBar(),
             ],
           ),
@@ -441,7 +440,7 @@ class _UserMyPageState extends State<UserMyPage> {
                     child: currentUserGrade == '엠버서더'
                         ? Column(
                             children: [
-                              Container(
+                              SizedBox(
                                 width: widgetSize(context),
                                 child: Row(
                                   mainAxisAlignment:
@@ -557,7 +556,7 @@ class _UserMyPageState extends State<UserMyPage> {
                                       spacing: 10,
                                       runSpacing: 30,
                                       children: [
-                                        Container(
+                                        SizedBox(
                                           width: MediaQuery.of(context)
                                                       .size
                                                       .width <
@@ -592,7 +591,7 @@ class _UserMyPageState extends State<UserMyPage> {
                                             ],
                                           ),
                                         ),
-                                        Container(
+                                        SizedBox(
                                           width: MediaQuery.of(context)
                                                       .size
                                                       .width <
@@ -627,7 +626,7 @@ class _UserMyPageState extends State<UserMyPage> {
                                             ],
                                           ),
                                         ),
-                                        Container(
+                                        SizedBox(
                                           width: MediaQuery.of(context)
                                                       .size
                                                       .width <
@@ -808,8 +807,8 @@ class AdminMyPage extends StatefulWidget {
 }
 
 class _AdminMyPageState extends State<AdminMyPage> {
-  var _inputSearchName = TextEditingController();
-  var _inputNonMembarName = TextEditingController();
+  final _inputSearchName = TextEditingController();
+  final _inputNonMembarName = TextEditingController();
   var searchAdmin;
   var adminLength;
   var searchAdminLength;
@@ -1647,6 +1646,11 @@ class _AdminMyPageState extends State<AdminMyPage> {
                     },
                     child: Container(
                       height: 40,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(4),
+                        border: Border.all(color: blackColor, width: 2),
+                        color: blackColor,
+                      ),
                       child: Center(
                         child: Text(
                           '닫기',
@@ -1655,11 +1659,6 @@ class _AdminMyPageState extends State<AdminMyPage> {
                             color: whiteColor,
                           ),
                         ),
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(4),
-                        border: Border.all(color: blackColor, width: 2),
-                        color: blackColor,
                       ),
                     ),
                   ),
@@ -1772,6 +1771,11 @@ class _AdminMyPageState extends State<AdminMyPage> {
                   },
                   child: Container(
                     height: 40,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4),
+                      border: Border.all(color: blackColor, width: 2),
+                      color: blackColor,
+                    ),
                     child: Center(
                       child: Text(
                         '닫기',
@@ -1780,11 +1784,6 @@ class _AdminMyPageState extends State<AdminMyPage> {
                           color: whiteColor,
                         ),
                       ),
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4),
-                      border: Border.all(color: blackColor, width: 2),
-                      color: blackColor,
                     ),
                   ),
                 ),
@@ -2068,7 +2067,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
                             ),
                           ),
                         ),
-                        Container(
+                        SizedBox(
                           height: 40,
                           child: TextButton(
                             onPressed: () {
@@ -2089,7 +2088,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
                             ),
                           ),
                         ),
-                        Container(
+                        SizedBox(
                           height: 40,
                           child: TextButton(
                             onPressed: () {
@@ -2110,7 +2109,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
                             ),
                           ),
                         ),
-                        Container(
+                        SizedBox(
                           height: 40,
                           child: TextButton(
                             onPressed: () {
@@ -2131,7 +2130,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
                             ),
                           ),
                         ),
-                        Container(
+                        SizedBox(
                           height: 40,
                           child: TextButton(
                             onPressed: () {
@@ -2152,7 +2151,7 @@ class _AdminMyPageState extends State<AdminMyPage> {
                             ),
                           ),
                         ),
-                        Container(
+                        SizedBox(
                           height: 40,
                           child: TextButton(
                             onPressed: () {

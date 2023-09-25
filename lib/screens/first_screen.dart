@@ -83,8 +83,8 @@ class _MainPageState extends State<MainPage> {
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const MainAppBar(),
+            children: const [
+              MainAppBar(),
             ],
           ),
         ],
@@ -94,15 +94,15 @@ class _MainPageState extends State<MainPage> {
           : Padding(
               padding: const EdgeInsets.only(right: 8, bottom: 8),
               child: FloatingActionButton(
+                backgroundColor: bykakColor,
+                onPressed: () {
+                  moveTop();
+                },
                 child: Icon(
                   Icons.keyboard_arrow_up_rounded,
                   color: Color(0xFFFFFFFF),
                   size: 30,
                 ),
-                backgroundColor: bykakColor,
-                onPressed: () {
-                  moveTop();
-                },
               ),
             ),
     );
@@ -190,7 +190,7 @@ class _CarouselScreenState extends State<CarouselScreen> {
               return Stack(
                 alignment: Alignment.center,
                 children: [
-                  Container(
+                  SizedBox(
                     width: MediaQuery.of(context).size.width,
                     height: MediaQuery.of(context).size.height,
                     child: WidgetAnimator(
@@ -266,7 +266,7 @@ class _CarouselScreenState extends State<CarouselScreen> {
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
                                     fontSize: h4FontSize(context),
-                                    fontFamily: 'NotoSerif',
+                                    // fontFamily: 'NotoSerif',
                                     color: Color(0xFFFFFFFF),
                                   ),
                                 ),
@@ -735,7 +735,7 @@ class _TailorShopScreenState extends State<TailorShopScreen> {
                 ),
               ),
             )
-          : Container(
+          : SizedBox(
               child: Center(
                 child: SizedBox(
                   width: 40,

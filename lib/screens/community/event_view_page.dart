@@ -78,15 +78,15 @@ class _EventViewPageState extends State<EventViewPage> {
           : Padding(
               padding: const EdgeInsets.only(right: 8, bottom: 8),
               child: FloatingActionButton(
+                backgroundColor: bykakColor,
+                onPressed: () {
+                  moveTop();
+                },
                 child: Icon(
                   Icons.keyboard_arrow_up_rounded,
                   color: Color(0xFFFFFFFF),
                   size: 30,
                 ),
-                backgroundColor: bykakColor,
-                onPressed: () {
-                  moveTop();
-                },
               ),
             ),
     );
@@ -152,7 +152,7 @@ class _EventViewContentState extends State<EventViewContent> {
                               blackColor.withOpacity(0),
                               whiteColor,
                             ],
-                            stops: [0, 1],
+                            stops: const [0, 1],
                           ),
                         ),
                       )
@@ -300,7 +300,7 @@ class _EventViewContentState extends State<EventViewContent> {
       );
     } catch (e) {
       print(e);
-      return Container(
+      return SizedBox(
         width: widgetSize(context),
         height: MediaQuery.of(context).size.height,
         child: Center(

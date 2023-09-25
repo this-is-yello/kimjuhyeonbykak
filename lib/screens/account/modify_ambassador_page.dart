@@ -92,7 +92,7 @@ class _ModifyAmbassadorPageState extends State<ModifyAmbassadorPage> {
 
       print('생성된 랜덤 숫자: $randomNumber');
       final ref = firestorage.ref(
-          'ambassadorPic/${auth.currentUser?.email}/${randomNumber}_${profilePicName}');
+          'ambassadorPic/${auth.currentUser?.email}/${randomNumber}_$profilePicName');
       ref.putData(profilePicByte);
       print('업로드 중 (5초 정도 소요)');
       Future.delayed(Duration(milliseconds: 5000), () {
@@ -188,7 +188,7 @@ class _ModifyAmbassadorPageState extends State<ModifyAmbassadorPage> {
                         ),
                         Padding(
                           padding: EdgeInsets.only(top: 40, bottom: 20),
-                          child: Container(
+                          child: SizedBox(
                             width: widgetSize(context),
                             // height: c4BoxSize(context),
                             child: Text(
@@ -316,6 +316,11 @@ class _ModifyAmbassadorPageState extends State<ModifyAmbassadorPage> {
                             },
                             child: Container(
                               height: 56,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                                border: Border.all(color: blackColor, width: 2),
+                                color: blackColor,
+                              ),
                               child: Center(
                                 child: Text(
                                   '완료',
@@ -324,11 +329,6 @@ class _ModifyAmbassadorPageState extends State<ModifyAmbassadorPage> {
                                     color: whiteColor,
                                   ),
                                 ),
-                              ),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
-                                border: Border.all(color: blackColor, width: 2),
-                                color: blackColor,
                               ),
                             ),
                           ),
@@ -343,6 +343,12 @@ class _ModifyAmbassadorPageState extends State<ModifyAmbassadorPage> {
                               },
                               child: Container(
                                 height: 56,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                  border:
+                                      Border.all(color: blackColor, width: 2),
+                                  color: whiteColor,
+                                ),
                                 child: Center(
                                   child: Text(
                                     '취소',
@@ -351,12 +357,6 @@ class _ModifyAmbassadorPageState extends State<ModifyAmbassadorPage> {
                                       color: blackColor,
                                     ),
                                   ),
-                                ),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8),
-                                  border:
-                                      Border.all(color: blackColor, width: 2),
-                                  color: whiteColor,
                                 ),
                               ),
                             ),
@@ -370,7 +370,7 @@ class _ModifyAmbassadorPageState extends State<ModifyAmbassadorPage> {
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
+              children: const [
                 MainAppBar(),
               ],
             ),

@@ -119,15 +119,15 @@ class _TailorShopPageState extends State<TailorShopPage> {
           : Padding(
               padding: const EdgeInsets.only(right: 8, bottom: 8),
               child: FloatingActionButton(
+                backgroundColor: bykakColor,
+                onPressed: () {
+                  moveTop();
+                },
                 child: Icon(
                   Icons.keyboard_arrow_up_rounded,
                   color: Color(0xFFFFFFFF),
                   size: 30,
                 ),
-                backgroundColor: bykakColor,
-                onPressed: () {
-                  moveTop();
-                },
               ),
             ),
     );
@@ -262,7 +262,7 @@ class _ShopsState extends State<Shops> {
           SizedBox(
             width: widgetSize(context),
             child: _videoController.value.isInitialized
-                ? Container(
+                ? SizedBox(
                     width: widgetSize(context),
                     child: FittedBox(
                       fit: BoxFit.fitWidth,
@@ -277,7 +277,7 @@ class _ShopsState extends State<Shops> {
                       ),
                     ),
                   )
-                : Container(
+                : SizedBox(
                     child: Center(
                       child: SizedBox(
                         width: 40,
@@ -711,7 +711,7 @@ class _MakingProcessState extends State<MakingProcess> {
   ];
 
   makingPic(context, i) {
-    return Container(
+    return SizedBox(
       width: c1BoxSize(context) + 160,
       height: c1BoxSize(context) + 160,
       child: fadeImage(makingProcess[i]),

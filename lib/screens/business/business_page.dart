@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:kimjuhyeonbykak/main.dart';
 import 'package:kimjuhyeonbykak/style.dart';
@@ -82,15 +81,15 @@ class _BusinessPageState extends State<BusinessPage> {
           : Padding(
               padding: const EdgeInsets.only(right: 8, bottom: 8),
               child: FloatingActionButton(
+                backgroundColor: bykakColor,
+                onPressed: () {
+                  moveTop();
+                },
                 child: Icon(
                   Icons.keyboard_arrow_up_rounded,
                   color: Color(0xFFFFFFFF),
                   size: 30,
                 ),
-                backgroundColor: bykakColor,
-                onPressed: () {
-                  moveTop();
-                },
               ),
             ),
     );
@@ -138,7 +137,7 @@ class _BusinessContentState extends State<BusinessContent> {
                             blackColor.withOpacity(0),
                             whiteColor,
                           ],
-                          stops: [0, 1],
+                          stops: const [0, 1],
                         ),
                       ),
                     )
@@ -277,6 +276,11 @@ class _SupportersScreenState extends State<SupportersScreen> {
                   },
                   child: Container(
                     padding: EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(color: blackColor, width: 2),
+                      color: supporterState ? blackColor : whiteColor,
+                    ),
                     child: Center(
                       child: Text(
                         '각인(覺人)',
@@ -285,11 +289,6 @@ class _SupportersScreenState extends State<SupportersScreen> {
                           color: supporterState ? whiteColor : blackColor,
                         ),
                       ),
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: blackColor, width: 2),
-                      color: supporterState ? blackColor : whiteColor,
                     ),
                   ),
                 ),
@@ -306,6 +305,11 @@ class _SupportersScreenState extends State<SupportersScreen> {
                     },
                     child: Container(
                       padding: EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(color: blackColor, width: 2),
+                        color: supporterState ? whiteColor : blackColor,
+                      ),
                       child: Center(
                         child: Text(
                           '엠버서더',
@@ -314,11 +318,6 @@ class _SupportersScreenState extends State<SupportersScreen> {
                             color: supporterState ? blackColor : whiteColor,
                           ),
                         ),
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        border: Border.all(color: blackColor, width: 2),
-                        color: supporterState ? whiteColor : blackColor,
                       ),
                     ),
                   ),
@@ -524,7 +523,7 @@ class _SupportersAmbassadorState extends State<SupportersAmbassador> {
                   spacing: 10,
                   runSpacing: 30,
                   children: [
-                    Container(
+                    SizedBox(
                       width: MediaQuery.of(context).size.width < 800
                           ? widgetSize(context)
                           : (widgetSize(context) / 3) - 7,
@@ -553,7 +552,7 @@ class _SupportersAmbassadorState extends State<SupportersAmbassador> {
                         ],
                       ),
                     ),
-                    Container(
+                    SizedBox(
                       width: MediaQuery.of(context).size.width < 800
                           ? widgetSize(context)
                           : (widgetSize(context) / 3) - 7,
@@ -582,7 +581,7 @@ class _SupportersAmbassadorState extends State<SupportersAmbassador> {
                         ],
                       ),
                     ),
-                    Container(
+                    SizedBox(
                       width: MediaQuery.of(context).size.width < 800
                           ? widgetSize(context)
                           : (widgetSize(context) / 3) - 7,
@@ -706,12 +705,12 @@ class _SponInquiryScreenState extends State<SponInquiryScreen> {
 
   bool _checkPrivacy = false;
 
-  var _inputInquiryCompany = TextEditingController();
-  var _inputInquiryName = TextEditingController();
-  var _inputInquiryWeb = TextEditingController();
-  var _inputInquiryMail = TextEditingController();
-  var _inputInquiryPhone = TextEditingController();
-  var _inputInquiry = TextEditingController();
+  final _inputInquiryCompany = TextEditingController();
+  final _inputInquiryName = TextEditingController();
+  final _inputInquiryWeb = TextEditingController();
+  final _inputInquiryMail = TextEditingController();
+  final _inputInquiryPhone = TextEditingController();
+  final _inputInquiry = TextEditingController();
 
   goInquiry() async {
     if (_inputInquiryCompany.text == '' ||

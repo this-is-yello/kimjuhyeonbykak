@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:image_fade/image_fade.dart';
 
 // ---------- Color -----------------------------------------------------------------------------------------------------
@@ -8,10 +9,20 @@ var greyColor = const Color(0xFF9E9E9E);
 var lightGreyColor = const Color(0xFFD9D9D9);
 var whiteColor = const Color(0xFFFFFFFF);
 
+// class DarkModeController extends GetxController {
+//   RxBool darkState = false.obs;
+
+//   void toggleDarkMode() {
+//     darkState.value = !darkState.value;
+//   }
+// }
+
 bool darkState = false;
 
 // darkState ? blackColor = const Color(0xFFFFFFFF) : whiteColor = const Color(0xFF1E1E1E);
 // darkState ? whiteColor = const Color(0xFF1E1E1E) : blackColor = const Color(0xFFFFFFFF);
+
+
 
 // ---------- Variable -----------------------------------------------------------------------------------------------------
 int i = 0;

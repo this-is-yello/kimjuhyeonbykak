@@ -314,9 +314,9 @@ class DesignerAmbassador extends StatefulWidget {
 }
 
 class _DesignerAmbassadorState extends State<DesignerAmbassador> {
-  var _inputDesignerName = TextEditingController();
-  var _inputDesignerPhone = TextEditingController();
-  var _inputDesignerId = TextEditingController();
+  final _inputDesignerName = TextEditingController();
+  final _inputDesignerPhone = TextEditingController();
+  final _inputDesignerId = TextEditingController();
 
   var currentUserId = auth.currentUser?.email;
 
@@ -388,7 +388,7 @@ class _DesignerAmbassadorState extends State<DesignerAmbassador> {
                   ),
                 ),
               ),
-              Container(
+              SizedBox(
                 width: 360,
                 child: TextField(
                   controller: _inputDesignerPhone,

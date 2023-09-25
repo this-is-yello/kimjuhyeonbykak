@@ -78,15 +78,15 @@ class _NotificationViewPageState extends State<NotificationViewPage> {
           : Padding(
               padding: const EdgeInsets.only(right: 8, bottom: 8),
               child: FloatingActionButton(
+                backgroundColor: bykakColor,
+                onPressed: () {
+                  moveTop();
+                },
                 child: Icon(
                   Icons.keyboard_arrow_up_rounded,
                   color: Color(0xFFFFFFFF),
                   size: 30,
                 ),
-                backgroundColor: bykakColor,
-                onPressed: () {
-                  moveTop();
-                },
               ),
             ),
     );
@@ -153,7 +153,7 @@ class _NotificationViewContentState extends State<NotificationViewContent> {
                               blackColor.withOpacity(0),
                               whiteColor,
                             ],
-                            stops: [0, 1],
+                            stops: const [0, 1],
                           ),
                         ),
                       )
@@ -289,7 +289,7 @@ class _NotificationViewContentState extends State<NotificationViewContent> {
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
                     itemBuilder: (context, index) {
-                      return Container(
+                      return SizedBox(
                         width: widgetSize(context),
                         child: Text(
                           notificationDocs[notificationNum]['content'],
@@ -307,7 +307,7 @@ class _NotificationViewContentState extends State<NotificationViewContent> {
       );
     } catch (e) {
       print(e);
-      return Container(
+      return SizedBox(
         width: widgetSize(context),
         height: MediaQuery.of(context).size.height,
         child: Center(

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:kimjuhyeonbykak/screens/privacy/privacy_page.dart';
 import 'package:kimjuhyeonbykak/screens/privacy/terms_page.dart';
 import 'package:kimjuhyeonbykak/style.dart';
@@ -47,12 +46,12 @@ class _SignUpPageState extends State<SignUpPage> {
     }
   }
 
-  var _inputNewId = TextEditingController();
-  var _inputNewPassword = TextEditingController();
-  var _inputNewPasswordCheck = TextEditingController();
-  var _inputNewName = TextEditingController();
-  var _inputNewBirth = TextEditingController();
-  var _inputNewPhone = TextEditingController();
+  final _inputNewId = TextEditingController();
+  final _inputNewPassword = TextEditingController();
+  final _inputNewPasswordCheck = TextEditingController();
+  final _inputNewName = TextEditingController();
+  final _inputNewBirth = TextEditingController();
+  final _inputNewPhone = TextEditingController();
 
   goSignUp() async {
     if (_inputNewId.text.isEmpty ||
@@ -75,7 +74,7 @@ class _SignUpPageState extends State<SignUpPage> {
           signupResult.user?.updateDisplayName(_inputNewName.text);
           var signUpData = await firestore
               .collection('account')
-              .doc('${_inputNewId.text}')
+              .doc(_inputNewId.text)
               .set({
             'grade': '각인',
             'name': _inputNewName.text,
@@ -327,7 +326,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     });
                     print(_genderState);
                   },
-                  children: [
+                  children: const [
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 16),
                       child: Text('남자'),

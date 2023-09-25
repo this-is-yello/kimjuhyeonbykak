@@ -80,15 +80,15 @@ class _PublicityPageState extends State<PublicityPage> {
           : Padding(
               padding: const EdgeInsets.only(right: 8, bottom: 8),
               child: FloatingActionButton(
+                backgroundColor: bykakColor,
+                onPressed: () {
+                  moveTop();
+                },
                 child: Icon(
                   Icons.keyboard_arrow_up_rounded,
                   color: Color(0xFFFFFFFF),
                   size: 30,
                 ),
-                backgroundColor: bykakColor,
-                onPressed: () {
-                  moveTop();
-                },
               ),
             ),
     );
@@ -137,7 +137,7 @@ class _PublicityContentState extends State<PublicityContent> {
                             blackColor.withOpacity(0),
                             whiteColor,
                           ],
-                          stops: [0, 1],
+                          stops: const [0, 1],
                         ),
                       ),
                     )
@@ -333,7 +333,7 @@ class _MagazineScreenState extends State<MagazineScreen> {
                       children: [
                         Expanded(
                           flex: 1,
-                          child: Container(
+                          child: SizedBox(
                             child: ImageFade(
                               image: NetworkImage(
                                 magazineDocs[index]['thumbnail'],
@@ -429,7 +429,7 @@ class _MagazineScreenState extends State<MagazineScreen> {
       }
     } catch (e) {
       print(e);
-      return Container(
+      return SizedBox(
         width: widgetSize(context),
         height: 300,
         child: Center(
@@ -516,7 +516,7 @@ class _NewsScreenState extends State<NewsScreen> {
                     padding: EdgeInsets.only(bottom: 4),
                     child: Row(
                       children: [
-                        Container(
+                        SizedBox(
                           width: c1BoxSize(context),
                           height: c1BoxSize(context) - 40,
                           child: ImageFade(
@@ -614,7 +614,7 @@ class _NewsScreenState extends State<NewsScreen> {
         );
       }
     } catch (e) {
-      return Container(
+      return SizedBox(
         width: widgetSize(context),
         height: 300,
         child: Center(

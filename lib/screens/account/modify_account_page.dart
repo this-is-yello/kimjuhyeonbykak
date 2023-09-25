@@ -470,7 +470,7 @@ class _ModifyAccountPageState extends State<ModifyAccountPage> {
                           genderModify = [male, female, none];
                         });
                       },
-                      children: [
+                      children: const [
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 16),
                           child: Text('남자'),
@@ -542,7 +542,7 @@ class _ModifyAccountPageState extends State<ModifyAccountPage> {
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
+              children: const [
                 MainAppBar(),
               ],
             ),

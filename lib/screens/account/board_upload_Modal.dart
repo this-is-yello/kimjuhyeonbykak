@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:kimjuhyeonbykak/main.dart';
 import 'package:kimjuhyeonbykak/style.dart';
 
@@ -17,7 +15,7 @@ class MagazineUpModal extends StatefulWidget {
 }
 
 class _MagazineUpModalState extends State<MagazineUpModal> {
-  var _inputMagazineTitle = TextEditingController();
+  final _inputMagazineTitle = TextEditingController();
 
   PlatformFile? thumbnailPick;
   String? thumbnailName;
@@ -71,7 +69,7 @@ class _MagazineUpModalState extends State<MagazineUpModal> {
     final ref_2 = firestorage.ref('post/magazine/$number2$contentName');
     ref_1.putData(thumbnailByte);
     ref_2.putData(contentByte);
-    print('업로드 중일겁니다..');
+    print('업로드 중.. (5초 정도 소요됩니다.)');
     Future.delayed(
       Duration(milliseconds: 5000),
       () {
@@ -116,7 +114,7 @@ class _MagazineUpModalState extends State<MagazineUpModal> {
           );
           return Dialog(
             backgroundColor: whiteColor,
-            child: Container(
+            child: SizedBox(
               width: 200,
               height: 80,
               child: Center(
@@ -252,7 +250,7 @@ class _MagazineUpModalState extends State<MagazineUpModal> {
                     ),
                     Padding(
                       padding: EdgeInsets.only(top: 40),
-                      child: Container(
+                      child: SizedBox(
                         width: widgetSize(context),
                         height: c3BoxSize(context),
                         child: Text(
@@ -295,7 +293,7 @@ class _MagazineUpModalState extends State<MagazineUpModal> {
               ),
               Padding(
                 padding: EdgeInsets.only(top: 40),
-                child: Container(
+                child: SizedBox(
                   width: widgetSize(context),
                   height: c3BoxSize(context),
                   child: Text(
@@ -320,6 +318,11 @@ class _MagazineUpModalState extends State<MagazineUpModal> {
                         },
                         child: Container(
                           height: c5BoxSize(context),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(color: blackColor, width: 2),
+                            color: blackColor,
+                          ),
                           child: Center(
                             child: Text(
                               '업로드',
@@ -328,11 +331,6 @@ class _MagazineUpModalState extends State<MagazineUpModal> {
                                 color: whiteColor,
                               ),
                             ),
-                          ),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            border: Border.all(color: blackColor, width: 2),
-                            color: blackColor,
                           ),
                         ),
                       ),
@@ -347,6 +345,11 @@ class _MagazineUpModalState extends State<MagazineUpModal> {
                           },
                           child: Container(
                             height: c5BoxSize(context),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(color: blackColor, width: 2),
+                              color: whiteColor,
+                            ),
                             child: Center(
                               child: Text(
                                 '닫기',
@@ -355,11 +358,6 @@ class _MagazineUpModalState extends State<MagazineUpModal> {
                                   color: blackColor,
                                 ),
                               ),
-                            ),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              border: Border.all(color: blackColor, width: 2),
-                              color: whiteColor,
                             ),
                           ),
                         ),
@@ -385,8 +383,8 @@ class NewsUpModal extends StatefulWidget {
 }
 
 class _NewsUpModalState extends State<NewsUpModal> {
-  var _inputNewsTitle = TextEditingController();
-  var _inputNewsCompany = TextEditingController();
+  final _inputNewsTitle = TextEditingController();
+  final _inputNewsCompany = TextEditingController();
 
   PlatformFile? thumbnailPick;
   String? thumbnailName;
@@ -440,7 +438,7 @@ class _NewsUpModalState extends State<NewsUpModal> {
     final ref_2 = firestorage.ref('post/news/$number2$contentName');
     ref_1.putData(thumbnailByte);
     ref_2.putData(contentByte);
-    print('업로드 중일겁니다..');
+    print('업로드 중.. (5초 정도 소요됩니다.)');
     Future.delayed(
       Duration(milliseconds: 5000),
       () {
@@ -486,7 +484,7 @@ class _NewsUpModalState extends State<NewsUpModal> {
           );
           return Dialog(
             backgroundColor: whiteColor,
-            child: Container(
+            child: SizedBox(
               width: 200,
               height: 80,
               child: Center(
@@ -672,7 +670,7 @@ class _NewsUpModalState extends State<NewsUpModal> {
                     ),
                     Padding(
                       padding: EdgeInsets.only(top: 40),
-                      child: Container(
+                      child: SizedBox(
                         width: widgetSize(context),
                         height: c3BoxSize(context),
                         child: Text(
@@ -715,7 +713,7 @@ class _NewsUpModalState extends State<NewsUpModal> {
               ),
               Padding(
                 padding: EdgeInsets.only(top: 40),
-                child: Container(
+                child: SizedBox(
                   width: widgetSize(context),
                   height: c3BoxSize(context),
                   child: Text(
@@ -740,6 +738,11 @@ class _NewsUpModalState extends State<NewsUpModal> {
                         },
                         child: Container(
                           height: c5BoxSize(context),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(color: blackColor, width: 2),
+                            color: blackColor,
+                          ),
                           child: Center(
                             child: Text(
                               '업로드',
@@ -748,11 +751,6 @@ class _NewsUpModalState extends State<NewsUpModal> {
                                 color: whiteColor,
                               ),
                             ),
-                          ),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            border: Border.all(color: blackColor, width: 2),
-                            color: blackColor,
                           ),
                         ),
                       ),
@@ -767,6 +765,11 @@ class _NewsUpModalState extends State<NewsUpModal> {
                           },
                           child: Container(
                             height: c5BoxSize(context),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(color: blackColor, width: 2),
+                              color: whiteColor,
+                            ),
                             child: Center(
                               child: Text(
                                 '닫기',
@@ -775,11 +778,6 @@ class _NewsUpModalState extends State<NewsUpModal> {
                                   color: blackColor,
                                 ),
                               ),
-                            ),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              border: Border.all(color: blackColor, width: 2),
-                              color: whiteColor,
                             ),
                           ),
                         ),
@@ -805,8 +803,8 @@ class NotificationUpModal extends StatefulWidget {
 }
 
 class _NotificationUpModalState extends State<NotificationUpModal> {
-  var _inputNotificationTitle = TextEditingController();
-  var _inputNotification = TextEditingController();
+  final _inputNotificationTitle = TextEditingController();
+  final _inputNotification = TextEditingController();
 
   uploadNotification() async {
     if (_inputNotificationTitle.text != null &&
@@ -911,7 +909,7 @@ class _NotificationUpModalState extends State<NotificationUpModal> {
                     ),
                     Padding(
                       padding: EdgeInsets.only(top: 20),
-                      child: Container(
+                      child: SizedBox(
                         width: widgetSize(context),
                         height: c1BoxSize(context) + 200,
                         child: TextField(
@@ -960,6 +958,11 @@ class _NotificationUpModalState extends State<NotificationUpModal> {
                         },
                         child: Container(
                           height: c5BoxSize(context),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(color: blackColor, width: 2),
+                            color: blackColor,
+                          ),
                           child: Center(
                             child: Text(
                               '업로드',
@@ -968,11 +971,6 @@ class _NotificationUpModalState extends State<NotificationUpModal> {
                                 color: whiteColor,
                               ),
                             ),
-                          ),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            border: Border.all(color: blackColor, width: 2),
-                            color: blackColor,
                           ),
                         ),
                       ),
@@ -987,6 +985,11 @@ class _NotificationUpModalState extends State<NotificationUpModal> {
                           },
                           child: Container(
                             height: c5BoxSize(context),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(color: blackColor, width: 2),
+                              color: whiteColor,
+                            ),
                             child: Center(
                               child: Text(
                                 '닫기',
@@ -995,11 +998,6 @@ class _NotificationUpModalState extends State<NotificationUpModal> {
                                   color: blackColor,
                                 ),
                               ),
-                            ),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              border: Border.all(color: blackColor, width: 2),
-                              color: whiteColor,
                             ),
                           ),
                         ),
@@ -1025,9 +1023,9 @@ class EventUpModal extends StatefulWidget {
 }
 
 class _EventUpModalState extends State<EventUpModal> {
-  var _inputEventTitle = TextEditingController();
-  var _inputEventSubTitle = TextEditingController();
-  var _inputEventDate = TextEditingController();
+  final _inputEventTitle = TextEditingController();
+  final _inputEventSubTitle = TextEditingController();
+  final _inputEventDate = TextEditingController();
 
   PlatformFile? thumbnailPick;
   String? thumbnailName;
@@ -1081,7 +1079,7 @@ class _EventUpModalState extends State<EventUpModal> {
     final ref_2 = firestorage.ref('post/event/$number2$contentName');
     ref_1.putData(thumbnailByte);
     ref_2.putData(contentByte);
-    print('업로드 중일겁니다..');
+    print('업로드 중.. (5초 정도 소요됩니다.)');
     Future.delayed(
       Duration(milliseconds: 5000),
       () {
@@ -1130,7 +1128,7 @@ class _EventUpModalState extends State<EventUpModal> {
           );
           return Dialog(
             backgroundColor: whiteColor,
-            child: Container(
+            child: SizedBox(
               width: 200,
               height: 80,
               child: Center(
@@ -1367,7 +1365,7 @@ class _EventUpModalState extends State<EventUpModal> {
                     ),
                     Padding(
                       padding: EdgeInsets.only(top: 40),
-                      child: Container(
+                      child: SizedBox(
                         width: widgetSize(context),
                         height: c3BoxSize(context),
                         child: Text(
@@ -1410,7 +1408,7 @@ class _EventUpModalState extends State<EventUpModal> {
               ),
               Padding(
                 padding: EdgeInsets.only(top: 40),
-                child: Container(
+                child: SizedBox(
                   width: widgetSize(context),
                   height: c3BoxSize(context),
                   child: Text(
@@ -1435,6 +1433,11 @@ class _EventUpModalState extends State<EventUpModal> {
                         },
                         child: Container(
                           height: c5BoxSize(context),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(color: blackColor, width: 2),
+                            color: blackColor,
+                          ),
                           child: Center(
                             child: Text(
                               '업로드',
@@ -1443,11 +1446,6 @@ class _EventUpModalState extends State<EventUpModal> {
                                 color: whiteColor,
                               ),
                             ),
-                          ),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            border: Border.all(color: blackColor, width: 2),
-                            color: blackColor,
                           ),
                         ),
                       ),
@@ -1462,6 +1460,14 @@ class _EventUpModalState extends State<EventUpModal> {
                           },
                           child: Container(
                             height: c5BoxSize(context),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(
+                                color: blackColor,
+                                width: 2,
+                              ),
+                              color: whiteColor,
+                            ),
                             child: Center(
                               child: Text(
                                 '닫기',
@@ -1470,14 +1476,6 @@ class _EventUpModalState extends State<EventUpModal> {
                                   color: blackColor,
                                 ),
                               ),
-                            ),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              border: Border.all(
-                                color: blackColor,
-                                width: 2,
-                              ),
-                              color: whiteColor,
                             ),
                           ),
                         ),
@@ -1503,8 +1501,8 @@ class MediaUpModal extends StatefulWidget {
 }
 
 class _MediaUpModalState extends State<MediaUpModal> {
-  var _inputMediaTitle = TextEditingController();
-  var _inputMediaLink = TextEditingController();
+  final _inputMediaTitle = TextEditingController();
+  final _inputMediaLink = TextEditingController();
 
   PlatformFile? thumbnailPick;
   String? thumbnailName;
@@ -1533,7 +1531,7 @@ class _MediaUpModalState extends State<MediaUpModal> {
     int number1 = Random().nextInt(999999);
     final ref_1 = firestorage.ref('post/media/$number1$thumbnailName');
     ref_1.putData(thumbnailByte);
-    print('업로드 중일겁니다..');
+    print('업로드 중.. (5초 정도 소요됩니다.)');
     Future.delayed(
       Duration(milliseconds: 5000),
       () {
@@ -1571,7 +1569,7 @@ class _MediaUpModalState extends State<MediaUpModal> {
           );
           return Dialog(
             backgroundColor: whiteColor,
-            child: Container(
+            child: SizedBox(
               width: 200,
               height: 80,
               child: Center(
@@ -1757,7 +1755,7 @@ class _MediaUpModalState extends State<MediaUpModal> {
                     ),
                     Padding(
                       padding: EdgeInsets.only(top: 40),
-                      child: Container(
+                      child: SizedBox(
                         width: widgetSize(context),
                         height: c3BoxSize(context),
                         child: Text(
@@ -1785,6 +1783,11 @@ class _MediaUpModalState extends State<MediaUpModal> {
                         },
                         child: Container(
                           height: c5BoxSize(context),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(color: blackColor, width: 2),
+                            color: blackColor,
+                          ),
                           child: Center(
                             child: Text(
                               '업로드',
@@ -1793,11 +1796,6 @@ class _MediaUpModalState extends State<MediaUpModal> {
                                 color: whiteColor,
                               ),
                             ),
-                          ),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            border: Border.all(color: blackColor, width: 2),
-                            color: blackColor,
                           ),
                         ),
                       ),
@@ -1812,6 +1810,11 @@ class _MediaUpModalState extends State<MediaUpModal> {
                           },
                           child: Container(
                             height: c5BoxSize(context),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(color: blackColor, width: 2),
+                              color: whiteColor,
+                            ),
                             child: Center(
                               child: Text(
                                 '닫기',
@@ -1820,11 +1823,6 @@ class _MediaUpModalState extends State<MediaUpModal> {
                                   color: blackColor,
                                 ),
                               ),
-                            ),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              border: Border.all(color: blackColor, width: 2),
-                              color: whiteColor,
                             ),
                           ),
                         ),
@@ -1877,7 +1875,7 @@ class _ProductUpModalState extends State<ProductUpModal> {
     int number1 = Random().nextInt(999999);
     final ref_1 = firestorage.ref('post/product/$number1$thumbnailName');
     ref_1.putData(thumbnailByte);
-    print('업로드 중일겁니다..');
+    print('업로드 중.. (5초 정도 소요됩니다.)');
     Future.delayed(
       Duration(milliseconds: 5000),
       () {
@@ -1911,7 +1909,7 @@ class _ProductUpModalState extends State<ProductUpModal> {
           );
           return Dialog(
             backgroundColor: whiteColor,
-            child: Container(
+            child: SizedBox(
               width: 200,
               height: 80,
               child: Center(
@@ -1995,7 +1993,7 @@ class _ProductUpModalState extends State<ProductUpModal> {
                     ),
                     Padding(
                       padding: EdgeInsets.only(top: 40),
-                      child: Container(
+                      child: SizedBox(
                         width: widgetSize(context),
                         height: c3BoxSize(context),
                         child: Text(
@@ -2023,6 +2021,11 @@ class _ProductUpModalState extends State<ProductUpModal> {
                         },
                         child: Container(
                           height: c5BoxSize(context),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(color: blackColor, width: 2),
+                            color: blackColor,
+                          ),
                           child: Center(
                             child: Text(
                               '업로드',
@@ -2031,11 +2034,6 @@ class _ProductUpModalState extends State<ProductUpModal> {
                                 color: whiteColor,
                               ),
                             ),
-                          ),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            border: Border.all(color: blackColor, width: 2),
-                            color: blackColor,
                           ),
                         ),
                       ),
@@ -2050,6 +2048,11 @@ class _ProductUpModalState extends State<ProductUpModal> {
                           },
                           child: Container(
                             height: c5BoxSize(context),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(color: blackColor, width: 2),
+                              color: whiteColor,
+                            ),
                             child: Center(
                               child: Text(
                                 '닫기',
@@ -2058,11 +2061,6 @@ class _ProductUpModalState extends State<ProductUpModal> {
                                   color: blackColor,
                                 ),
                               ),
-                            ),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              border: Border.all(color: blackColor, width: 2),
-                              color: whiteColor,
                             ),
                           ),
                         ),

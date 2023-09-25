@@ -12,8 +12,8 @@ class LogInPage extends StatefulWidget {
 }
 
 class _LogInPageState extends State<LogInPage> {
-  var _inputId = TextEditingController();
-  var _inputPassword = TextEditingController();
+  final _inputId = TextEditingController();
+  final _inputPassword = TextEditingController();
 
   logInBtn() async {
     try {

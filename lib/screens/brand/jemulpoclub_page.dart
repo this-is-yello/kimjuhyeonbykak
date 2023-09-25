@@ -1,5 +1,4 @@
 import 'dart:ui';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:kimjuhyeonbykak/style.dart';
@@ -102,15 +101,15 @@ class _JemulpoClubPageState extends State<JemulpoClubPage> {
           : Padding(
               padding: const EdgeInsets.only(right: 8, bottom: 8),
               child: FloatingActionButton(
+                backgroundColor: bykakColor,
+                onPressed: () {
+                  moveTop();
+                },
                 child: Icon(
                   Icons.keyboard_arrow_up_rounded,
                   color: Color(0xFFFFFFFF),
                   size: 30,
                 ),
-                backgroundColor: bykakColor,
-                onPressed: () {
-                  moveTop();
-                },
               ),
             ),
     );
@@ -230,7 +229,7 @@ class _JemulpoClubStudioState extends State<JemulpoClubStudio> {
               children: [
                 Column(
                   children: [
-                    Container(
+                    SizedBox(
                       width: widgetSize(context),
                       child: fadeImage(imageList[0]),
                     ),
@@ -271,7 +270,7 @@ class _JemulpoClubStudioState extends State<JemulpoClubStudio> {
                                 : (widgetSize(context) / 2) - 7,
                             child: fadeImage(imageList[1]),
                           ),
-                          Container(
+                          SizedBox(
                             width: MediaQuery.of(context).size.width < 800
                                 ? widgetSize(context)
                                 : (widgetSize(context) / 2) - 7,

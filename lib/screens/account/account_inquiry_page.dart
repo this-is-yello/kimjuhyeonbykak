@@ -55,6 +55,11 @@ class _AccountInquiryPageState extends State<AccountInquiryPage> {
                         },
                         child: Container(
                           height: 48,
+                          decoration: BoxDecoration(
+                            border: Border.all(color: blackColor, width: 2),
+                            borderRadius: BorderRadius.circular(8),
+                            color: searchState ? blackColor : whiteColor,
+                          ),
                           child: Center(
                             child: Text(
                               '이메일 찾기',
@@ -63,11 +68,6 @@ class _AccountInquiryPageState extends State<AccountInquiryPage> {
                                 color: searchState ? whiteColor : blackColor,
                               ),
                             ),
-                          ),
-                          decoration: BoxDecoration(
-                            border: Border.all(color: blackColor, width: 2),
-                            borderRadius: BorderRadius.circular(8),
-                            color: searchState ? blackColor : whiteColor,
                           ),
                         ),
                       ),
@@ -84,6 +84,11 @@ class _AccountInquiryPageState extends State<AccountInquiryPage> {
                           },
                           child: Container(
                             height: 48,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: blackColor, width: 2),
+                              borderRadius: BorderRadius.circular(8),
+                              color: searchState ? whiteColor : blackColor,
+                            ),
                             child: Center(
                               child: Text(
                                 '비밀번호 찾기',
@@ -92,11 +97,6 @@ class _AccountInquiryPageState extends State<AccountInquiryPage> {
                                   color: searchState ? blackColor : whiteColor,
                                 ),
                               ),
-                            ),
-                            decoration: BoxDecoration(
-                              border: Border.all(color: blackColor, width: 2),
-                              borderRadius: BorderRadius.circular(8),
-                              color: searchState ? whiteColor : blackColor,
                             ),
                           ),
                         ),
@@ -123,9 +123,9 @@ class IdInquiry extends StatefulWidget {
 }
 
 class _IdInquiryState extends State<IdInquiry> {
-  var _inputInquiryName = TextEditingController();
-  var _inputInquiryBirth = TextEditingController();
-  var _inputInquiryPhone = TextEditingController();
+  final _inputInquiryName = TextEditingController();
+  final _inputInquiryBirth = TextEditingController();
+  final _inputInquiryPhone = TextEditingController();
   var userSearch;
   var idSearch;
 
@@ -333,10 +333,10 @@ class PwInquiry extends StatefulWidget {
 }
 
 class _PwInquiryState extends State<PwInquiry> {
-  var _inputInquiryId = TextEditingController();
-  var _inputInquiryName = TextEditingController();
-  var _inputInquiryBirth = TextEditingController();
-  var _inputInquiryPhone = TextEditingController();
+  final _inputInquiryId = TextEditingController();
+  final _inputInquiryName = TextEditingController();
+  final _inputInquiryBirth = TextEditingController();
+  final _inputInquiryPhone = TextEditingController();
   var userSearch;
   var pwSearch;
 
