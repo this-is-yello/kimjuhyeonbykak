@@ -6,7 +6,6 @@ import 'package:side_sheet/side_sheet.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 // ---------- App_Bar -----------------------------------------------------------------------------------------------------
 class MainAppBar extends StatefulWidget {
