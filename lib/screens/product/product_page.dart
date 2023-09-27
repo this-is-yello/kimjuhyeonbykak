@@ -226,7 +226,60 @@ class _ProductsGridState extends State<ProductsGrid> {
                   crossAxisSpacing: 10,
                 ),
                 itemBuilder: (context, index) {
-                  return SizedBox(
+                  return InkWell(
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            backgroundColor: Color.fromARGB(0, 0, 0, 0),
+                            content: Stack(
+                              alignment: Alignment.topRight,
+                              children: [
+                                Stack(
+                                  alignment: Alignment.center,
+                                  children: [
+                                    SizedBox(
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(8),
+                                        child: InteractiveViewer(
+                                          child: Image.network(
+                                            productsDocs[index]['thumbnail'],
+                                            fit: BoxFit.contain,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: c1BoxSize(context),
+                                      height: c1BoxSize(context),
+                                      child: PinchUp(),
+                                    )
+                                  ],
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: IconButton(
+                                    iconSize: 40,
+                                    alignment: Alignment.center,
+                                    highlightColor: whiteColor.withOpacity(0),
+                                    splashColor: whiteColor.withOpacity(0),
+                                    icon: Icon(
+                                      Icons.close_sharp,
+                                      size: 40,
+                                      color: whiteColor,
+                                    ),
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      );
+                    },
                     child: ImageFade(
                       image: NetworkImage(
                         productsDocs[index]['thumbnail'],
@@ -234,14 +287,6 @@ class _ProductsGridState extends State<ProductsGrid> {
                       fit: BoxFit.cover,
                       duration: const Duration(milliseconds: 900),
                       syncDuration: const Duration(milliseconds: 150),
-                      // placeholder: Padding(
-                      //   padding: const EdgeInsets.all(20),
-                      //   child: Center(
-                      //     child: CircularProgressIndicator(
-                      //       color: blackColor,
-                      //     ),
-                      //   ),
-                      // ),
                       loadingBuilder: (context, progress, chunkEvent) {
                         return Center(
                           child: CircularProgressIndicator(
@@ -273,11 +318,11 @@ class _ProductsGridState extends State<ProductsGrid> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                CircularProgressIndicator(color: blackColor),
+                // CircularProgressIndicator(color: blackColor),
                 Padding(
-                  padding: const EdgeInsets.only(top: 20),
+                  padding: const EdgeInsets.only(top: 0),
                   child: Text(
-                    '로딩이 오래 걸리면 새로고침(F5) 한 번만 눌러주세요.',
+                    '제품이 없습니다.',
                     style: TextStyle(color: blackColor),
                   ),
                 ),
@@ -307,5 +352,45 @@ class _ProductsGridState extends State<ProductsGrid> {
         ),
       );
     }
+  }
+}
+
+
+class PinchUp extends StatefulWidget {
+  const PinchUp({super.key});
+
+  @override
+  State<PinchUp> createState() => _PinchUpState();
+}
+
+class _PinchUpState extends State<PinchUp> {
+  bool _showPinchUp = true;
+
+  @override
+  Widget build(BuildContext context) {
+    Future.delayed(Duration(milliseconds: 650), () {
+       if (this.mounted) {
+      setState(() {
+        _showPinchUp = false;
+      });
+      }
+    });
+
+    return _showPinchUp
+        ? Container(
+            width: c3BoxSize(context),
+            height: c3BoxSize(context),
+            padding: EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              color: greyColor.withOpacity(0.7),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Icon(
+              Icons.pinch,
+              size: c4BoxSize(context),
+              color: whiteColor,
+            ),
+          )
+        : Container();
   }
 }

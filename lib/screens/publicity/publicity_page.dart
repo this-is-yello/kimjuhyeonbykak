@@ -338,6 +338,7 @@ class _MagazineScreenState extends State<MagazineScreen> {
                               image: NetworkImage(
                                 magazineDocs[index]['thumbnail'],
                               ),
+                              width: double.infinity,
                               fit: BoxFit.cover,
                               duration: const Duration(milliseconds: 900),
                               syncDuration: const Duration(milliseconds: 150),

@@ -1006,6 +1006,7 @@ class _EventScreenState extends State<EventScreen> {
                             eventDocs[index]['thumbnail'],
                           ),
                           fit: BoxFit.cover,
+                          width: double.infinity,
                           duration: const Duration(milliseconds: 900),
                           syncDuration: const Duration(milliseconds: 150),
                           // placeholder: Padding(
@@ -1160,63 +1161,81 @@ class _MediaScreenState extends State<MediaScreen> {
           children: [
             SizedBox(
               width: widgetSize(context),
-              child: InkWell(
-                onTap: () async {
-                  final url = Uri.parse(mediaDocs[i]['link']);
-                  if (await canLaunchUrl(url)) {
-                    launchUrl(url, mode: LaunchMode.externalApplication);
-                  }
-                },
-                child: Column(
-                  children: [
-                    SizedBox(
-                      width: widgetSize(context),
-                      child: ImageFade(
-                        image: NetworkImage(
-                          mediaDocs[i]['thumbnail'],
-                        ),
-                        fit: BoxFit.fitWidth,
-                        duration: const Duration(milliseconds: 900),
-                        syncDuration: const Duration(milliseconds: 150),
-                        // placeholder: Padding(
-                        //   padding: const EdgeInsets.all(20),
-                        //   child: Center(
-                        //     child: CircularProgressIndicator(
-                        //       color: blackColor,
-                        //     ),
-                        //   ),
-                        // ),
-                        loadingBuilder: (context, progress, chunkEvent) {
-                          return Center(
-                            child: CircularProgressIndicator(
-                              color: blackColor,
+              child: Column(
+                children: [
+                  SizedBox(
+                    width: widgetSize(context),
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        ImageFade(
+                          image: NetworkImage(
+                            mediaDocs[i]['thumbnail'],
+                          ),
+                          fit: BoxFit.fitWidth,
+                          duration: const Duration(milliseconds: 900),
+                          syncDuration: const Duration(milliseconds: 150),
+                          // placeholder: Padding(
+                          //   padding: const EdgeInsets.all(20),
+                          //   child: Center(
+                          //     child: CircularProgressIndicator(
+                          //       color: blackColor,
+                          //     ),
+                          //   ),
+                          // ),
+                          loadingBuilder: (context, progress, chunkEvent) {
+                            return Center(
+                              child: CircularProgressIndicator(
+                                color: blackColor,
+                              ),
+                            );
+                          },
+                          errorBuilder: (context, error) => Container(
+                            color: const Color(0xFFFFFFFF),
+                            alignment: Alignment.center,
+                            child: const Icon(
+                              Icons.warning,
+                              color: Color(0xFF1E1E1E),
+                              size: 128.0,
                             ),
-                          );
-                        },
-                        errorBuilder: (context, error) => Container(
-                          color: const Color(0xFFFFFFFF),
-                          alignment: Alignment.center,
-                          child: const Icon(
-                            Icons.warning,
-                            color: Color(0xFF1E1E1E),
-                            size: 128.0,
                           ),
                         ),
-                      ),
-                    ),
-                    Container(
-                      width: widgetSize(context),
-                      padding: EdgeInsets.only(top: 16),
-                      child: Text(
-                        mediaDocs[i]['title'],
-                        style: TextStyle(
-                          fontSize: h3FontSize(context),
-                          color: blackColor,
+                        InkWell(
+                          onTap: () async {
+                            final url = Uri.parse(mediaDocs[i]['link']);
+                            if (await canLaunchUrl(url)) {
+                              launchUrl(url, mode: LaunchMode.externalApplication);
+                            }
+                          },
+                          child: Container(
+                            width: c4BoxSize(context),
+                            height: c4BoxSize(context),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(1000),
+                              color: blackColor.withOpacity(0.7),
+                            ),
+                            child: Icon(
+                              Icons.play_arrow,
+                              size: c5BoxSize(context),
+                              color: whiteColor,
+                            ),
+                          ),
                         ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    width: widgetSize(context),
+                    padding: EdgeInsets.only(top: 16),
+                    child: Text(
+                      mediaDocs[i]['title'],
+                      style: TextStyle(
+                        fontSize: h3FontSize(context),
+                        color: blackColor,
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
             Padding(
