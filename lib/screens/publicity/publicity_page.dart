@@ -305,6 +305,26 @@ class _MagazineScreenState extends State<MagazineScreen> {
       if (magazineDocsLength > 0) {
         return SizedBox(
           width: widgetSize(context),
+          height: 300,
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // CircularProgressIndicator(color: blackColor),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20),
+                  child: Text(
+                    '게시물이 없습니다.',
+                    style: TextStyle(color: blackColor),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      } else {
+        return SizedBox(
+          width: widgetSize(context),
           child: Column(
             children: [
               GridView.builder(
@@ -405,26 +425,6 @@ class _MagazineScreenState extends State<MagazineScreen> {
                 },
               ),
             ],
-          ),
-        );
-      } else {
-        return SizedBox(
-          width: widgetSize(context),
-          height: 300,
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                // CircularProgressIndicator(color: blackColor),
-                Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: Text(
-                    '게시물이 없습니다.',
-                    style: TextStyle(color: blackColor),
-                  ),
-                ),
-              ],
-            ),
           ),
         );
       }
