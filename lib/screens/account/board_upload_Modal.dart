@@ -1429,7 +1429,12 @@ class _EventUpModalState extends State<EventUpModal> {
                       fit: FlexFit.tight,
                       child: InkWell(
                         onTap: () {
+                          try {
                           uploadComplete();
+
+                          } catch (e) {
+                            print(e);
+                          }
                         },
                         child: Container(
                           height: c5BoxSize(context),

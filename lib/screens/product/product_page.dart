@@ -196,6 +196,31 @@ class _ProductsGridState extends State<ProductsGrid> {
     });
   }
 
+  List bespokeProducts = [
+    'assets/images/bespokeProducts/product_1.jpg'
+    'assets/images/bespokeProducts/product_2.jpg'
+    'assets/images/bespokeProducts/product_3.jpg'
+    'assets/images/bespokeProducts/product_4.jpg'
+    'assets/images/bespokeProducts/product_5.jpg'
+    'assets/images/bespokeProducts/product_6.jpg'
+    'assets/images/bespokeProducts/product_7.jpg'
+    'assets/images/bespokeProducts/product_8.jpg'
+    'assets/images/bespokeProducts/product_9.jpg'
+    'assets/images/bespokeProducts/product_10.jpg'
+    'assets/images/bespokeProducts/product_11.jpg'
+    'assets/images/bespokeProducts/product_12.jpg'
+    'assets/images/bespokeProducts/product_13.jpg'
+    'assets/images/bespokeProducts/product_14.jpg'
+    'assets/images/bespokeProducts/product_15.jpg'
+    'assets/images/bespokeProducts/product_16.jpg'
+    'assets/images/bespokeProducts/product_17.jpg'
+    'assets/images/bespokeProducts/product_18.jpg'
+    'assets/images/bespokeProducts/product_19.jpg'
+    'assets/images/bespokeProducts/product_20.jpg'
+    'assets/images/bespokeProducts/product_21.jpg'
+    'assets/images/bespokeProducts/product_22.jpg'
+  ];
+
   @override
   void initState() {
     super.initState();
@@ -212,7 +237,7 @@ class _ProductsGridState extends State<ProductsGrid> {
             child: SizedBox(
               width: widgetSize(context),
               child: GridView.builder(
-                itemCount: productsDocsLength.hashCode,
+                itemCount: 22,
                 shrinkWrap: true,
                 controller: ScrollController(),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -243,8 +268,8 @@ class _ProductsGridState extends State<ProductsGrid> {
                                       child: ClipRRect(
                                         borderRadius: BorderRadius.circular(8),
                                         child: InteractiveViewer(
-                                          child: Image.network(
-                                            productsDocs[index]['thumbnail'],
+                                          child: Image.asset(
+                                            'assets/images/bespokeProducts/product_${index + 1}.jpg',
                                             fit: BoxFit.contain,
                                           ),
                                         ),
@@ -281,8 +306,8 @@ class _ProductsGridState extends State<ProductsGrid> {
                       );
                     },
                     child: ImageFade(
-                      image: NetworkImage(
-                        productsDocs[index]['thumbnail'],
+                      image: AssetImage(
+                        'assets/images/bespokeProducts/product_${index + 1}.jpg',
                       ),
                       fit: BoxFit.cover,
                       duration: const Duration(milliseconds: 900),
